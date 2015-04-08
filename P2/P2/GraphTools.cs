@@ -9,7 +9,7 @@ using System.Windows.Forms;
 namespace P2
 {
     //This abstract class presents graph-drawing tools
-    public static class Graph
+    public static class GraphTools
     {
         private string title;
         private Point[] pointArray;
@@ -18,7 +18,7 @@ namespace P2
         //Windows-folket skal lige indtaste using ... til denne
         private Panel drawPanel;
 
-        public Graph(string iTitle, Point[] iPointArray, string ixAxis, string iyAxis, Panel iDrawPanel)
+        public GraphTools(string iTitle, Point[] iPointArray, string ixAxis, string iyAxis, Panel iDrawPanel)
         {
             this.title = iTitle;
             this.pointArray = iPointArray;

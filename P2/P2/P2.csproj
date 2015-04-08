@@ -35,8 +35,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbstractGraph.cs" />
-    <Compile Include="AbstractSaveLoad.cs" />
+    <Compile Include="GraphTools.cs" />
+    <Compile Include="SaveLoadTools.cs" />
     <Compile Include="Datahandler.cs" />
     <Compile Include="DataPoint.cs" />
     <Compile Include="Model.cs" />
