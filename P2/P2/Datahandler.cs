@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace P2
 {
-    //This class is used to convert from a list of DataPoints to single poiunts or arrays from to times
+    //This class contains the data, and allows access to all or parts of it as graph-points, arrays of graph-points or individual structs.
     public class DataHandler
     {
         List<DataPoint> simulationData = new List<DataPoint>();
@@ -20,21 +20,24 @@ namespace P2
         {
         }
 
-        public Point toPoint(string yAxis, double time)
+        //returns a single x/y coordinate; x is the time (from input), y is the requested value at the specified time.
+        public Point getPoint(string yAxis, decimal time)
         {
             Point tempPoint;
 
             return tempPoint;
         }
 
-        public DataPoint toStruct(double time)
+        //returns the full DataPoint struct from the requested time.
+        public DataPoint getStruct(decimal time)
         {
             DataPoint tempDP = new DataPoint();
 
             return tempDP;
         }
 
-        public DataPoint[] toArray(double fromTime, double toTime)
+        //Returns an array containing all DataPoint structs within the requested timespan, inclusive.
+        public DataPoint[] getArray(decimal fromTime, decimal toTime)
         {
             DataPoint[] DPArray = null;
 
