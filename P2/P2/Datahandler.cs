@@ -43,5 +43,11 @@ namespace P2
 
             return DPArray;
         }
+
+        //Returns a list containing all DataPoints. Intended for saving/backups.
+        public List<DataPoint> getAll()
+        {
+            return simulationData;
+        }
     }
 }
