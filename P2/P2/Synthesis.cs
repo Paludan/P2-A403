@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace P2
 {
     //This class handles the time of the simulation and presents features to stop, fastforward and convert time from realtime to virtualtime
-    public class TimeHandler
+    public class Synthesis
     {
         private DataHandler simulationData;
         /* The constructor for TimeHandler
@@ -15,7 +15,7 @@ namespace P2
          * Variable
          * Output
          */
-        public TimeHandler(DataHandler DH)
+        public Synthesis(DataHandler DH)
         {
             this.simulationData = DH;
         }
