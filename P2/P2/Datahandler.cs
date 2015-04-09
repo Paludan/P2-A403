@@ -21,13 +21,18 @@ namespace P2
         {
         }
 
-        //adds the input DataPoint to the current simulation list.
+        /* adds the input DataPoint to the current simulation list.
+         * input - the DataPoint to be added
+         * No output*/
         public void addDataPoint(DataPoint input)
         {
             simulationData.Add(input);
         }
 
-        //Reverts to the specified time or the closest datapoint before, moves the skipped datapoints into an array in oldData, and finally returns the new current datapoint.
+        /* Reverts to the specified time or the closest datapoint after, moves the skipped datapoints into an array in oldData
+         * removing them from the list, and finally returns the new current datapoint.
+         * time - the desired time to revert the simulation to
+         * Expected to return the DataPoint with the requested timestamp, or the closest after.*/
         public DataPoint revert(double time)
         {
             DataPoint tempDP = new DataPoint();
@@ -65,7 +70,9 @@ namespace P2
             return tempDP;
         }
 
-        //returns the full DataPoint struct from the requested time.
+        /* returns the full DataPoint struct with the requested time, or the closest after.
+         * time - the time for which data is desired
+         * Expected to return the DataPoint with the requested time, or the closest after.*/
         public DataPoint getDataPoint(double time)
         {
             DataPoint tempDP = new DataPoint();
@@ -95,7 +102,11 @@ namespace P2
             return tempDP;
         }
 
-        //Returns an array containing all DataPoint structs within the requested timespan, inclusive.
+        /* Returns an array containing all DataPoint structs within the requested timespan, inclusive.
+         * In both cases it defaults to closest-after if not datapoint with the exact time is found.
+         * fromTime - time of the earliest DataPoint desired
+         * toTime . time of the latest DataPoint desired
+         * Expected to return an array of DataPoints*/
         public DataPoint[] getArray(double fromTime, double toTime)
         {
             DataPoint[] DPArray = null;
