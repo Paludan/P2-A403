@@ -11,6 +11,7 @@ namespace P2
     public class DataHandler
     {
         List<DataPoint> simulationData = new List<DataPoint>();
+        List<DataPoint[]> oldData = new List<DataPoint[]>();
         /* The constructor for DataHandler
          * Variable
          * Variable
@@ -20,16 +21,21 @@ namespace P2
         {
         }
 
-        //returns a single x/y coordinate; x is the time (from input), y is the requested value at the specified time.
-        public Point getPoint(string yAxis, decimal time)
+        //adds the input DataPoint to the current simulation list.
+        public void addDataPoint(DataPoint input)
         {
-            Point tempPoint;
+            simulationData.Add(input);
+        }
 
-            return tempPoint;
+        //Reverts to the specified time or the closest datapoint before, moves the skipped datapoints into an array in oldData, and finally returns the new current datapoint.
+        public DataPoint revert(decimal time)
+        {
+            //code
+            return simulationData.ElementAtOrDefault(simulationData.Count - 1);
         }
 
         //returns the full DataPoint struct from the requested time.
-        public DataPoint getStruct(decimal time)
+        public DataPoint getDataPoint(decimal time)
         {
             DataPoint tempDP = new DataPoint();
 
@@ -44,10 +50,22 @@ namespace P2
             return DPArray;
         }
 
-        //Returns a list containing all DataPoints. Intended for saving/backups.
-        public List<DataPoint> getAll()
+        //Returns a list containing all DataPoints of the current timeline.
+        public List<DataPoint> Data
         {
-            return simulationData;
+            get
+            {
+                return simulationData;
+            }
+        }
+
+        //returns a list of arrays, where each array is an alternate timeline
+        public List<DataPoint[]> OldData
+        {
+            get
+            {
+                return oldData;
+            }
         }
     }
 }
