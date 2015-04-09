@@ -26,6 +26,7 @@ namespace P2
         {
             simulationData.Add(input);
         }
+            Point tempPoint = new Point(0,0);
 
         //Reverts to the specified time or the closest datapoint before, moves the skipped datapoints into an array in oldData, and finally returns the new current datapoint.
         public DataPoint revert(decimal time)

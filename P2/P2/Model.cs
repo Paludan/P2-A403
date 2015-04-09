@@ -10,8 +10,9 @@ namespace P2
     //This class runs the simulation and presents results
     public class Model
     {
-		private const decimal gasConstant = 8.3145;
-		private const decimal preExpontentialFaktor = 8.849 * Math.Pow (10, 14);
+		private const double gasConstant = 8.3145;
+        private const double preExpontentialFaktor = 8.849;//* Math.Pow (10, 14);
+
 
 		private DataPoint currentState = new DataPoint (); //wut
 
@@ -20,36 +21,36 @@ namespace P2
          * Variable
          * Output
          */
-        public Model(decimal iTemperature, decimal nHydrogen, decimal nNitrogen, decimal nAmmonia, bool catalyst, decimal time, decimal volume)
+        public Model(double iTemperature, double nHydrogen, double nNitrogen, double nAmmonia, bool catalyst, double time, double volume)
         {
 
         }
 
-        private decimal calculatePartialPressure(decimal temperature, decimal nSubstance, decimal volume)
+        private double calculatePartialPressure(double temperature, double nSubstance, double volume)
         {
-			decimal partialPressure = (nSubstance * gasConstant * temperature) / volume;
+			double partialPressure = (nSubstance * gasConstant * temperature) / volume;
 
 			return partialPressure;
         }
 
-        private decimal calculateEquillibriumConstant(decimal temperature)
+        private double calculateEquillibriumConstant(double temperature)
         {
-			decimal equiConst = Math.Pow(Math.E, -((-91.8 * 1000)/ (temperature * 8.314472)) + (-198.05/8.314472));
+			double equiConst = Math.Pow(Math.E, -((-91.8 * 1000)/ (temperature * 8.314472)) + (-198.05/8.314472));
 
             return equiConst;
         }
 
 		/* Er usikker om dette er gjort rigtigt */
-        private decimal calculateAmmoniaAtEquillibrium(decimal nHydrogen, decimal nNitrogen, decimal equiConst)
+        private double calculateAmmoniaAtEquillibrium(double nHydrogen, double nNitrogen, double equiConst)
         {
-			decimal nAmmonia = equiConst * Math.Pow(nHydrogen, 3) * nNitrogen;
+			double nAmmonia = equiConst * Math.Pow(nHydrogen, 3) * nNitrogen;
 		
-			return Math.Sqrt(nAmmonia, 2);
+			return Math.Sqrt(nAmmonia);
         }
 
-        private decimal calculateActivationEnergy(bool catalyst)
+        private double calculateActivationEnergy(bool catalyst)
         {
-			decimal activationEnergy = 0;
+			double activationEnergy = 0;
 
 			if (catalyst)
 				activationEnergy = 60;
@@ -59,32 +60,32 @@ namespace P2
             return activationEnergy;
         }
 
-        private decimal calculateReactionRateConstant(decimal temperature, decimal activationEnergy)
+        private double calculateReactionRateConstant(double temperature, double activationEnergy)
         {
-			decimal RRConst = preExpontentialFaktor * Math.Pow(Math.E, -(activationEnergy/(gasConstant*temperature)));
+			double RRConst = preExpontentialFaktor * Math.Pow(Math.E, -(activationEnergy/(gasConstant*temperature)));
 
             return RRConst;
         }
 
-        private decimal calculateActualPartialPressure(decimal RRConst)
+        private double calculateActualPartialPressure(double RRConst)
         {
-            decimal nAmmonia = 0;
+            double nAmmonia = 0;
 
             return nAmmonia;
         }
 
-        private decimal calculateActualPressure(decimal pAmmonia, decimal pNitrogen, decimal pHydrogen)
+        private double calculateActualPressure(double pAmmonia, double pNitrogen, double pHydrogen)
         {
-			decimal pressure = pAmmonia + pNitrogen + pHydrogen;
+			double pressure = pAmmonia + pNitrogen + pHydrogen;
 
             return pressure;
         }
 
 		/* Er usikker om dette er gjort rigtigt */
-		private bool isAtEquillibrium(decimal pAmmonia, decimal pNitrogen, decimal pHydrogen, decimal equiConst)
+		private bool isAtEquillibrium(double pAmmonia, double pNitrogen, double pHydrogen, double equiConst)
         {
             bool atEquillibrium = false;
-			decimal equiFrac = Math.Pow(pAmmonia,2) / (pNitrogen * Math.Pow(pHydrogen, 3));
+			double equiFrac = Math.Pow(pAmmonia,2) / (pNitrogen * Math.Pow(pHydrogen, 3));
 
 			if (equiFrac.Equals (equiConst))
 				atEquillibrium = true;
