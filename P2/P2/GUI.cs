@@ -16,5 +16,11 @@ namespace P2
         {
             InitializeComponent();
         }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsNumber(e.KeyChar) || e.KeyChar == '.')
+                e.Handled = e.KeyChar != (char)Keys.Back;
+        }
     }
 }
