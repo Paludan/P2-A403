@@ -35,6 +35,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataToSerialize.cs" />
     <Compile Include="GraphTools.cs" />
     <Compile Include="SaveLoadTools.cs" />
     <Compile Include="Datahandler.cs" />
@@ -47,6 +48,7 @@
     </Compile>
     <Compile Include="Model.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="Serializer.cs" />
     <Compile Include="Snapshot.cs" />
     <Compile Include="Synthesis.cs" />
   </ItemGroup>

@@ -9,14 +9,23 @@ namespace P2
     //This abstract class presents tools to save and load a project from a file
     public static class SaveLoadTools
     {
-        public static void save()
+        //This method takes in the current list of data and saves it in the same folder as the program
+        public static void save(List<DataPoint> CurrentDataList)
         {
-
+            DataToSerialize SerializedData = new DataToSerialize();
+            SerializedData.DataList = CurrentDataList;
+            Serializer DataSerializer = new Serializer();
+            DataSerializer.SerializeObject("SavedData.txt", SerializedData);
         }
-
-        public static void load()
+        //This method loads data from the harddrive and returns it to the caller
+        public static List<DataPoint> load()
         {
-
+            List<DataPoint> tempDataList = new List<DataPoint>();
+            DataToSerialize SerializedData = new DataToSerialize();
+            Serializer DataSerializer = new Serializer();
+            SerializedData = DataSerializer.DeSerializeObject("SavedData.txt");
+            tempDataList = SerializedData.DataList;
+            return tempDataList;
         }
     }
 }
