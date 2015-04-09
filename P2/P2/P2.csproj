@@ -48,7 +48,7 @@
     <Compile Include="Model.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Snapshot.cs" />
-    <Compile Include="TimeHandler.cs" />
+    <Compile Include="Synthesis.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
