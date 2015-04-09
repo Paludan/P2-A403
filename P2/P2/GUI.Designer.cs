@@ -38,10 +38,14 @@
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.pColourDescription = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.hVariabelControl = new System.Windows.Forms.Label();
             this.hColour = new System.Windows.Forms.Label();
             this.hVariable = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.pTabs = new System.Windows.Forms.Panel();
+            this.Tab2 = new System.Windows.Forms.Button();
+            this.Tab1 = new System.Windows.Forms.Button();
             this.Save = new System.Windows.Forms.Button();
             this.Load = new System.Windows.Forms.Button();
             this.pProjectHandling = new System.Windows.Forms.Panel();
@@ -65,10 +69,9 @@
             this.hTimeControl = new System.Windows.Forms.Label();
             this.pInfoBox = new System.Windows.Forms.Panel();
             this.hInfoBox = new System.Windows.Forms.Label();
-            this.hVariabelControl = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.Tab1 = new System.Windows.Forms.Button();
-            this.Tab2 = new System.Windows.Forms.Button();
+            this.AddGraph = new System.Windows.Forms.Button();
+            this.checkBoxCatalyst = new System.Windows.Forms.CheckBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.pSimulationArea.SuspendLayout();
             this.pColourDescription.SuspendLayout();
             this.pTabs.SuspendLayout();
@@ -76,6 +79,7 @@
             this.pParameters.SuspendLayout();
             this.pTimeControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pSimulationArea
@@ -97,40 +101,40 @@
             // lTemperature
             // 
             this.lTemperature.AutoSize = true;
-            this.lTemperature.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lTemperature.Location = new System.Drawing.Point(19, 250);
+            this.lTemperature.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lTemperature.Location = new System.Drawing.Point(24, 251);
             this.lTemperature.Name = "lTemperature";
-            this.lTemperature.Size = new System.Drawing.Size(91, 20);
+            this.lTemperature.Size = new System.Drawing.Size(84, 18);
             this.lTemperature.TabIndex = 9;
             this.lTemperature.Text = "Temperatur";
             // 
             // lNH3
             // 
             this.lNH3.AutoSize = true;
-            this.lNH3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lNH3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lNH3.Location = new System.Drawing.Point(49, 190);
             this.lNH3.Name = "lNH3";
-            this.lNH3.Size = new System.Drawing.Size(37, 20);
+            this.lNH3.Size = new System.Drawing.Size(34, 18);
             this.lNH3.TabIndex = 8;
             this.lNH3.Text = "NH₃";
             // 
             // lH2
             // 
             this.lH2.AutoSize = true;
-            this.lH2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lH2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lH2.Location = new System.Drawing.Point(55, 130);
             this.lH2.Name = "lH2";
-            this.lH2.Size = new System.Drawing.Size(26, 20);
+            this.lH2.Size = new System.Drawing.Size(23, 18);
             this.lH2.TabIndex = 7;
             this.lH2.Text = "H₂";
             // 
             // lN2
             // 
             this.lN2.AutoSize = true;
-            this.lN2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lN2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lN2.Location = new System.Drawing.Point(55, 70);
             this.lN2.Name = "lN2";
-            this.lN2.Size = new System.Drawing.Size(25, 20);
+            this.lN2.Size = new System.Drawing.Size(23, 18);
             this.lN2.TabIndex = 6;
             this.lN2.Text = "N₂";
             // 
@@ -192,6 +196,26 @@
             this.pColourDescription.Size = new System.Drawing.Size(591, 25);
             this.pColourDescription.TabIndex = 2;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(501, 4);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(85, 13);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Variabelværdi";
+            // 
+            // hVariabelControl
+            // 
+            this.hVariabelControl.AutoSize = true;
+            this.hVariabelControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.hVariabelControl.Location = new System.Drawing.Point(352, 4);
+            this.hVariabelControl.Name = "hVariabelControl";
+            this.hVariabelControl.Size = new System.Drawing.Size(92, 13);
+            this.hVariabelControl.TabIndex = 2;
+            this.hVariabelControl.Text = "Ændre variabel";
+            // 
             // hColour
             // 
             this.hColour.AutoSize = true;
@@ -229,12 +253,31 @@
             // 
             // pTabs
             // 
+            this.pTabs.Controls.Add(this.AddGraph);
             this.pTabs.Controls.Add(this.Tab2);
             this.pTabs.Controls.Add(this.Tab1);
             this.pTabs.Location = new System.Drawing.Point(10, 0);
             this.pTabs.Name = "pTabs";
             this.pTabs.Size = new System.Drawing.Size(630, 20);
             this.pTabs.TabIndex = 1;
+            // 
+            // Tab2
+            // 
+            this.Tab2.Location = new System.Drawing.Point(75, 0);
+            this.Tab2.Name = "Tab2";
+            this.Tab2.Size = new System.Drawing.Size(75, 20);
+            this.Tab2.TabIndex = 1;
+            this.Tab2.Text = "Graf 2";
+            this.Tab2.UseVisualStyleBackColor = true;
+            // 
+            // Tab1
+            // 
+            this.Tab1.Location = new System.Drawing.Point(0, 0);
+            this.Tab1.Name = "Tab1";
+            this.Tab1.Size = new System.Drawing.Size(75, 20);
+            this.Tab1.TabIndex = 0;
+            this.Tab1.Text = "Graf 1";
+            this.Tab1.UseVisualStyleBackColor = true;
             // 
             // Save
             // 
@@ -268,7 +311,7 @@
             // 
             this.hProject.AutoSize = true;
             this.hProject.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.hProject.Location = new System.Drawing.Point(1110, 540);
+            this.hProject.Location = new System.Drawing.Point(1120, 540);
             this.hProject.Name = "hProject";
             this.hProject.Size = new System.Drawing.Size(107, 13);
             this.hProject.TabIndex = 5;
@@ -278,6 +321,7 @@
             // 
             this.pParameters.BackColor = System.Drawing.SystemColors.Control;
             this.pParameters.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pParameters.Controls.Add(this.panel1);
             this.pParameters.Controls.Add(this.lTemperature);
             this.pParameters.Controls.Add(this.hScrollBarTemperature);
             this.pParameters.Controls.Add(this.comboBox1);
@@ -295,9 +339,9 @@
             this.pParameters.Controls.Add(this.textBox3);
             this.pParameters.Controls.Add(this.textBox4);
             this.pParameters.Controls.Add(this.comboBox4);
-            this.pParameters.Location = new System.Drawing.Point(650, 210);
+            this.pParameters.Location = new System.Drawing.Point(650, 180);
             this.pParameters.Name = "pParameters";
-            this.pParameters.Size = new System.Drawing.Size(604, 320);
+            this.pParameters.Size = new System.Drawing.Size(600, 350);
             this.pParameters.TabIndex = 6;
             // 
             // hScrollBarTemperature
@@ -365,7 +409,7 @@
             // 
             this.hParameters.AutoSize = true;
             this.hParameters.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.hParameters.Location = new System.Drawing.Point(660, 200);
+            this.hParameters.Location = new System.Drawing.Point(660, 170);
             this.hParameters.Name = "hParameters";
             this.hParameters.Size = new System.Drawing.Size(64, 13);
             this.hParameters.TabIndex = 7;
@@ -381,12 +425,12 @@
             this.pTimeControl.Controls.Add(this.start);
             this.pTimeControl.Location = new System.Drawing.Point(650, 20);
             this.pTimeControl.Name = "pTimeControl";
-            this.pTimeControl.Size = new System.Drawing.Size(600, 170);
+            this.pTimeControl.Size = new System.Drawing.Size(600, 140);
             this.pTimeControl.TabIndex = 8;
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(243, 104);
+            this.numericUpDown1.Location = new System.Drawing.Point(245, 85);
             this.numericUpDown1.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -399,7 +443,7 @@
             // lTime
             // 
             this.lTime.AutoSize = true;
-            this.lTime.Location = new System.Drawing.Point(198, 106);
+            this.lTime.Location = new System.Drawing.Point(200, 88);
             this.lTime.Name = "lTime";
             this.lTime.Size = new System.Drawing.Size(22, 13);
             this.lTime.TabIndex = 3;
@@ -407,7 +451,7 @@
             // 
             // timeMultiplier
             // 
-            this.timeMultiplier.Location = new System.Drawing.Point(470, 40);
+            this.timeMultiplier.Location = new System.Drawing.Point(470, 30);
             this.timeMultiplier.Name = "timeMultiplier";
             this.timeMultiplier.Size = new System.Drawing.Size(70, 25);
             this.timeMultiplier.TabIndex = 2;
@@ -416,7 +460,7 @@
             // 
             // stop
             // 
-            this.stop.Location = new System.Drawing.Point(265, 40);
+            this.stop.Location = new System.Drawing.Point(265, 30);
             this.stop.Name = "stop";
             this.stop.Size = new System.Drawing.Size(70, 25);
             this.stop.TabIndex = 1;
@@ -425,7 +469,7 @@
             // 
             // start
             // 
-            this.start.Location = new System.Drawing.Point(60, 40);
+            this.start.Location = new System.Drawing.Point(60, 30);
             this.start.Name = "start";
             this.start.Size = new System.Drawing.Size(70, 25);
             this.start.TabIndex = 0;
@@ -436,7 +480,7 @@
             // 
             this.hTimeControl.AutoSize = true;
             this.hTimeControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.hTimeControl.Location = new System.Drawing.Point(660, 9);
+            this.hTimeControl.Location = new System.Drawing.Point(660, 10);
             this.hTimeControl.Name = "hTimeControl";
             this.hTimeControl.Size = new System.Drawing.Size(70, 13);
             this.hTimeControl.TabIndex = 9;
@@ -461,43 +505,35 @@
             this.hInfoBox.TabIndex = 11;
             this.hInfoBox.Text = "Vejledning";
             // 
-            // hVariabelControl
+            // AddGraph
             // 
-            this.hVariabelControl.AutoSize = true;
-            this.hVariabelControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.hVariabelControl.Location = new System.Drawing.Point(352, 4);
-            this.hVariabelControl.Name = "hVariabelControl";
-            this.hVariabelControl.Size = new System.Drawing.Size(92, 13);
-            this.hVariabelControl.TabIndex = 2;
-            this.hVariabelControl.Text = "Ændre variabel";
+            this.AddGraph.Location = new System.Drawing.Point(150, 0);
+            this.AddGraph.Name = "AddGraph";
+            this.AddGraph.Size = new System.Drawing.Size(75, 20);
+            this.AddGraph.TabIndex = 2;
+            this.AddGraph.Text = "Tilføj graf";
+            this.AddGraph.UseVisualStyleBackColor = true;
             // 
-            // label1
+            // checkBoxCatalyst
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(501, 4);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(85, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Variabelværdi";
+            this.checkBoxCatalyst.AutoSize = true;
+            this.checkBoxCatalyst.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxCatalyst.Location = new System.Drawing.Point(251, 15);
+            this.checkBoxCatalyst.Name = "checkBoxCatalyst";
+            this.checkBoxCatalyst.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.checkBoxCatalyst.Size = new System.Drawing.Size(98, 21);
+            this.checkBoxCatalyst.TabIndex = 18;
+            this.checkBoxCatalyst.Text = "Katalysator";
+            this.checkBoxCatalyst.UseVisualStyleBackColor = true;
             // 
-            // Tab1
+            // panel1
             // 
-            this.Tab1.Location = new System.Drawing.Point(0, 0);
-            this.Tab1.Name = "Tab1";
-            this.Tab1.Size = new System.Drawing.Size(75, 20);
-            this.Tab1.TabIndex = 0;
-            this.Tab1.Text = "Graph1";
-            this.Tab1.UseVisualStyleBackColor = true;
-            // 
-            // Tab2
-            // 
-            this.Tab2.Location = new System.Drawing.Point(75, 0);
-            this.Tab2.Name = "Tab2";
-            this.Tab2.Size = new System.Drawing.Size(75, 20);
-            this.Tab2.TabIndex = 1;
-            this.Tab2.Text = "Graph2";
-            this.Tab2.UseVisualStyleBackColor = true;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.checkBoxCatalyst);
+            this.panel1.Location = new System.Drawing.Point(-1, 300);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(600, 49);
+            this.panel1.TabIndex = 19;
             // 
             // GUI
             // 
@@ -526,6 +562,8 @@
             this.pTimeControl.ResumeLayout(false);
             this.pTimeControl.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -574,5 +612,8 @@
         private System.Windows.Forms.Label hVariabelControl;
         private System.Windows.Forms.Button Tab1;
         private System.Windows.Forms.Button Tab2;
+        private System.Windows.Forms.Button AddGraph;
+        private System.Windows.Forms.CheckBox checkBoxCatalyst;
+        private System.Windows.Forms.Panel panel1;
     }
 }
