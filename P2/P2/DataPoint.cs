@@ -9,14 +9,15 @@ namespace P2
 {
     public struct DataPoint : ISerializable
     {
-        decimal nAmmonia, nHydrogen, nNitrogen, pressure, time;
+        decimal nAmmonia, nHydrogen, nNitrogen, nTemperature, pressure, time;
         bool catalyst;
 
-        public DataPoint(decimal ammonia, decimal hydrogen, decimal nitrogen, decimal inputPressure, decimal inputTime, bool inputCatalyst)
+        public DataPoint(decimal ammonia, decimal hydrogen, decimal nitrogen, decimal inputTemperature, decimal inputPressure, decimal inputTime, bool inputCatalyst)
         {
             this.nAmmonia = ammonia;
             this.nHydrogen = hydrogen;
             this.nNitrogen = nitrogen;
+            this.nTemperature = inputTemperature;
             this.pressure = inputPressure;
             this.time = inputTime;
             this.catalyst = inputCatalyst;
