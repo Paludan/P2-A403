@@ -23,7 +23,7 @@ namespace P2
         //returns a single x/y coordinate; x is the time (from input), y is the requested value at the specified time.
         public Point getPoint(string yAxis, decimal time)
         {
-            Point tempPoint;
+            Point tempPoint = new Point(0,0);
 
             return tempPoint;
         }

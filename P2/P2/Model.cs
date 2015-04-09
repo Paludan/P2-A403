@@ -11,7 +11,7 @@ namespace P2
     public class Model
     {
 		private const double gasConstant = 8.3145;
-		private const double preExpontentialFaktor = 8.849 * Math.Pow (10, 14);
+        private const double preExpontentialFaktor = 8.849;//* Math.Pow (10, 14);
 
 
         /* The constructor for Model
@@ -43,7 +43,7 @@ namespace P2
         {
 			double nAmmonia = equiConst * Math.Pow(nHydrogen, 3) * nNitrogen;
 		
-			return Math.Sqrt(nAmmonia, 2);
+			return Math.Sqrt(nAmmonia);
         }
 
         private double calculateActivationEnergy(bool catalyst)
