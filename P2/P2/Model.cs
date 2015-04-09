@@ -152,7 +152,6 @@ namespace P2
 		private void UpdateCurrentState (DataPoint currentState, double nAmmonia, double nHydrogen , double nNitrogen, double temperature, double actualPressure, double time, bool catalyst)
 		{
 			currentState (nAmmonia, nHydrogen, nNitrogen, temperature, actualPressure, time, catalyst);
-
 		}
 			
 		public DataPoint calculateDataPoint (double deltaTime)
