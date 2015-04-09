@@ -71,7 +71,13 @@ namespace P2
         {
             double nAmmonia = 0;
 
-            return nAmmonia;
+			/* Beregner det aktuelle partialtryk, hvor tiden skal
+			 * være med som en faktor, derfor er den tom lige nu
+			 * da det er lidt kringlet
+			 */
+
+
+			return;
         }
 
         private double calculateActualPressure(double pAmmonia, double pNitrogen, double pHydrogen)
@@ -93,9 +99,10 @@ namespace P2
             return atEquillibrium;
         }
 
-		private void UpdateCurrentState ()
+		private void UpdateCurrentState (decimal nAmmonia, decimal nHydrogen , decimal nNitrogen, decimal actualPressure, decimal time, bool catalyst)
 		{
-			// Herinde opdatere datapointet currentState
+			currentState(
+			
 		}
 
 		private void updateReagent ()
