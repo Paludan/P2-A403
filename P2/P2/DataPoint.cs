@@ -21,7 +21,7 @@ namespace P2
             this.pressure = inputPressure;
             this.time = inputTime;
             this.catalyst = inputCatalyst;
-        }
+		}
 
         #region ISerializable implementation
 

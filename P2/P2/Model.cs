@@ -15,14 +15,43 @@ namespace P2
 		private const double volume = 50000; // liter
 		private DataPoint currentState = new DataPoint (); //wut
 
+		public double Ammonia
+		{
+			set {
+				currentState.nAmmonia = value;
+			}
+
+		}
+
+		public double Hydrogen
+		{
+			set {
+				currentState.nHydrogen = value;
+			}
+		}
+
+		public double Nitrogen
+		{
+			set {
+				currentState.nNitrogen = value;
+			}
+		}
+
+		public double Temperature
+		{
+			set {
+				currentState.temperature = value;
+			}
+		}
+
         /* The constructor for Model
          * Variable
          * Variable
          * Output
          */
-        public Model(double iTemperature, double nHydrogen, double nNitrogen, double nAmmonia, bool catalyst, double time, double volume)
+		public Model(DataPoint dp)
         {
-
+			currentState = dp;
         }
 
         private double calculatePartialPressure(double temperature, double nSubstance, double volume)
@@ -125,14 +154,7 @@ namespace P2
 			currentState (nAmmonia, nHydrogen, nNitrogen, temperature, actualPressure, time, catalyst);
 
 		}
-
-		private void updateReagent ()
-		{
-
-			//lav som properties
-		}
-
-
+			
 		public DataPoint calculateDataPoint (double deltaTime)
         {
 			DataPoint nextState = new DataPoint (currentState);
@@ -157,8 +179,8 @@ namespace P2
 				calculateActivationEnergy (currentState.catalyst)), deltaTime);
 					
 			nextState.nAmmonia = calculateMolarAmount(pAmmonia);
-		
-			pAmmonia = calculatePartialPressure (currentState.temperature, equiAmmonia, volume);
+
+			currentState = nextState;
 		}
     }
 }
