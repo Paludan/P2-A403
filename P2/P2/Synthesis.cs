@@ -10,14 +10,16 @@ namespace P2
     public class Synthesis
     {
         private DataHandler simulationData;
+        private Model SimulationModel;
         /* The constructor for TimeHandler
          * Variable
          * Variable
          * Output
          */
-        public Synthesis(DataHandler DH)
+        public Synthesis()
         {
-            this.simulationData = DH;
+            simulationData = new DataHandler();
+            SimulationModel = new Model();
         }
 
         public void start()
