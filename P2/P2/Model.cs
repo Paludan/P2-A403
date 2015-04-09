@@ -11,9 +11,8 @@ namespace P2
     public class Model
     {
 		private const double gasConstant = 8.3145;
-        private const double preExpontentialFaktor = 8.849;//* Math.Pow (10, 14);
-
-
+        private const double preExpontentialFaktor = 8.849 * Math.Pow (10, 14);
+		private const double volume = 50000; // liter
 		private DataPoint currentState = new DataPoint (); //wut
 
         /* The constructor for Model
@@ -41,11 +40,11 @@ namespace P2
         }
 
 		/* Er usikker om dette er gjort rigtigt */
-        private double calculateAmmoniaAtEquillibrium(double nHydrogen, double nNitrogen, double equiConst)
+        private double calculateAmmoniaAtEquillibrium(double pHydrogen, double pNitrogen, double equiConst)
         {
-			double nAmmonia = equiConst * Math.Pow(nHydrogen, 3) * nNitrogen;
+			double pAmmonia = equiConst * Math.Pow(pHydrogen, 3) * pNitrogen;
 		
-			return Math.Sqrt(nAmmonia);
+			return Math.Sqrt(pAmmonia);
         }
 
         private double calculateActivationEnergy(bool catalyst)
@@ -67,18 +66,26 @@ namespace P2
             return RRConst;
         }
 
-        private double calculateActualPartialPressure(double RRConst)
+		private double calculateAmmoniaActualPartialPressure(double RRConst, double deltaTime)
         {
-            double nAmmonia = 0;
+            double pAmmonia = 0;
 
 			/* Beregner det aktuelle partialtryk, hvor tiden skal
 			 * være med som en faktor, derfor er den tom lige nu
 			 * da det er lidt kringlet
 			 */
 
+			pAmmonia = calculatePartialPressure (currentState.temperature, currentState.nAmmonia, volume) * Math.Pow(Math.E, (-RRConst * deltaTime));
 
-			return;
+			return pAmmonia;
         }
+			
+		private double calculateMolarAmount (double pReagent)
+		{
+			double molarAmount = (pReagent * volume) / (gasConstant * currentState.temperature);
+
+			return molarAmount;
+		}
 
         private double calculateActualPressure(double pAmmonia, double pNitrogen, double pHydrogen)
         {
@@ -88,7 +95,7 @@ namespace P2
         }
 
 		/* Er usikker om dette er gjort rigtigt */
-		private bool isAtEquillibrium(double pAmmonia, double pNitrogen, double pHydrogen, double equiConst)
+		bool isAtEquillibrium(double pAmmonia, double pNitrogen, double pHydrogen, double equiConst)
         {
             bool atEquillibrium = false;
 			double equiFrac = Math.Pow(pAmmonia,2) / (pNitrogen * Math.Pow(pHydrogen, 3));
@@ -99,10 +106,24 @@ namespace P2
             return atEquillibrium;
         }
 
-		private void UpdateCurrentState (decimal nAmmonia, decimal nHydrogen , decimal nNitrogen, decimal actualPressure, decimal time, bool catalyst)
+
+		public bool IsAtEquillibrium{
+
+			get
+			{
+				return isAtEquillibrium (
+					calculatePartialPressure(currentState.temperature, currentState.nAmmonia, volume), 
+					calculatePartialPressure(currentState.temperature, currentState.nNitrogen, volume), 
+					calculatePartialPressure(currentState.temperature, currentState.nHydrogen, volume), 
+					calculateEquillibriumConstant(currentState.temperature));
+			}
+		}
+
+
+		private void UpdateCurrentState (DataPoint currentState, double nAmmonia, double nHydrogen , double nNitrogen, double temperature, double actualPressure, double time, bool catalyst)
 		{
-			currentState(
-			
+			currentState (nAmmonia, nHydrogen, nNitrogen, temperature, actualPressure, time, catalyst);
+
 		}
 
 		private void updateReagent ()
@@ -112,11 +133,32 @@ namespace P2
 		}
 
 
-		public DataPoint runSimulation ()
+		public DataPoint calculateDataPoint (double deltaTime)
         {
-            DataPoint tempDP = new DataPoint();
+			DataPoint nextState = new DataPoint (currentState);
 
-            return tempDP;
-        }
+			double equiConst = 0, equiAmmonia = 0, 
+			pHydrogen = calculatePartialPressure (currentState.temperature, currentState.nHydrogen, volume), 
+			pNitrogen = calculatePartialPressure (currentState.temperature, currentState.nNitrogen, volume), 
+			pAmmonia = 0;
+		
+			/* calculate the molar amounts */
+			nextState.nHydrogen = calculateMolarAmount(pHydrogen);
+			nextState.nNitrogen = calculateMolarAmount(pNitrogen);
+		
+			/* calculate equillibrium constant */
+			equiConst = calculateEquillibriumConstant (currentState.temperature);
+
+			/* calculate amount of ammonia */
+			equiAmmonia = calculateAmmoniaAtEquillibrium (pHydrogen, pNitrogen, equiConst);
+
+			pAmmonia = calculateAmmoniaActualPartialPressure (
+				calculateReactionRateConstant (currentState.temperature, 
+				calculateActivationEnergy (currentState.catalyst)), deltaTime);
+					
+			nextState.nAmmonia = calculateMolarAmount(pAmmonia);
+		
+			pAmmonia = calculatePartialPressure (currentState.temperature, equiAmmonia, volume);
+		}
     }
 }
