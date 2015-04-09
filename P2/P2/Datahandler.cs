@@ -30,8 +30,32 @@ namespace P2
         //Reverts to the specified time or the closest datapoint before, moves the skipped datapoints into an array in oldData, and finally returns the new current datapoint.
         public DataPoint revert(double time)
         {
-            //code
-            return simulationData.ElementAtOrDefault(simulationData.Count - 1);
+            DataPoint tempDP = new DataPoint();
+            bool foundDP = false;
+            int max = simulationData.Count - 1;
+            int i = max;
+            int revertDP = 0;
+            tempDP = simulationData.ElementAt(i);
+
+            //exception handling
+            if (simulationData.Count == 0) { throw new InvalidOperationException("No simulation data available. Run the simulation before trying to access data."); }
+            else if (tempDP.time > time) { throw new MissingMemberException("DataHandler.revert can only be used to jump to an earlier datapoint, but has been used to access a non-existing future datapoint. Contact developers."); }
+
+            //MergeSort-inspired search. MergeSearch?
+            do
+            {
+                tempDP = simulationData.ElementAt(i);
+                if (tempDP.time == time) { foundDP = true; revertDP = i; }
+                else if (tempDP.time > time) { i = i / 2; }
+                else
+                {
+                    tempDP = simulationData.ElementAt(i + 1);
+                    if (tempDP.time >= time) { foundDP = true; revertDP = i; }
+                    i = i + (i / 2);
+                }
+            } while (!foundDP);
+
+            return tempDP;
         }
 
         //returns the full DataPoint struct from the requested time.
@@ -40,11 +64,25 @@ namespace P2
             DataPoint tempDP = new DataPoint();
             bool foundDP = false;
             int max = simulationData.Count - 1;
-            int i = simulationData.Count - 1;
+            int i = max;
+            tempDP = simulationData.ElementAt(i);
 
+            //exception handling
+            if (simulationData.Count == 0) { throw new InvalidOperationException("No simulation data available. Run the simulation before trying to access data."); }
+            else if (tempDP.time > time) { throw new MissingMemberException("DataHandler.getDataPoint can only be used to access an existing datapoint, but has been used to access a non-existing future datapoint. Contact developers."); }
+
+            //MergeSort-inspired search. MergeSearch?
             do
             {
-                
+                tempDP = simulationData.ElementAt(i);
+                if (tempDP.time == time) { foundDP = true; }
+                else if (tempDP.time > time) { i = i / 2; }
+                else 
+                { 
+                    tempDP = simulationData.ElementAt(i + 1);
+                    if (tempDP.time >= time) { foundDP = true; }
+                    i = i + (i / 2); 
+                }
             } while (!foundDP);
 
             return tempDP;
@@ -59,7 +97,7 @@ namespace P2
         }
 
         //Returns a list containing all DataPoints of the current timeline.
-        public List<DataPoint> Data
+        public List<DataPoint> SimulationData
         {
             get
             {
