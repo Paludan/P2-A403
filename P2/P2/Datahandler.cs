@@ -55,6 +55,13 @@ namespace P2
                 }
             } while (!foundDP);
 
+            DataPoint[] tempArr = new DataPoint[max - revertDP];
+            for (int x = revertDP + 1; x <= max; x++)
+            {
+                tempArr[x - revertDP + 1] = simulationData.ElementAt(revertDP + 1);
+                simulationData.RemoveAt(revertDP + 1);
+            }
+            oldData.Add(tempArr);
             return tempDP;
         }
 
