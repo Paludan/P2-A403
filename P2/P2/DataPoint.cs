@@ -10,7 +10,7 @@ namespace P2
     public struct DataPoint : ISerializable
     {
         public double nAmmonia, nHydrogen, nNitrogen, nTemperature, pressure, time;
-        bool catalyst;
+        public bool catalyst;
 
         public DataPoint(double ammonia, double hydrogen, double nitrogen, double inputTemperature, double inputPressure, double inputTime, bool inputCatalyst)
         {
