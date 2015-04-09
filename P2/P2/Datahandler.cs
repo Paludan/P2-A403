@@ -26,25 +26,32 @@ namespace P2
         {
             simulationData.Add(input);
         }
-            Point tempPoint = new Point(0,0);
 
         //Reverts to the specified time or the closest datapoint before, moves the skipped datapoints into an array in oldData, and finally returns the new current datapoint.
-        public DataPoint revert(decimal time)
+        public DataPoint revert(double time)
         {
             //code
             return simulationData.ElementAtOrDefault(simulationData.Count - 1);
         }
 
         //returns the full DataPoint struct from the requested time.
-        public DataPoint getDataPoint(decimal time)
+        public DataPoint getDataPoint(double time)
         {
             DataPoint tempDP = new DataPoint();
+            bool foundDP = false;
+            int max = simulationData.Count - 1;
+            int i = simulationData.Count - 1;
+
+            do
+            {
+                
+            } while (!foundDP);
 
             return tempDP;
         }
 
         //Returns an array containing all DataPoint structs within the requested timespan, inclusive.
-        public DataPoint[] getArray(decimal fromTime, decimal toTime)
+        public DataPoint[] getArray(double fromTime, double toTime)
         {
             DataPoint[] DPArray = null;
 
