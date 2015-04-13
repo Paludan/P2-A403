@@ -49,7 +49,10 @@ namespace P2
             this.time = oldData.time;
             this.catalyst = oldData.catalyst;
         }
-
+        public override string ToString()
+        {
+            return String.Format("{0} {1} {2} {3} {4} {5} {6}", nAmmonia, nHydrogen, nNitrogen, temperature, pressure, time, catalyst);
+        }
         #region ISerializable implementation
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)

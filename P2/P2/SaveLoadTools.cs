@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace P2
 {
@@ -17,7 +18,9 @@ namespace P2
         {
             DataToSerialize SerializedData = new DataToSerialize();
             SerializedData.DataListList[0] = CurrentDataList;
-            Serializer DataSerializer = new Serializer();
+            Serializer DataSerializer = new Serializer(); 
+            string[] files = Directory.GetFiles(@".\SaveFiles\", "*.txt");
+            for (int i = 0; i < files.Length; i++)
             DataSerializer.SerializeObject("SavedDataList.txt", SerializedData);
         }
         /// <summary>
