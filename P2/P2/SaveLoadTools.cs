@@ -9,23 +9,52 @@ namespace P2
     //This abstract class presents tools to save and load a project from a file
     public static class SaveLoadTools
     {
-        //This method takes in the current list of data and saves it in the same folder as the program
+        /// <summary>
+        /// Saves a list of DataPoints to a file
+        /// </summary>
+        /// <param name="CurrentDataList">The list to be saved</param>
         public static void save(List<DataPoint> CurrentDataList)
         {
             DataToSerialize SerializedData = new DataToSerialize();
-            SerializedData.DataList = CurrentDataList;
+            SerializedData.DataListList[0] = CurrentDataList;
             Serializer DataSerializer = new Serializer();
-            DataSerializer.SerializeObject("SavedData.txt", SerializedData);
+            DataSerializer.SerializeObject("SavedDataList.txt", SerializedData);
         }
-        //This method loads data from the harddrive and returns it to the caller
+        /// <summary>
+        /// Saves a list of lists of DataPoints to a file
+        /// </summary>
+        /// <param name="CurrentDataList">The list of lists to be saved</param>
+        public static void save(List<List<DataPoint>> CurrentDataList)
+        {
+            DataToSerialize SerializedData = new DataToSerialize();
+            SerializedData.DataListList = CurrentDataList;
+            Serializer DataSerializer = new Serializer();
+            DataSerializer.SerializeObject("SavedDataListList.txt", SerializedData);
+        }
+        /// <summary>
+        /// Loads a list of DataPoints and returns it
+        /// </summary>
         public static List<DataPoint> load()
         {
             List<DataPoint> tempDataList = new List<DataPoint>();
             DataToSerialize SerializedData = new DataToSerialize();
             Serializer DataSerializer = new Serializer();
-            SerializedData = DataSerializer.DeSerializeObject("SavedData.txt");
-            tempDataList = SerializedData.DataList;
+            SerializedData = DataSerializer.DeSerializeObject("SavedDataList.txt");
+            tempDataList = SerializedData.DataListList[0];
             return tempDataList;
         }
+        /// <summary>
+        /// Loads a list of lists of DataPoints and returns it
+        /// </summary>
+        public static List<List<DataPoint>> loadListList()
+        {
+            List<List<DataPoint>> tempDataList = new List<List<DataPoint>>();
+            DataToSerialize SerializedData = new DataToSerialize();
+            Serializer DataSerializer = new Serializer();
+            SerializedData = DataSerializer.DeSerializeObject("SavedDataListList.txt");
+            tempDataList = SerializedData.DataListList;
+            return tempDataList;
+        }
+        
     }
 }
