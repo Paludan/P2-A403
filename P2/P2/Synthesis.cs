@@ -17,12 +17,11 @@ namespace P2
     public class Synthesis
     {
         DataHandler simulationData;
-        Model SimulationModel;
-        bool catalyst, running = true;
+        Model SimulationModel;, running = false;
         Thread Simulation; //This variable may or may not be used in the final version.
         System.Timers.Timer timer;//There are other classes called Timer so we must specify the path when initializing.
-        DataPoint InitData;
-        double Scale = 1.0; // this variable will decide at what scale the time runs. bu making this 2.0, the virtual time elapsed
+        public DataPoint currentData = new DataPoint(0,0,0,0,0,0,false);
+        double Scale = 1.0; // this variable will decide at what scale the time runs. by making this 2.0, the virtual time elapsed
                             // when calculating a new datapoint will be double the actual alapsed time.
         /*
          * With this property, the user of the class can specify the time interval between datapoints being taken.
@@ -57,13 +56,16 @@ namespace P2
          */
         public void start()
         {
+            running = true;
             Simulation.Start();
         }
 
         /*
          * This method will add a new datapoint using the 
          */
-        public void AddDataPoint(double deltaTime){
+        public void Update(double deltaTime){
+            currentData.time+=interval;
+
             simulationData.addDataPoint( SimulationModel.calculateDataPoint(deltaTime) );
         }
 
