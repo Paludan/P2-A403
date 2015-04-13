@@ -28,7 +28,8 @@ namespace P2
 
             //exception handling
             if (list.Count == 0) { throw new InvalidOperationException("MergeSearch: List is empty. Run the simulation before trying to access data."); }
-            else if (tempDP.time > timeToFind) { throw new MissingMemberException("MergeSearch.byTime can only be used to access an existing datapoint, but has been used to access a non-existing future datapoint. Contact developers."); }
+            else if (tempDP.time < timeToFind) { return list.ElementAt(max); }
+            else if (list.ElementAt(0).time > timeToFind) { return list.ElementAt(0); }
 
             do
             {

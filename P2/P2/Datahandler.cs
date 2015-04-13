@@ -12,6 +12,7 @@ namespace P2
     {
         List<DataPoint> simulationData = new List<DataPoint>();
         List<List<DataPoint>> oldData = new List<List<DataPoint>>();
+
         /* The constructor for DataHandler
          * Variable
          * Variable
@@ -96,5 +97,17 @@ namespace P2
                 return oldData;
             }
         }
+
+        /*public void test ()
+        {
+            simulationData.Add(new DataPoint(1, 1, 1, 1, 1, 1, false));
+            simulationData.Add(new DataPoint(2, 1, 1, 1, 1, 1.5, false));
+            simulationData.Add(new DataPoint(3, 1, 1, 1, 1, 2, false));
+            simulationData.Add(new DataPoint(4, 1, 1, 1, 1, 2.5, true));
+            simulationData.Add(new DataPoint(5, 1, 1, 1, 1, 3, false));
+            simulationData.Add(new DataPoint(6, 1, 1, 1, 1, 4, false));
+
+            System.Windows.Forms.MessageBox.Show( MergeSearch.byTime(simulationData, 2.2).ToString() );
+        }*/
     }
 }
