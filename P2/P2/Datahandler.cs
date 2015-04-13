@@ -75,31 +75,7 @@ namespace P2
          * Expected to return the DataPoint with the requested time, or the closest after.*/
         public DataPoint getDataPoint(double time)
         {
-            DataPoint tempDP = new DataPoint();
-            bool foundDP = false;
-            int max = simulationData.Count - 1;
-            int i = max;
-            tempDP = simulationData.ElementAt(i);
-
-            //exception handling
-            if (simulationData.Count == 0) { throw new InvalidOperationException("No simulation data available. Run the simulation before trying to access data."); }
-            else if (tempDP.time > time) { throw new MissingMemberException("DataHandler.getDataPoint can only be used to access an existing datapoint, but has been used to access a non-existing future datapoint. Contact developers."); }
-
-            //MergeSort-inspired search. MergeSearch?
-            do
-            {
-                tempDP = simulationData.ElementAt(i);
-                if (tempDP.time == time) { foundDP = true; }
-                else if (tempDP.time > time) { i = i / 2; }
-                else 
-                { 
-                    tempDP = simulationData.ElementAt(i + 1);
-                    if (tempDP.time >= time) { foundDP = true; }
-                    i = i + (i / 2); 
-                }
-            } while (!foundDP);
-
-            return tempDP;
+            return MergeSearch.byTime(simulationData, time);
         }
 
         /* Returns an array containing all DataPoint structs within the requested timespan, inclusive.
@@ -114,7 +90,7 @@ namespace P2
             return DPArray;
         }
 
-        //Returns a list containing all DataPoints of the current timeline.
+        /*Returns a list containing all DataPoints of the current timeline.*/
         public List<DataPoint> SimulationData
         {
             get
@@ -123,7 +99,7 @@ namespace P2
             }
         }
 
-        //returns a list of arrays, where each array is an alternate timeline
+        /*returns a list of arrays, where each array is an alternate timeline*/
         public List<DataPoint[]> OldData
         {
             get

@@ -37,6 +37,7 @@
   <ItemGroup>
     <Compile Include="DataToSerialize.cs" />
     <Compile Include="GraphTools.cs" />
+    <Compile Include="MergeSearch.cs" />
     <Compile Include="SaveLoadTools.cs" />
     <Compile Include="Datahandler.cs" />
     <Compile Include="DataPoint.cs" />
