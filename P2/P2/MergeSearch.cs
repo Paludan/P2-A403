@@ -17,6 +17,12 @@ namespace P2
          * list - the list to be searched
          * timeToFind the time of the DP you wish the locate
          * use this to extract specific, already-known DP's*/
+        /// <summary>
+        /// Use to extract a DP from a list or array, specified by it's time variable, or the closest DP after
+        /// </summary>
+        /// <param name="list">list to be searched</param>
+        /// <param name="timeToFind">time as search parameter</param>
+        /// <returns>DataPoint struct</returns>
         public static DataPoint byTime(List<DataPoint> list, double timeToFind)
         {
             int max = list.Count - 1;
@@ -44,32 +50,41 @@ namespace P2
             return tempDP;
         }
 
-        /*same as above, but this time using an array instead of a list*/
-        public static DataPoint byTime(DataPoint[] list, double timeToFind)
+        /* Takes a DP list and a time double. Searches the list for a DP with the timestamp = time and returns its number in the list, or the closest after.
+         * list - the list to be searched
+         * timeToFind the time of the DP you wish the locate
+         * use this to extract a DP by their placement in the list*/
+        /// <summary>
+        /// Use this to extract a DP by their placement in the list
+        /// </summary>
+        /// <param name="list">DP list to search</param>
+        /// <param name="timeToFind">time to search for</param>
+        /// <returns>int of DP's location in the list</returns>
+        public static int IDbyTime(List<DataPoint> list, double timeToFind)
         {
-            int max = list.Length;
+            int max = list.Count - 1;
             int i = max;
             DataPoint tempDP = list.ElementAt(max);
-            bool foundDP = false;
+            int ID = -1;
 
             //exception handling
-            if (list.Length == 0) { throw new InvalidOperationException("No simulation data available. Run the simulation before trying to access data."); }
+            if (list.Count == 0) { throw new InvalidOperationException("No simulation data available. Run the simulation before trying to access data."); }
             else if (tempDP.time > timeToFind) { throw new MissingMemberException("DataHandler.getDataPoint can only be used to access an existing datapoint, but has been used to access a non-existing future datapoint. Contact developers."); }
 
             do
             {
                 tempDP = list.ElementAt(i);
-                if (tempDP.time == timeToFind) { foundDP = true; }
+                if (tempDP.time == timeToFind) { ID = i; }
                 else if (tempDP.time > timeToFind) { i = i / 2; }
                 else
                 {
                     tempDP = list.ElementAt(i + 1);
-                    if (tempDP.time >= timeToFind) { foundDP = true; }
+                    if (tempDP.time >= timeToFind) { ID = i; }
                     i = i + (i / 2);
                 }
-            } while (!foundDP);
+            } while (ID == -1);
 
-            return tempDP;
+            return ID;
         }
     }
 }

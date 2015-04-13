@@ -78,16 +78,18 @@ namespace P2
             return MergeSearch.byTime(simulationData, time);
         }
 
-        /* Returns an array containing all DataPoint structs within the requested timespan, inclusive.
+        /* Returns a list containing all DataPoint structs within the requested timespan, inclusive.
          * In both cases it defaults to closest-after if not datapoint with the exact time is found.
          * fromTime - time of the earliest DataPoint desired
          * toTime . time of the latest DataPoint desired
          * Expected to return an array of DataPoints*/
-        public DataPoint[] getArray(double fromTime, double toTime)
+        public List<DataPoint> getSpan(double fromTime, double toTime)
         {
-            DataPoint[] DPArray = null;
+            MergeSearch.IDbyTime(simulationData, fromTime);
+            
+            List<DataPoint> DPlist = null;
 
-            return DPArray;
+            return DPlist;
         }
 
         /*Returns a list containing all DataPoints of the current timeline.*/
