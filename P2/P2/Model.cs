@@ -12,7 +12,7 @@ namespace P2
     { 
 		/* the following 3 constant variables are constants that cannot be regulated */
 		private const double gasConstant = 8.3145;
-		private const double preExpontentialFactor = 8.849 * Math.Pow (10, 14);
+		private const double preExpontentialFactor = 884900000000000;
 		private const double volume = 50000; // liter
 
 		private DataPoint currentState = new DataPoint (); //wut

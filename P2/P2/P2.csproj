@@ -51,6 +51,13 @@
     <Compile Include="Serializer.cs" />
     <Compile Include="Snapshot.cs" />
     <Compile Include="Synthesis.cs" />
+    <Compile Include="P2GraphPanel\MasterGraphPanel.cs" />
+    <Compile Include="P2GraphPanel\Graph.cs" />
+    <Compile Include="P2GraphPanel\yAxis.cs" />
+    <Compile Include="P2GraphPanel\xAxis.cs" />
+    <Compile Include="P2GraphPanel\AbstractAxis.cs" />
+    <Compile Include="P2GraphPanel\GraphPoint.cs" />
+    <Compile Include="P2GraphPanel\IDrawable.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -74,4 +81,7 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup>
+    <Folder Include="P2GraphPanel\" />
+  </ItemGroup>
 </Project>
