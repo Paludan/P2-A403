@@ -40,6 +40,12 @@
   <ItemGroup>
     <Compile Include="DataToSerialize.cs" />
     <Compile Include="GraphTools.cs" />
+    <Compile Include="LoadMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoadMenu.Designer.cs">
+      <DependentUpon>LoadMenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="MergeSearch.cs" />
     <Compile Include="SaveLoadTools.cs" />
     <Compile Include="Datahandler.cs" />
@@ -75,6 +81,9 @@
   <ItemGroup>
     <EmbeddedResource Include="GUI.resx">
       <DependentUpon>GUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoadMenu.resx">
+      <DependentUpon>LoadMenu.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

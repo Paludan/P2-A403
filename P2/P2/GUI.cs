@@ -23,6 +23,24 @@ namespace P2
                 e.Handled = e.KeyChar != (char)Keys.Back;
         }
 
+        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsNumber(e.KeyChar) || e.KeyChar == '.')
+                e.Handled = e.KeyChar != (char)Keys.Back;
+        }
+
+        private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsNumber(e.KeyChar) || e.KeyChar == '.')
+                e.Handled = e.KeyChar != (char)Keys.Back;
+        }
+
+        private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsNumber(e.KeyChar) || e.KeyChar == '.')
+                e.Handled = e.KeyChar != (char)Keys.Back;
+        }
+
         private void hScrollBarN2_Scroll(object sender, ScrollEventArgs e)
         {
             textBox1.Text = hScrollBarN2.Value.ToString();
@@ -84,6 +102,31 @@ namespace P2
                 hScrollBar.Value = 0;
                 textBox.Text = "0";
             }
+        }
+
+        private void Save_Click(object sender, EventArgs e)
+        {
+            //SaveLoadTools.save();
+        }
+
+        private void Load_Click(object sender, EventArgs e)
+        {
+            if ((IsFormAlreadyOpen(typeof(LoadMenu))) == null)
+            {
+                LoadMenu loadMenu = new LoadMenu();
+                loadMenu.Show();
+            }
+        }
+
+        public static Form IsFormAlreadyOpen(Type FormType)
+        {
+            foreach (Form OpenForm in Application.OpenForms)
+            {
+                if (OpenForm.GetType() == FormType)
+                    return OpenForm;
+            }
+
+            return null;
         }
     }
 }

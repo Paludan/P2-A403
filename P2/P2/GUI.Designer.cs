@@ -52,6 +52,7 @@
             this.pProjectHandling = new System.Windows.Forms.Panel();
             this.hProject = new System.Windows.Forms.Label();
             this.pParameters = new System.Windows.Forms.Panel();
+            this.hScrollBarN2 = new System.Windows.Forms.HScrollBar();
             this.panel1 = new System.Windows.Forms.Panel();
             this.checkBoxCatalyst = new System.Windows.Forms.CheckBox();
             this.hScrollBarTemperature = new System.Windows.Forms.HScrollBar();
@@ -71,7 +72,6 @@
             this.hTimeControl = new System.Windows.Forms.Label();
             this.pInfoBox = new System.Windows.Forms.Panel();
             this.hInfoBox = new System.Windows.Forms.Label();
-            this.hScrollBarN2 = new System.Windows.Forms.HScrollBar();
             this.pSimulationArea.SuspendLayout();
             this.pColourDescription.SuspendLayout();
             this.pTabs.SuspendLayout();
@@ -296,6 +296,7 @@
             this.Save.TabIndex = 2;
             this.Save.Text = "Gem";
             this.Save.UseVisualStyleBackColor = true;
+            this.Save.Click += new System.EventHandler(this.Save_Click);
             // 
             // Load
             // 
@@ -305,6 +306,7 @@
             this.Load.TabIndex = 3;
             this.Load.Text = "Indlæs";
             this.Load.UseVisualStyleBackColor = true;
+            this.Load.Click += new System.EventHandler(this.Load_Click);
             // 
             // pProjectHandling
             // 
@@ -352,6 +354,16 @@
             this.pParameters.Name = "pParameters";
             this.pParameters.Size = new System.Drawing.Size(600, 350);
             this.pParameters.TabIndex = 6;
+            // 
+            // hScrollBarN2
+            // 
+            this.hScrollBarN2.LargeChange = 1;
+            this.hScrollBarN2.Location = new System.Drawing.Point(290, 72);
+            this.hScrollBarN2.Maximum = 4000;
+            this.hScrollBarN2.Name = "hScrollBarN2";
+            this.hScrollBarN2.Size = new System.Drawing.Size(200, 17);
+            this.hScrollBarN2.TabIndex = 14;
+            this.hScrollBarN2.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBarN2_Scroll);
             // 
             // panel1
             // 
@@ -422,6 +434,7 @@
             this.textBox2.TabIndex = 1;
             this.textBox2.Text = "0";
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox2_KeyPress);
             // 
             // textBox3
             // 
@@ -431,6 +444,7 @@
             this.textBox3.TabIndex = 12;
             this.textBox3.Text = "0";
             this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+            this.textBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox3_KeyPress);
             // 
             // textBox4
             // 
@@ -440,6 +454,7 @@
             this.textBox4.TabIndex = 13;
             this.textBox4.Text = "0";
             this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
+            this.textBox4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox4_KeyPress);
             // 
             // hParameters
             // 
@@ -540,16 +555,6 @@
             this.hInfoBox.Size = new System.Drawing.Size(66, 13);
             this.hInfoBox.TabIndex = 11;
             this.hInfoBox.Text = "Vejledning";
-            // 
-            // hScrollBarN2
-            // 
-            this.hScrollBarN2.LargeChange = 1;
-            this.hScrollBarN2.Location = new System.Drawing.Point(290, 72);
-            this.hScrollBarN2.Maximum = 4000;
-            this.hScrollBarN2.Name = "hScrollBarN2";
-            this.hScrollBarN2.Size = new System.Drawing.Size(200, 17);
-            this.hScrollBarN2.TabIndex = 14;
-            this.hScrollBarN2.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBarN2_Scroll);
             // 
             // GUI
             // 
