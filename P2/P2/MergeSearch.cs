@@ -9,10 +9,6 @@ namespace P2
     /*A mergesort inspired searching method*/
     static class MergeSearch
     {
-        public MergeSearch()
-        {
-        }
-
         /* Takes a DP list and a time double. Searches the list for a DP with the timestamp = time and returns it, or the closest after.
          * list - the list to be searched
          * timeToFind the time of the DP you wish the locate
