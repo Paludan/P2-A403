@@ -17,7 +17,8 @@ namespace P2
     public class Synthesis
     {
         DataHandler simulationData;
-        Model SimulationModel;, running = false;
+        Model SimulationModel;
+        bool running = false;
         Thread Simulation; //This variable may or may not be used in the final version.
         System.Timers.Timer timer;//There are other classes called Timer so we must specify the path when initializing.
         public DataPoint currentData = new DataPoint(0,0,0,0,0,0,false);
@@ -37,7 +38,7 @@ namespace P2
         public Synthesis()
         {
             simulationData = new DataHandler();
-            SimulationModel = new Model(InitData);
+            SimulationModel = new Model(currentData);
             timer = new System.Timers.Timer(500);
 
         }
@@ -45,11 +46,7 @@ namespace P2
          */
         public void run()
         {
-            
-            while (running)
-            {
-
-            }
+            timer.Start();
         }
 
         /*this method is invoked by the caller when the simulation needs to start.
