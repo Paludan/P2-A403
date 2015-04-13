@@ -14,6 +14,7 @@ namespace P2
         public double temperature, pressure, time;
         private double _nAmmonia, _nHydrogen, _nNitrogen;
         public bool catalyst;
+        // Constructs the datapoint from a set of given variables
         public DataPoint(double ammonia, double hydrogen, double nitrogen, double inputTemperature, double inputPressure, double inputTime, bool inputCatalyst)
         {
             this._nAmmonia = ammonia;
@@ -24,6 +25,7 @@ namespace P2
             this.time = inputTime;
             this.catalyst = inputCatalyst;
         }
+        // Properties are used to set a limit on how much the user can input
         public double nAmmonia
         {
             get { return _nAmmonia; }
@@ -39,6 +41,7 @@ namespace P2
             get { return _nNitrogen; }
             set { if (value < 4000) { _nAmmonia = value; };}
         }
+        // Constructs a copy of the given datapoint
         public DataPoint(DataPoint oldData)
         {
             this._nAmmonia = oldData.nAmmonia;
@@ -49,6 +52,7 @@ namespace P2
             this.time = oldData.time;
             this.catalyst = oldData.catalyst;
         }
+        // Allows for easy printing of a datapoint
         public override string ToString()
         {
             return String.Format("{0} {1} {2} {3} {4} {5} {6}", nAmmonia, nHydrogen, nNitrogen, temperature, pressure, time, catalyst);
