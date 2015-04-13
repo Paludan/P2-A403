@@ -31,8 +31,8 @@ namespace P2
             bool foundDP = false;
 
             //exception handling
-            if (list.Count == 0) { throw new InvalidOperationException("No simulation data available. Run the simulation before trying to access data."); }
-            else if (tempDP.time > timeToFind) { throw new MissingMemberException("DataHandler.getDataPoint can only be used to access an existing datapoint, but has been used to access a non-existing future datapoint. Contact developers."); }
+            if (list.Count == 0) { throw new InvalidOperationException("MergeSearch: List is empty. Run the simulation before trying to access data."); }
+            else if (tempDP.time > timeToFind) { throw new MissingMemberException("MergeSearch.byTime can only be used to access an existing datapoint, but has been used to access a non-existing future datapoint. Contact developers."); }
 
             do
             {
@@ -55,7 +55,7 @@ namespace P2
          * timeToFind the time of the DP you wish the locate
          * use this to extract a DP by their placement in the list*/
         /// <summary>
-        /// Use this to extract a DP by their placement in the list
+        /// Use this to find a DP's placement in the list using the time variable
         /// </summary>
         /// <param name="list">DP list to search</param>
         /// <param name="timeToFind">time to search for</param>
@@ -68,8 +68,8 @@ namespace P2
             int ID = -1;
 
             //exception handling
-            if (list.Count == 0) { throw new InvalidOperationException("No simulation data available. Run the simulation before trying to access data."); }
-            else if (tempDP.time > timeToFind) { throw new MissingMemberException("DataHandler.getDataPoint can only be used to access an existing datapoint, but has been used to access a non-existing future datapoint. Contact developers."); }
+            if (list.Count == 0) { throw new InvalidOperationException("MergeSearch: List is empty. Run the simulation before trying to access data."); }
+            else if (tempDP.time > timeToFind) { throw new MissingMemberException("MergeSearch.IDbyTime can only be used to access an existing datapoint, but has been used to access a non-existing future datapoint. Contact developers."); }
 
             do
             {
