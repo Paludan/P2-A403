@@ -44,6 +44,7 @@
             this.hVariable = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.pTabs = new System.Windows.Forms.Panel();
+            this.AddGraph = new System.Windows.Forms.Button();
             this.Tab2 = new System.Windows.Forms.Button();
             this.Tab1 = new System.Windows.Forms.Button();
             this.Save = new System.Windows.Forms.Button();
@@ -51,12 +52,13 @@
             this.pProjectHandling = new System.Windows.Forms.Panel();
             this.hProject = new System.Windows.Forms.Label();
             this.pParameters = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.checkBoxCatalyst = new System.Windows.Forms.CheckBox();
             this.hScrollBarTemperature = new System.Windows.Forms.HScrollBar();
             this.hScrollBarNH3 = new System.Windows.Forms.HScrollBar();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.hScrollBarH2 = new System.Windows.Forms.HScrollBar();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.hScrollBarN2 = new System.Windows.Forms.HScrollBar();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.hParameters = new System.Windows.Forms.Label();
@@ -69,17 +71,15 @@
             this.hTimeControl = new System.Windows.Forms.Label();
             this.pInfoBox = new System.Windows.Forms.Panel();
             this.hInfoBox = new System.Windows.Forms.Label();
-            this.AddGraph = new System.Windows.Forms.Button();
-            this.checkBoxCatalyst = new System.Windows.Forms.CheckBox();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.hScrollBarN2 = new System.Windows.Forms.HScrollBar();
             this.pSimulationArea.SuspendLayout();
             this.pColourDescription.SuspendLayout();
             this.pTabs.SuspendLayout();
             this.pProjectHandling.SuspendLayout();
             this.pParameters.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.pTimeControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pSimulationArea
@@ -261,6 +261,15 @@
             this.pTabs.Size = new System.Drawing.Size(630, 20);
             this.pTabs.TabIndex = 1;
             // 
+            // AddGraph
+            // 
+            this.AddGraph.Location = new System.Drawing.Point(150, 0);
+            this.AddGraph.Name = "AddGraph";
+            this.AddGraph.Size = new System.Drawing.Size(75, 20);
+            this.AddGraph.TabIndex = 2;
+            this.AddGraph.Text = "Tilføj graf";
+            this.AddGraph.UseVisualStyleBackColor = true;
+            // 
             // Tab2
             // 
             this.Tab2.Location = new System.Drawing.Point(75, 0);
@@ -321,6 +330,7 @@
             // 
             this.pParameters.BackColor = System.Drawing.SystemColors.Control;
             this.pParameters.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pParameters.Controls.Add(this.hScrollBarN2);
             this.pParameters.Controls.Add(this.panel1);
             this.pParameters.Controls.Add(this.lTemperature);
             this.pParameters.Controls.Add(this.hScrollBarTemperature);
@@ -335,7 +345,6 @@
             this.pParameters.Controls.Add(this.textBox2);
             this.pParameters.Controls.Add(this.lN2);
             this.pParameters.Controls.Add(this.comboBox3);
-            this.pParameters.Controls.Add(this.hScrollBarN2);
             this.pParameters.Controls.Add(this.textBox3);
             this.pParameters.Controls.Add(this.textBox4);
             this.pParameters.Controls.Add(this.comboBox4);
@@ -344,19 +353,46 @@
             this.pParameters.Size = new System.Drawing.Size(600, 350);
             this.pParameters.TabIndex = 6;
             // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.checkBoxCatalyst);
+            this.panel1.Location = new System.Drawing.Point(-1, 300);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(600, 49);
+            this.panel1.TabIndex = 19;
+            // 
+            // checkBoxCatalyst
+            // 
+            this.checkBoxCatalyst.AutoSize = true;
+            this.checkBoxCatalyst.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxCatalyst.Location = new System.Drawing.Point(251, 15);
+            this.checkBoxCatalyst.Name = "checkBoxCatalyst";
+            this.checkBoxCatalyst.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.checkBoxCatalyst.Size = new System.Drawing.Size(98, 21);
+            this.checkBoxCatalyst.TabIndex = 18;
+            this.checkBoxCatalyst.Text = "Katalysator";
+            this.checkBoxCatalyst.UseVisualStyleBackColor = true;
+            // 
             // hScrollBarTemperature
             // 
+            this.hScrollBarTemperature.LargeChange = 1;
             this.hScrollBarTemperature.Location = new System.Drawing.Point(290, 256);
+            this.hScrollBarTemperature.Maximum = 4000;
             this.hScrollBarTemperature.Name = "hScrollBarTemperature";
             this.hScrollBarTemperature.Size = new System.Drawing.Size(200, 17);
             this.hScrollBarTemperature.TabIndex = 17;
+            this.hScrollBarTemperature.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBarTemperature_Scroll);
             // 
             // hScrollBarNH3
             // 
+            this.hScrollBarNH3.LargeChange = 1;
             this.hScrollBarNH3.Location = new System.Drawing.Point(290, 196);
+            this.hScrollBarNH3.Maximum = 4000;
             this.hScrollBarNH3.Name = "hScrollBarNH3";
             this.hScrollBarNH3.Size = new System.Drawing.Size(200, 17);
             this.hScrollBarNH3.TabIndex = 16;
+            this.hScrollBarNH3.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBarNH3_Scroll);
             // 
             // textBox1
             // 
@@ -365,14 +401,18 @@
             this.textBox1.Size = new System.Drawing.Size(70, 20);
             this.textBox1.TabIndex = 0;
             this.textBox1.Text = "0";
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // hScrollBarH2
             // 
+            this.hScrollBarH2.LargeChange = 1;
             this.hScrollBarH2.Location = new System.Drawing.Point(290, 136);
+            this.hScrollBarH2.Maximum = 4000;
             this.hScrollBarH2.Name = "hScrollBarH2";
             this.hScrollBarH2.Size = new System.Drawing.Size(200, 17);
             this.hScrollBarH2.TabIndex = 15;
+            this.hScrollBarH2.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBarH2_Scroll);
             // 
             // textBox2
             // 
@@ -381,13 +421,7 @@
             this.textBox2.Size = new System.Drawing.Size(70, 20);
             this.textBox2.TabIndex = 1;
             this.textBox2.Text = "0";
-            // 
-            // hScrollBarN2
-            // 
-            this.hScrollBarN2.Location = new System.Drawing.Point(290, 72);
-            this.hScrollBarN2.Name = "hScrollBarN2";
-            this.hScrollBarN2.Size = new System.Drawing.Size(200, 17);
-            this.hScrollBarN2.TabIndex = 14;
+            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // textBox3
             // 
@@ -396,6 +430,7 @@
             this.textBox3.Size = new System.Drawing.Size(70, 20);
             this.textBox3.TabIndex = 12;
             this.textBox3.Text = "0";
+            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // textBox4
             // 
@@ -404,6 +439,7 @@
             this.textBox4.Size = new System.Drawing.Size(70, 20);
             this.textBox4.TabIndex = 13;
             this.textBox4.Text = "0";
+            this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
             // 
             // hParameters
             // 
@@ -505,35 +541,15 @@
             this.hInfoBox.TabIndex = 11;
             this.hInfoBox.Text = "Vejledning";
             // 
-            // AddGraph
+            // hScrollBarN2
             // 
-            this.AddGraph.Location = new System.Drawing.Point(150, 0);
-            this.AddGraph.Name = "AddGraph";
-            this.AddGraph.Size = new System.Drawing.Size(75, 20);
-            this.AddGraph.TabIndex = 2;
-            this.AddGraph.Text = "Tilføj graf";
-            this.AddGraph.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxCatalyst
-            // 
-            this.checkBoxCatalyst.AutoSize = true;
-            this.checkBoxCatalyst.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxCatalyst.Location = new System.Drawing.Point(251, 15);
-            this.checkBoxCatalyst.Name = "checkBoxCatalyst";
-            this.checkBoxCatalyst.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.checkBoxCatalyst.Size = new System.Drawing.Size(98, 21);
-            this.checkBoxCatalyst.TabIndex = 18;
-            this.checkBoxCatalyst.Text = "Katalysator";
-            this.checkBoxCatalyst.UseVisualStyleBackColor = true;
-            // 
-            // panel1
-            // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.checkBoxCatalyst);
-            this.panel1.Location = new System.Drawing.Point(-1, 300);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(600, 49);
-            this.panel1.TabIndex = 19;
+            this.hScrollBarN2.LargeChange = 1;
+            this.hScrollBarN2.Location = new System.Drawing.Point(290, 72);
+            this.hScrollBarN2.Maximum = 4000;
+            this.hScrollBarN2.Name = "hScrollBarN2";
+            this.hScrollBarN2.Size = new System.Drawing.Size(200, 17);
+            this.hScrollBarN2.TabIndex = 14;
+            this.hScrollBarN2.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBarN2_Scroll);
             // 
             // GUI
             // 
@@ -559,11 +575,11 @@
             this.pProjectHandling.ResumeLayout(false);
             this.pParameters.ResumeLayout(false);
             this.pParameters.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.pTimeControl.ResumeLayout(false);
             this.pTimeControl.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -607,7 +623,6 @@
         private System.Windows.Forms.HScrollBar hScrollBarTemperature;
         private System.Windows.Forms.HScrollBar hScrollBarNH3;
         private System.Windows.Forms.HScrollBar hScrollBarH2;
-        private System.Windows.Forms.HScrollBar hScrollBarN2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label hVariabelControl;
         private System.Windows.Forms.Button Tab1;
@@ -615,5 +630,6 @@
         private System.Windows.Forms.Button AddGraph;
         private System.Windows.Forms.CheckBox checkBoxCatalyst;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.HScrollBar hScrollBarN2;
     }
 }

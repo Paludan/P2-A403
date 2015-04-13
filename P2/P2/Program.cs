@@ -11,8 +11,7 @@ namespace P2
         public static void Main()
         {
             GUI gui = new GUI();
-            gui.Visible = true;
-            gui.Activate();
+            gui.ShowDialog();
         }
     }
 }
