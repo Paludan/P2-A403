@@ -28,8 +28,8 @@ namespace P2
 
             //exception handling
             if (list.Count == 0) { throw new InvalidOperationException("MergeSearch: List is empty. Run the simulation before trying to access data."); }
-            else if (tempDP.time < timeToFind) { return list.ElementAt(max); System.Windows.Forms.MessageBox.Show("Tiden er højere end det sidste DataPoint"); }
-            else if (list.ElementAt(0).time > timeToFind) { return list.ElementAt(0); System.Windows.Forms.MessageBox.Show("Tiden er lavere end det tidligste DataPoint"); }
+            else if (tempDP.time < timeToFind) { System.Windows.Forms.MessageBox.Show("Tiden er højere end det sidste DataPoint"); return list.ElementAt(max); }
+            else if (list.ElementAt(0).time > timeToFind) { System.Windows.Forms.MessageBox.Show("Tiden er lavere end det tidligste DataPoint"); return list.ElementAt(0); }
 
             do
             {
