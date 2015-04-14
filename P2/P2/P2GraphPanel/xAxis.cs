@@ -6,33 +6,33 @@ namespace P2Graph
 {
 	public class xAxis : AbstractAxis, IDrawable
 	{
-		private const float xOffset = 0.10f;
-
-		/* Constructor for the xAxis-class
-		 * Sets the name of the x-axis by calling the base constructor
-		 */
+		/// <summary>
+		/// Initializes a new instance of the <see cref="P2Graph.xAxis"/> class.
+		/// </summary>
+		/// <param name="AxisName">The name of the x-axis.</param>
+		/// <param name="gPanel">The <see cref="P2Graph.MasterGraphPanel"/> on which to draw the axis.</param>
 		public xAxis (string AxisName, MasterGraphPanel gPanel)
 			: base (AxisName, gPanel)
 		{
 		}
 
-		/* A function to calculate and fill the beginning and ending points of the xAxis
-		 * gPanel: The panel being drawn to
-		 */
+		/// <summary>
+		/// Calculates the axis ends.
+		/// </summary>
 		protected override void CalculateAxisEnds ()
 		{
-			this._beingsAt.X = _MGP.Height * xOffset;
-			this._beingsAt.Y = _MGP.Width * xOffset;
+			this._beingsAt.X = _MGP.Height * Constants.xOffset;
+			this._beingsAt.Y = _MGP.Width * Constants.xOffset;
 
-			this._endsAt.X = _MGP.Height * xOffset;
-			this._endsAt.Y = _MGP.Width * 0.95f;
+			this._endsAt.X = _MGP.Height * Constants.xOffset;
+			this._endsAt.Y = _MGP.Width * Constants.endOffset;
 		}
 
 		#region IDrawable implementation
-		/* Draws the axis to the panel, also draws name
-		 * drawingPanel: the panel being drawn to
-		 * painter: the graphics object doing the actual drawing
-		 */
+		/// <summary>
+		/// Draw the xAxis to a panel.
+		/// </summary>
+		/// <param name="painter">Graphics object from the panel on which to draw</param>
 		public void Draw (Graphics painter)
 		{
 			GraphPoint GP = _beingsAt;

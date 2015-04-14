@@ -8,45 +8,56 @@ namespace P2Graph
 	public class Graph : IDrawable
 	{
 		List<GraphPoint> points = new List<GraphPoint>();
-		//Name property
+
+		/// <summary>
+		/// Gets the name of the graph.
+		/// </summary>
 		private string _name;
 		public string name{
 			get { return _name; }
 		}
-		//Color property.
+
+		/// <summary>
+		/// Sets and gets the color of the graph.
+		/// </summary>
 		private Color _colorOfGraph;
 		public Color color {
 			get { return _colorOfGraph; }
 			set { _colorOfGraph = value; }
-		}
-		private MasterGraphPanel _MGP; 
+		} 
 
-		/* Constructor for the Graph-class
-		 * Name: The name of the graph
-		 * c: the desired color of the graph
-		 */
-		public Graph (string Name, Color c, MasterGraphPanel gPanel)
+		/// <summary>
+		/// Initializes a new instance of the <see cref="P2Graph.Graph"/> class with specified color.
+		/// </summary>
+		/// <param name="Name">Name of the graph.</param>
+		/// <param name="c">Color of the graph.</param>
+		public Graph (string Name, Color c)
 		{
 			this._name = Name;
 			this._colorOfGraph = c;
-			this._MGP = gPanel;
 		}
-		/* Constructor for the Graph-class with no color specified
-		 * Name: The name of the graph
-		 */
-		public Graph (string Name, MasterGraphPanel gPanel)
-			: this(Name, Color.Black, gPanel)
+		/// <summary>
+		/// Initializes a new instance of the <see cref="P2Graph.Graph"/> class with unspecifed color, default is black.
+		/// </summary>
+		/// <param name="Name">Name of the graph.</param>
+		public Graph (string Name)
+			: this(Name, Color.Black)
 		{
 		}
 
-		/* A function that lets the user add a point to the graph
-		 * nextPoint: the point to be added
-		 */
+		/// <summary>
+		/// Adds a point to the graph.
+		/// </summary>
+		/// <param name="nextPoint">Next point of the graph.</param>
 		public void addPoint(GraphPoint nextPoint){
 			points.Add (nextPoint);
 		}
 
 		#region IDrawable implementation
+		/// <summary>
+		/// Draw the graph with the specified .
+		/// </summary>
+		/// <param name="painter">The graphics-object used to paint with.</param>
 		public void Draw(Graphics painter){
 			for (int i = 0; i < points.Count - 1; i++) {
 				points[i].Draw(painter);

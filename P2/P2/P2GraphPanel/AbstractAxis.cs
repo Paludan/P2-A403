@@ -6,18 +6,21 @@ namespace P2Graph
 {
 	public abstract class AbstractAxis
 	{
-		/* Name property, allows the user to get the name of the object
-		 */
 		protected string _name;
+		/// <summary>
+		/// Gets the name.
+		/// </summary>
+		/// <value>The name of the axis.</value>
 		public string name
 		{
 			get { return _name; }
 		}
 
-		/* minRange property, allows user to see min range
-		 * Allows user to set minRange as long as it's not higher than the maxRange or lower than 0
-		 */
 		protected double _minRange;
+		/// <summary>
+		/// Gets or sets the minimum range of the axis.
+		/// </summary>
+		/// <value>The minimum range.</value>
 		public double minRange
 		{
 			get { return _minRange; }
@@ -29,12 +32,14 @@ namespace P2Graph
 				}
 			}
 		}
+
 		protected MasterGraphPanel _MGP;
 
-		/* maxRange property, allows user to see max range
-		 * Allows the user to set the maxRange, as long as it's not lower than the minRange
-		 */
 		protected double _maxRange;
+		/// <summary>
+		/// Gets or sets the max range of the axis.
+		/// </summary>
+		/// <value>The max range.</value>
 		public double maxRange
 		{
 			get { return _maxRange; }
@@ -47,15 +52,17 @@ namespace P2Graph
 			}
 		}
 
-		/* A property for accessing beginning of the axis
-		 */
 		protected GraphPoint _beingsAt;
+		/// <summary>
+		/// Gets the <see cref="P2Graph.GraphPoint"/> where the axis begins.
+		/// </summary>
 		public GraphPoint beignsAt {
 			get { return _beingsAt; }
 		}
 
-		/* A property for accesseing the end of the axis
-		 */
+		/// <summary>
+		/// Gets the <see cref="P2Graph.GraphPoint"/> where the axis ends.
+		/// </summary>
 		protected GraphPoint _endsAt;
 		public GraphPoint endsAt {
 			get { return _endsAt; }
@@ -63,10 +70,12 @@ namespace P2Graph
 
 		protected float _pixelPartition;
 
-		/* Constructor of the class, also sets a default range from 0 to 1
-		 * axisName: The name of the given axis
-		 */
-		public AbstractAxis (string axisName, MasterGraphPanel gPanel)
+		/// <summary>
+		/// Initializes a new instance of the <see cref="P2Graph.AbstractAxis"/> class.
+		/// </summary>
+		/// <param name="axisName">Axis name.</param>
+		/// <param name="gPanel">The panel on which to draw the axis.</param>
+		protected AbstractAxis (string axisName, MasterGraphPanel gPanel)
 		{
 			this._name = axisName;
 			this._minRange = 0;
@@ -76,21 +85,27 @@ namespace P2Graph
 			CalculateAxisEnds ();
 		}
 
+		/// <summary>
+		/// Calculates the axis ends.
+		/// </summary>
 		protected abstract void CalculateAxisEnds();
 
-		/* A method that draws a line between two points
-		 * P1: The start of the line
-		 * P2: The end of the line
-		 * painter: the drawing object
-		 */
+		/// <summary>
+		/// Draws a line between two points.
+		/// </summary>
+		/// <param name="P1">The starting <see cref="P2Graph.GraphPoint"/> of the line.</param>
+		/// <param name="P2">The ending <see cref="P2Graph.GraphPoint"/> of the line.</param>
+		/// <param name="painter">The graphics object with which to draw.</param>
+		/// <param name="col">Color of the graph</param>
 		protected virtual void DrawLine(GraphPoint P1, GraphPoint P2, Graphics painter, Color col){
 			painter.DrawLine (new Pen (col, 2), P1, P2);
 		}
 
-		/* A function that draws a line with a constant lenght from a centerpoint
-		 * painter: The graphics object used to draw
-		 * centerPoint: The centerpoint of the line
-		 */
+		/// <summary>
+		/// Draws the partition.
+		/// </summary>
+		/// <param name="painter">The graphics object with which to draw.</param>
+		/// <param name="centerPoint">Center point of the partition.</param>
 		protected void DrawPartition(Graphics painter, GraphPoint centerPoint){
 			GraphPoint beginning = centerPoint, end = centerPoint;
 			Font numberFont = new Font ("Arial", 14);
@@ -110,9 +125,11 @@ namespace P2Graph
 			DrawLine (beginning, end, painter, Color.DarkGray);
 		}
 
-		/* A method that calculates the centerpoint of the next partition
-		 * currentPoint: The current centerpoint of a partition
-		 */
+		/// <summary>
+		/// Calculates the next partition.
+		/// </summary>
+		/// <returns>The next partition.</returns>
+		/// <param name="currentPoint">Current point.</param>
 		protected GraphPoint CalcNextPartition(GraphPoint currentPoint){
 			if (this.GetType() == typeof(xAxis)) {
 				currentPoint.X += _pixelPartition;
@@ -123,31 +140,37 @@ namespace P2Graph
 			return currentPoint;
 		}
 
-		/* A method that scales the range parting of the axis
-		 * 
-		 */
+		/// <summary>
+		/// Scales the axis.
+		/// </summary>
 		public void ScaleAxis(){
 			float PixelLengthOfAxis = 1;
 
 			//Determines the lenght based on which axis is used
 			if (this.GetType () == typeof(yAxis)) {
 				PixelLengthOfAxis = _endsAt.Y - _beingsAt.Y;
+				Constants.yPixelScale = PixelLengthOfAxis / (float) Math.Ceiling(CalculateAxisRange());
 			} 
 			else if (this.GetType () == typeof(xAxis)){
 				PixelLengthOfAxis = _endsAt.X - _endsAt.Y;
+				Constants.xPixelScale = PixelLengthOfAxis / (float) Math.Ceiling(CalculateAxisRange());
 			}
 
-			_pixelPartition = PixelLengthOfAxis / (float) Math.Ceiling(CalculateAxisRange());
 		}
 
-		/* A method to increase the range of an axis and update _pixelPartition
-		 * rangeIncrease: the factor to increase with
-		 */
+		/// <summary>
+		/// Increases the range of the axis.
+		/// </summary>
+		/// <param name="rangeIncrease">Range increase.</param>
 		public void IncreaseRange(double rangeIncrease){
 			_maxRange += rangeIncrease;
 			ScaleAxis();
 		}
 
+		/// <summary>
+		/// Calculates the axis range.
+		/// </summary>
+		/// <returns>The axis range.</returns>
 		protected double CalculateAxisRange(){
 			return this._maxRange - this._minRange;
 		}

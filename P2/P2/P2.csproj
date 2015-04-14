@@ -68,6 +68,7 @@
     <Compile Include="P2GraphPanel\AbstractAxis.cs" />
     <Compile Include="P2GraphPanel\GraphPoint.cs" />
     <Compile Include="P2GraphPanel\IDrawable.cs" />
+    <Compile Include="P2GraphPanel\Constants.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

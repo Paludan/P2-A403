@@ -7,40 +7,59 @@ namespace P2Graph
 {
 	public class MasterGraphPanel : Panel
 	{
-		//Variables
 		private List<Graph> graphList = new List<Graph>();
 		private xAxis X;
 		private yAxis Y;
 		private Graphics _g;
+		private PointF _O;
+		/// <summary>
+		/// Gets the (0, 0)-coordinate.
+		/// </summary>
+		public PointF O {
+			get { return _O; }
+		}
 
-		/* The constructor for the MasterGraphPanel
-		 */
+		/// <summary>
+		/// Initializes a new instance of the <see cref="P2Graph.MasterGraphPanel"/> class.
+		/// </summary>
 		public MasterGraphPanel ()
 		{
 			CreateGraphicsUnit ();
+			CalculateOrego ();
 		}
 
-		/* Automatically invoced on creation; creates a Graphics unit on the panel
-		 */
+		/// <summary>
+		/// Creates the graphics unit, automatically invoked on creation.
+		/// </summary>
 		private void CreateGraphicsUnit(){
 			_g = this.CreateGraphics ();
 		}
 
-		/* A function that creates and fills the name of the x- and y-axis
-		 * xName: the name of the x-axis
-		 * yName: the name of the y-axis
-		 */
+		/// <summary>
+		/// Calculates the orego.
+		/// </summary>
+		private void CalculateOrego(){
+			this._O = new PointF (this.Width * Constants.xOffset, this.Height * (1 - Constants.yOffset));
+		}
+
+		/// <summary>
+		/// Creates the x- and y-axis with given parameters.
+		/// </summary>
+		/// <param name="xName">Name of the x-axis.</param>
+		/// <param name="yName">Name of the y-axis.</param>
 		public void createAxis(string xName, string yName){
 			X = new xAxis (xName, this);
 			Y = new yAxis (yName, this);
 		}
 
-		/* Adds a graph to the panel
-		 * addedGraph: The graph being added to the panel
-		 * name: the name of the graph
-		 */
+		/// <summary>
+		/// Adds a graph with a specified color.
+		/// </summary>
+		/// <param name="addedGraph">A list of <see cref="P2Graph.GraphPoint"/> /> .</param>
+		/// <param name="name">The name of the graph</param>
+		/// <param name="colOfGraph">Color of the graph</param>
 		public void addGraph(List<GraphPoint> addedGraph, string name, Color colOfGraph){
-			Graph newGraph = new Graph (name, colOfGraph, this);
+			Graph newGraph = new Graph (name, colOfGraph);
 			foreach (GraphPoint GP in addedGraph) {
 				newGraph.addPoint (GP);
 			}
@@ -53,15 +72,21 @@ namespace P2Graph
 			throw new NotImplementedException ();
 		}
 
-		/* Draws all the objects added to the panel
-		 */
-		public void Draw ()
+		/// <summary>
+		/// Draw the MasterGraphPanel with all it's components.
+		/// </summary>
+		/// <param name="g">The graphics component generated on creationg.</param>
+		public void Draw (Graphics g)
 		{
+			this._g = g;
+
 			this.BackColor = Color.LightGray;
 			X.Draw (_g);
 			Y.Draw (_g);
-			foreach (var graph in graphList) {
-				graph.Draw (_g);
+			if (graphList.Count > 0) {
+				foreach (var graph in graphList) {
+					graph.Draw (_g);
+				}
 			}
 		}
 	}

@@ -1,4 +1,8 @@
-﻿namespace P2
+﻿using System.Windows.Forms;
+using P2Graph;
+using System.Drawing;
+
+namespace P2
 {
     partial class GUI
     {
@@ -48,7 +52,7 @@
             this.Tab2 = new System.Windows.Forms.Button();
             this.Tab1 = new System.Windows.Forms.Button();
             this.Save = new System.Windows.Forms.Button();
-            this.Load = new System.Windows.Forms.Button();
+            this.LoadButton = new System.Windows.Forms.Button();
             this.pProjectHandling = new System.Windows.Forms.Panel();
             this.hProject = new System.Windows.Forms.Label();
             this.pParameters = new System.Windows.Forms.Panel();
@@ -97,6 +101,7 @@
             this.pGraphArea.Name = "pGraphArea";
             this.pGraphArea.Size = new System.Drawing.Size(620, 500);
             this.pGraphArea.TabIndex = 1;
+			this.pGraphArea.Paint += new PaintEventHandler(GraphPanel_Paint);
             // 
             // lTemperature
             // 
@@ -298,21 +303,21 @@
             this.Save.UseVisualStyleBackColor = true;
             this.Save.Click += new System.EventHandler(this.Save_Click);
             // 
-            // Load
+            // LoadButton
             // 
-            this.Load.Location = new System.Drawing.Point(40, 70);
-            this.Load.Name = "Load";
-            this.Load.Size = new System.Drawing.Size(70, 25);
-            this.Load.TabIndex = 3;
-            this.Load.Text = "Indlæs";
-            this.Load.UseVisualStyleBackColor = true;
-            this.Load.Click += new System.EventHandler(this.Load_Click);
+            this.LoadButton.Location = new System.Drawing.Point(40, 70);
+            this.LoadButton.Name = "Load";
+            this.LoadButton.Size = new System.Drawing.Size(70, 25);
+            this.LoadButton.TabIndex = 3;
+            this.LoadButton.Text = "Indlæs";
+            this.LoadButton.UseVisualStyleBackColor = true;
+			this.LoadButton.Click += new System.EventHandler(this.Load_Click);
             // 
             // pProjectHandling
             // 
             this.pProjectHandling.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pProjectHandling.Controls.Add(this.Save);
-            this.pProjectHandling.Controls.Add(this.Load);
+            this.pProjectHandling.Controls.Add(this.LoadButton);
             this.pProjectHandling.Location = new System.Drawing.Point(1100, 550);
             this.pProjectHandling.Name = "pProjectHandling";
             this.pProjectHandling.Size = new System.Drawing.Size(150, 120);
@@ -590,12 +595,19 @@
 
         }
 
+		private void GraphPanel_Paint( object sender, PaintEventArgs e )
+		{
+			MasterGraphPanel p = sender as MasterGraphPanel;
+			Graphics g = e.Graphics;
+			p.Draw (g);
+		}
+
         #endregion
 
         private System.Windows.Forms.Panel pSimulationArea;
         private System.Windows.Forms.Panel pTabs;
         private System.Windows.Forms.Button Save;
-        private System.Windows.Forms.Button Load;
+        private System.Windows.Forms.Button LoadButton;
         private System.Windows.Forms.Panel pProjectHandling;
         private System.Windows.Forms.Label hProject;
         private System.Windows.Forms.Panel pParameters;
