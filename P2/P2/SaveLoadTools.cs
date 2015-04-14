@@ -10,6 +10,24 @@ namespace P2
     //This abstract class presents tools to save and load a project from a file
     public static class SaveLoadTools
     {
+        static private void createFolder()
+        {
+            // Specify the directory you want to manipulate. 
+            string path = @".\SaveFiles";
+
+            try
+            {
+                // Determine whether the directory exists. 
+                if (Directory.Exists(path))
+                    return;
+                // Try to create the directory.
+                DirectoryInfo di = Directory.CreateDirectory(path);
+            }
+            catch (Exception e)
+            {
+                System.Windows.Forms.MessageBox.Show("The process failed: {0}", e.ToString());
+            }
+        }
         static string[] files = Directory.GetFiles(@".\SaveFiles\", "*.eqsave");
         static int i = files.Length + 1;
         /// <summary>
