@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace P2
 {
-    /*A mergesort inspired searching method*/
     static class SortTools
     {
         /* Takes a DP list and a time double. Searches the list for a DP with the timestamp = time and returns it, or the closest after.
@@ -30,15 +29,17 @@ namespace P2
             else if (tempDP.time < timeToFind) { System.Windows.Forms.MessageBox.Show("Tiden er højere end det sidste DataPoint"); return list.ElementAt(max); }
             else if (list.ElementAt(0).time > timeToFind) { System.Windows.Forms.MessageBox.Show("Tiden er lavere end det tidligste DataPoint"); return list.ElementAt(0); }
 
+            //searching for a DP with the exact time
             tempDP = list.Find(x => x.time == timeToFind);
             if (tempDP.temperature != 0) { return tempDP; }
 
+            //searching for closest above
             for (int y = 0; y < max; y++)
             {
                 if (list.ElementAt(y).time < timeToFind && list.ElementAt(y + 1).time > timeToFind) { return list.ElementAt(y + 1); }
             }
-            System.Windows.Forms.MessageBox.Show("Error: Sorting algorithm failed. (SortTools.byTime)");
-            return tempDP;
+            System.Windows.Forms.MessageBox.Show("Error: Sorting algorithm failed. (SortTools.byTime)"); //If you reach this code, you're going to have a bad time.
+            return tempDP;                                                                               //but hey, it keeps the IDE happy =)
         }
 
         /* Takes a DP list and a time double. Searches the list for a DP with the timestamp = time and returns its number in the list, or the closest after.
@@ -46,7 +47,7 @@ namespace P2
          * timeToFind the time of the DP you wish the locate
          * use this to extract a DP by their placement in the list*/
         /// <summary>
-        /// Use this to find a DP's placement in the list using the time variable
+        /// Use this to find a DP's placement in the list using the time variable. Defaults to closest DP after.
         /// </summary>
         /// <param name="list">DP list to search</param>
         /// <param name="timeToFind">time to search for</param>
@@ -63,9 +64,11 @@ namespace P2
             else if (tempDP.time < timeToFind) { System.Windows.Forms.MessageBox.Show("Tiden er højere end det sidste DataPoint"); return max; }
             else if (list.ElementAt(0).time > timeToFind) { System.Windows.Forms.MessageBox.Show("Tiden er lavere end det tidligste DataPoint"); return 0; }
 
-            tempDP = list.Find(x => x.time == timeToFind);
+            //searching for DP with exact time
+            ID = list.FindIndex(x => x.time == timeToFind);
             if (tempDP.temperature != 0) { return ID; }
 
+            //searching for closest above
             for (int y = 0; y < max; y++)
             {
                 if (list.ElementAt(y).time < timeToFind && list.ElementAt(y + 1).time > timeToFind) { return y+1; }
