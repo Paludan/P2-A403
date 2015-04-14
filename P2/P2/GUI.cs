@@ -17,73 +17,24 @@ namespace P2
             InitializeComponent();
         }
 
-        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        /// <summary>
+        /// Makes sure only positive integers can be inserted into a textbox
+        /// If e.handled is set to true the key pressed is cancelled
+        /// </summary>
+        /// <param name="e">The key pressed when typing in the textbox</param>
+        private void intTextbox(KeyPressEventArgs e)
         {
-            if (!char.IsNumber(e.KeyChar) || e.KeyChar == '.')
+            if (!char.IsNumber(e.KeyChar))
                 e.Handled = e.KeyChar != (char)Keys.Back;
         }
-
-        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsNumber(e.KeyChar) || e.KeyChar == '.')
-                e.Handled = e.KeyChar != (char)Keys.Back;
-        }
-
-        private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsNumber(e.KeyChar) || e.KeyChar == '.')
-                e.Handled = e.KeyChar != (char)Keys.Back;
-        }
-
-        private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsNumber(e.KeyChar) || e.KeyChar == '.')
-                e.Handled = e.KeyChar != (char)Keys.Back;
-        }
-
-        private void hScrollBarN2_Scroll(object sender, ScrollEventArgs e)
-        {
-            textBox1.Text = hScrollBarN2.Value.ToString();
-        }
-
-        private void hScrollBarH2_Scroll(object sender, ScrollEventArgs e)
-        {
-            textBox2.Text = hScrollBarH2.Value.ToString();
-        }
-
-        private void hScrollBarNH3_Scroll(object sender, ScrollEventArgs e)
-        {
-            textBox3.Text = hScrollBarNH3.Value.ToString();
-        }
-
-        private void hScrollBarTemperature_Scroll(object sender, ScrollEventArgs e)
-        {
-            textBox4.Text = hScrollBarTemperature.Value.ToString();
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            textChanged(textBox1, hScrollBarN2);
-        }
-      
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-            textChanged(textBox2, hScrollBarH2);
-        }
-
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-            textChanged(textBox3, hScrollBarNH3);
-        }
-
-        private void textBox4_TextChanged(object sender, EventArgs e)
-        {
-            textChanged(textBox4, hScrollBarTemperature);
-        }
-
-        // Handles the value of a textbox
-        // Makes sure a number is inserted and that it is not larger than the max input
-        // Changes the value of the scrollbar of the textbox
+        
+        /// <summary>
+        /// Makes sure a number have been inserted and that it is not larger than the max input
+        /// Removes unwanted zeroes
+        /// Changes the state of the scrollbar depending on the integer in the textbox
+        /// </summary>
+        /// <param name="textBox">The textbox which information is to be handled</param>
+        /// <param name="hScrollBar">The scrollbar which is to be controlled</param>
         private void textChanged(TextBox textBox, HScrollBar hScrollBar)
         {
             if (!textBox.Text.Equals("") && int.Parse(textBox.Text) != 0)
@@ -104,20 +55,11 @@ namespace P2
             }
         }
 
-        private void Save_Click(object sender, EventArgs e)
-        {
-            //SaveLoadTools.save();
-        }
-
-        private void Load_Click(object sender, EventArgs e)
-        {
-            if ((IsFormAlreadyOpen(typeof(LoadMenu))) == null)
-            {
-                LoadMenu loadMenu = new LoadMenu();
-                loadMenu.Show();
-            }
-        }
-
+        /// <summary>
+        /// Makes sure no more than one instance of a form is open
+        /// </summary>
+        /// <param name="FormType">The type of the form to restrict the amount of</param>
+        /// <returns>Returns the type of the form or null if the form is not open</returns>
         public static Form IsFormAlreadyOpen(Type FormType)
         {
             foreach (Form OpenForm in Application.OpenForms)
@@ -127,6 +69,102 @@ namespace P2
             }
 
             return null;
+        }
+
+        /// <summary>
+        /// Inserts the value of the scrollBar into the corresponting textbox
+        /// Sends the value to be calculated when the scrollbar is dropped
+        /// </summary>
+        /// <param name="textBox">The textbox to have the value inserted</param>
+        /// <param name="hScrollBar">The scrollbar where the value is taken</param>
+        /// <param name="e">Used to make sure the scrolling have ended</param>
+        private void scrollEnd(TextBox textBox, ScrollBar hScrollBar, ScrollEventArgs e)
+        {
+            textBox.Text = hScrollBar.Value.ToString();
+            if (e.Type == ScrollEventType.EndScroll)
+            {
+                //Send value to calculation
+            }
+        }
+
+        /// <summary>
+        /// Creates an instance of the loadMenu if an instance is not present and displays it
+        /// </summary>
+        private void Load_Click(object sender, EventArgs e)
+        {
+            if ((IsFormAlreadyOpen(typeof(LoadMenu))) == null)
+            {
+                LoadMenu loadMenu = new LoadMenu();
+                loadMenu.Show();
+            }
+        }
+
+        /// <summary>
+        /// Saves the current state of the graph
+        /// </summary>
+        private void Save_Click(object sender, EventArgs e)
+        {
+            //SaveLoadTools.save();
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            intTextbox(e);
+        }
+
+        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            intTextbox(e);
+        }
+
+        private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            intTextbox(e);
+        }
+
+        private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            intTextbox(e);
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            textChanged(textBox1, hScrollBarN2);
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            textChanged(textBox2, hScrollBarH2);
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+            textChanged(textBox3, hScrollBarNH3);
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+            textChanged(textBox4, hScrollBarTemperature);
+        }
+
+        private void hScrollBarN2_Scroll(object sender, ScrollEventArgs e)
+        {
+            scrollEnd(textBox1, hScrollBarN2, e);
+        }
+
+        private void hScrollBarH2_Scroll(object sender, ScrollEventArgs e)
+        {
+            scrollEnd(textBox2, hScrollBarH2, e);
+        }
+
+        private void hScrollBarNH3_Scroll(object sender, ScrollEventArgs e)
+        {
+            scrollEnd(textBox3, hScrollBarNH3, e);
+        }
+
+        private void hScrollBarTemperature_Scroll(object sender, ScrollEventArgs e)
+        {
+            scrollEnd(textBox4, hScrollBarTemperature, e);
         }
     }
 }
