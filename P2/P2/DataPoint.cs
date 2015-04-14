@@ -14,7 +14,9 @@ namespace P2
         public double temperature, pressure, time;
         private double _nAmmonia, _nHydrogen, _nNitrogen;
         public bool catalyst;
-        // Constructs the datapoint from a set of given variables
+        /// <summary>
+        /// Constructs a datapoint from a set of given variables
+        /// </summary>
         public DataPoint(double ammonia, double hydrogen, double nitrogen, double inputTemperature, double inputPressure, double inputTime, bool inputCatalyst)
         {
             this._nAmmonia = ammonia;

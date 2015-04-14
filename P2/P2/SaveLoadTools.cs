@@ -10,7 +10,7 @@ namespace P2
     //This abstract class presents tools to save and load a project from a file
     public static class SaveLoadTools
     {
-        static string[] files = Directory.GetFiles(@".\SaveFiles\", "*.txt");
+        static string[] files = Directory.GetFiles(@".\SaveFiles\", "*.eqsave");
         static int i = files.Length + 1;
         /// <summary>
         /// Saves a list of DataPoints to a numbered savefile
@@ -21,7 +21,7 @@ namespace P2
             DataToSerialize SerializedData = new DataToSerialize();
             SerializedData.DataListList[0] = CurrentDataList;
             Serializer DataSerializer = new Serializer(); 
-            DataSerializer.SerializeObject("SavedDataList" + i + ".txt", SerializedData);
+            DataSerializer.SerializeObject("SavedDataList" + i + ".png", SerializedData);
         }
         /// <summary>
         /// Saves a list of lists of DataPoints to a numbered savefile
@@ -32,7 +32,7 @@ namespace P2
             DataToSerialize SerializedData = new DataToSerialize();
             SerializedData.DataListList = CurrentDataList;
             Serializer DataSerializer = new Serializer();
-            DataSerializer.SerializeObject("SavedDataListList" + i + ".txt", SerializedData);
+            DataSerializer.SerializeObject("SavedDataListList" + i + ".eqsave", SerializedData);
         }
         /// <summary>
         /// Loads a specific savefile and returns the stored data
@@ -43,7 +43,7 @@ namespace P2
             List<DataPoint> tempDataList = new List<DataPoint>();
             DataToSerialize SerializedData = new DataToSerialize();
             Serializer DataSerializer = new Serializer();
-            SerializedData = DataSerializer.DeSerializeObject(fileName);
+            SerializedData = DataSerializer.DeSerializeObject(fileName + ".eqsave");
             tempDataList = SerializedData.DataListList[0];
             return tempDataList;
         }
@@ -56,10 +56,9 @@ namespace P2
             List<List<DataPoint>> tempDataList = new List<List<DataPoint>>();
             DataToSerialize SerializedData = new DataToSerialize();
             Serializer DataSerializer = new Serializer();
-            SerializedData = DataSerializer.DeSerializeObject(fileName);
+            SerializedData = DataSerializer.DeSerializeObject(fileName + ".eqsave");
             tempDataList = SerializedData.DataListList;
             return tempDataList;
         }
-        
     }
 }
