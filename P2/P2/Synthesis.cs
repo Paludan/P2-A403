@@ -10,7 +10,7 @@ namespace P2
 {
     /// <summary>
     /// This class handles the time of the simulation and presents features to stop, 
-    /// fastforward and convert time from realtime to virtualtime
+    /// fastforward and convert time from realtime to virtualtime fisk
     /// </summary>
     public class Synthesis
     {
