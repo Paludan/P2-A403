@@ -21,11 +21,8 @@ namespace P2Graph
 		/// </summary>
 		protected override void CalculateAxisEnds ()
 		{
-			this._beingsAt.X = _MGP.Height * Constants.xOffset;
-			this._beingsAt.Y = _MGP.Width * Constants.xOffset;
-
-			this._endsAt.X = _MGP.Height * Constants.xOffset;
-			this._endsAt.Y = _MGP.Width * Constants.endOffset;
+			this._endsAt.X = _MGP.Height * (1 - Constants.xOffset);
+			this._endsAt.Y = _MGP.Width * (1- Constants.endOffset);
 		}
 
 		#region IDrawable implementation
@@ -35,16 +32,16 @@ namespace P2Graph
 		/// <param name="painter">Graphics object from the panel on which to draw</param>
 		public void Draw (Graphics painter)
 		{
-			GraphPoint GP = _beingsAt;
+			GraphPoint GP = _beginsAt;
 
-			DrawLine (_beingsAt, _endsAt, painter, Color.Black);
+			DrawLine (_beginsAt, _endsAt, painter, Color.Black);
 
 			ScaleAxis ();
 			//Calculates the next partition and draws untill the last partition has been drawn
-			while (GP.X <= _endsAt.X) {
+			/*while (GP.X <= _endsAt.X) {
 				GP = CalcNextPartition (GP);
 				DrawPartition (painter, GP);
-			}
+			}*/
 		}
 		#endregion
 	}

@@ -33,7 +33,7 @@ namespace P2
         private void InitializeComponent()
         {
             this.pSimulationArea = new System.Windows.Forms.Panel();
-            this.pGraphArea = new System.Windows.Forms.Panel();
+            this.pGraphArea = new MasterGraphPanel();
             this.lTemperature = new System.Windows.Forms.Label();
             this.lNH3 = new System.Windows.Forms.Label();
             this.lH2 = new System.Windows.Forms.Label();
@@ -99,8 +99,8 @@ namespace P2
             // 
             this.pGraphArea.Location = new System.Drawing.Point(5, 5);
             this.pGraphArea.Name = "pGraphArea";
-            this.pGraphArea.Size = new System.Drawing.Size(620, 500);
             this.pGraphArea.TabIndex = 1;
+			this.pGraphArea.CreateAxis ("Tid", "Partial tryk");
 			this.pGraphArea.Paint += new PaintEventHandler(GraphPanel_Paint);
             // 
             // lTemperature
@@ -629,7 +629,7 @@ namespace P2
         private System.Windows.Forms.Label lNH3;
         private System.Windows.Forms.Label lH2;
         private System.Windows.Forms.Label lTemperature;
-        private System.Windows.Forms.Panel pGraphArea;
+        private MasterGraphPanel pGraphArea;
         private System.Windows.Forms.Label hInfoBox;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox4;

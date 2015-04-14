@@ -23,8 +23,10 @@ namespace P2Graph
 		/// Initializes a new instance of the <see cref="P2Graph.MasterGraphPanel"/> class.
 		/// </summary>
 		public MasterGraphPanel ()
+			: base ()
 		{
 			CreateGraphicsUnit ();
+			this.Size = new Size (620, 500);
 			CalculateOrego ();
 		}
 
@@ -38,16 +40,16 @@ namespace P2Graph
 		/// <summary>
 		/// Calculates the orego.
 		/// </summary>
-		private void CalculateOrego(){
-			this._O = new PointF (this.Width * Constants.xOffset, this.Height * (1 - Constants.yOffset));
+		public void CalculateOrego(){
+			this._O = new PointF (this.Width, this.Height);
 		}
 
 		/// <summary>
-		/// Creates the x- and y-axis with given parameters.
+		/// Creates the x- and y-axis with given parameters, also creates orego.
 		/// </summary>
 		/// <param name="xName">Name of the x-axis.</param>
 		/// <param name="yName">Name of the y-axis.</param>
-		public void createAxis(string xName, string yName){
+		public void CreateAxis(string xName, string yName){
 			X = new xAxis (xName, this);
 			Y = new yAxis (yName, this);
 		}
@@ -58,7 +60,7 @@ namespace P2Graph
 		/// <param name="addedGraph">A list of <see cref="P2Graph.GraphPoint"/> /> .</param>
 		/// <param name="name">The name of the graph</param>
 		/// <param name="colOfGraph">Color of the graph</param>
-		public void addGraph(List<GraphPoint> addedGraph, string name, Color colOfGraph){
+		public void AddGraph(List<GraphPoint> addedGraph, string name, Color colOfGraph){
 			Graph newGraph = new Graph (name, colOfGraph);
 			foreach (GraphPoint GP in addedGraph) {
 				newGraph.addPoint (GP);
@@ -79,8 +81,14 @@ namespace P2Graph
 		public void Draw (Graphics g)
 		{
 			this._g = g;
+			Font stringFont = new Font ("Arial", 18);
+			_g.DrawString (this.Height.ToString(), stringFont, Brushes.Black, new RectangleF (200, 200, 200, 200));
+			_g.DrawString (this.Width.ToString(), stringFont, Brushes.Black, new RectangleF (200, 220, 200, 200));
 
-			this.BackColor = Color.LightGray;
+			GraphPoint test = new GraphPoint (_O, this);
+			test.Draw (g, Brushes.Black);
+
+			this.BackColor = Color.WhiteSmoke;
 			X.Draw (_g);
 			Y.Draw (_g);
 			if (graphList.Count > 0) {

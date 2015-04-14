@@ -33,8 +33,6 @@ namespace P2Graph
 			}
 		}
 
-		protected MasterGraphPanel _MGP;
-
 		protected double _maxRange;
 		/// <summary>
 		/// Gets or sets the max range of the axis.
@@ -52,12 +50,12 @@ namespace P2Graph
 			}
 		}
 
-		protected GraphPoint _beingsAt;
+		protected GraphPoint _beginsAt;
 		/// <summary>
 		/// Gets the <see cref="P2Graph.GraphPoint"/> where the axis begins.
 		/// </summary>
-		public GraphPoint beignsAt {
-			get { return _beingsAt; }
+		public GraphPoint beginsAt {
+			get { return _beginsAt; }
 		}
 
 		/// <summary>
@@ -69,6 +67,7 @@ namespace P2Graph
 		}
 
 		protected float _pixelPartition;
+		protected MasterGraphPanel _MGP;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="P2Graph.AbstractAxis"/> class.
@@ -81,6 +80,8 @@ namespace P2Graph
 			this._minRange = 0;
 			this._maxRange = 1;
 			this._MGP = gPanel;
+			this._beginsAt = new GraphPoint (_MGP.O, _MGP);
+			this._endsAt = new GraphPoint (0, 0, _MGP);
 
 			CalculateAxisEnds ();
 		}
@@ -148,7 +149,7 @@ namespace P2Graph
 
 			//Determines the lenght based on which axis is used
 			if (this.GetType () == typeof(yAxis)) {
-				PixelLengthOfAxis = _endsAt.Y - _beingsAt.Y;
+				PixelLengthOfAxis = _endsAt.Y - _beginsAt.Y;
 				Constants.yPixelScale = PixelLengthOfAxis / (float) Math.Ceiling(CalculateAxisRange());
 			} 
 			else if (this.GetType () == typeof(xAxis)){
