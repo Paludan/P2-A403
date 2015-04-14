@@ -41,7 +41,7 @@ namespace P2Graph
 		/// Calculates the orego.
 		/// </summary>
 		public void CalculateOrego(){
-			this._O = new PointF (this.Width, this.Height);
+			this._O = new PointF (this.O.X, this.O.Y);
 		}
 
 		/// <summary>
