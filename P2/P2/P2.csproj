@@ -46,7 +46,7 @@
     <Compile Include="LoadMenu.Designer.cs">
       <DependentUpon>LoadMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="MergeSearch.cs" />
+    <Compile Include="SortTools.cs" />
     <Compile Include="SaveLoadTools.cs" />
     <Compile Include="Datahandler.cs" />
     <Compile Include="DataPoint.cs" />

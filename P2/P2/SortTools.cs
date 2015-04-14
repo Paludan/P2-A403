@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace P2
 {
     /*A mergesort inspired searching method*/
-    static class MergeSearch
+    static class SortTools
     {
         /* Takes a DP list and a time double. Searches the list for a DP with the timestamp = time and returns it, or the closest after.
          * list - the list to be searched
@@ -24,26 +24,20 @@ namespace P2
             int max = list.Count - 1;
             int i = max;
             DataPoint tempDP = list.ElementAt(max);
-            bool foundDP = false;
 
             //exception handling
             if (list.Count == 0) { throw new InvalidOperationException("MergeSearch: List is empty. Run the simulation before trying to access data."); }
             else if (tempDP.time < timeToFind) { System.Windows.Forms.MessageBox.Show("Tiden er højere end det sidste DataPoint"); return list.ElementAt(max); }
             else if (list.ElementAt(0).time > timeToFind) { System.Windows.Forms.MessageBox.Show("Tiden er lavere end det tidligste DataPoint"); return list.ElementAt(0); }
 
-            do
-            {
-                tempDP = list.ElementAt(i);
-                if (tempDP.time == timeToFind) { foundDP = true; }
-                else if (tempDP.time > timeToFind) { i = i / 2; }
-                else
-                {
-                    tempDP = list.ElementAt(i + 1);
-                    if (tempDP.time >= timeToFind) { foundDP = true; }
-                    i = i + (i / 2);
-                }
-            } while (!foundDP);
+            tempDP = list.Find(x => x.time == timeToFind);
+            if (tempDP.temperature != 0) { return tempDP; }
 
+            for (int y = 0; y < max; y++)
+            {
+                if (list.ElementAt(y).time < timeToFind && list.ElementAt(y + 1).time > timeToFind) { return list.ElementAt(y + 1); }
+            }
+            System.Windows.Forms.MessageBox.Show("Error: Sorting algorithm failed. (SortTools.byTime)");
             return tempDP;
         }
 
@@ -61,26 +55,22 @@ namespace P2
         {
             int max = list.Count - 1;
             int i = max;
-            DataPoint tempDP = list.ElementAt(max);
             int ID = -1;
+            DataPoint tempDP = list.ElementAt(max);
 
             //exception handling
             if (list.Count == 0) { throw new InvalidOperationException("MergeSearch: List is empty. Run the simulation before trying to access data."); }
-            else if (tempDP.time > timeToFind) { throw new MissingMemberException("MergeSearch.IDbyTime can only be used to access an existing datapoint, but has been used to access a non-existing future datapoint. Contact developers."); }
+            else if (tempDP.time < timeToFind) { System.Windows.Forms.MessageBox.Show("Tiden er højere end det sidste DataPoint"); return max; }
+            else if (list.ElementAt(0).time > timeToFind) { System.Windows.Forms.MessageBox.Show("Tiden er lavere end det tidligste DataPoint"); return 0; }
 
-            do
+            tempDP = list.Find(x => x.time == timeToFind);
+            if (tempDP.temperature != 0) { return ID; }
+
+            for (int y = 0; y < max; y++)
             {
-                tempDP = list.ElementAt(i);
-                if (tempDP.time == timeToFind) { ID = i; }
-                else if (tempDP.time > timeToFind) { i = i / 2; }
-                else
-                {
-                    tempDP = list.ElementAt(i + 1);
-                    if (tempDP.time >= timeToFind) { ID = i; }
-                    i = i + (i / 2);
-                }
-            } while (ID == -1);
-
+                if (list.ElementAt(y).time < timeToFind && list.ElementAt(y + 1).time > timeToFind) { return y+1; }
+            }
+            System.Windows.Forms.MessageBox.Show("Error: Sorting algorithm failed. (SortTools.byTime)");
             return ID;
         }
     }

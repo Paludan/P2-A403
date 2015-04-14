@@ -38,7 +38,7 @@ namespace P2
         public void revertTo(double time)
         {
             List<DataPoint> tempList = new List<DataPoint>();
-            int revertTo = MergeSearch.IDbyTime(simulationData, time);
+            int revertTo = SortTools.IDbyTime(simulationData, time);
             for (int i = simulationData.Count - revertTo - 1; i < simulationData.Count; i++)
             {
                 tempList.Add(simulationData.ElementAt(revertTo + 1));
@@ -54,7 +54,7 @@ namespace P2
         /// <returns>returns a DataPoint struct</returns>
         public DataPoint getDataPoint(double time)
         {
-            return MergeSearch.byTime(simulationData, time);
+            return SortTools.byTime(simulationData, time);
         }
 
         /// <summary>
@@ -66,8 +66,8 @@ namespace P2
         public List<DataPoint> getSpan(double fromTime, double toTime)
         {
             int startID, endID;
-            startID = MergeSearch.IDbyTime(simulationData, fromTime);
-            endID = MergeSearch.IDbyTime(simulationData, toTime);
+            startID = SortTools.IDbyTime(simulationData, fromTime);
+            endID = SortTools.IDbyTime(simulationData, toTime);
             List<DataPoint> DPlist = new List<DataPoint>();
             for (int i = startID; i <= endID; i++)
             {
