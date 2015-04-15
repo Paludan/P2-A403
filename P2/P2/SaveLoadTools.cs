@@ -10,7 +10,7 @@ namespace P2
     //This abstract class presents tools to save and load a project from a file
     public static class SaveLoadTools
     {
-        static public void createFolder()
+        public static void createFolder()
         {
             // Specify the directory you want to manipulate. 
             string path = @".\SaveFiles";

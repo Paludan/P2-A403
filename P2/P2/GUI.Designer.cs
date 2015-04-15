@@ -33,7 +33,6 @@ namespace P2
         private void InitializeComponent()
         {
             this.pSimulationArea = new System.Windows.Forms.Panel();
-            this.pGraphArea = new MasterGraphPanel();
             this.lTemperature = new System.Windows.Forms.Label();
             this.lNH3 = new System.Windows.Forms.Label();
             this.lH2 = new System.Windows.Forms.Label();
@@ -76,6 +75,7 @@ namespace P2
             this.hTimeControl = new System.Windows.Forms.Label();
             this.pInfoBox = new System.Windows.Forms.Panel();
             this.hInfoBox = new System.Windows.Forms.Label();
+            this.pGraphArea = new P2Graph.MasterGraphPanel();
             this.pSimulationArea.SuspendLayout();
             this.pColourDescription.SuspendLayout();
             this.pTabs.SuspendLayout();
@@ -95,53 +95,45 @@ namespace P2
             this.pSimulationArea.Size = new System.Drawing.Size(630, 510);
             this.pSimulationArea.TabIndex = 0;
             // 
-            // pGraphArea
-            // 
-            this.pGraphArea.Location = new System.Drawing.Point(5, 5);
-            this.pGraphArea.Name = "pGraphArea";
-            this.pGraphArea.TabIndex = 1;
-			this.pGraphArea.CreateAxis ("Tid", "Partial tryk");
-			this.pGraphArea.Paint += new PaintEventHandler(GraphPanel_Paint);
-            // 
             // lTemperature
             // 
             this.lTemperature.AutoSize = true;
             this.lTemperature.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lTemperature.Location = new System.Drawing.Point(24, 251);
+            this.lTemperature.Location = new System.Drawing.Point(2, 253);
             this.lTemperature.Name = "lTemperature";
-            this.lTemperature.Size = new System.Drawing.Size(84, 18);
+            this.lTemperature.Size = new System.Drawing.Size(135, 18);
             this.lTemperature.TabIndex = 9;
-            this.lTemperature.Text = "Temperatur";
+            this.lTemperature.Text = "Temperatur (kelvin)";
             // 
             // lNH3
             // 
             this.lNH3.AutoSize = true;
             this.lNH3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lNH3.Location = new System.Drawing.Point(49, 190);
+            this.lNH3.Location = new System.Drawing.Point(64, 193);
             this.lNH3.Name = "lNH3";
-            this.lNH3.Size = new System.Drawing.Size(34, 18);
+            this.lNH3.Size = new System.Drawing.Size(73, 18);
             this.lNH3.TabIndex = 8;
-            this.lNH3.Text = "NH₃";
+            this.lNH3.Text = "NH₃ (mol)";
             // 
             // lH2
             // 
             this.lH2.AutoSize = true;
             this.lH2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lH2.Location = new System.Drawing.Point(55, 130);
+            this.lH2.Location = new System.Drawing.Point(75, 133);
             this.lH2.Name = "lH2";
-            this.lH2.Size = new System.Drawing.Size(23, 18);
+            this.lH2.Size = new System.Drawing.Size(62, 18);
             this.lH2.TabIndex = 7;
-            this.lH2.Text = "H₂";
+            this.lH2.Text = "H₂ (mol)";
             // 
             // lN2
             // 
             this.lN2.AutoSize = true;
             this.lN2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lN2.Location = new System.Drawing.Point(55, 70);
+            this.lN2.Location = new System.Drawing.Point(75, 68);
             this.lN2.Name = "lN2";
-            this.lN2.Size = new System.Drawing.Size(23, 18);
+            this.lN2.Size = new System.Drawing.Size(62, 18);
             this.lN2.TabIndex = 6;
-            this.lN2.Text = "N₂";
+            this.lN2.Text = "N₂ (mol)";
             // 
             // comboBox4
             // 
@@ -306,12 +298,12 @@ namespace P2
             // LoadButton
             // 
             this.LoadButton.Location = new System.Drawing.Point(40, 70);
-            this.LoadButton.Name = "Load";
+            this.LoadButton.Name = "LoadButton";
             this.LoadButton.Size = new System.Drawing.Size(70, 25);
             this.LoadButton.TabIndex = 3;
             this.LoadButton.Text = "Indlæs";
             this.LoadButton.UseVisualStyleBackColor = true;
-			this.LoadButton.Click += new System.EventHandler(this.Load_Click);
+            this.LoadButton.Click += new System.EventHandler(this.Load_Click);
             // 
             // pProjectHandling
             // 
@@ -395,7 +387,7 @@ namespace P2
             // 
             this.hScrollBarTemperature.LargeChange = 1;
             this.hScrollBarTemperature.Location = new System.Drawing.Point(290, 256);
-            this.hScrollBarTemperature.Maximum = 4000;
+            this.hScrollBarTemperature.Maximum = 1000;
             this.hScrollBarTemperature.Name = "hScrollBarTemperature";
             this.hScrollBarTemperature.Size = new System.Drawing.Size(200, 17);
             this.hScrollBarTemperature.TabIndex = 17;
@@ -560,6 +552,14 @@ namespace P2
             this.hInfoBox.Size = new System.Drawing.Size(66, 13);
             this.hInfoBox.TabIndex = 11;
             this.hInfoBox.Text = "Vejledning";
+            // 
+            // pGraphArea
+            // 
+            this.pGraphArea.Location = new System.Drawing.Point(5, 5);
+            this.pGraphArea.Name = "pGraphArea";
+            this.pGraphArea.Size = new System.Drawing.Size(620, 500);
+            this.pGraphArea.TabIndex = 1;
+            this.pGraphArea.Paint += new System.Windows.Forms.PaintEventHandler(this.GraphPanel_Paint);
             // 
             // GUI
             // 
