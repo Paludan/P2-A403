@@ -49,9 +49,9 @@ namespace P2
         /// </summary>
         private void LoadMenu_Load(object sender, EventArgs e)
         {
-            if (Directory.GetFiles(@".\SaveFiles\").Length > 0)
+            if (Directory.GetFiles(SaveLoadTools.path).Length > 0)
             {
-                string[] files = Directory.GetFiles(@".\SaveFiles\");
+                string[] files = Directory.GetFiles(SaveLoadTools.path);
                 foreach (string fileInDirectory in files)
                     if (fileInDirectory.EndsWith(".eqsave"))
                         listBox1.Items.Add(fileInDirectory.Remove(0, 12).Remove((fileInDirectory.Length - 20), 7));
