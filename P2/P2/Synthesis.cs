@@ -83,21 +83,5 @@ namespace P2
         {
             timer.Stop();
         }
-
-        /// <summary>
-        /// Not sure if this function will be in use yet.
-        /// </summary>
-        public void search()
-        {
-
-        }
-
-        /// <summary>
-        /// Not sure if this function will be in use yet.
-        /// </summary>
-        public void fastforward()
-        {
-
-        }
     }
 }

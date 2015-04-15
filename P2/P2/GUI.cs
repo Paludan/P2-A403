@@ -12,9 +12,13 @@ namespace P2
 {
     public partial class GUI : Form
     {
+        Synthesis synth;
+        double tempDouble;
+
         public GUI()
         {
             InitializeComponent();
+            synth = new Synthesis();
         }
 
         /// <summary>
@@ -130,21 +134,37 @@ namespace P2
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             textChanged(textBox1, hScrollBarN2);
+            if (Double.TryParse(textBox1.Text, out tempDouble))
+            {
+                synth.currentData.nNitrogen = tempDouble;
+            }
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
             textChanged(textBox2, hScrollBarH2);
+            if (Double.TryParse(textBox1.Text, out tempDouble))
+            {
+                synth.currentData.nHydrogen = tempDouble;
+            }
         }
 
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
             textChanged(textBox3, hScrollBarNH3);
+            if (Double.TryParse(textBox1.Text, out tempDouble))
+            {
+                synth.currentData.nAmmonia = tempDouble;
+            }
         }
 
         private void textBox4_TextChanged(object sender, EventArgs e)
         {
             textChanged(textBox4, hScrollBarTemperature);
+            if (Double.TryParse(textBox1.Text, out tempDouble))
+            {
+                synth.currentData.temperature = tempDouble;
+            }
         }
 
         private void hScrollBarN2_Scroll(object sender, ScrollEventArgs e)
