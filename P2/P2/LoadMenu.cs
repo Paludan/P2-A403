@@ -49,6 +49,7 @@ namespace P2
         /// </summary>
         private void LoadMenu_Load(object sender, EventArgs e)
         {
+            SaveLoadTools.createFolder();
             if (Directory.GetFiles(@".\SaveFiles\").Length > 0)
             {
                 string[] files = Directory.GetFiles(@".\SaveFiles\");
