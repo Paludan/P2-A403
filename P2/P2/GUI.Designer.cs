@@ -33,6 +33,7 @@ namespace P2
         private void InitializeComponent()
         {
             this.pSimulationArea = new System.Windows.Forms.Panel();
+            this.pGraphArea = new P2Graph.MasterGraphPanel();
             this.lTemperature = new System.Windows.Forms.Label();
             this.lNH3 = new System.Windows.Forms.Label();
             this.lH2 = new System.Windows.Forms.Label();
@@ -75,7 +76,6 @@ namespace P2
             this.hTimeControl = new System.Windows.Forms.Label();
             this.pInfoBox = new System.Windows.Forms.Panel();
             this.hInfoBox = new System.Windows.Forms.Label();
-            this.pGraphArea = new P2Graph.MasterGraphPanel();
             this.pSimulationArea.SuspendLayout();
             this.pColourDescription.SuspendLayout();
             this.pTabs.SuspendLayout();
@@ -96,14 +96,14 @@ namespace P2
             this.pSimulationArea.TabIndex = 0;
             // 
             // pGraphArea
-            //
+            // 
             this.pGraphArea.Location = new System.Drawing.Point(5, 5);
             this.pGraphArea.Name = "pGraphArea";
+            this.pGraphArea.Size = new System.Drawing.Size(620, 500);
             this.pGraphArea.TabIndex = 1;
-			this.pGraphArea.CreateAxis ("Tid", "Partial tryk");
-			this.pGraphArea.xMaxRange = 30;
-			this.pGraphArea.yMaxRange = 10;
-			this.pGraphArea.Paint += new PaintEventHandler(GraphPanel_Paint);
+            this.pGraphArea.xMaxRange = 30D;
+            this.pGraphArea.yMaxRange = 10D;
+            this.pGraphArea.Paint += new System.Windows.Forms.PaintEventHandler(this.GraphPanel_Paint);
             // 
             // lTemperature
             // 
@@ -533,6 +533,7 @@ namespace P2
             this.start.TabIndex = 0;
             this.start.Text = "Start";
             this.start.UseVisualStyleBackColor = true;
+            this.start.Click += new System.EventHandler(this.start_Click);
             // 
             // hTimeControl
             // 
@@ -562,14 +563,6 @@ namespace P2
             this.hInfoBox.Size = new System.Drawing.Size(66, 13);
             this.hInfoBox.TabIndex = 11;
             this.hInfoBox.Text = "Vejledning";
-            // 
-            // pGraphArea
-            // 
-            this.pGraphArea.Location = new System.Drawing.Point(5, 5);
-            this.pGraphArea.Name = "pGraphArea";
-            this.pGraphArea.Size = new System.Drawing.Size(620, 500);
-            this.pGraphArea.TabIndex = 1;
-            this.pGraphArea.Paint += new System.Windows.Forms.PaintEventHandler(this.GraphPanel_Paint);
             // 
             // GUI
             // 
