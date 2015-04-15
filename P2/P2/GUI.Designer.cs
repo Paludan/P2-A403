@@ -33,6 +33,7 @@ namespace P2
         private void InitializeComponent()
         {
             this.pSimulationArea = new System.Windows.Forms.Panel();
+            this.pGraphArea = new P2Graph.MasterGraphPanel();
             this.lTemperature = new System.Windows.Forms.Label();
             this.lNH3 = new System.Windows.Forms.Label();
             this.lH2 = new System.Windows.Forms.Label();
@@ -64,7 +65,6 @@ namespace P2
             this.hScrollBarH2 = new System.Windows.Forms.HScrollBar();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
             this.hParameters = new System.Windows.Forms.Label();
             this.pTimeControl = new System.Windows.Forms.Panel();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
@@ -75,7 +75,7 @@ namespace P2
             this.hTimeControl = new System.Windows.Forms.Label();
             this.pInfoBox = new System.Windows.Forms.Panel();
             this.hInfoBox = new System.Windows.Forms.Label();
-            this.pGraphArea = new P2Graph.MasterGraphPanel();
+            this.textBox4 = new System.Windows.Forms.TextBox();
             this.pSimulationArea.SuspendLayout();
             this.pColourDescription.SuspendLayout();
             this.pTabs.SuspendLayout();
@@ -96,15 +96,15 @@ namespace P2
             this.pSimulationArea.TabIndex = 0;
             // 
             // pGraphArea
-            //
-            this.pGraphArea.Location = new System.Drawing.Point(5, 5);
-            this.pGraphArea.Name = "pGraphArea";
-            this.pGraphArea.TabIndex = 1;
-			this.pGraphArea.CreateAxis ("Tid", "Partial tryk");
-			this.pGraphArea.xMaxRange = 30;
-			this.pGraphArea.yMaxRange = 10;
-			this.pGraphArea.Paint += new PaintEventHandler(GraphPanel_Paint);
             // 
+            //this.pGraphArea.Location = new System.Drawing.Point(5, 5);
+            //this.pGraphArea.Name = "pGraphArea";
+            //this.pGraphArea.Size = new System.Drawing.Size(620, 500);
+            //this.pGraphArea.TabIndex = 1;
+            //this.pGraphArea.xMaxRange = 30D;
+            //this.pGraphArea.yMaxRange = 10D;
+            //this.pGraphArea.Paint += new System.Windows.Forms.PaintEventHandler(this.GraphPanel_Paint);
+            //// 
             // lTemperature
             // 
             this.lTemperature.AutoSize = true;
@@ -129,7 +129,7 @@ namespace P2
             // 
             this.lH2.AutoSize = true;
             this.lH2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lH2.Location = new System.Drawing.Point(75, 133);
+            this.lH2.Location = new System.Drawing.Point(75, 131);
             this.lH2.Name = "lH2";
             this.lH2.Size = new System.Drawing.Size(62, 18);
             this.lH2.TabIndex = 7;
@@ -185,7 +185,7 @@ namespace P2
             "Gul",
             "Rød",
             "Laksefarvet"});
-            this.comboBox2.Location = new System.Drawing.Point(145, 132);
+            this.comboBox2.Location = new System.Drawing.Point(145, 130);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(110, 21);
             this.comboBox2.TabIndex = 3;
@@ -365,7 +365,7 @@ namespace P2
             // hScrollBarN2
             // 
             this.hScrollBarN2.LargeChange = 1;
-            this.hScrollBarN2.Location = new System.Drawing.Point(290, 72);
+            this.hScrollBarN2.Location = new System.Drawing.Point(290, 69);
             this.hScrollBarN2.Maximum = 4000;
             this.hScrollBarN2.Name = "hScrollBarN2";
             this.hScrollBarN2.Size = new System.Drawing.Size(200, 17);
@@ -415,7 +415,7 @@ namespace P2
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(515, 72);
+            this.textBox1.Location = new System.Drawing.Point(515, 69);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(70, 20);
             this.textBox1.TabIndex = 0;
@@ -426,7 +426,7 @@ namespace P2
             // hScrollBarH2
             // 
             this.hScrollBarH2.LargeChange = 1;
-            this.hScrollBarH2.Location = new System.Drawing.Point(290, 136);
+            this.hScrollBarH2.Location = new System.Drawing.Point(290, 132);
             this.hScrollBarH2.Maximum = 4000;
             this.hScrollBarH2.Name = "hScrollBarH2";
             this.hScrollBarH2.Size = new System.Drawing.Size(200, 17);
@@ -435,7 +435,7 @@ namespace P2
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(515, 136);
+            this.textBox2.Location = new System.Drawing.Point(515, 132);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(70, 20);
             this.textBox2.TabIndex = 1;
@@ -445,23 +445,13 @@ namespace P2
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(515, 193);
+            this.textBox3.Location = new System.Drawing.Point(515, 194);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(70, 20);
             this.textBox3.TabIndex = 12;
             this.textBox3.Text = "0";
             this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             this.textBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox3_KeyPress);
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(515, 253);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(70, 20);
-            this.textBox4.TabIndex = 13;
-            this.textBox4.Text = "0";
-            this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
-            this.textBox4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox4_KeyPress);
             // 
             // hParameters
             // 
@@ -546,7 +536,7 @@ namespace P2
             // 
             // pInfoBox
             // 
-            this.pInfoBox.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.pInfoBox.BackColor = System.Drawing.Color.Silver;
             this.pInfoBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pInfoBox.Location = new System.Drawing.Point(12, 550);
             this.pInfoBox.Name = "pInfoBox";
@@ -562,14 +552,17 @@ namespace P2
             this.hInfoBox.Size = new System.Drawing.Size(66, 13);
             this.hInfoBox.TabIndex = 11;
             this.hInfoBox.Text = "Vejledning";
+            label1.BackColor = System.Drawing.Color.Transparent;
             // 
-            // pGraphArea
+            // textBox4
             // 
-            this.pGraphArea.Location = new System.Drawing.Point(5, 5);
-            this.pGraphArea.Name = "pGraphArea";
-            this.pGraphArea.Size = new System.Drawing.Size(620, 500);
-            this.pGraphArea.TabIndex = 1;
-            this.pGraphArea.Paint += new System.Windows.Forms.PaintEventHandler(this.GraphPanel_Paint);
+            this.textBox4.Location = new System.Drawing.Point(515, 253);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(70, 20);
+            this.textBox4.TabIndex = 13;
+            this.textBox4.Text = "0";
+            this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
+            this.textBox4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox4_KeyPress);
             // 
             // GUI
             // 
@@ -645,7 +638,6 @@ namespace P2
         private MasterGraphPanel pGraphArea;
         private System.Windows.Forms.Label hInfoBox;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label hColour;
@@ -661,5 +653,6 @@ namespace P2
         private System.Windows.Forms.CheckBox checkBoxCatalyst;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.HScrollBar hScrollBarN2;
+        private TextBox textBox4;
     }
 }
