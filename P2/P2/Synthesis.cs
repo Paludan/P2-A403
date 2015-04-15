@@ -28,7 +28,7 @@ namespace P2
         public double interval
         {
             get { return timer.Interval; }
-            set { timer.Interval = value;}
+            set { timer.Interval = value/Scale;}
         }
 
         /// <summary>
