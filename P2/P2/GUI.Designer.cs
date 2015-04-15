@@ -96,7 +96,7 @@ namespace P2
             this.pSimulationArea.TabIndex = 0;
             // 
             // pGraphArea
-            // 
+            //
             this.pGraphArea.Location = new System.Drawing.Point(5, 5);
             this.pGraphArea.Name = "pGraphArea";
             this.pGraphArea.TabIndex = 1;
