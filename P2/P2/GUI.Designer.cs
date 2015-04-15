@@ -101,6 +101,8 @@ namespace P2
             this.pGraphArea.Name = "pGraphArea";
             this.pGraphArea.TabIndex = 1;
 			this.pGraphArea.CreateAxis ("Tid", "Partial tryk");
+			this.pGraphArea.xMaxRange = 30;
+			this.pGraphArea.yMaxRange = 10;
 			this.pGraphArea.Paint += new PaintEventHandler(GraphPanel_Paint);
             // 
             // lTemperature
@@ -599,6 +601,9 @@ namespace P2
 		{
 			MasterGraphPanel p = sender as MasterGraphPanel;
 			Graphics g = e.Graphics;
+
+			p.UpdateMGP();
+
 			p.Draw (g);
 		}
 

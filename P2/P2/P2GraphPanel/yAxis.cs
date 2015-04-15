@@ -21,8 +21,30 @@ namespace P2Graph
 		/// </summary>
 		protected override void CalculateAxisEnds ()
 		{
-			this._endsAt.X = _MGP.Height * (1 - Constants.endOffset);
-			this._endsAt.Y = _MGP.Width * (1- Constants.yOffset);
+			this._endsAt.RealX = _MGP.O.X;
+			this._endsAt.RealY = _MGP.Height * (1 - Constants.endOffset);
+		}
+
+		/// <summary>
+		/// Update this axis.
+		/// </summary>
+		public override void Update ()
+		{
+			base.Update ();
+			this.CalculateAxisEnds ();
+		}
+
+		/// <summary>
+		/// Draws the arrow ends.
+		/// </summary>
+		/// <param name="g">The graphics component with which to draw.</param>
+		protected override void DrawArrowEnds (Graphics g)
+		{
+			PointF[] pointList = new PointF[3] { new PointF(_endsAt.RealX, _endsAt.RealY - 15), 
+				new PointF (_endsAt.RealX - 7, _endsAt.RealY),
+				new PointF (_endsAt.RealX + 7, _endsAt.RealY)};
+
+			g.FillPolygon (Brushes.Black, pointList);
 		}
 
 		#region IDrawable implementation
@@ -35,15 +57,41 @@ namespace P2Graph
 			GraphPoint GP = _beginsAt;
 
 			DrawLine (_beginsAt, _endsAt, painter, Color.Black);
+			DrawArrowEnds (painter);
 
-			ScaleAxis ();
 			//Calculates the next partition and draws untill the last partition has been drawn
-			/*while (GP.Y <= _endsAt.Y) {
+			for (int i = 0; i < Math.Ceiling (_maxRange); i++) {
 				GP = CalcNextPartition (GP);
-				DrawPartition (painter, GP);
-			}*/
+				DrawPartition (painter, GP, (i + 1));
+			}
 		}
 		#endregion
+
+		protected override GraphPoint CalcNextPartition (GraphPoint currentPoint)
+		{
+			currentPoint.RealY -= Constants.yPixelScale;
+
+			return currentPoint;
+		}
+
+		protected override void DrawPartition (Graphics painter, GraphPoint centerPoint, int partitionNumber)
+		{
+			GraphPoint beginning = centerPoint, end = centerPoint;
+
+			//Calculates the ends of the partition-line
+			beginning.RealX -= 4;
+			end.RealX += 4;
+
+			DrawLine (beginning, end, painter, Color.Black);
+			end.RealX -= Constants.partitionOffset;
+			DrawNumber(painter, end, partitionNumber.ToString());
+		}
+
+		public void Scale ()
+		{
+			float PixelLengthOfAxis = this._beginsAt.RealY - this._endsAt.RealY;
+			Constants.yPixelScale = PixelLengthOfAxis / (float) Math.Ceiling(CalculateAxisRange());
+		}
 	}
 }
 

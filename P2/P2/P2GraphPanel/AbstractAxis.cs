@@ -66,7 +66,6 @@ namespace P2Graph
 			get { return _endsAt; }
 		}
 
-		protected float _pixelPartition;
 		protected MasterGraphPanel _MGP;
 
 		/// <summary>
@@ -80,16 +79,37 @@ namespace P2Graph
 			this._minRange = 0;
 			this._maxRange = 1;
 			this._MGP = gPanel;
-			this._beginsAt = new GraphPoint (_MGP.O, _MGP);
-			this._endsAt = new GraphPoint (0, 0, _MGP);
 
 			CalculateAxisEnds ();
+		}
+
+		public virtual void Update(){
+			this._beginsAt.RealX = _MGP.O.X;
+			this._beginsAt.RealY = _MGP.O.Y;
 		}
 
 		/// <summary>
 		/// Calculates the axis ends.
 		/// </summary>
 		protected abstract void CalculateAxisEnds();
+		/// <summary>
+		/// Draws the arrow ends.
+		/// </summary>
+		protected abstract void DrawArrowEnds(Graphics g);
+
+		/// <summary>
+		/// Calculates the next partition.
+		/// </summary>
+		/// <returns>The next partition.</returns>
+		/// <param name="currentPoint">Current point.</param>
+		protected abstract GraphPoint CalcNextPartition (GraphPoint currentPoint);
+
+		/// <summary>
+		/// Draws the partition.
+		/// </summary>
+		/// <param name="painter">Graphics with reference to panel.</param>
+		/// <param name="centerPoint">Center point.</param>
+		protected abstract void DrawPartition (Graphics painter, GraphPoint centerPoint, int partitionNumber);
 
 		/// <summary>
 		/// Draws a line between two points.
@@ -103,69 +123,27 @@ namespace P2Graph
 		}
 
 		/// <summary>
-		/// Draws the partition.
+		/// Draws a number to the panel.
 		/// </summary>
-		/// <param name="painter">The graphics object with which to draw.</param>
-		/// <param name="centerPoint">Center point of the partition.</param>
-		protected void DrawPartition(Graphics painter, GraphPoint centerPoint){
-			GraphPoint beginning = centerPoint, end = centerPoint;
-			Font numberFont = new Font ("Arial", 14);
-
-			//Calculates the ends of the partition-line
-			if (this.GetType() == typeof(xAxis)) {
-				beginning.Y -= 4;
-				end.Y += 4;
-				painter.DrawString(centerPoint.X.ToString(), numberFont, Brushes.Black, centerPoint.X, centerPoint.Y - 8);
-			}
-			else if (this.GetType() == typeof(yAxis)){
-				beginning.X -= 4;
-				end.Y += 4;
-				painter.DrawString(centerPoint.Y.ToString(), numberFont, Brushes.Black, centerPoint.X - 8, centerPoint.Y);
-			}
-
-			DrawLine (beginning, end, painter, Color.DarkGray);
+		/// <param name="painter">Painter.</param>
+		/// <param name="centerPoint">Center point of the string.</param>
+		/// <param name="toDraw">The string being drawn.</param>
+		protected void DrawNumber(Graphics painter, GraphPoint centerPoint, string toDraw){
+			Rectangle Rec= new Rectangle ((int) centerPoint.RealX, (int) centerPoint.RealY, 25, 20);
+			Rec.X -= (Rec.Width / 2);
+			Rec.Y -= (Rec.Height / 2);
+			painter.DrawString(toDraw, Constants.GraphFont, Brushes.Black, Rec);
 		}
-
 		/// <summary>
-		/// Calculates the next partition.
+		/// Draws the number.
 		/// </summary>
-		/// <returns>The next partition.</returns>
-		/// <param name="currentPoint">Current point.</param>
-		protected GraphPoint CalcNextPartition(GraphPoint currentPoint){
-			if (this.GetType() == typeof(xAxis)) {
-				currentPoint.X += _pixelPartition;
-			}
-			else if (this.GetType() == typeof(yAxis)){
-				currentPoint.Y += currentPoint.Y;
-			}
-			return currentPoint;
-		}
-
-		/// <summary>
-		/// Scales the axis.
-		/// </summary>
-		public void ScaleAxis(){
-			float PixelLengthOfAxis = 1;
-
-			//Determines the lenght based on which axis is used
-			if (this.GetType () == typeof(yAxis)) {
-				PixelLengthOfAxis = _endsAt.Y - _beginsAt.Y;
-				Constants.yPixelScale = PixelLengthOfAxis / (float) Math.Ceiling(CalculateAxisRange());
-			} 
-			else if (this.GetType () == typeof(xAxis)){
-				PixelLengthOfAxis = _endsAt.X - _endsAt.Y;
-				Constants.xPixelScale = PixelLengthOfAxis / (float) Math.Ceiling(CalculateAxisRange());
-			}
-
-		}
-
-		/// <summary>
-		/// Increases the range of the axis.
-		/// </summary>
-		/// <param name="rangeIncrease">Range increase.</param>
-		public void IncreaseRange(double rangeIncrease){
-			_maxRange += rangeIncrease;
-			ScaleAxis();
+		/// <param name="painter">Painter.</param>
+		/// <param name="x">The x-coordinate.</param>
+		/// <param name="y">The y-coordinate.</param>
+		/// <param name="toDraw">The string to draw.</param>
+		protected void DrawNumber(Graphics painter, float x, float y, string toDraw)
+		{
+			DrawNumber (painter, new GraphPoint (new PointF(x, y), _MGP), toDraw);
 		}
 
 		/// <summary>
@@ -177,4 +155,3 @@ namespace P2Graph
 		}
 	}
 }
-

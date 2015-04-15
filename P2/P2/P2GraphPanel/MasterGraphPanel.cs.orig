@@ -8,19 +8,8 @@ namespace P2Graph
 	public class MasterGraphPanel : Panel
 	{
 		private List<Graph> graphList = new List<Graph>();
-
 		private xAxis X;
-		public double xMaxRange{
-			get { return X.maxRange; }
-			set { X.maxRange = value; }
-		}
-
 		private yAxis Y;
-		public double yMaxRange{
-			get { return Y.maxRange; }
-			set { Y.maxRange = value; }
-		}
-
 		private Graphics _g;
 		private PointF _O;
 		/// <summary>
@@ -52,14 +41,7 @@ namespace P2Graph
 		/// Calculates the orego.
 		/// </summary>
 		public void CalculateOrego(){
-			this._O = new PointF (this.Width * Constants.xOffset, this.Height * Constants.yOffset);
-		}
-
-		public void UpdateMGP(){
-			CalculateOrego ();
-			X.Update ();
-			Y.Update ();
-			ScaleAxis ();
+			this._O = new PointF (this.Width, this.Height);
 		}
 
 		/// <summary>
@@ -99,7 +81,12 @@ namespace P2Graph
 		public void Draw (Graphics g)
 		{
 			this._g = g;
-			ScaleAxis ();
+			Font stringFont = new Font ("Arial", 18);
+			_g.DrawString (this.Height.ToString(), stringFont, Brushes.Black, new RectangleF (200, 200, 200, 200));
+			_g.DrawString (this.Width.ToString(), stringFont, Brushes.Black, new RectangleF (200, 220, 200, 200));
+
+			GraphPoint test = new GraphPoint (_O, this);
+			test.Draw (g, Brushes.Black);
 
 			this.BackColor = Color.WhiteSmoke;
 			X.Draw (_g);
@@ -109,14 +96,6 @@ namespace P2Graph
 					graph.Draw (_g);
 				}
 			}
-		}
-
-		/// <summary>
-		/// Scales the axis.
-		/// </summary>
-		public void ScaleAxis(){
-			X.Scale ();
-			Y.Scale ();
 		}
 	}
 }
