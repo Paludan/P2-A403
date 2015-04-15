@@ -98,7 +98,7 @@ namespace P2
             }
         }
 
-        /*public void test ()
+        public void test ()
         {
             simulationData.Add(new DataPoint(1, 1, 1, 1, 1, 1, false));
             simulationData.Add(new DataPoint(2, 1, 1, 1, 1, 1.5, false));
@@ -106,8 +106,11 @@ namespace P2
             simulationData.Add(new DataPoint(4, 1, 1, 1, 1, 2.5, true));
             simulationData.Add(new DataPoint(5, 1, 1, 1, 1, 3, false));
             simulationData.Add(new DataPoint(6, 1, 1, 1, 1, 4, false));
+            simulationData.Add(new DataPoint(7, 1, 1, 1, 1, 6, false));
+            simulationData.Add(new DataPoint(8, 1, 1, 1, 1, 19, false));
+            simulationData.Add(new DataPoint(9, 1, 1, 1, 1, 27.5, false));
 
-            System.Windows.Forms.MessageBox.Show( MergeSearch.byTime(simulationData, 2.2).ToString() );
-        }*/
+            System.Windows.Forms.MessageBox.Show( SortTools.byTime(simulationData, 26.2).ToString() );
+        }
     }
 }
