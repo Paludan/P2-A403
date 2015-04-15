@@ -75,6 +75,7 @@ namespace P2
             this.hTimeControl = new System.Windows.Forms.Label();
             this.pInfoBox = new System.Windows.Forms.Panel();
             this.hInfoBox = new System.Windows.Forms.Label();
+
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.pSimulationArea.SuspendLayout();
             this.pColourDescription.SuspendLayout();
@@ -96,6 +97,15 @@ namespace P2
             this.pSimulationArea.TabIndex = 0;
             // 
             // pGraphArea
+            // 
+            //this.pGraphArea.Location = new System.Drawing.Point(5, 5);
+            //this.pGraphArea.Name = "pGraphArea";
+            //this.pGraphArea.Size = new System.Drawing.Size(620, 500);
+            //this.pGraphArea.TabIndex = 1;
+            //this.pGraphArea.xMaxRange = 30D;
+            //this.pGraphArea.yMaxRange = 10D;
+            //this.pGraphArea.Paint += new System.Windows.Forms.PaintEventHandler(this.GraphPanel_Paint);
+
             // 
             //this.pGraphArea.Location = new System.Drawing.Point(5, 5);
             //this.pGraphArea.Name = "pGraphArea";
@@ -523,6 +533,7 @@ namespace P2
             this.start.TabIndex = 0;
             this.start.Text = "Start";
             this.start.UseVisualStyleBackColor = true;
+            this.start.Click += new System.EventHandler(this.start_Click);
             // 
             // hTimeControl
             // 
