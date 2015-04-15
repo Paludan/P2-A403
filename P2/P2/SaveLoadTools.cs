@@ -11,11 +11,7 @@ namespace P2
     public static class SaveLoadTools
     {
         static string dir = Directory.GetCurrentDirectory();
-        public static string path = dir + @"\SaveFiles";
-        public static void createFolder()
-        {
-                DirectoryInfo di = Directory.CreateDirectory(path);
-        }
+        public static string path = dir + "\\SaveFiles";
         static string[] files = Directory.GetFiles(path, "*.eqsave");
         static int i = files.Length + 1;
         /// <summary>
@@ -26,7 +22,7 @@ namespace P2
         {
             DataToSerialize SerializedData = new DataToSerialize();
             SerializedData.DataListList[0] = CurrentDataList;
-            Serializer DataSerializer = new Serializer(); 
+            Serializer DataSerializer = new Serializer();
             DataSerializer.SerializeObject(path + "SavedDataList" + i + ".eqsave", SerializedData);
         }
         /// <summary>
@@ -46,7 +42,7 @@ namespace P2
         /// <param name="fileName">Name of the Savefile to be loaded</param>
         public static List<DataPoint> load(string fileName)
         {
-            createFolder();
+            Directory.CreateDirectory(path);
             List<DataPoint> tempDataList = new List<DataPoint>();
             DataToSerialize SerializedData = new DataToSerialize();
             Serializer DataSerializer = new Serializer();
@@ -60,7 +56,7 @@ namespace P2
         /// <param name="fileName">Name of the savefile to be loaded</param>
         public static List<List<DataPoint>> loadListList(string fileName)
         {
-            createFolder();
+            Directory.CreateDirectory(path);
             List<List<DataPoint>> tempDataList = new List<List<DataPoint>>();
             DataToSerialize SerializedData = new DataToSerialize();
             Serializer DataSerializer = new Serializer();
