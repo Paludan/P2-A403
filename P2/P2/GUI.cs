@@ -197,7 +197,7 @@ namespace P2
         Random rand = new Random();
         public void changecolor(Object source,  System.Timers.ElapsedEventArgs e)
         {
-            BackColor = Color.FromArgb(rand.Next(255), rand.Next(255), rand.Next(255));
+            //BackColor = Color.FromArgb(rand.Next(255), rand.Next(255), rand.Next(255));
             numericUpDown1.Value = (decimal)synth.Time/1000;
 
         }

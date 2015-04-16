@@ -28,13 +28,13 @@ namespace P2
         public double interval
         {
             get { return timer.Interval; }
-            set { timer.Interval = value/_scale;}
+            set { timer.Interval = value; }
         }
 
         public double Scale
         {
             get { return _scale; }
-            set { if (value != 0) { _scale = value; } }
+            set { if (value != 0) { _scale = value;} }
         }
 
         public double Time
@@ -83,9 +83,9 @@ namespace P2
         public void Update(Object source, ElapsedEventArgs e)
         {
             if(running)
-            currentData.time+=interval;
+            currentData.time+=interval*Scale;
             
-            simulationData.addDataPoint( SimulationModel.calculateDataPoint(interval) );
+            simulationData.addDataPoint( SimulationModel.calculateDataPoint(interval*Scale) );
         }
 
         /// <summary>
