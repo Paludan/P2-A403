@@ -186,5 +186,15 @@ namespace P2
         {
             scrollEnd(textBox4, hScrollBarTemperature, e);
         }
+
+        private void start_Click(object sender, EventArgs e)
+        {
+            synth.start();
+        }
+
+        private void stop_Click(object sender, EventArgs e)
+        {
+            synth.stop();
+        }
     }
 }

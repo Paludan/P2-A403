@@ -33,7 +33,6 @@ namespace P2
         private void InitializeComponent()
         {
             this.pSimulationArea = new System.Windows.Forms.Panel();
-            this.pGraphArea = new P2Graph.MasterGraphPanel();
             this.lTemperature = new System.Windows.Forms.Label();
             this.lNH3 = new System.Windows.Forms.Label();
             this.lH2 = new System.Windows.Forms.Label();
@@ -70,12 +69,12 @@ namespace P2
             this.pTimeControl = new System.Windows.Forms.Panel();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.lTime = new System.Windows.Forms.Label();
-            this.timeMultiplier = new System.Windows.Forms.Button();
             this.stop = new System.Windows.Forms.Button();
             this.start = new System.Windows.Forms.Button();
             this.hTimeControl = new System.Windows.Forms.Label();
             this.pInfoBox = new System.Windows.Forms.Panel();
             this.hInfoBox = new System.Windows.Forms.Label();
+            this.pGraphArea = new P2Graph.MasterGraphPanel();
             this.pSimulationArea.SuspendLayout();
             this.pColourDescription.SuspendLayout();
             this.pTabs.SuspendLayout();
@@ -94,13 +93,6 @@ namespace P2
             this.pSimulationArea.Name = "pSimulationArea";
             this.pSimulationArea.Size = new System.Drawing.Size(630, 510);
             this.pSimulationArea.TabIndex = 0;
-            // 
-            // pGraphArea
-            // 
-            this.pGraphArea.Location = new System.Drawing.Point(0, 0);
-            this.pGraphArea.Name = "pGraphArea";
-            this.pGraphArea.Size = new System.Drawing.Size(620, 500);
-            this.pGraphArea.TabIndex = 0;
             // 
             // lTemperature
             // 
@@ -475,7 +467,6 @@ namespace P2
             this.pTimeControl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pTimeControl.Controls.Add(this.numericUpDown1);
             this.pTimeControl.Controls.Add(this.lTime);
-            this.pTimeControl.Controls.Add(this.timeMultiplier);
             this.pTimeControl.Controls.Add(this.stop);
             this.pTimeControl.Controls.Add(this.start);
             this.pTimeControl.Location = new System.Drawing.Point(650, 20);
@@ -504,32 +495,25 @@ namespace P2
             this.lTime.TabIndex = 3;
             this.lTime.Text = "Tid";
             // 
-            // timeMultiplier
-            // 
-            this.timeMultiplier.Location = new System.Drawing.Point(470, 30);
-            this.timeMultiplier.Name = "timeMultiplier";
-            this.timeMultiplier.Size = new System.Drawing.Size(70, 25);
-            this.timeMultiplier.TabIndex = 2;
-            this.timeMultiplier.Text = "x1";
-            this.timeMultiplier.UseVisualStyleBackColor = true;
-            // 
             // stop
             // 
-            this.stop.Location = new System.Drawing.Point(265, 30);
+            this.stop.Location = new System.Drawing.Point(33, 85);
             this.stop.Name = "stop";
             this.stop.Size = new System.Drawing.Size(70, 25);
             this.stop.TabIndex = 1;
             this.stop.Text = "Stop";
             this.stop.UseVisualStyleBackColor = true;
+            this.stop.Click += new System.EventHandler(this.stop_Click);
             // 
             // start
             // 
-            this.start.Location = new System.Drawing.Point(60, 30);
+            this.start.Location = new System.Drawing.Point(33, 30);
             this.start.Name = "start";
             this.start.Size = new System.Drawing.Size(70, 25);
             this.start.TabIndex = 0;
             this.start.Text = "Start";
             this.start.UseVisualStyleBackColor = true;
+            this.start.Click += new System.EventHandler(this.start_Click);
             // 
             // hTimeControl
             // 
@@ -553,13 +537,20 @@ namespace P2
             // hInfoBox
             // 
             this.hInfoBox.AutoSize = true;
-            this.hInfoBox.BackColor = Color.Transparent;
+            this.hInfoBox.BackColor = System.Drawing.Color.Transparent;
             this.hInfoBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.hInfoBox.Location = new System.Drawing.Point(20, 540);
             this.hInfoBox.Name = "hInfoBox";
             this.hInfoBox.Size = new System.Drawing.Size(66, 13);
             this.hInfoBox.TabIndex = 11;
             this.hInfoBox.Text = "Vejledning";
+            // 
+            // pGraphArea
+            // 
+            this.pGraphArea.Location = new System.Drawing.Point(0, 0);
+            this.pGraphArea.Name = "pGraphArea";
+            this.pGraphArea.Size = new System.Drawing.Size(620, 500);
+            this.pGraphArea.TabIndex = 0;
             // 
             // GUI
             // 
@@ -618,7 +609,6 @@ namespace P2
         private System.Windows.Forms.Panel pTimeControl;
         private System.Windows.Forms.Label hTimeControl;
         private System.Windows.Forms.Panel pInfoBox;
-        private System.Windows.Forms.Button timeMultiplier;
         private System.Windows.Forms.Button stop;
         private System.Windows.Forms.Button start;
         private System.Windows.Forms.Label lTime;
