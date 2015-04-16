@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Drawing;
+using System.Linq;
 
 namespace P2Graph
 {
@@ -53,16 +54,27 @@ namespace P2Graph
 			points.Add (nextPoint);
 		}
 
+		public void UpdateWithPoint(GraphPoint newPoint, Graphics painter){
+			painter.DrawLine (new Pen (_colorOfGraph, 1), points [points.Count - 1], newPoint);
+
+			points.Add (newPoint);
+		}
+
+		public void Update(){
+			foreach (GraphPoint GP in points) {
+				GP.Update ();
+			}
+		}
+
 		#region IDrawable implementation
 		/// <summary>
 		/// Draw the graph with the specified .
 		/// </summary>
 		/// <param name="painter">The graphics-object used to paint with.</param>
 		public void Draw(Graphics painter){
-			for (int i = 0; i < points.Count - 1; i++) {
-				points[i].Draw(painter);
-				painter.DrawLine (new Pen (Brushes.Blue, 2), points [i], points [i + 1]);
-			}
+			var PFArr = points.Select(GP => new PointF(GP.RealX, GP.RealY)).ToArray();
+
+			painter.DrawLines (new Pen (_colorOfGraph, 1), PFArr);
 		}
 		#endregion
 	}

@@ -7,22 +7,21 @@ namespace P2Graph
 {
 	public class MasterGraphPanel : Panel
 	{
-		private List<Graph> graphList = new List<Graph>();
+		private List<Graph> graphList = new List<Graph> ();
+		private PointF _O;
 
 		private xAxis X;
-		public double xMaxRange{
+		public int xMaxRange{
 			get { return X.maxRange; }
-			set { X.maxRange = value; }
+			set { X.maxRange = value; this.UpdateMGP (); }
 		}
 
 		private yAxis Y;
-		public double yMaxRange{
+		public int yMaxRange{
 			get { return Y.maxRange; }
-			set { Y.maxRange = value; }
+			set { Y.maxRange = value; this.UpdateMGP (); }
 		}
 
-		private Graphics _g;
-		private PointF _O;
 		/// <summary>
 		/// Gets the (0, 0)-coordinate.
 		/// </summary>
@@ -36,16 +35,8 @@ namespace P2Graph
 		public MasterGraphPanel ()
 			: base ()
 		{
-			CreateGraphicsUnit ();
 			this.Size = new Size (620, 500);
 			CalculateOrego ();
-		}
-
-		/// <summary>
-		/// Creates the graphics unit, automatically invoked on creation.
-		/// </summary>
-		private void CreateGraphicsUnit(){
-			_g = this.CreateGraphics ();
 		}
 
 		/// <summary>
@@ -55,8 +46,12 @@ namespace P2Graph
 			this._O = new PointF (this.Width * Constants.xOffset, this.Height * Constants.yOffset);
 		}
 
+		/// <summary>
+		/// Updates the panel.
+		/// </summary>
 		public void UpdateMGP(){
 			CalculateOrego ();
+			graphList.ForEach (graph => graph.Update ());
 			X.Update ();
 			Y.Update ();
 			ScaleAxis ();
@@ -80,6 +75,9 @@ namespace P2Graph
 		/// <param name="colOfGraph">Color of the graph</param>
 		public void AddGraph(List<GraphPoint> addedGraph, string name, Color colOfGraph){
 			Graph newGraph = new Graph (name, colOfGraph);
+
+			X.maxRange = (int) Math.Ceiling(addedGraph [addedGraph.Count - 1].xCoord);
+
 			foreach (GraphPoint GP in addedGraph) {
 				newGraph.addPoint (GP);
 			}
@@ -98,15 +96,14 @@ namespace P2Graph
 		/// <param name="g">The graphics component generated on creationg.</param>
 		public void Draw (Graphics g)
 		{
-			this._g = g;
 			ScaleAxis ();
 
 			this.BackColor = Color.WhiteSmoke;
-			X.Draw (_g);
-			Y.Draw (_g);
+			X.Draw (g);
+			Y.Draw (g);
 			if (graphList.Count > 0) {
 				foreach (var graph in graphList) {
-					graph.Draw (_g);
+					graph.Draw (g);
 				}
 			}
 		}
@@ -118,6 +115,18 @@ namespace P2Graph
 			X.Scale ();
 			Y.Scale ();
 		}
+
+		#region EventHandling
+		public void EventHandler_InitialPaint( object sender, PaintEventArgs e )
+		{
+//			MasterGraphPanel p = sender as MasterGraphPanel;
+			Graphics g = e.Graphics;
+
+			this.UpdateMGP();
+
+			this.Draw (g);
+		}
+		#endregion
 	}
 }
 

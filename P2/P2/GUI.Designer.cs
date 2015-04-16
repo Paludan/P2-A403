@@ -95,6 +95,14 @@ namespace P2
             this.pSimulationArea.Name = "pSimulationArea";
             this.pSimulationArea.Size = new System.Drawing.Size(630, 510);
             this.pSimulationArea.TabIndex = 0;
+            //
+            // pGraphArea
+            //
+            this.pGraphArea.Location = new System.Drawing.Point(5, 5);
+            this.pGraphArea.Name = "pGraphArea";
+            this.pGraphArea.TabIndex = 1;
+			this.pGraphArea.CreateAxis ("Tid", "Partial tryk");
+			this.pGraphArea.Paint += new PaintEventHandler(pGraphArea.EventHandler_InitialPaint);
             // 
             // lTemperature
             // 
@@ -621,14 +629,18 @@ namespace P2
 
         }
 
-		private void GraphPanel_Paint( object sender, PaintEventArgs e )
-		{
+		private void GraphPanel_Update( object sender, PaintEventArgs e){
 			MasterGraphPanel p = sender as MasterGraphPanel;
 			Graphics g = e.Graphics;
 
-			p.UpdateMGP();
+			GraphPoint test = new GraphPoint (3, 3, p);
 
-			p.Draw (g);
+			p.xMaxRange = 5;
+			p.yMaxRange = 5;
+
+			test.Update ();
+
+			test.Draw (g);
 		}
 
         #endregion

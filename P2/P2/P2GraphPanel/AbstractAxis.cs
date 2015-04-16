@@ -16,12 +16,12 @@ namespace P2Graph
 			get { return _name; }
 		}
 
-		protected double _minRange;
+		protected int _minRange;
 		/// <summary>
 		/// Gets or sets the minimum range of the axis.
 		/// </summary>
 		/// <value>The minimum range.</value>
-		public double minRange
+		public int minRange
 		{
 			get { return _minRange; }
 			set {
@@ -33,12 +33,12 @@ namespace P2Graph
 			}
 		}
 
-		protected double _maxRange;
+		protected int _maxRange;
 		/// <summary>
 		/// Gets or sets the max range of the axis.
 		/// </summary>
 		/// <value>The max range.</value>
-		public double maxRange
+		public int maxRange
 		{
 			get { return _maxRange; }
 			set {
@@ -79,6 +79,9 @@ namespace P2Graph
 			this._minRange = 0;
 			this._maxRange = 1;
 			this._MGP = gPanel;
+
+			this._beginsAt = new GraphPoint (_MGP.O, _MGP);
+			this._endsAt = new GraphPoint (0, 0, _MGP);
 
 			CalculateAxisEnds ();
 		}
@@ -152,6 +155,14 @@ namespace P2Graph
 		/// <returns>The axis range.</returns>
 		protected double CalculateAxisRange(){
 			return this._maxRange - this._minRange;
+		}
+
+		/// <summary>
+		/// Calculates distance between the partitions.
+		/// </summary>
+		/// <returns>The distance.</returns>
+		protected int CalculateDistanceBetweenPartitions(){
+			return (_maxRange / Constants.maxNumberPartitions) + 1;
 		}
 	}
 }
