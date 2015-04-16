@@ -33,6 +33,7 @@ namespace P2
         private void InitializeComponent()
         {
             this.pSimulationArea = new System.Windows.Forms.Panel();
+            this.pGraphArea = new P2Graph.MasterGraphPanel();
             this.lTemperature = new System.Windows.Forms.Label();
             this.lNH3 = new System.Windows.Forms.Label();
             this.lH2 = new System.Windows.Forms.Label();
@@ -47,9 +48,6 @@ namespace P2
             this.hVariable = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.pTabs = new System.Windows.Forms.Panel();
-            this.AddGraph = new System.Windows.Forms.Button();
-            this.Tab2 = new System.Windows.Forms.Button();
-            this.Tab1 = new System.Windows.Forms.Button();
             this.Save = new System.Windows.Forms.Button();
             this.LoadButton = new System.Windows.Forms.Button();
             this.pProjectHandling = new System.Windows.Forms.Panel();
@@ -67,6 +65,8 @@ namespace P2
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.hParameters = new System.Windows.Forms.Label();
             this.pTimeControl = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.comboBox5 = new System.Windows.Forms.ComboBox();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.lTime = new System.Windows.Forms.Label();
             this.stop = new System.Windows.Forms.Button();
@@ -74,12 +74,8 @@ namespace P2
             this.hTimeControl = new System.Windows.Forms.Label();
             this.pInfoBox = new System.Windows.Forms.Panel();
             this.hInfoBox = new System.Windows.Forms.Label();
-            this.pGraphArea = new P2Graph.MasterGraphPanel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.comboBox5 = new System.Windows.Forms.ComboBox();
             this.pSimulationArea.SuspendLayout();
             this.pColourDescription.SuspendLayout();
-            this.pTabs.SuspendLayout();
             this.pProjectHandling.SuspendLayout();
             this.pParameters.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -95,6 +91,13 @@ namespace P2
             this.pSimulationArea.Name = "pSimulationArea";
             this.pSimulationArea.Size = new System.Drawing.Size(630, 510);
             this.pSimulationArea.TabIndex = 0;
+            // 
+            // pGraphArea
+            // 
+            this.pGraphArea.Location = new System.Drawing.Point(10, 10);
+            this.pGraphArea.Name = "pGraphArea";
+            this.pGraphArea.Size = new System.Drawing.Size(610, 490);
+            this.pGraphArea.TabIndex = 0;
             // 
             // lTemperature
             // 
@@ -251,40 +254,10 @@ namespace P2
             // 
             // pTabs
             // 
-            this.pTabs.Controls.Add(this.AddGraph);
-            this.pTabs.Controls.Add(this.Tab2);
-            this.pTabs.Controls.Add(this.Tab1);
             this.pTabs.Location = new System.Drawing.Point(10, 0);
             this.pTabs.Name = "pTabs";
             this.pTabs.Size = new System.Drawing.Size(630, 20);
             this.pTabs.TabIndex = 1;
-            // 
-            // AddGraph
-            // 
-            this.AddGraph.Location = new System.Drawing.Point(150, 0);
-            this.AddGraph.Name = "AddGraph";
-            this.AddGraph.Size = new System.Drawing.Size(75, 20);
-            this.AddGraph.TabIndex = 2;
-            this.AddGraph.Text = "Tilføj graf";
-            this.AddGraph.UseVisualStyleBackColor = true;
-            // 
-            // Tab2
-            // 
-            this.Tab2.Location = new System.Drawing.Point(75, 0);
-            this.Tab2.Name = "Tab2";
-            this.Tab2.Size = new System.Drawing.Size(75, 20);
-            this.Tab2.TabIndex = 1;
-            this.Tab2.Text = "Graf 2";
-            this.Tab2.UseVisualStyleBackColor = true;
-            // 
-            // Tab1
-            // 
-            this.Tab1.Location = new System.Drawing.Point(0, 0);
-            this.Tab1.Name = "Tab1";
-            this.Tab1.Size = new System.Drawing.Size(75, 20);
-            this.Tab1.TabIndex = 0;
-            this.Tab1.Text = "Graf 1";
-            this.Tab1.UseVisualStyleBackColor = true;
             // 
             // Save
             // 
@@ -478,6 +451,36 @@ namespace P2
             this.pTimeControl.Size = new System.Drawing.Size(600, 140);
             this.pTimeControl.TabIndex = 8;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(287, 33);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(87, 13);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Hastighedsfaktor";
+            // 
+            // comboBox5
+            // 
+            this.comboBox5.FormattingEnabled = true;
+            this.comboBox5.Items.AddRange(new object[] {
+            "x1",
+            "x2",
+            "x5",
+            "x10",
+            "x20",
+            "x50",
+            "x100",
+            "x200",
+            "x500",
+            "x1000"});
+            this.comboBox5.Location = new System.Drawing.Point(400, 30);
+            this.comboBox5.Name = "comboBox5";
+            this.comboBox5.Size = new System.Drawing.Size(121, 21);
+            this.comboBox5.TabIndex = 5;
+            this.comboBox5.Text = "x1";
+            this.comboBox5.SelectedIndexChanged += new System.EventHandler(this.comboBox5_SelectedIndexChanged);
+            // 
             // numericUpDown1
             // 
             this.numericUpDown1.Location = new System.Drawing.Point(400, 90);
@@ -550,43 +553,6 @@ namespace P2
             this.hInfoBox.TabIndex = 11;
             this.hInfoBox.Text = "Vejledning";
             // 
-            // pGraphArea
-            // 
-            this.pGraphArea.Location = new System.Drawing.Point(0, 0);
-            this.pGraphArea.Name = "pGraphArea";
-            this.pGraphArea.Size = new System.Drawing.Size(620, 500);
-            this.pGraphArea.TabIndex = 0;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(287, 33);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(87, 13);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Hastighedsfaktor";
-            // 
-            // comboBox5
-            // 
-            this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Items.AddRange(new object[] {
-            "x1",
-            "x2",
-            "x5",
-            "x10",
-            "x20",
-            "x50",
-            "x100",
-            "x200",
-            "x500",
-            "x1000"});
-            this.comboBox5.Location = new System.Drawing.Point(400, 30);
-            this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(121, 21);
-            this.comboBox5.TabIndex = 5;
-            this.comboBox5.Text = "x1";
-            this.comboBox5.SelectedIndexChanged += new System.EventHandler(this.comboBox5_SelectedIndexChanged);
-            // 
             // GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -607,7 +573,6 @@ namespace P2
             this.pSimulationArea.ResumeLayout(false);
             this.pColourDescription.ResumeLayout(false);
             this.pColourDescription.PerformLayout();
-            this.pTabs.ResumeLayout(false);
             this.pProjectHandling.ResumeLayout(false);
             this.pParameters.ResumeLayout(false);
             this.pParameters.PerformLayout();
@@ -669,9 +634,6 @@ namespace P2
         private System.Windows.Forms.HScrollBar hScrollBarH2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label hVariabelControl;
-        private System.Windows.Forms.Button Tab1;
-        private System.Windows.Forms.Button Tab2;
-        private System.Windows.Forms.Button AddGraph;
         private System.Windows.Forms.CheckBox checkBoxCatalyst;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.HScrollBar hScrollBarN2;

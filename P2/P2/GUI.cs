@@ -14,12 +14,23 @@ namespace P2
     {
         Synthesis synth;
         double tempDouble;
-
+        Button[] buttons = new Button[8];
+        int graphTaps = 1;
+                
         public GUI()
         {
             InitializeComponent();
             synth = new Synthesis();
             Control.CheckForIllegalCrossThreadCalls = false;
+            buttons[0] = new Button();
+            buttons[0].Location = new Point(0, 0);
+            buttons[0].Text = "Graf 1      [X]";
+            this.pTabs.Controls.Add(buttons[0]);
+            buttons[7] = new Button();
+            buttons[7].Location = new Point(75, 0);
+            buttons[7].Text = "Tilføj graf";
+            buttons[7].Click += addGraph_Click;
+            this.pTabs.Controls.Add(buttons[7]);
         }
 
         /// <summary>
@@ -218,6 +229,27 @@ namespace P2
         private void comboBox5_SelectedIndexChanged(object sender, EventArgs e)
         {
             synth.Scale = (double) int.Parse(comboBox5.SelectedItem.ToString().TrimStart('x'));
+        }
+
+        private void addGraph_Click(object sender, EventArgs e)
+        {
+            if (buttons[7].Location.X <= 450)
+            {
+                buttons[7].Location = new Point((buttons[7].Location.X + 75), 0);
+                if (graphTaps <= 7)
+                {
+                    buttons[graphTaps] = new Button();
+                    buttons[graphTaps].Location = new Point((graphTaps * 75), 0);
+                    buttons[graphTaps].Text = "Graf " + (graphTaps + 1) + "     [X]";
+                    buttons[graphTaps].Click += chooseGraph;
+                    this.pTabs.Controls.Add(buttons[graphTaps++]);
+                }
+            }
+        }
+
+        private void chooseGraph(object sender, EventArgs e)
+        {
+            
         }
     }
 }
