@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Drawing;
+using System.Linq;
 
 namespace P2Graph
 {
 	public class Graph : IDrawable
 	{
-		List<GraphPoint> points = new List<GraphPoint>();
+		private List<GraphPoint> points = new List<GraphPoint>();
 
 		/// <summary>
 		/// Gets the name of the graph.
@@ -17,6 +18,11 @@ namespace P2Graph
 			get { return _name; }
 		}
 
+		private MasterGraphPanel _master;
+		public MasterGraphPanel MGP {
+			set { _master = value; }
+		}
+
 		/// <summary>
 		/// Sets and gets the color of the graph.
 		/// </summary>
@@ -24,7 +30,24 @@ namespace P2Graph
 		public Color color {
 			get { return _colorOfGraph; }
 			set { _colorOfGraph = value; }
-		} 
+		}
+
+		/// <summary>
+		/// Gets the largest x-value of the graph.
+		/// </summary>
+		/// <value>The largest x-value.</value>
+		public float largestX{
+			get { return points[points.Count - 1].xCoord; }
+		}
+		public float largestY{
+			get { return points.Max (point => point.yCoord); }
+		}
+
+		private bool _isActive = false;
+		public bool isActive{
+			get { return _isActive; }
+			set { _isActive = value; }
+		}
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="P2Graph.Graph"/> class with specified color.
@@ -53,16 +76,29 @@ namespace P2Graph
 			points.Add (nextPoint);
 		}
 
+		public void AddAndDraw(GraphPoint newPoint, Graphics painter){
+			painter.DrawLine (new Pen (_colorOfGraph, 1), points [points.Count - 1], newPoint);
+
+			_master.Paint += new PaintEventHandler (_master.EventHandler_UpdatePanel);
+
+			points.Add (newPoint);
+		}
+
+		public void Update(){
+			foreach (GraphPoint GP in points) {
+				GP.Update ();
+			}
+		}
+
 		#region IDrawable implementation
 		/// <summary>
 		/// Draw the graph with the specified .
 		/// </summary>
 		/// <param name="painter">The graphics-object used to paint with.</param>
 		public void Draw(Graphics painter){
-			for (int i = 0; i < points.Count - 1; i++) {
-				points[i].Draw(painter);
-				painter.DrawLine (new Pen (Brushes.Blue, 2), points [i], points [i + 1]);
-			}
+			var PFArr = points.Select(GP => new PointF(GP.RealX, GP.RealY)).ToArray();
+
+			painter.DrawLines (new Pen (_colorOfGraph, 1), PFArr);
 		}
 		#endregion
 	}

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System.Timers;
+using P2Graph;
 
 namespace P2
 {
@@ -14,9 +15,10 @@ namespace P2
     /// </summary>
     public class Synthesis
     {
+        MasterGraphPanel _graphPanel;
         DataHandler simulationData;
         Model SimulationModel;
-        public bool running = false;
+        public bool running = false, selected = true;
         public System.Timers.Timer timer;//There are other classes called Timer so we must specify the path when initializing.
         public DataPoint currentData = new DataPoint(0,0,0,0,0,0,false);
         double _scale = 1.0; // this variable will decide at what scale the time runs. by making this 2.0, the virtual time elapsed
@@ -28,29 +30,42 @@ namespace P2
         public double interval
         {
             get { return timer.Interval; }
-            set { timer.Interval = value/_scale;}
+            set { timer.Interval = value; }
         }
 
         public double Scale
         {
             get { return _scale; }
-            set { if (value != 0) { _scale = value; } }
+            set { if (value != 0) { _scale = value;} }
         }
 
         public double Time
         {
             get { return currentData.time; }
+            set { }
+        }
+
+        public List<DataPoint> Datapoints{
+            get { return simulationData.SimulationData; }
+        }
+
+        public MasterGraphPanel GraphPanel
+        {
+            get { return _graphPanel; }
         }
 
         /// <summary>
         /// This is the constructor for the class. It initializes the datahandler, model and timer.
         /// </summary>
-        public Synthesis()
+        public Synthesis(MasterGraphPanel graphPanel)
         {
             simulationData = new DataHandler();
             SimulationModel = new Model(currentData);
-            timer = new System.Timers.Timer(500);
+            timer = new System.Timers.Timer(100);
             timer.Elapsed += this.Update;
+
+            _graphPanel = graphPanel;
+            //_graphPanel.AddGraph();
         }
         /*This function starts a new thread that runs the timer and controls the generation of data points
          */
@@ -81,10 +96,15 @@ namespace P2
         /// <param name="e">arguments dunno</param>
         public void Update(Object source, ElapsedEventArgs e)
         {
-            if(running)
-            currentData.time+=interval;
-            
-            simulationData.addDataPoint( SimulationModel.calculateDataPoint(interval) );
+            if (running)
+            {
+                currentData.time += interval * Scale;
+                simulationData.addDataPoint(SimulationModel.calculateDataPoint(interval * Scale));
+                if (selected)
+                {
+
+                }
+            }
         }
 
         /// <summary>

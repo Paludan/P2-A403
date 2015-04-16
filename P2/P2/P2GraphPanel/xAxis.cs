@@ -59,10 +59,14 @@ namespace P2Graph
 			DrawLine (_beginsAt, _endsAt, painter, Color.Black);
 			DrawArrowEnds (painter);
 
+			int dist = CalculateDistanceBetweenPartitions();
+
 			//Calculates the next partition and draws untill the last partition has been drawn
-			for (int i = 0; i < Math.Ceiling (_maxRange); i++) {
+			for (int i = 0; i < _maxRange; i++) {
 				GP = CalcNextPartition (GP);
-				DrawPartition (painter, GP, i+1);
+				if (i % dist == 0) {
+					DrawPartition (painter, GP, i + 1);
+				}
 			}
 		}
 		#endregion
