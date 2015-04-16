@@ -19,7 +19,7 @@ namespace P2
         bool running = false;
         public System.Timers.Timer timer;//There are other classes called Timer so we must specify the path when initializing.
         public DataPoint currentData = new DataPoint(0,0,0,0,0,0,false);
-        double Scale = 1.0; // this variable will decide at what scale the time runs. by making this 2.0, the virtual time elapsed
+        double _scale = 1.0; // this variable will decide at what scale the time runs. by making this 2.0, the virtual time elapsed
                             // when calculating a new datapoint will be double the actual alapsed time.
 
         /// <summary>
@@ -28,7 +28,18 @@ namespace P2
         public double interval
         {
             get { return timer.Interval; }
-            set { timer.Interval = value/Scale;}
+            set { timer.Interval = value/_scale;}
+        }
+
+        public double Scale
+        {
+            get { return _scale; }
+            set { if (value != 0) { _scale = value; } }
+        }
+
+        public double Time
+        {
+            get { return currentData.time; }
         }
 
         /// <summary>
