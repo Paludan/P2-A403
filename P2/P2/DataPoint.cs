@@ -36,12 +36,12 @@ namespace P2
         public double nHydrogen
         {
             get { return _nHydrogen; }
-            set { if (value <= 4000) { _nAmmonia = value; };}
+            set { if (value <= 4000) { _nHydrogen = value; };}
         }
         public double nNitrogen
         {
             get { return _nNitrogen; }
-            set { if (value <= 4000) { _nAmmonia = value; };}
+            set { if (value <= 4000) { _nNitrogen = value; };}
         }
         // Constructs a copy of the given datapoint
         public DataPoint(DataPoint oldData)
