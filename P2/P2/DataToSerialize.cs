@@ -24,12 +24,12 @@ namespace P2
         #region ISerializable implementation
         public DataToSerialize(SerializationInfo info, StreamingContext ctxt)
         {
-            this.DataListList = (List<List<DataPoint>>)info.GetValue("Data", typeof(List<List<DataPoint>>));
+            this.DataList = (List<List<DataPoint>>)info.GetValue("Data", typeof(List<List<DataPoint>>));
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
         {
-            info.AddValue("Data", this.DataListList);
+            info.AddValue("Data", this.DataList);
         }
         #endregion
     }
