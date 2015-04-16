@@ -76,6 +76,10 @@ namespace P2Graph
 		public void AddGraph(List<GraphPoint> addedGraph, string name, Color colOfGraph){
 			Graph newGraph = new Graph (name, colOfGraph);
 
+			if (graphList.Count + 1 > 5) {
+				throw new TooManyGraphsException ();
+			}
+
 			X.maxRange = (int) Math.Ceiling(addedGraph [addedGraph.Count - 1].xCoord);
 
 			foreach (GraphPoint GP in addedGraph) {
@@ -86,8 +90,18 @@ namespace P2Graph
 
 		/* Draws all the names of the graphs in the graphlist
 		 */
-		private void DrawLegends(){
-			throw new NotImplementedException ();
+		private void DrawLegends(Graphics g){
+			int width = this.Width - 100;
+
+			for (int i = 0; i < graphList.Count; i++) {
+				SolidBrush drawBrush = new SolidBrush(graphList[i].color);
+				PointF drawPoint = new PointF (width + 5, 2);
+
+				g.DrawRectangle (new Pen (graphList[i].color, 1), width, 0, 80, 20);
+				g.DrawString (graphList[i].name, Constants.GraphFont, drawBrush, drawPoint);   
+				width -= 100;	
+
+			}
 		}
 
 		/// <summary>
@@ -106,6 +120,7 @@ namespace P2Graph
 					graph.Draw (g);
 				}
 			}
+			DrawLegends (g);
 		}
 
 		/// <summary>
@@ -127,6 +142,46 @@ namespace P2Graph
 			this.Draw (g);
 		}
 		#endregion
+	}
+
+	
+	[Serializable]
+	public class TooManyGraphsException : Exception
+	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="T:MyException"/> class
+		/// </summary>
+		public TooManyGraphsException () : base ("There were too many graphs")
+		{
+
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="T:MyException"/> class
+		/// </summary>
+		/// <param name="message">A <see cref="T:System.String"/> that describes the exception. </param>
+		public TooManyGraphsException (string message) : base (message)
+		{
+
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="T:MyException"/> class
+		/// </summary>
+		/// <param name="message">A <see cref="T:System.String"/> that describes the exception. </param>
+		/// <param name="inner">The exception that is the cause of the current exception. </param>
+		public TooManyGraphsException (string message, Exception inner) : base (message, inner)
+		{
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="T:MyException"/> class
+		/// </summary>
+		/// <param name="context">The contextual information about the source or destination.</param>
+		/// <param name="info">The object that holds the serialized object data.</param>
+		protected TooManyGraphsException (System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) : base (info, context)
+		{
+		}
 	}
 }
 
