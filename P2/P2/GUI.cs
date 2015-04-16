@@ -199,6 +199,7 @@ namespace P2
         {
             BackColor = Color.FromArgb(rand.Next(255), rand.Next(255), rand.Next(255));
             numericUpDown1.Value = (decimal)synth.Time/1000;
+
         }
 
         private void stop_Click(object sender, EventArgs e)

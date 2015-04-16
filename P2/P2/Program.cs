@@ -12,7 +12,7 @@ namespace P2
         public static void Main()
         {
             string dir = Directory.GetCurrentDirectory() + "\\SaveFiles";
-            Directory.CreateDirectory(dir + "\\SaveFiles");
+            Directory.CreateDirectory(dir);
             GUI gui = new GUI();
             gui.ShowDialog();
             
