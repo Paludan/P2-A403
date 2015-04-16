@@ -102,7 +102,7 @@ namespace P2
                 simulationData.addDataPoint(SimulationModel.calculateDataPoint(interval * Scale));
                 if (selected)
                 {
-                    
+
                 }
             }
         }
