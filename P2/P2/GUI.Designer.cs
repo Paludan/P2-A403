@@ -94,18 +94,12 @@ namespace P2
             //
             // pGraphArea
             //
-            this.pGraphArea.Location = new System.Drawing.Point(5, 5);
+            this.pGraphArea.Location = new System.Drawing.Point(0, 0);
+            this.pGraphArea.Size = new System.Drawing.Size(630, 510);
             this.pGraphArea.Name = "pGraphArea";
             this.pGraphArea.TabIndex = 1;
 			this.pGraphArea.CreateAxis ("Tid", "Partial tryk");
 			this.pGraphArea.Paint += new PaintEventHandler(pGraphArea.EventHandler_InitialPaint);
-            // 
-            // pGraphArea
-            // 
-            this.pGraphArea.Location = new System.Drawing.Point(10, 10);
-            this.pGraphArea.Name = "pGraphArea";
-            this.pGraphArea.Size = new System.Drawing.Size(610, 490);
-            this.pGraphArea.TabIndex = 0;
             // 
             // lTemperature
             // 
@@ -560,44 +554,6 @@ namespace P2
             this.hInfoBox.Size = new System.Drawing.Size(66, 13);
             this.hInfoBox.TabIndex = 11;
             this.hInfoBox.Text = "Vejledning";
-            // 
-            // pGraphArea
-            // 
-            this.pGraphArea.Location = new System.Drawing.Point(0, 0);
-            this.pGraphArea.Name = "pGraphArea";
-            this.pGraphArea.Size = new System.Drawing.Size(620, 500);
-            this.pGraphArea.TabIndex = 0;
-			this.pGraphArea.Paint += new PaintEventHandler (pGraphArea.EventHandler_InitialPaint);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(287, 33);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(87, 13);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Hastighedsfaktor";
-            // 
-            // comboBox5
-            // 
-            this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Items.AddRange(new object[] {
-            "x1",
-            "x2",
-            "x5",
-            "x10",
-            "x20",
-            "x50",
-            "x100",
-            "x200",
-            "x500",
-            "x1000"});
-            this.comboBox5.Location = new System.Drawing.Point(400, 30);
-            this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(121, 21);
-            this.comboBox5.TabIndex = 5;
-            this.comboBox5.Text = "x1";
-            this.comboBox5.SelectedIndexChanged += new System.EventHandler(this.comboBox5_SelectedIndexChanged);
             // 
             // GUI
             // 
