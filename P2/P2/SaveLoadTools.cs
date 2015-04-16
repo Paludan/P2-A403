@@ -10,7 +10,6 @@ namespace P2
     //This abstract class presents tools to save and load a project from a file
     public static class SaveLoadTools
     {
-        enum DataType { String, INT };
         static string dir = Directory.GetCurrentDirectory();
         public static string path = dir + "\\SaveFiles";
         static string[] files = Directory.GetFiles(path, "*.eqsave");
