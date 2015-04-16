@@ -43,6 +43,10 @@ namespace P2
             set { }
         }
 
+        public List<DataPoint> Datapoints{
+            get { return simulationData.SimulationData; }
+        }
+
         /// <summary>
         /// This is the constructor for the class. It initializes the datahandler, model and timer.
         /// </summary>
