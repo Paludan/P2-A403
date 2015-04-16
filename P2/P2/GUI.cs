@@ -190,6 +190,12 @@ namespace P2
         private void start_Click(object sender, EventArgs e)
         {
             synth.start();
+            synth.timer.Elapsed += changecolor;
+        }
+        Random rand = new Random();
+        public void changecolor(Object source,  System.Timers.ElapsedEventArgs e)
+        {
+            this.BackColor = Color.FromArgb(rand.Next(255), rand.Next(255), rand.Next(255));
         }
     }
 }
