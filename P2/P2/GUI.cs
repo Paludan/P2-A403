@@ -192,6 +192,7 @@ namespace P2
             synth.start();
             synth.timer.Elapsed += changecolor;
         }
+
         Random rand = new Random();
         public void changecolor(Object source,  System.Timers.ElapsedEventArgs e)
         {
