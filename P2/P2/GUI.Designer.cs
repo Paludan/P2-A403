@@ -32,159 +32,56 @@ namespace P2
         /// </summary>
         private void InitializeComponent()
         {
-            this.pSimulationArea = new System.Windows.Forms.Panel();
-            this.pGraphArea = new P2Graph.MasterGraphPanel();
-            this.lTemperature = new System.Windows.Forms.Label();
-            this.lNH3 = new System.Windows.Forms.Label();
-            this.lH2 = new System.Windows.Forms.Label();
-            this.lN2 = new System.Windows.Forms.Label();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.pColourDescription = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.hVariabelControl = new System.Windows.Forms.Label();
             this.hColour = new System.Windows.Forms.Label();
             this.hVariable = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.pTabs = new System.Windows.Forms.Panel();
+            this.pProjectHandling = new System.Windows.Forms.Panel();
             this.Save = new System.Windows.Forms.Button();
             this.LoadButton = new System.Windows.Forms.Button();
-            this.pProjectHandling = new System.Windows.Forms.Panel();
-            this.hProject = new System.Windows.Forms.Label();
-            this.pParameters = new System.Windows.Forms.Panel();
-            this.hScrollBarN2 = new System.Windows.Forms.HScrollBar();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.checkBoxCatalyst = new System.Windows.Forms.CheckBox();
-            this.hScrollBarTemperature = new System.Windows.Forms.HScrollBar();
-            this.hScrollBarNH3 = new System.Windows.Forms.HScrollBar();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.hScrollBarH2 = new System.Windows.Forms.HScrollBar();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.hParameters = new System.Windows.Forms.Label();
+            this.pSimulationArea = new System.Windows.Forms.Panel();
+            this.pGraphArea = new P2Graph.MasterGraphPanel();
             this.pTimeControl = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
+            this.reaktionMultiplier = new System.Windows.Forms.Label();
             this.comboBox5 = new System.Windows.Forms.ComboBox();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.lTime = new System.Windows.Forms.Label();
             this.stop = new System.Windows.Forms.Button();
             this.start = new System.Windows.Forms.Button();
-            this.hTimeControl = new System.Windows.Forms.Label();
+            this.pParameters = new System.Windows.Forms.Panel();
+            this.hScrollBarN2 = new System.Windows.Forms.HScrollBar();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.checkBoxCatalyst = new System.Windows.Forms.CheckBox();
+            this.lTemperature = new System.Windows.Forms.Label();
+            this.hScrollBarTemperature = new System.Windows.Forms.HScrollBar();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.lNH3 = new System.Windows.Forms.Label();
+            this.hScrollBarNH3 = new System.Windows.Forms.HScrollBar();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.lH2 = new System.Windows.Forms.Label();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.hScrollBarH2 = new System.Windows.Forms.HScrollBar();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.lN2 = new System.Windows.Forms.Label();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.pInfoBox = new System.Windows.Forms.Panel();
+            this.pTabs = new System.Windows.Forms.Panel();
+            this.hTimeControl = new System.Windows.Forms.Label();
+            this.hParameters = new System.Windows.Forms.Label();
+            this.hProject = new System.Windows.Forms.Label();
             this.hInfoBox = new System.Windows.Forms.Label();
-            this.pSimulationArea.SuspendLayout();
             this.pColourDescription.SuspendLayout();
             this.pProjectHandling.SuspendLayout();
-            this.pParameters.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.pSimulationArea.SuspendLayout();
             this.pTimeControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            this.pParameters.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // pSimulationArea
-            // 
-            this.pSimulationArea.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pSimulationArea.Controls.Add(this.pGraphArea);
-            this.pSimulationArea.Location = new System.Drawing.Point(10, 20);
-            this.pSimulationArea.Name = "pSimulationArea";
-            this.pSimulationArea.Size = new System.Drawing.Size(630, 510);
-            this.pSimulationArea.TabIndex = 0;
-            //
-            // pGraphArea
-            //
-            this.pGraphArea.Location = new System.Drawing.Point(0, 0);
-            this.pGraphArea.Size = new System.Drawing.Size(630, 510);
-            this.pGraphArea.Name = "pGraphArea";
-            this.pGraphArea.TabIndex = 1;
-			this.pGraphArea.CreateAxis ("Tid", "Partial tryk");
-			this.pGraphArea.Paint += new PaintEventHandler(pGraphArea.EventHandler_InitialPaint);
-            // 
-            // lTemperature
-            // 
-            this.lTemperature.AutoSize = true;
-            this.lTemperature.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lTemperature.Location = new System.Drawing.Point(2, 253);
-            this.lTemperature.Name = "lTemperature";
-            this.lTemperature.Size = new System.Drawing.Size(135, 18);
-            this.lTemperature.TabIndex = 9;
-            this.lTemperature.Text = "Temperatur (kelvin)";
-            // 
-            // lNH3
-            // 
-            this.lNH3.AutoSize = true;
-            this.lNH3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lNH3.Location = new System.Drawing.Point(64, 193);
-            this.lNH3.Name = "lNH3";
-            this.lNH3.Size = new System.Drawing.Size(73, 18);
-            this.lNH3.TabIndex = 8;
-            this.lNH3.Text = "NH₃ (mol)";
-            // 
-            // lH2
-            // 
-            this.lH2.AutoSize = true;
-            this.lH2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lH2.Location = new System.Drawing.Point(75, 131);
-            this.lH2.Name = "lH2";
-            this.lH2.Size = new System.Drawing.Size(62, 18);
-            this.lH2.TabIndex = 7;
-            this.lH2.Text = "H₂ (mol)";
-            // 
-            // lN2
-            // 
-            this.lN2.AutoSize = true;
-            this.lN2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lN2.Location = new System.Drawing.Point(75, 68);
-            this.lN2.Name = "lN2";
-            this.lN2.Size = new System.Drawing.Size(62, 18);
-            this.lN2.TabIndex = 6;
-            this.lN2.Text = "N₂ (mol)";
-            // 
-            // comboBox4
-            // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Items.AddRange(new object[] {
-            "Usynlig",
-            "Blå",
-            "Grøn",
-            "Gul",
-            "Rød",
-            "Laksefarvet"});
-            this.comboBox4.Location = new System.Drawing.Point(145, 252);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(110, 21);
-            this.comboBox4.TabIndex = 5;
-            // 
-            // comboBox3
-            // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Items.AddRange(new object[] {
-            "Usynlig",
-            "Blå",
-            "Grøn",
-            "Gul",
-            "Rød",
-            "Laksefarvet"});
-            this.comboBox3.Location = new System.Drawing.Point(145, 192);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(110, 21);
-            this.comboBox3.TabIndex = 4;
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "Usynlig",
-            "Blå",
-            "Grøn",
-            "Gul",
-            "Rød",
-            "Laksefarvet"});
-            this.comboBox2.Location = new System.Drawing.Point(145, 130);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(110, 21);
-            this.comboBox2.TabIndex = 3;
             // 
             // pColourDescription
             // 
@@ -239,27 +136,15 @@ namespace P2
             this.hVariable.TabIndex = 0;
             this.hVariable.Text = "Variabel";
             // 
-            // comboBox1
+            // pProjectHandling
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Usynlig",
-            "Blå",
-            "Grøn",
-            "Gul",
-            "Rød",
-            "Laksefarvet"});
-            this.comboBox1.Location = new System.Drawing.Point(145, 68);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(110, 21);
-            this.comboBox1.TabIndex = 1;
-            // 
-            // pTabs
-            // 
-            this.pTabs.Location = new System.Drawing.Point(10, 0);
-            this.pTabs.Name = "pTabs";
-            this.pTabs.Size = new System.Drawing.Size(630, 20);
-            this.pTabs.TabIndex = 1;
+            this.pProjectHandling.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pProjectHandling.Controls.Add(this.Save);
+            this.pProjectHandling.Controls.Add(this.LoadButton);
+            this.pProjectHandling.Location = new System.Drawing.Point(1100, 550);
+            this.pProjectHandling.Name = "pProjectHandling";
+            this.pProjectHandling.Size = new System.Drawing.Size(150, 120);
+            this.pProjectHandling.TabIndex = 4;
             // 
             // Save
             // 
@@ -281,168 +166,28 @@ namespace P2
             this.LoadButton.UseVisualStyleBackColor = true;
             this.LoadButton.Click += new System.EventHandler(this.Load_Click);
             // 
-            // pProjectHandling
+            // pSimulationArea
             // 
-            this.pProjectHandling.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pProjectHandling.Controls.Add(this.Save);
-            this.pProjectHandling.Controls.Add(this.LoadButton);
-            this.pProjectHandling.Location = new System.Drawing.Point(1100, 550);
-            this.pProjectHandling.Name = "pProjectHandling";
-            this.pProjectHandling.Size = new System.Drawing.Size(150, 120);
-            this.pProjectHandling.TabIndex = 4;
+            this.pSimulationArea.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pSimulationArea.Controls.Add(this.pGraphArea);
+            this.pSimulationArea.Location = new System.Drawing.Point(10, 20);
+            this.pSimulationArea.Name = "pSimulationArea";
+            this.pSimulationArea.Size = new System.Drawing.Size(630, 510);
+            this.pSimulationArea.TabIndex = 0;
             // 
-            // hProject
+            // pGraphArea
             // 
-            this.hProject.AutoSize = true;
-            this.hProject.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.hProject.Location = new System.Drawing.Point(1120, 540);
-            this.hProject.Name = "hProject";
-            this.hProject.Size = new System.Drawing.Size(107, 13);
-            this.hProject.TabIndex = 5;
-            this.hProject.Text = "Projekthåndtering";
-            // 
-            // pParameters
-            // 
-            this.pParameters.BackColor = System.Drawing.SystemColors.Control;
-            this.pParameters.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pParameters.Controls.Add(this.hScrollBarN2);
-            this.pParameters.Controls.Add(this.panel1);
-            this.pParameters.Controls.Add(this.lTemperature);
-            this.pParameters.Controls.Add(this.hScrollBarTemperature);
-            this.pParameters.Controls.Add(this.comboBox1);
-            this.pParameters.Controls.Add(this.lNH3);
-            this.pParameters.Controls.Add(this.pColourDescription);
-            this.pParameters.Controls.Add(this.hScrollBarNH3);
-            this.pParameters.Controls.Add(this.textBox1);
-            this.pParameters.Controls.Add(this.lH2);
-            this.pParameters.Controls.Add(this.comboBox2);
-            this.pParameters.Controls.Add(this.hScrollBarH2);
-            this.pParameters.Controls.Add(this.textBox2);
-            this.pParameters.Controls.Add(this.lN2);
-            this.pParameters.Controls.Add(this.comboBox3);
-            this.pParameters.Controls.Add(this.textBox3);
-            this.pParameters.Controls.Add(this.textBox4);
-            this.pParameters.Controls.Add(this.comboBox4);
-            this.pParameters.Location = new System.Drawing.Point(650, 180);
-            this.pParameters.Name = "pParameters";
-            this.pParameters.Size = new System.Drawing.Size(600, 350);
-            this.pParameters.TabIndex = 6;
-            // 
-            // hScrollBarN2
-            // 
-            this.hScrollBarN2.LargeChange = 1;
-            this.hScrollBarN2.Location = new System.Drawing.Point(290, 69);
-            this.hScrollBarN2.Maximum = 4000;
-            this.hScrollBarN2.Name = "hScrollBarN2";
-            this.hScrollBarN2.Size = new System.Drawing.Size(200, 17);
-            this.hScrollBarN2.TabIndex = 14;
-            this.hScrollBarN2.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBarN2_Scroll);
-            // 
-            // panel1
-            // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.checkBoxCatalyst);
-            this.panel1.Location = new System.Drawing.Point(-1, 300);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(600, 49);
-            this.panel1.TabIndex = 19;
-            // 
-            // checkBoxCatalyst
-            // 
-            this.checkBoxCatalyst.AutoSize = true;
-            this.checkBoxCatalyst.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxCatalyst.Location = new System.Drawing.Point(251, 15);
-            this.checkBoxCatalyst.Name = "checkBoxCatalyst";
-            this.checkBoxCatalyst.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.checkBoxCatalyst.Size = new System.Drawing.Size(98, 21);
-            this.checkBoxCatalyst.TabIndex = 18;
-            this.checkBoxCatalyst.Text = "Katalysator";
-            this.checkBoxCatalyst.UseVisualStyleBackColor = true;
-            // 
-            // hScrollBarTemperature
-            // 
-            this.hScrollBarTemperature.LargeChange = 1;
-            this.hScrollBarTemperature.Location = new System.Drawing.Point(290, 256);
-            this.hScrollBarTemperature.Maximum = 1000;
-            this.hScrollBarTemperature.Name = "hScrollBarTemperature";
-            this.hScrollBarTemperature.Size = new System.Drawing.Size(200, 17);
-            this.hScrollBarTemperature.TabIndex = 17;
-            this.hScrollBarTemperature.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBarTemperature_Scroll);
-            // 
-            // hScrollBarNH3
-            // 
-            this.hScrollBarNH3.LargeChange = 1;
-            this.hScrollBarNH3.Location = new System.Drawing.Point(290, 196);
-            this.hScrollBarNH3.Maximum = 4000;
-            this.hScrollBarNH3.Name = "hScrollBarNH3";
-            this.hScrollBarNH3.Size = new System.Drawing.Size(200, 17);
-            this.hScrollBarNH3.TabIndex = 16;
-            this.hScrollBarNH3.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBarNH3_Scroll);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(515, 69);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(70, 20);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.Text = "0";
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
-            // 
-            // hScrollBarH2
-            // 
-            this.hScrollBarH2.LargeChange = 1;
-            this.hScrollBarH2.Location = new System.Drawing.Point(290, 132);
-            this.hScrollBarH2.Maximum = 4000;
-            this.hScrollBarH2.Name = "hScrollBarH2";
-            this.hScrollBarH2.Size = new System.Drawing.Size(200, 17);
-            this.hScrollBarH2.TabIndex = 15;
-            this.hScrollBarH2.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBarH2_Scroll);
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(515, 132);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(70, 20);
-            this.textBox2.TabIndex = 1;
-            this.textBox2.Text = "0";
-            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
-            this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox2_KeyPress);
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(515, 194);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(70, 20);
-            this.textBox3.TabIndex = 12;
-            this.textBox3.Text = "0";
-            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
-            this.textBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox3_KeyPress);
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(515, 253);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(70, 20);
-            this.textBox4.TabIndex = 13;
-            this.textBox4.Text = "0";
-            this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
-            this.textBox4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox4_KeyPress);
-            // 
-            // hParameters
-            // 
-            this.hParameters.AutoSize = true;
-            this.hParameters.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.hParameters.Location = new System.Drawing.Point(660, 170);
-            this.hParameters.Name = "hParameters";
-            this.hParameters.Size = new System.Drawing.Size(64, 13);
-            this.hParameters.TabIndex = 7;
-            this.hParameters.Text = "Parametre";
+            this.pGraphArea.Location = new System.Drawing.Point(0, 0);
+            this.pGraphArea.Name = "pGraphArea";
+            this.pGraphArea.Size = new System.Drawing.Size(630, 510);
+            this.pGraphArea.TabIndex = 1;
+            this.pGraphArea.xMaxRange = 1;
+            this.pGraphArea.yMaxRange = 1;
             // 
             // pTimeControl
             // 
             this.pTimeControl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pTimeControl.Controls.Add(this.label2);
+            this.pTimeControl.Controls.Add(this.reaktionMultiplier);
             this.pTimeControl.Controls.Add(this.comboBox5);
             this.pTimeControl.Controls.Add(this.numericUpDown1);
             this.pTimeControl.Controls.Add(this.lTime);
@@ -453,14 +198,14 @@ namespace P2
             this.pTimeControl.Size = new System.Drawing.Size(600, 140);
             this.pTimeControl.TabIndex = 8;
             // 
-            // label2
+            // reaktionMultiplier
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(287, 33);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(87, 13);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Hastighedsfaktor";
+            this.reaktionMultiplier.AutoSize = true;
+            this.reaktionMultiplier.Location = new System.Drawing.Point(287, 33);
+            this.reaktionMultiplier.Name = "reaktionMultiplier";
+            this.reaktionMultiplier.Size = new System.Drawing.Size(87, 13);
+            this.reaktionMultiplier.TabIndex = 6;
+            this.reaktionMultiplier.Text = "Hastighedsfaktor";
             // 
             // comboBox5
             // 
@@ -525,6 +270,250 @@ namespace P2
             this.start.UseVisualStyleBackColor = true;
             this.start.Click += new System.EventHandler(this.start_Click);
             // 
+            // pParameters
+            // 
+            this.pParameters.BackColor = System.Drawing.SystemColors.Control;
+            this.pParameters.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pParameters.Controls.Add(this.hScrollBarN2);
+            this.pParameters.Controls.Add(this.panel1);
+            this.pParameters.Controls.Add(this.lTemperature);
+            this.pParameters.Controls.Add(this.hScrollBarTemperature);
+            this.pParameters.Controls.Add(this.comboBox1);
+            this.pParameters.Controls.Add(this.lNH3);
+            this.pParameters.Controls.Add(this.pColourDescription);
+            this.pParameters.Controls.Add(this.hScrollBarNH3);
+            this.pParameters.Controls.Add(this.textBox1);
+            this.pParameters.Controls.Add(this.lH2);
+            this.pParameters.Controls.Add(this.comboBox2);
+            this.pParameters.Controls.Add(this.hScrollBarH2);
+            this.pParameters.Controls.Add(this.textBox2);
+            this.pParameters.Controls.Add(this.lN2);
+            this.pParameters.Controls.Add(this.comboBox3);
+            this.pParameters.Controls.Add(this.textBox3);
+            this.pParameters.Controls.Add(this.textBox4);
+            this.pParameters.Controls.Add(this.comboBox4);
+            this.pParameters.Location = new System.Drawing.Point(650, 180);
+            this.pParameters.Name = "pParameters";
+            this.pParameters.Size = new System.Drawing.Size(600, 350);
+            this.pParameters.TabIndex = 6;
+            // 
+            // hScrollBarN2
+            // 
+            this.hScrollBarN2.LargeChange = 1;
+            this.hScrollBarN2.Location = new System.Drawing.Point(290, 69);
+            this.hScrollBarN2.Maximum = 4000;
+            this.hScrollBarN2.Name = "hScrollBarN2";
+            this.hScrollBarN2.Size = new System.Drawing.Size(200, 17);
+            this.hScrollBarN2.TabIndex = 14;
+            this.hScrollBarN2.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBarN2_Scroll);
+            // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.checkBoxCatalyst);
+            this.panel1.Location = new System.Drawing.Point(-1, 300);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(600, 49);
+            this.panel1.TabIndex = 19;
+            // 
+            // checkBoxCatalyst
+            // 
+            this.checkBoxCatalyst.AutoSize = true;
+            this.checkBoxCatalyst.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxCatalyst.Location = new System.Drawing.Point(251, 15);
+            this.checkBoxCatalyst.Name = "checkBoxCatalyst";
+            this.checkBoxCatalyst.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.checkBoxCatalyst.Size = new System.Drawing.Size(98, 21);
+            this.checkBoxCatalyst.TabIndex = 18;
+            this.checkBoxCatalyst.Text = "Katalysator";
+            this.checkBoxCatalyst.UseVisualStyleBackColor = true;
+            // 
+            // lTemperature
+            // 
+            this.lTemperature.AutoSize = true;
+            this.lTemperature.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lTemperature.Location = new System.Drawing.Point(2, 253);
+            this.lTemperature.Name = "lTemperature";
+            this.lTemperature.Size = new System.Drawing.Size(135, 18);
+            this.lTemperature.TabIndex = 9;
+            this.lTemperature.Text = "Temperatur (kelvin)";
+            // 
+            // hScrollBarTemperature
+            // 
+            this.hScrollBarTemperature.LargeChange = 1;
+            this.hScrollBarTemperature.Location = new System.Drawing.Point(290, 256);
+            this.hScrollBarTemperature.Maximum = 1000;
+            this.hScrollBarTemperature.Name = "hScrollBarTemperature";
+            this.hScrollBarTemperature.Size = new System.Drawing.Size(200, 17);
+            this.hScrollBarTemperature.TabIndex = 17;
+            this.hScrollBarTemperature.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBarTemperature_Scroll);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Usynlig",
+            "Blå",
+            "Grøn",
+            "Gul",
+            "Rød",
+            "Laksefarvet"});
+            this.comboBox1.Location = new System.Drawing.Point(145, 68);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(110, 21);
+            this.comboBox1.TabIndex = 1;
+            // 
+            // lNH3
+            // 
+            this.lNH3.AutoSize = true;
+            this.lNH3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lNH3.Location = new System.Drawing.Point(64, 193);
+            this.lNH3.Name = "lNH3";
+            this.lNH3.Size = new System.Drawing.Size(73, 18);
+            this.lNH3.TabIndex = 8;
+            this.lNH3.Text = "NH₃ (mol)";
+            // 
+            // hScrollBarNH3
+            // 
+            this.hScrollBarNH3.LargeChange = 1;
+            this.hScrollBarNH3.Location = new System.Drawing.Point(290, 196);
+            this.hScrollBarNH3.Maximum = 4000;
+            this.hScrollBarNH3.Name = "hScrollBarNH3";
+            this.hScrollBarNH3.Size = new System.Drawing.Size(200, 17);
+            this.hScrollBarNH3.TabIndex = 16;
+            this.hScrollBarNH3.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBarNH3_Scroll);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(515, 69);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(70, 20);
+            this.textBox1.TabIndex = 0;
+            this.textBox1.Text = "0";
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
+            // 
+            // lH2
+            // 
+            this.lH2.AutoSize = true;
+            this.lH2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lH2.Location = new System.Drawing.Point(75, 131);
+            this.lH2.Name = "lH2";
+            this.lH2.Size = new System.Drawing.Size(62, 18);
+            this.lH2.TabIndex = 7;
+            this.lH2.Text = "H₂ (mol)";
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "Usynlig",
+            "Blå",
+            "Grøn",
+            "Gul",
+            "Rød",
+            "Laksefarvet"});
+            this.comboBox2.Location = new System.Drawing.Point(145, 130);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(110, 21);
+            this.comboBox2.TabIndex = 3;
+            // 
+            // hScrollBarH2
+            // 
+            this.hScrollBarH2.LargeChange = 1;
+            this.hScrollBarH2.Location = new System.Drawing.Point(290, 132);
+            this.hScrollBarH2.Maximum = 4000;
+            this.hScrollBarH2.Name = "hScrollBarH2";
+            this.hScrollBarH2.Size = new System.Drawing.Size(200, 17);
+            this.hScrollBarH2.TabIndex = 15;
+            this.hScrollBarH2.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBarH2_Scroll);
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(515, 132);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(70, 20);
+            this.textBox2.TabIndex = 1;
+            this.textBox2.Text = "0";
+            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox2_KeyPress);
+            // 
+            // lN2
+            // 
+            this.lN2.AutoSize = true;
+            this.lN2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lN2.Location = new System.Drawing.Point(75, 68);
+            this.lN2.Name = "lN2";
+            this.lN2.Size = new System.Drawing.Size(62, 18);
+            this.lN2.TabIndex = 6;
+            this.lN2.Text = "N₂ (mol)";
+            // 
+            // comboBox3
+            // 
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Items.AddRange(new object[] {
+            "Usynlig",
+            "Blå",
+            "Grøn",
+            "Gul",
+            "Rød",
+            "Laksefarvet"});
+            this.comboBox3.Location = new System.Drawing.Point(145, 192);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(110, 21);
+            this.comboBox3.TabIndex = 4;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(515, 194);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(70, 20);
+            this.textBox3.TabIndex = 12;
+            this.textBox3.Text = "0";
+            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+            this.textBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox3_KeyPress);
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(515, 253);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(70, 20);
+            this.textBox4.TabIndex = 13;
+            this.textBox4.Text = "0";
+            this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
+            this.textBox4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox4_KeyPress);
+            // 
+            // comboBox4
+            // 
+            this.comboBox4.FormattingEnabled = true;
+            this.comboBox4.Items.AddRange(new object[] {
+            "Usynlig",
+            "Blå",
+            "Grøn",
+            "Gul",
+            "Rød",
+            "Laksefarvet"});
+            this.comboBox4.Location = new System.Drawing.Point(145, 252);
+            this.comboBox4.Name = "comboBox4";
+            this.comboBox4.Size = new System.Drawing.Size(110, 21);
+            this.comboBox4.TabIndex = 5;
+            // 
+            // pInfoBox
+            // 
+            this.pInfoBox.BackColor = System.Drawing.Color.Silver;
+            this.pInfoBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pInfoBox.Location = new System.Drawing.Point(12, 550);
+            this.pInfoBox.Name = "pInfoBox";
+            this.pInfoBox.Size = new System.Drawing.Size(1075, 119);
+            this.pInfoBox.TabIndex = 10;
+            // 
+            // pTabs
+            // 
+            this.pTabs.Location = new System.Drawing.Point(10, 0);
+            this.pTabs.Name = "pTabs";
+            this.pTabs.Size = new System.Drawing.Size(630, 20);
+            this.pTabs.TabIndex = 1;
+            // 
             // hTimeControl
             // 
             this.hTimeControl.AutoSize = true;
@@ -535,14 +524,25 @@ namespace P2
             this.hTimeControl.TabIndex = 9;
             this.hTimeControl.Text = "Tidskontrol";
             // 
-            // pInfoBox
+            // hParameters
             // 
-            this.pInfoBox.BackColor = System.Drawing.Color.Silver;
-            this.pInfoBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pInfoBox.Location = new System.Drawing.Point(12, 550);
-            this.pInfoBox.Name = "pInfoBox";
-            this.pInfoBox.Size = new System.Drawing.Size(1075, 119);
-            this.pInfoBox.TabIndex = 10;
+            this.hParameters.AutoSize = true;
+            this.hParameters.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.hParameters.Location = new System.Drawing.Point(660, 170);
+            this.hParameters.Name = "hParameters";
+            this.hParameters.Size = new System.Drawing.Size(64, 13);
+            this.hParameters.TabIndex = 7;
+            this.hParameters.Text = "Parametre";
+            // 
+            // hProject
+            // 
+            this.hProject.AutoSize = true;
+            this.hProject.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.hProject.Location = new System.Drawing.Point(1120, 540);
+            this.hProject.Name = "hProject";
+            this.hProject.Size = new System.Drawing.Size(107, 13);
+            this.hProject.TabIndex = 5;
+            this.hProject.Text = "Projekthåndtering";
             // 
             // hInfoBox
             // 
@@ -572,17 +572,17 @@ namespace P2
             this.Controls.Add(this.pSimulationArea);
             this.Name = "GUI";
             this.Text = "GUI";
-            this.pSimulationArea.ResumeLayout(false);
             this.pColourDescription.ResumeLayout(false);
             this.pColourDescription.PerformLayout();
             this.pProjectHandling.ResumeLayout(false);
+            this.pSimulationArea.ResumeLayout(false);
+            this.pTimeControl.ResumeLayout(false);
+            this.pTimeControl.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.pParameters.ResumeLayout(false);
             this.pParameters.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.pTimeControl.ResumeLayout(false);
-            this.pTimeControl.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -644,7 +644,7 @@ namespace P2
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.HScrollBar hScrollBarN2;
         private TextBox textBox4;
-        private Label label2;
+        private Label reaktionMultiplier;
         private ComboBox comboBox5;
     }
 }
