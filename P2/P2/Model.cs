@@ -106,15 +106,6 @@ namespace P2
 			return RRConst;
 		}
 
-		/* calculates the pressure of ammonia at a given time "deltaTime" */
-		private double calculateAmmoniaActualPartialPressure(double RRConst, double deltaTime)
-		{
-
-			double pAmmonia = calculatePartialPressure (currentState.temperature, currentState.nAmmonia, volume) * Math.Pow(Math.E, (-RRConst * deltaTime));
-
-			return pAmmonia;
-		}
-
 		/* uses the pressure of a reagent to calculate the molar amount */
 		private double calculateMolarAmount (double pReagent)
 		{
@@ -135,7 +126,7 @@ namespace P2
 		 * "atEquillibrium" is a boolean that is true if we reached equillibrium
 		 * "equiFrac" is a variable calculating the equillibrium fraction
 		 */
-		bool isAtEquillibrium(double pAmmonia, double pNitrogen, double pHydrogen, double equiConst)
+		private bool isAtEquillibrium(double pAmmonia, double pNitrogen, double pHydrogen, double equiConst)
 		{
 			bool atEquillibrium = false;
 			double equiFrac = Math.Pow(pAmmonia,2) / (pNitrogen * Math.Pow(pHydrogen, 3));
@@ -171,7 +162,12 @@ namespace P2
 			double deltaNitrogen = pNitrogen * RRConst * deltaTime;
 
 			return deltaNitrogen;
+		}
 
+		private void UpdatePartialPressures(double deltaNitrogen, ref double pNitrogen, ref double pHydrogen, ref double pAmmonia){
+			pNitrogen -= deltaNitrogen;
+			pAmmonia += 2 * deltaNitrogen;
+			pHydrogen -= 3 * deltaNitrogen;
 		}
 
 		/* calculates a DataPoint
@@ -183,7 +179,6 @@ namespace P2
 		public DataPoint calculateDataPoint (double deltaTime)
 		{
 			DataPoint nextState = new DataPoint (currentState);
-
 			double equiConst = 0, equiAmmonia = 0, 
 			pHydrogen = calculatePartialPressure (currentState.temperature, currentState.nHydrogen, volume), 
 			pNitrogen = calculatePartialPressure (currentState.temperature, currentState.nNitrogen, volume), 
@@ -196,25 +191,26 @@ namespace P2
 			/* calculate amount of ammonia */
 			equiAmmonia = calculateAmmoniaAtEquillibrium (pHydrogen, pNitrogen, equiConst);
 
+			//Calculates activationenergy and reactionrate
 			activationEnergy = calculateActivationEnergy (nextState.catalyst);
 			reactionRateconst = calculateReactionRateConstant (currentState.temperature, activationEnergy);
 
-			pAmmonia = calculateAmmoniaActualPartialPressure (reactionRateconst, deltaTime);
-
-			nextState.pressure = calculateActualPressure (pAmmonia, pNitrogen, pHydrogen);
-
+			//Calculate the difference in nitrogen and update partial-pressures
 			deltaNitrogen = calculateDeltaNitrogen (pNitrogen, reactionRateconst, deltaTime);
-			pNitrogen -= deltaNitrogen;
-			pAmmonia += 2 * deltaNitrogen;
-			pHydrogen -= 3 * deltaNitrogen;
+			UpdatePartialPressures (deltaNitrogen, ref pNitrogen, ref pHydrogen, ref pAmmonia);
+
+			//Update the combined pressure
+			nextState.pressure = calculateActualPressure (pAmmonia, pNitrogen, pHydrogen);
 
 			/* calculate the molar amounts */
 			nextState.nHydrogen = calculateMolarAmount(pHydrogen);
 			nextState.nNitrogen = calculateMolarAmount(pNitrogen);
 			nextState.nAmmonia = calculateMolarAmount (pAmmonia);
 
+			//Update time
 			nextState.time += deltaTime;
 
+			//Update current state
 			currentState = nextState;
 
 			return currentState;
