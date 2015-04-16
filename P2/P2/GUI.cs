@@ -19,6 +19,7 @@ namespace P2
         {
             InitializeComponent();
             synth = new Synthesis();
+            Control.CheckForIllegalCrossThreadCalls = false;
         }
 
         /// <summary>
@@ -196,8 +197,8 @@ namespace P2
         Random rand = new Random();
         public void changecolor(Object source,  System.Timers.ElapsedEventArgs e)
         {
-            //BackColor = Color.FromArgb(rand.Next(255), rand.Next(255), rand.Next(255));
-            numericUpDown1.Value = (decimal)synth.Time;
+            BackColor = Color.FromArgb(rand.Next(255), rand.Next(255), rand.Next(255));
+            numericUpDown1.Value = (decimal)synth.Time/1000;
         }
 
         private void stop_Click(object sender, EventArgs e)
