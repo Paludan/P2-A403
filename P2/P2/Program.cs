@@ -15,6 +15,7 @@ namespace P2
             Directory.CreateDirectory(dir + "\\SaveFiles");
             GUI gui = new GUI();
             gui.ShowDialog();
+            
         }
     }
 }
