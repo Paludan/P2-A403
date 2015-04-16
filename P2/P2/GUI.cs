@@ -18,7 +18,7 @@ namespace P2
         public GUI()
         {
             InitializeComponent();
-            synth = new Synthesis();
+            synth = new Synthesis(pGraphArea);
             Control.CheckForIllegalCrossThreadCalls = false;
         }
 
