@@ -196,7 +196,7 @@ namespace P2
         Random rand = new Random();
         public void changecolor(Object source,  System.Timers.ElapsedEventArgs e)
         {
-            this.BackColor = Color.FromArgb(rand.Next(255), rand.Next(255), rand.Next(255));
+            this.panel1.BackColor = Color.FromArgb(rand.Next(255), rand.Next(255), rand.Next(255));
         }
 
         private void stop_Click(object sender, EventArgs e)

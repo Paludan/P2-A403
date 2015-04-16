@@ -75,8 +75,8 @@ namespace P2
             this.pInfoBox = new System.Windows.Forms.Panel();
             this.hInfoBox = new System.Windows.Forms.Label();
             this.pGraphArea = new P2Graph.MasterGraphPanel();
-            this.comboBox5 = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.comboBox5 = new System.Windows.Forms.ComboBox();
             this.pSimulationArea.SuspendLayout();
             this.pColourDescription.SuspendLayout();
             this.pTabs.SuspendLayout();
@@ -482,7 +482,7 @@ namespace P2
             // 
             this.numericUpDown1.Location = new System.Drawing.Point(400, 90);
             this.numericUpDown1.Maximum = new decimal(new int[] {
-            1000000,
+            1000000000,
             0,
             0,
             0});
@@ -556,6 +556,15 @@ namespace P2
             this.pGraphArea.Size = new System.Drawing.Size(620, 500);
             this.pGraphArea.TabIndex = 0;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(287, 33);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(87, 13);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Hastighedsfaktor";
+            // 
             // comboBox5
             // 
             this.comboBox5.FormattingEnabled = true;
@@ -575,15 +584,6 @@ namespace P2
             this.comboBox5.Size = new System.Drawing.Size(121, 21);
             this.comboBox5.TabIndex = 5;
             this.comboBox5.Text = "x1";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(287, 33);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(87, 13);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Hastighedsfaktor";
             // 
             // GUI
             // 
@@ -674,7 +674,7 @@ namespace P2
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.HScrollBar hScrollBarN2;
         private TextBox textBox4;
-        private ComboBox comboBox5;
         private Label label2;
+        private ComboBox comboBox5;
     }
 }
