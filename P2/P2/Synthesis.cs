@@ -40,6 +40,7 @@ namespace P2
         public double Time
         {
             get { return currentData.time; }
+            set { }
         }
 
         /// <summary>
@@ -49,7 +50,7 @@ namespace P2
         {
             simulationData = new DataHandler();
             SimulationModel = new Model(currentData);
-            timer = new System.Timers.Timer(500);
+            timer = new System.Timers.Timer(100);
             timer.Elapsed += this.Update;
         }
         /*This function starts a new thread that runs the timer and controls the generation of data points
