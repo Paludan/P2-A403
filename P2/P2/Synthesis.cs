@@ -42,7 +42,20 @@ namespace P2
         public double Time
         {
             get { return currentData.time; }
-            set { }
+            set
+            {
+                if (value >= 0)
+                {
+                    if (value > Time)
+                    {
+                        FastForward(value);
+                    }
+                    else
+                    {
+                        currentData = simulationData.getDataPoint(value);
+                    }
+                }
+            }
         }
 
         public List<DataPoint> Datapoints{
@@ -113,6 +126,11 @@ namespace P2
         public void stop()
         {
             timer.Stop();
+        }
+
+        public void FastForward(double Time)
+        {
+
         }
     }
 }
