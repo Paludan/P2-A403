@@ -206,5 +206,18 @@ namespace P2
         {
             synth.stop();
         }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            if (!synth.running)
+            {
+                //synth.Time = (double) numericUpDown1.Value;
+            }
+        }
+
+        private void comboBox5_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            synth.Scale = (double) int.Parse(comboBox5.SelectedItem.ToString().TrimStart('x'));
+        }
     }
 }
