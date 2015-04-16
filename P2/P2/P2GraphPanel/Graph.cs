@@ -8,7 +8,7 @@ namespace P2Graph
 {
 	public class Graph : IDrawable
 	{
-		List<GraphPoint> points = new List<GraphPoint>();
+		private List<GraphPoint> points = new List<GraphPoint>();
 
 		/// <summary>
 		/// Gets the name of the graph.
@@ -25,7 +25,24 @@ namespace P2Graph
 		public Color color {
 			get { return _colorOfGraph; }
 			set { _colorOfGraph = value; }
-		} 
+		}
+
+		/// <summary>
+		/// Gets the largest x-value of the graph.
+		/// </summary>
+		/// <value>The largest x-value.</value>
+		public float largestX{
+			get { return points[points.Count - 1].xCoord; }
+		}
+		public float largestY{
+			get { return points.Max (point => point.yCoord); }
+		}
+
+		private bool _isActive = false;
+		public bool isActive{
+			get { return _isActive; }
+			set { _isActive = value; }
+		}
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="P2Graph.Graph"/> class with specified color.

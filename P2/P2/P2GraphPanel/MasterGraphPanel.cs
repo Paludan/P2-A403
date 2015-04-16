@@ -73,19 +73,26 @@ namespace P2Graph
 		/// <param name="addedGraph">A list of <see cref="P2Graph.GraphPoint"/> /> .</param>
 		/// <param name="name">The name of the graph</param>
 		/// <param name="colOfGraph">Color of the graph</param>
-		public void AddGraph(List<GraphPoint> addedGraph, string name, Color colOfGraph){
-			Graph newGraph = new Graph (name, colOfGraph);
+		public void AddGraph(Graph addedGraph){
+			X.maxRange = addedGraph.largestX;
+			Y.maxRange = addedGraph.largestY;
 
-			if (graphList.Count + 1 > 5) {
-				throw new TooManyGraphsException ();
-			}
+			graphList.Add (addedGraph);
+		}
 
-			X.maxRange = (int) Math.Ceiling(addedGraph [addedGraph.Count - 1].xCoord);
+		/// <summary>
+		/// Initializes a new graph.
+		/// </summary>
+		/// <param name="name">Name of the graph.</param>
+		public void InitializeGraph(string name){
+			graphList.Add (new Graph (name));
+		}
 
-			foreach (GraphPoint GP in addedGraph) {
-				newGraph.addPoint (GP);
-			}
-			graphList.Add (newGraph);
+		public void SetActive(bool activeness, int index){
+			if (index < graphList.Count)
+				graphList [index].isActive = activeness;
+			else
+				throw new IndexOutOfRangeException ("The index of the selected graph is out of range!");
 		}
 
 		/* Draws all the names of the graphs in the graphlist
@@ -132,14 +139,26 @@ namespace P2Graph
 		}
 
 		#region EventHandling
-		public void EventHandler_InitialPaint( object sender, PaintEventArgs e )
-		{
-//			MasterGraphPanel p = sender as MasterGraphPanel;
+		public void EventHandler_InitialPaint( object sender, PaintEventArgs e ){
 			Graphics g = e.Graphics;
 
 			this.UpdateMGP();
 
 			this.Draw (g);
+		}
+
+		public void EventHandler_UpdatePanel( object sender, PaintEventArgs e ){
+			Graphics g = e.Graphics;
+
+			for (int i = 0; i < graphList.Count; i++) {
+				if (graphList [i].largestX >= this.xMaxRange) {
+					this.xMaxRange = (int) Math.Ceiling(graphList [i].largestX + 10);
+				} else if (graphList [i].largestY >= this.yMaxRange) {
+					this.yMaxRange = (int) Math.Ceiling(graphList [i].largestY + 10f);
+				} else {
+					//graphList[i].UpdateWithPoint(newPoint, g);
+				}
+			}
 		}
 		#endregion
 	}
