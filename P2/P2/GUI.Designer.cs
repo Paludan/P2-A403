@@ -75,6 +75,8 @@ namespace P2
             this.pInfoBox = new System.Windows.Forms.Panel();
             this.hInfoBox = new System.Windows.Forms.Label();
             this.pGraphArea = new P2Graph.MasterGraphPanel();
+            this.comboBox5 = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.pSimulationArea.SuspendLayout();
             this.pColourDescription.SuspendLayout();
             this.pTabs.SuspendLayout();
@@ -465,6 +467,8 @@ namespace P2
             // pTimeControl
             // 
             this.pTimeControl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pTimeControl.Controls.Add(this.label2);
+            this.pTimeControl.Controls.Add(this.comboBox5);
             this.pTimeControl.Controls.Add(this.numericUpDown1);
             this.pTimeControl.Controls.Add(this.lTime);
             this.pTimeControl.Controls.Add(this.stop);
@@ -476,7 +480,7 @@ namespace P2
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(245, 85);
+            this.numericUpDown1.Location = new System.Drawing.Point(400, 90);
             this.numericUpDown1.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -489,7 +493,7 @@ namespace P2
             // lTime
             // 
             this.lTime.AutoSize = true;
-            this.lTime.Location = new System.Drawing.Point(200, 88);
+            this.lTime.Location = new System.Drawing.Point(350, 92);
             this.lTime.Name = "lTime";
             this.lTime.Size = new System.Drawing.Size(22, 13);
             this.lTime.TabIndex = 3;
@@ -497,7 +501,7 @@ namespace P2
             // 
             // stop
             // 
-            this.stop.Location = new System.Drawing.Point(33, 85);
+            this.stop.Location = new System.Drawing.Point(78, 86);
             this.stop.Name = "stop";
             this.stop.Size = new System.Drawing.Size(70, 25);
             this.stop.TabIndex = 1;
@@ -507,7 +511,7 @@ namespace P2
             // 
             // start
             // 
-            this.start.Location = new System.Drawing.Point(33, 30);
+            this.start.Location = new System.Drawing.Point(79, 27);
             this.start.Name = "start";
             this.start.Size = new System.Drawing.Size(70, 25);
             this.start.TabIndex = 0;
@@ -551,6 +555,35 @@ namespace P2
             this.pGraphArea.Name = "pGraphArea";
             this.pGraphArea.Size = new System.Drawing.Size(620, 500);
             this.pGraphArea.TabIndex = 0;
+            // 
+            // comboBox5
+            // 
+            this.comboBox5.FormattingEnabled = true;
+            this.comboBox5.Items.AddRange(new object[] {
+            "x1",
+            "x2",
+            "x5",
+            "x10",
+            "x20",
+            "x50",
+            "x100",
+            "x200",
+            "x500",
+            "x1000"});
+            this.comboBox5.Location = new System.Drawing.Point(400, 30);
+            this.comboBox5.Name = "comboBox5";
+            this.comboBox5.Size = new System.Drawing.Size(121, 21);
+            this.comboBox5.TabIndex = 5;
+            this.comboBox5.Text = "x1";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(287, 33);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(87, 13);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Hastighedsfaktor";
             // 
             // GUI
             // 
@@ -641,5 +674,7 @@ namespace P2
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.HScrollBar hScrollBarN2;
         private TextBox textBox4;
+        private ComboBox comboBox5;
+        private Label label2;
     }
 }
