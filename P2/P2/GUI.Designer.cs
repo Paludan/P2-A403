@@ -65,6 +65,7 @@ namespace P2
             this.hScrollBarH2 = new System.Windows.Forms.HScrollBar();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
             this.hParameters = new System.Windows.Forms.Label();
             this.pTimeControl = new System.Windows.Forms.Panel();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
@@ -75,7 +76,6 @@ namespace P2
             this.hTimeControl = new System.Windows.Forms.Label();
             this.pInfoBox = new System.Windows.Forms.Panel();
             this.hInfoBox = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
             this.pSimulationArea.SuspendLayout();
             this.pColourDescription.SuspendLayout();
             this.pTabs.SuspendLayout();
@@ -97,14 +97,11 @@ namespace P2
             // 
             // pGraphArea
             // 
-            //this.pGraphArea.Location = new System.Drawing.Point(5, 5);
-            //this.pGraphArea.Name = "pGraphArea";
-            //this.pGraphArea.Size = new System.Drawing.Size(620, 500);
-            //this.pGraphArea.TabIndex = 1;
-            //this.pGraphArea.xMaxRange = 30D;
-            //this.pGraphArea.yMaxRange = 10D;
-            //this.pGraphArea.Paint += new System.Windows.Forms.PaintEventHandler(this.GraphPanel_Paint);
-            //// 
+            this.pGraphArea.Location = new System.Drawing.Point(0, 0);
+            this.pGraphArea.Name = "pGraphArea";
+            this.pGraphArea.Size = new System.Drawing.Size(620, 500);
+            this.pGraphArea.TabIndex = 0;
+            // 
             // lTemperature
             // 
             this.lTemperature.AutoSize = true;
@@ -453,6 +450,16 @@ namespace P2
             this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             this.textBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox3_KeyPress);
             // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(515, 253);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(70, 20);
+            this.textBox4.TabIndex = 13;
+            this.textBox4.Text = "0";
+            this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
+            this.textBox4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox4_KeyPress);
+            // 
             // hParameters
             // 
             this.hParameters.AutoSize = true;
@@ -546,23 +553,13 @@ namespace P2
             // hInfoBox
             // 
             this.hInfoBox.AutoSize = true;
+            this.hInfoBox.BackColor = Color.Transparent;
             this.hInfoBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.hInfoBox.Location = new System.Drawing.Point(20, 540);
             this.hInfoBox.Name = "hInfoBox";
             this.hInfoBox.Size = new System.Drawing.Size(66, 13);
             this.hInfoBox.TabIndex = 11;
             this.hInfoBox.Text = "Vejledning";
-            label1.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(515, 253);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(70, 20);
-            this.textBox4.TabIndex = 13;
-            this.textBox4.Text = "0";
-            this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
-            this.textBox4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox4_KeyPress);
             // 
             // GUI
             // 
