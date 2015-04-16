@@ -197,6 +197,7 @@ namespace P2
         public void changecolor(Object source,  System.Timers.ElapsedEventArgs e)
         {
             this.BackColor = Color.FromArgb(rand.Next(255), rand.Next(255), rand.Next(255));
+
         }
 
         private void stop_Click(object sender, EventArgs e)
