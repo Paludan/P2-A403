@@ -18,6 +18,11 @@ namespace P2Graph
 			get { return _name; }
 		}
 
+		private MasterGraphPanel _master;
+		public MasterGraphPanel MGP {
+			set { _master = value; }
+		}
+
 		/// <summary>
 		/// Sets and gets the color of the graph.
 		/// </summary>
@@ -71,8 +76,10 @@ namespace P2Graph
 			points.Add (nextPoint);
 		}
 
-		public void UpdateWithPoint(GraphPoint newPoint, Graphics painter){
+		public void AddAndDraw(GraphPoint newPoint, Graphics painter){
 			painter.DrawLine (new Pen (_colorOfGraph, 1), points [points.Count - 1], newPoint);
+
+			_master.Paint += new PaintEventHandler (_master.EventHandler_UpdatePanel);
 
 			points.Add (newPoint);
 		}

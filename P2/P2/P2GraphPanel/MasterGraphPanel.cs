@@ -74,8 +74,8 @@ namespace P2Graph
 		/// <param name="name">The name of the graph</param>
 		/// <param name="colOfGraph">Color of the graph</param>
 		public void AddGraph(Graph addedGraph){
-			X.maxRange = addedGraph.largestX;
-			Y.maxRange = addedGraph.largestY;
+			X.maxRange = (int) Math.Ceiling(addedGraph.largestX);
+			Y.maxRange = (int) Math.Ceiling(addedGraph.largestY);
 
 			graphList.Add (addedGraph);
 		}
@@ -101,11 +101,11 @@ namespace P2Graph
 			int width = this.Width - 100;
 
 			for (int i = 0; i < graphList.Count; i++) {
-				SolidBrush drawBrush = new SolidBrush(graphList[i].color);
+				SolidBrush drawPen = new SolidBrush(graphList[i].color);
 				PointF drawPoint = new PointF (width + 5, 2);
 
 				g.DrawRectangle (new Pen (graphList[i].color, 1), width, 0, 80, 20);
-				g.DrawString (graphList[i].name, Constants.GraphFont, drawBrush, drawPoint);   
+				g.DrawString (graphList[i].name, Constants.GraphFont, drawPen, drawPoint);   
 				width -= 100;	
 
 			}
@@ -149,15 +149,14 @@ namespace P2Graph
 
 		public void EventHandler_UpdatePanel( object sender, PaintEventArgs e ){
 			Graphics g = e.Graphics;
+			Graph graph = sender as Graph;
 
-			for (int i = 0; i < graphList.Count; i++) {
-				if (graphList [i].largestX >= this.xMaxRange) {
-					this.xMaxRange = (int) Math.Ceiling(graphList [i].largestX + 10);
-				} else if (graphList [i].largestY >= this.yMaxRange) {
-					this.yMaxRange = (int) Math.Ceiling(graphList [i].largestY + 10f);
-				} else {
-					//graphList[i].UpdateWithPoint(newPoint, g);
-				}
+			if (graph.largestX >= this.xMaxRange) {
+				this.xMaxRange = (int) Math.Ceiling (graph.largestX + 10);
+				this.EventHandler_InitialPaint (sender, e);
+			} else if (graph.largestY >= this.yMaxRange) {
+				this.yMaxRange = (int)Math.Ceiling (graph.largestY + 10);
+				this.EventHandler_UpdatePanel (sender, e);
 			}
 		}
 		#endregion
