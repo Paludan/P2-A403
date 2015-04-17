@@ -272,5 +272,21 @@ namespace P2
                 this.pTabs.Controls.Remove(buttons[((10 + X - Sx) / 75 - 1)]);
             }
         }
+
+        /// <summary>
+        /// Sets the text of the gray instructions panel at the bottom of the main GUI
+        /// </summary>
+        /// <param name="currentHelp">the topmost instruction, which will be preface with NU:</param>
+        /// <param name="nextHelp">the bottom most instruction, which will be prefaced with NÆSTE:</param>
+        public void updateHelpText(string currentHelp, string nextHelp)
+        {
+            pInfoBox.Controls.Clear();
+            Label helpText = new Label();
+            helpText.Location = new Point(15, 15);
+            helpText.Size = new Size(950, 100);
+            helpText.Text = "NU: " + currentHelp + "\n\nNÆSTE: " + nextHelp;
+            helpText.Font = new Font("Microsoft Sans Serif", 11);
+            pInfoBox.Controls.Add(helpText);
+        }
     }
 }
