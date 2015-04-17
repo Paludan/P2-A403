@@ -53,8 +53,9 @@ namespace P2
         /// <summary>
         /// Loads helpText into a string array. Loads from (program directory)/vejledning.txt
         /// </summary>
+        /// <param name="input">The *.txt file to be read</param>
         /// <returns>String array containing loaded file, or null if file doesn't exist</returns>
-        public static String[] loadHelpText(string input)
+        public static String[] loadText(string input)
         {
             if (System.IO.File.Exists(dir + input))
             {

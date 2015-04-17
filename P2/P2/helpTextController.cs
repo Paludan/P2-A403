@@ -15,11 +15,15 @@ namespace P2
         //Constructor for helpTextController
         public void helpTextController()
         {
-            String[] helpText = SaveLoadTools.loadHelpText("vejledning.txt");
+            String[] helpText = SaveLoadTools.loadText("vejledning.txt");
             currentLine = -1;
             if (helpText == null) { helpText = new String[1]; helpText[1] = "Ingen vejledning fundet."; }
         }
 
+        /// <summary>
+        /// Cycles through vejledning.txt Once the last line is exceeded it starts over.
+        /// </summary>
+        /// <returns>A string[2] array containing current and next objectives</returns>
         public String[] Next()
         {
             currentLine++;
