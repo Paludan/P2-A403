@@ -59,6 +59,7 @@
             this.ClientSize = new System.Drawing.Size(284, 261);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.OpenFile);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "LoadMenu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "LoadMenu";
