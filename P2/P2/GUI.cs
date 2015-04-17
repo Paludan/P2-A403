@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Input;
 
 namespace P2
 {
@@ -112,6 +113,15 @@ namespace P2
             {
                 LoadMenu loadMenu = new LoadMenu();
                 loadMenu.Show();
+            }
+        }
+
+        private void OpenCalc_Click(object sender, EventArgs e)
+        {
+            if ((IsFormAlreadyOpen(typeof(CalcForm))) == null)
+            {
+                CalcForm calcForm = new CalcForm();
+                calcForm.Show();
             }
         }
 
