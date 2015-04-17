@@ -33,12 +33,21 @@ namespace P2
             set { timer.Interval = value; }
         }
 
+        /// <summary>
+        /// The scale at which the simulation should run. By making this value 2, the simulation will run at 2x real time.
+        /// Any operation trying to set this property to 0 will be ignored.
+        /// </summary>
         public double Scale
         {
             get { return _scale; }
             set { if (value != 0) { _scale = value;} }
         }
 
+        /// <summary>
+        /// The time that has elapsed in the simulation. 
+        /// Setting this property will cause the simulation to either return to an earlier datapoint,
+        /// or fast-forward the simulation to a later time.
+        /// </summary>
         public double Time
         {
             get { return currentData.time; }
@@ -75,8 +84,8 @@ namespace P2
             simulationData = new DataHandler();
             SimulationModel = new Model(currentData);
             timer = new System.Timers.Timer(100);
-            timer.Elapsed += this.Update;
-
+            timer.Elapsed += this.OnElapsed;
+            
             _graphPanel = graphPanel;
             //_graphPanel.AddGraph();
         }
@@ -107,16 +116,24 @@ namespace P2
         /// </summary>
         /// <param name="source">The object that invoked the event</param>
         /// <param name="e">arguments dunno</param>
-        public void Update(Object source, ElapsedEventArgs e)
+        private void OnElapsed(Object source, ElapsedEventArgs e)
         {
             if (running)
             {
-                currentData.time += interval * Scale;
-                simulationData.addDataPoint(SimulationModel.calculateDataPoint(interval * Scale));
-                if (selected)
-                {
+                Update();
+            }
+        }
 
-                }
+        /// <summary>
+        /// This method adds a new datapoint using the Simulation model and the datahandler. 
+        /// </summary>
+        private void Update()
+        {
+            currentData.time += interval * Scale;
+            simulationData.addDataPoint(SimulationModel.calculateDataPoint(interval * Scale));
+            if (selected)
+            {
+
             }
         }
 
@@ -128,9 +145,18 @@ namespace P2
             timer.Stop();
         }
 
-        public void FastForward(double Time)
+        /// <summary>
+        /// This method will be called if we try to set the simulation to a time later than the time it had already processed.
+        /// It does the same as
+        /// </summary>
+        /// <param name="time"></param>
+        public void FastForward(double time)
         {
-
+            running = false;
+            while (Time < time)
+            {
+                Update();
+            }
         }
     }
 }
