@@ -7,7 +7,7 @@ using System.IO;
 
 namespace P2
 {
-    //This abstract class presents tools to save and load a project from a file
+    //This abstract class presents tools to save and load a project from a file, and to load a text file
     public static class SaveLoadTools
     {
         static string dir = Directory.GetCurrentDirectory();
@@ -48,6 +48,20 @@ namespace P2
             SerializedData = DataSerializer.DeSerializeObject(path + fileName + ".eqsave");
             tempDataList = SerializedData.DataList;
             return tempDataList;
+        }
+
+        /// <summary>
+        /// Loads helpText into a string array. Loads from (program directory)/vejledning.txt
+        /// </summary>
+        /// <returns>String array containing loaded file, or null if file doesn't exist</returns>
+        public static String[] loadHelpText()
+        {
+            if (System.IO.File.Exists(dir + "vejledning.txt"))
+            {
+                String[] helpText = System.IO.File.ReadAllLines(dir + "vejledning.txt");
+                return helpText;
+            }
+            return null;   
         }
     }
 }
