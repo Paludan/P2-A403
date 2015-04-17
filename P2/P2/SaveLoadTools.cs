@@ -54,11 +54,11 @@ namespace P2
         /// Loads helpText into a string array. Loads from (program directory)/vejledning.txt
         /// </summary>
         /// <returns>String array containing loaded file, or null if file doesn't exist</returns>
-        public static String[] loadHelpText()
+        public static String[] loadHelpText(string input)
         {
-            if (System.IO.File.Exists(dir + "vejledning.txt"))
+            if (System.IO.File.Exists(dir + input))
             {
-                String[] helpText = System.IO.File.ReadAllLines(dir + "vejledning.txt");
+                String[] helpText = System.IO.File.ReadAllLines(dir + input);
                 return helpText;
             }
             return null;   
