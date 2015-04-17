@@ -35,6 +35,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CalcForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CalcForm.Designer.cs">
+      <DependentUpon>CalcForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DataToSerialize.cs" />
     <Compile Include="GraphTools.cs" />
     <Compile Include="LoadMenu.cs">
@@ -85,6 +91,9 @@
     <Reference Include="System.Windows.Forms.DataVisualization" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="CalcForm.resx">
+      <DependentUpon>CalcForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI.resx">
       <DependentUpon>GUI.cs</DependentUpon>
     </EmbeddedResource>
