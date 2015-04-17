@@ -14,14 +14,16 @@ namespace P2
     public partial class GUI : Form
     {
         Synthesis synth;
+        helpTextController helper;
         double tempDouble;
-        Button[] buttons = new Button[8];
+        Button[] buttons = new Button[9];
         int graphTaps = 1;
                 
         public GUI()
         {
             InitializeComponent();
             synth = new Synthesis(pGraphArea);
+            helper = new helpTextController();
             Control.CheckForIllegalCrossThreadCalls = false;
             buttons[0] = new Button();
             buttons[0].Location = new Point(0, 0);
@@ -33,6 +35,13 @@ namespace P2
             buttons[7].Text = "Tilføj graf";
             buttons[7].Click += addGraph_Click;
             this.pTabs.Controls.Add(buttons[7]);
+            buttons[8] = new Button();
+            buttons[8].Location = new Point(875,15);
+            buttons[8].Text = "Videre";
+            buttons[8].Click += cycleHelp_Click;
+            this.pInfoBox.Controls.Add(buttons[8]);
+            buttons[8].BackColor = (Color.White);
+            pInfoBox.Controls.Add(new Label());
         }
 
         /// <summary>
@@ -273,6 +282,13 @@ namespace P2
             }
         }
 
+
+        private void cycleHelp_Click(object sender, EventArgs e)
+        {
+            String[] helpText = helper.Next();
+            updateHelpText(helpText[0], helpText[1]);
+        }
+
         /// <summary>
         /// Sets the text of the gray instructions panel at the bottom of the main GUI
         /// </summary>
@@ -280,12 +296,12 @@ namespace P2
         /// <param name="nextHelp">the bottom most instruction, which will be prefaced with NÆSTE:</param>
         public void updateHelpText(string currentHelp, string nextHelp)
         {
-            pInfoBox.Controls.Clear();
+            pInfoBox.Controls.RemoveAt(1);
             Label helpText = new Label();
             helpText.Location = new Point(15, 15);
-            helpText.Size = new Size(950, 100);
-            helpText.Text = "NU: " + currentHelp + "\n\nNÆSTE: " + nextHelp;
+            helpText.Size = new Size(850, 100);
             helpText.Font = new Font("Microsoft Sans Serif", 11);
+            helpText.Text = "NU: " + currentHelp + "\n\nNÆSTE: " + nextHelp;
             pInfoBox.Controls.Add(helpText);
         }
     }
