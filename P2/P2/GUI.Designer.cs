@@ -91,15 +91,15 @@ namespace P2
             this.pSimulationArea.Name = "pSimulationArea";
             this.pSimulationArea.Size = new System.Drawing.Size(630, 510);
             this.pSimulationArea.TabIndex = 0;
-            //
+            // 
             // pGraphArea
-            //
+            // 
             this.pGraphArea.Location = new System.Drawing.Point(0, 0);
             this.pGraphArea.Size = new System.Drawing.Size(630, 510);
             this.pGraphArea.Name = "pGraphArea";
             this.pGraphArea.TabIndex = 1;
-			this.pGraphArea.CreateAxis ("Tid", "Partial tryk");
-			this.pGraphArea.Paint += new PaintEventHandler(pGraphArea.EventHandler_InitialPaint);
+            this.pGraphArea.CreateAxis("Tid", "Partial tryk");
+            this.pGraphArea.Paint += new PaintEventHandler(pGraphArea.EventHandler_InitialPaint);
             // 
             // lTemperature
             // 
