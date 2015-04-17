@@ -79,6 +79,7 @@
     <Compile Include="P2GraphPanel\GraphPoint.cs" />
     <Compile Include="P2GraphPanel\IDrawable.cs" />
     <Compile Include="P2GraphPanel\Constants.cs" />
+    <Compile Include="viewCalculations\CalculationForm.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -114,4 +115,7 @@
   </Target>
   -->
   <ItemGroup />
+  <ItemGroup>
+    <Folder Include="viewCalculations\" />
+  </ItemGroup>
 </Project>
