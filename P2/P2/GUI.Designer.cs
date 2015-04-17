@@ -51,6 +51,7 @@ namespace P2
             this.Save = new System.Windows.Forms.Button();
             this.LoadButton = new System.Windows.Forms.Button();
             this.pProjectHandling = new System.Windows.Forms.Panel();
+            this.OpenCalc = new System.Windows.Forms.Button();
             this.hProject = new System.Windows.Forms.Label();
             this.pParameters = new System.Windows.Forms.Panel();
             this.hScrollBarN2 = new System.Windows.Forms.HScrollBar();
@@ -74,7 +75,6 @@ namespace P2
             this.hTimeControl = new System.Windows.Forms.Label();
             this.pInfoBox = new System.Windows.Forms.Panel();
             this.hInfoBox = new System.Windows.Forms.Label();
-            this.OpenCalc = new System.Windows.Forms.Button();
             this.pSimulationArea.SuspendLayout();
             this.pColourDescription.SuspendLayout();
             this.pProjectHandling.SuspendLayout();
@@ -264,7 +264,7 @@ namespace P2
             // 
             // Save
             // 
-            this.Save.Location = new System.Drawing.Point(40, 25);
+            this.Save.Location = new System.Drawing.Point(30, 25);
             this.Save.Name = "Save";
             this.Save.Size = new System.Drawing.Size(75, 25);
             this.Save.TabIndex = 2;
@@ -274,7 +274,7 @@ namespace P2
             // 
             // LoadButton
             // 
-            this.LoadButton.Location = new System.Drawing.Point(40, 70);
+            this.LoadButton.Location = new System.Drawing.Point(30, 70);
             this.LoadButton.Name = "LoadButton";
             this.LoadButton.Size = new System.Drawing.Size(75, 25);
             this.LoadButton.TabIndex = 3;
@@ -288,16 +288,26 @@ namespace P2
             this.pProjectHandling.Controls.Add(this.OpenCalc);
             this.pProjectHandling.Controls.Add(this.Save);
             this.pProjectHandling.Controls.Add(this.LoadButton);
-            this.pProjectHandling.Location = new System.Drawing.Point(950, 550);
+            this.pProjectHandling.Location = new System.Drawing.Point(1000, 550);
             this.pProjectHandling.Name = "pProjectHandling";
-            this.pProjectHandling.Size = new System.Drawing.Size(300, 120);
+            this.pProjectHandling.Size = new System.Drawing.Size(250, 120);
             this.pProjectHandling.TabIndex = 4;
+            // 
+            // OpenCalc
+            // 
+            this.OpenCalc.Location = new System.Drawing.Point(145, 48);
+            this.OpenCalc.Name = "OpenCalc";
+            this.OpenCalc.Size = new System.Drawing.Size(75, 25);
+            this.OpenCalc.TabIndex = 4;
+            this.OpenCalc.Text = "Udregninger";
+            this.OpenCalc.UseVisualStyleBackColor = true;
+            this.OpenCalc.Click += new System.EventHandler(this.OpenCalc_Click);
             // 
             // hProject
             // 
             this.hProject.AutoSize = true;
             this.hProject.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.hProject.Location = new System.Drawing.Point(960, 540);
+            this.hProject.Location = new System.Drawing.Point(1010, 540);
             this.hProject.Name = "hProject";
             this.hProject.Size = new System.Drawing.Size(107, 13);
             this.hProject.TabIndex = 5;
@@ -543,7 +553,7 @@ namespace P2
             this.pInfoBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pInfoBox.Location = new System.Drawing.Point(12, 550);
             this.pInfoBox.Name = "pInfoBox";
-            this.pInfoBox.Size = new System.Drawing.Size(927, 119);
+            this.pInfoBox.Size = new System.Drawing.Size(977, 119);
             this.pInfoBox.TabIndex = 10;
             // 
             // hInfoBox
@@ -556,16 +566,6 @@ namespace P2
             this.hInfoBox.Size = new System.Drawing.Size(66, 13);
             this.hInfoBox.TabIndex = 11;
             this.hInfoBox.Text = "Vejledning";
-            // 
-            // OpenCalc
-            // 
-            this.OpenCalc.Location = new System.Drawing.Point(190, 26);
-            this.OpenCalc.Name = "OpenCalc";
-            this.OpenCalc.Size = new System.Drawing.Size(75, 25);
-            this.OpenCalc.TabIndex = 4;
-            this.OpenCalc.Text = "Udregninger";
-            this.OpenCalc.UseVisualStyleBackColor = true;
-            this.OpenCalc.Click += new System.EventHandler(this.OpenCalc_Click);
             // 
             // GUI
             // 
@@ -582,6 +582,7 @@ namespace P2
             this.Controls.Add(this.pProjectHandling);
             this.Controls.Add(this.pTabs);
             this.Controls.Add(this.pSimulationArea);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "GUI";
             this.Text = "GUI";
             this.pSimulationArea.ResumeLayout(false);
