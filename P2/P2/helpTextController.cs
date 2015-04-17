@@ -13,7 +13,7 @@ namespace P2
         private String[] helpText;
 
         //Constructor for helpTextController
-        public void helpTextController()
+        public helpTextController()
         {
             String[] helpText = SaveLoadTools.loadText("vejledning.txt");
             currentLine = -1;

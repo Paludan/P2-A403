@@ -44,7 +44,6 @@
     <Compile Include="DataToSerialize.cs" />
     <Compile Include="GraphTools.cs" />
     <Compile Include="helpTextController.cs" />
-    <Compile Include="loadHelpText.cs" />
     <Compile Include="LoadMenu.cs">
       <SubType>Form</SubType>
     </Compile>
