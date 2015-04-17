@@ -26,6 +26,7 @@ namespace P2
             buttons[0] = new Button();
             buttons[0].Location = new Point(0, 0);
             buttons[0].Text = "Graf 1      [X]";
+            buttons[0].Click += chooseGraph;
             this.pTabs.Controls.Add(buttons[0]);
             buttons[7] = new Button();
             buttons[7].Location = new Point(75, 0);
@@ -259,7 +260,17 @@ namespace P2
 
         private void chooseGraph(object sender, EventArgs e)
         {
-            
+            int X = Cursor.Position.X,
+                Y = Cursor.Position.Y,
+                Sx = this.Location.X,
+                Sy = this.Location.Y;
+
+            textBox1.Text = ((10 + X - Sx)/75).ToString();
+            textBox2.Text = this.Location.X.ToString();
+            if ((55 + X - Sx) % 75 <= 65 && (55 + X - Sx) % 75 >= 52)
+            {
+                this.pTabs.Controls.Remove(buttons[((10 + X - Sx) / 75 - 1)]);
+            }
         }
     }
 }
