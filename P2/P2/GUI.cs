@@ -310,10 +310,5 @@ namespace P2
             helpText.Text = "NU: " + currentHelp + "\n\nNÆSTE: " + nextHelp;
             pInfoBox.Controls.Add(helpText);
         }
-
-        private void GUI_Load(object sender, EventArgs e)
-        {
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-        }
     }
 }
