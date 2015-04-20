@@ -15,7 +15,7 @@ namespace P2
         //Constructor for helpTextController
         public helpTextController()
         {
-            helpText = SaveLoadTools.loadText("vejledning.txt");
+            helpText = SaveLoadTools.loadText(@"\vejledning.txt");
             currentLine = -1;
             if (helpText == null) { helpText = new String[2]; helpText[0] = "Ingen vejledning fundet."; helpText[1] = "opret 'vejledning.txt' i mappen 'Simulation Data'.\n" + SaveLoadTools.path; }
         }
