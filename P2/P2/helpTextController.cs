@@ -17,7 +17,7 @@ namespace P2
         {
             helpText = SaveLoadTools.loadText("vejledning.txt");
             currentLine = -1;
-            if (helpText == null) { helpText = new String[2]; helpText[0] = "Ingen vejledning fundet."; helpText[1] = "opret 'vejledning.txt' i program mappen."; }
+            if (helpText == null) { helpText = new String[2]; helpText[0] = "Ingen vejledning fundet."; helpText[1] = "opret 'vejledning.txt' i mappen 'Simulation Data'.\n" + SaveLoadTools.path; }
         }
 
         /// <summary>
