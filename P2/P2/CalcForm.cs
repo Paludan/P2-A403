@@ -12,16 +12,25 @@ namespace P2
 {
     public partial class CalcForm : Form
     {
-        public CalcForm()
+		private const double gasConstant = 8.3145;
+		private const double preExpontentialFactor = 884900000000000;
+		private const double volume = 50000; // liter
+
+		private Synthesis _synth;
+
+		public CalcForm(Synthesis synth)
         {
+			this._synth = synth;
             InitializeComponent();
         }
 
-		public void UpdateData(DataPoint updateData){
-			this.temperature.Text = updateData.temperature.ToString ();
-			this.molarmass.Text = updateData.nNitrogen.ToString ();
-			this.partialpressure.Text = ((updateData.nNitrogen * updateData.temperature * double.Parse (this.gasConst.Text))
-			/ double.Parse (this.Volume.Text)).ToString ();
+		public void UpdateData(){
+			this.temperature.Text = _synth.currentData.temperature.ToString();
+			this.molarmassNitrogen.Text = _synth.currentData.nNitrogen.ToString();
+			this.gasConst.Text = gasConstant.ToString ();
+			this.Volume.Text = volume.ToString ();
+			this.partialpressureNitrogen.Text = ((_synth.currentData.nNitrogen * _synth.currentData.temperature * gasConstant)
+				/ volume).ToString ();
 		}
     }
 }

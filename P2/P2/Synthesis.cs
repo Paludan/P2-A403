@@ -84,7 +84,6 @@ namespace P2
             SimulationModel = new Model(currentData);
             timer = new System.Timers.Timer(100);
             timer.Elapsed += this.OnElapsed;
-
             _graphHandler = new GraphHandler(graphPanel);
         }
         /*This function starts a new thread that runs the timer and controls the generation of data points

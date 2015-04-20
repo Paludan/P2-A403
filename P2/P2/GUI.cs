@@ -151,8 +151,8 @@ namespace P2
         {
             if ((IsFormAlreadyOpen(typeof(CalcForm))) == null)
             {
-                CalcForm calcForm = new CalcForm();
-				calcForm.UpdateData (synth.currentData);
+				CalcForm calcForm = new CalcForm(synth);
+				calcForm.UpdateData ();
                 calcForm.Show();
             }
         }
