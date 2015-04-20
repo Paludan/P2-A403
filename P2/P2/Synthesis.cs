@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Threading;
 using System.Timers;
 using P2Graph;
+using System.Drawing;
 
 namespace P2
 {
@@ -90,7 +91,13 @@ namespace P2
             timer.Elapsed += this.OnElapsed;
             
             _graphPanel = graphPanel;
-            //_graphPanel.AddGraph();
+            AddGraphs();
+            //_graphPanel.AddGraph(new Graph(string ));
+        }
+
+        private void AddGraphs()
+        {
+            //_graphPanel.AddGraph(new Graph("Ammonia", Color.Blue));
         }
         /*This function starts a new thread that runs the timer and controls the generation of data points
          */
@@ -137,7 +144,7 @@ namespace P2
             simulationData.addDataPoint(SimulationModel.calculateDataPoint(interval * Scale));
             if (selected)
             {
-
+                
             }
         }
 
