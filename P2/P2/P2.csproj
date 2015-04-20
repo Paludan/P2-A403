@@ -42,7 +42,7 @@
       <DependentUpon>CalcForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DataToSerialize.cs" />
-    <Compile Include="GraphTools.cs" />
+    <Compile Include="GraphHandler.cs" />
     <Compile Include="helpTextController.cs" />
     <Compile Include="LoadMenu.cs">
       <SubType>Form</SubType>
