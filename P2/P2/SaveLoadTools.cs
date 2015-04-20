@@ -74,7 +74,7 @@ namespace P2
         {
             Bitmap tempBitmap = new Bitmap(PaneltoPNG.ClientSize.Width, PaneltoPNG.ClientSize.Height);
             PaneltoPNG.DrawToBitmap(tempBitmap, PaneltoPNG.ClientRectangle);
-            tempBitmap.Save(path + "Graf.png", System.Drawing.Imaging.ImageFormat.Png);
+            tempBitmap.Save(@"Simulation Data\Simulation graf.png", System.Drawing.Imaging.ImageFormat.Png);
         }
     }
 }
