@@ -276,10 +276,12 @@ namespace P2
 
             textBox1.Text = ((10 + X - Sx)/75).ToString();
             textBox2.Text = this.Location.X.ToString();
-            if ((55 + X - Sx) % 75 <= 65 && (55 + X - Sx) % 75 >= 52)
+            if ((55 + X - Sx) % 75 <= 65 && (55 + X - Sx) % 75 >= 52 && graphTaps >= 0)
             {
-                this.pTabs.Controls.Remove(buttons[((10 + X - Sx) / 75 - 1)]);
+                this.pTabs.Controls.Remove(buttons[--graphTaps]);
+                buttons[7].Location = new Point(buttons[7].Location.X - 75, 0);
             }
+
         }
 
 
