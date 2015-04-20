@@ -73,6 +73,9 @@ namespace P2Graph
 			painter.FillEllipse (col, pointCentre);
 		}
 
+		/// <summary>
+		/// Update this instance of graphpoint.
+		/// </summary>
 		public void Update(){
 			_panelX = ConvertToPanelX (_xCoord);
 			_panelY = ConvertToPanelY (_yCoord);

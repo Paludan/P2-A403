@@ -86,11 +86,6 @@ namespace P2Graph
 			CalculateAxisEnds ();
 		}
 
-		public virtual void Update(){
-			this._beginsAt.RealX = _MGP.O.X;
-			this._beginsAt.RealY = _MGP.O.Y;
-		}
-
 		/// <summary>
 		/// Calculates the axis ends.
 		/// </summary>

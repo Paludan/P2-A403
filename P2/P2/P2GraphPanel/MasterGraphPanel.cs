@@ -8,6 +8,7 @@ namespace P2Graph
 	public class MasterGraphPanel : Panel
 	{
 		private List<Graph> graphList = new List<Graph> ();
+		private List<IDrawable> otherObjects = new List<IDrawable> ();
 		private PointF _O;
 
 		private xAxis X;
@@ -51,10 +52,9 @@ namespace P2Graph
 		/// </summary>
 		public void UpdateMGP(){
 			CalculateOrego ();
-			graphList.ForEach (graph => graph.Update ());
-			X.Update ();
-			Y.Update ();
 			ScaleAxis ();
+			graphList.ForEach (graph => graph.Update ());
+			otherObjects.ForEach (drawable => drawable.Update ());
 		}
 
 		/// <summary>
@@ -74,18 +74,15 @@ namespace P2Graph
 		/// <param name="name">The name of the graph</param>
 		/// <param name="colOfGraph">Color of the graph</param>
 		public void AddGraph(Graph addedGraph){
-			X.maxRange = (int) Math.Ceiling(addedGraph.largestX);
-			Y.maxRange = (int) Math.Ceiling(addedGraph.largestY);
-
-			graphList.Add (addedGraph);
+			if (graphList.Count + 1 > 5) {
+				throw new TooManyGraphsException ();
+			} else {
+				graphList.Add (addedGraph);
+			}
 		}
 
-		/// <summary>
-		/// Initializes a new graph.
-		/// </summary>
-		/// <param name="name">Name of the graph.</param>
-		public void InitializeGraph(string name){
-			graphList.Add (new Graph (name));
+		public void AddDrawable(IDrawable drawableObject){
+			otherObjects.Add (drawableObject);
 		}
 
 		public void SetActive(bool activeness, int index){
@@ -106,8 +103,7 @@ namespace P2Graph
 
 				g.DrawRectangle (new Pen (graphList[i].color, 1), width, 0, 80, 20);
 				g.DrawString (graphList[i].name, Constants.GraphFont, drawPen, drawPoint);   
-				width -= 100;	
-
+				width -= 100;
 			}
 		}
 
@@ -124,7 +120,14 @@ namespace P2Graph
 			Y.Draw (g);
 			if (graphList.Count > 0) {
 				foreach (var graph in graphList) {
-					graph.Draw (g);
+					if (graph.isActive) {
+						graph.Draw (g);
+					}
+				}
+			}
+			if (otherObjects.Count > 0) {
+				foreach (var drawable in otherObjects) {
+					drawable.Draw (g);
 				}
 			}
 			DrawLegends (g);
@@ -139,7 +142,12 @@ namespace P2Graph
 		}
 
 		#region EventHandling
-		public void EventHandler_InitialPaint( object sender, PaintEventArgs e ){
+		/// <summary>
+		/// Fully paints the panel, including axes and graphs.
+		/// </summary>
+		/// <param name="sender">Sender.</param>
+		/// <param name="e">Event.</param>
+		public void EventHandler_RePaint( object sender, PaintEventArgs e ){
 			Graphics g = e.Graphics;
 
 			this.UpdateMGP();
@@ -147,17 +155,24 @@ namespace P2Graph
 			this.Draw (g);
 		}
 
+		/// <summary>
+		/// Update-event, invoked when adding point to a graph.
+		/// </summary>
+		/// <param name="sender">The graph, whivh invokes the event.</param>
+		/// <param name="e">Event-information.</param>
 		public void EventHandler_UpdatePanel( object sender, PaintEventArgs e ){
 			Graphics g = e.Graphics;
-			Graph graph = sender as Graph;
+			var graph = sender.GetType();
 
-			if (graph.largestX >= this.xMaxRange) {
-				this.xMaxRange = (int) Math.Ceiling (graph.largestX + 10);
-				this.EventHandler_InitialPaint (sender, e);
-			} else if (graph.largestY >= this.yMaxRange) {
-				this.yMaxRange = (int)Math.Ceiling (graph.largestY + 10);
-				this.EventHandler_UpdatePanel (sender, e);
-			}
+//			if (graph.largestX >= this.xMaxRange) {
+//				this.xMaxRange = (int)Math.Ceiling (graph.largestX + 10);
+//				this.EventHandler_RePaint (sender, e);
+//			} else if (graph.largestY >= this.yMaxRange) {
+//				this.yMaxRange = (int)Math.Ceiling (graph.largestY + 10);
+//				this.EventHandler_UpdatePanel (sender, e);
+//			} else {
+//				graph.DrawLastLine (g);
+//			}
 		}
 		#endregion
 	}

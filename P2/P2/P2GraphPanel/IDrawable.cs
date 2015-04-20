@@ -7,6 +7,7 @@ namespace P2Graph
 	public interface IDrawable
 	{
 		void Draw(Graphics painter);
+		void Update();
 	}
 }
 

@@ -54,17 +54,18 @@ namespace P2Graph
 		/// </summary>
 		/// <param name="Name">Name of the graph.</param>
 		/// <param name="c">Color of the graph.</param>
-		public Graph (string Name, Color c)
+		public Graph (string Name, Color c, MasterGraphPanel gPanel)
 		{
 			this._name = Name;
 			this._colorOfGraph = c;
+			this._master = gPanel;
 		}
 		/// <summary>
 		/// Initializes a new instance of the <see cref="P2Graph.Graph"/> class with unspecifed color, default is black.
 		/// </summary>
 		/// <param name="Name">Name of the graph.</param>
-		public Graph (string Name)
-			: this(Name, Color.Black)
+		public Graph (string Name, MasterGraphPanel gPanel)
+			: this(Name, Color.Black, gPanel)
 		{
 		}
 
@@ -76,12 +77,21 @@ namespace P2Graph
 			points.Add (nextPoint);
 		}
 
-		public void AddAndDraw(GraphPoint newPoint, Graphics painter){
-			painter.DrawLine (new Pen (_colorOfGraph, 1), points [points.Count - 1], newPoint);
-
-			_master.Paint += new PaintEventHandler (_master.EventHandler_UpdatePanel);
-
+		/// <summary>
+		/// Adds a point and draws the line to it.
+		/// </summary>
+		/// <param name="newPoint">New point.</param>
+		public void AddAndDraw(GraphPoint newPoint){
 			points.Add (newPoint);
+			_master.Paint += new PaintEventHandler (_master.EventHandler_UpdatePanel);
+		}
+
+		/// <summary>
+		/// Draws a line between the two last points.
+		/// </summary>
+		/// <param name="painter">Painter.</param>
+		public void DrawLastLine(Graphics painter){
+			painter.DrawLine (new Pen (_colorOfGraph, 1), points [points.Count - 2], points [points.Count - 1]); 
 		}
 
 		public void Update(){
@@ -96,6 +106,10 @@ namespace P2Graph
 		/// </summary>
 		/// <param name="painter">The graphics-object used to paint with.</param>
 		public void Draw(Graphics painter){
+			foreach (var GP in points) {
+				GP.Draw (painter);
+			}
+
 			var PFArr = points.Select(GP => new PointF(GP.RealX, GP.RealY)).ToArray();
 
 			painter.DrawLines (new Pen (_colorOfGraph, 1), PFArr);

@@ -4,7 +4,7 @@ using System.Drawing;
 
 namespace P2Graph
 {
-	public class xAxis : AbstractAxis, IDrawable
+	public class xAxis : AbstractAxis
 	{
 		/// <summary>
 		/// Initializes a new instance of the <see cref="P2Graph.xAxis"/> class.
@@ -23,15 +23,6 @@ namespace P2Graph
 		{
 			this._endsAt.RealX = _MGP.Width * Constants.endOffset;
 			this._endsAt.RealY = _MGP.O.Y;
-		}
-
-		/// <summary>
-		/// Updates this axis.
-		/// </summary>
-		public override void Update ()
-		{
-			base.Update ();
-			this.CalculateAxisEnds ();
 		}
 
 		/// <summary>
