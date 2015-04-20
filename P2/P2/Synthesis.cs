@@ -105,8 +105,20 @@ namespace P2
         /// </summary>
         public void start()
         {
+            SetData();
             running = true;
             timer.Start();
+        }
+
+        /// <summary>
+        /// This Method set's the Data from the GUI input to the Simulation model.
+        /// </summary>
+        private void SetData()
+        {
+            SimulationModel.Ammonia = currentData.nAmmonia;
+            SimulationModel.Hydrogen = currentData.nHydrogen;
+            SimulationModel.Nitrogen = currentData.nNitrogen;
+            SimulationModel.Temperature = currentData.temperature;
         }
 
         /// <summary>
@@ -130,6 +142,7 @@ namespace P2
         {
             currentData.time += interval * Scale;
             simulationData.addDataPoint(SimulationModel.calculateDataPoint(interval * Scale));
+            currentData = simulationData.SimulationData.Last();
             if (selected)
             {
                 _graphHandler.Update(currentData);

@@ -172,7 +172,7 @@ namespace P2
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             textChanged(textBox1, hScrollBarN2);
-            if (Double.TryParse(textBox1.Text, out tempDouble))
+            if (!synth.running && Double.TryParse(textBox1.Text, out tempDouble))
             {
                 synth.currentData.nNitrogen = tempDouble;
             }
@@ -181,7 +181,7 @@ namespace P2
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
             textChanged(textBox2, hScrollBarH2);
-            if (Double.TryParse(textBox1.Text, out tempDouble))
+            if (!synth.running && Double.TryParse(textBox2.Text, out tempDouble))
             {
                 synth.currentData.nHydrogen = tempDouble;
             }
@@ -190,7 +190,7 @@ namespace P2
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
             textChanged(textBox3, hScrollBarNH3);
-            if (Double.TryParse(textBox1.Text, out tempDouble))
+            if (!synth.running && Double.TryParse(textBox3.Text, out tempDouble))
             {
                 synth.currentData.nAmmonia = tempDouble;
             }
@@ -199,7 +199,7 @@ namespace P2
         private void textBox4_TextChanged(object sender, EventArgs e)
         {
             textChanged(textBox4, hScrollBarTemperature);
-            if (Double.TryParse(textBox1.Text, out tempDouble))
+            if (!synth.running && Double.TryParse(textBox4.Text, out tempDouble))
             {
                 synth.currentData.temperature = tempDouble;
             }
@@ -228,15 +228,19 @@ namespace P2
         private void start_Click(object sender, EventArgs e)
         {
             synth.start();
-            synth.timer.Elapsed += changecolor;
+            synth.timer.Elapsed += Update;
         }
 
         Random rand = new Random();
-        public void changecolor(Object source,  System.Timers.ElapsedEventArgs e)
+        public void Update(Object source,  System.Timers.ElapsedEventArgs e)
         {
             //BackColor = Color.FromArgb(rand.Next(255), rand.Next(255), rand.Next(255));
             numericUpDown1.Value = (decimal)synth.Time/1000;
 
+            textBox1.Text = synth.currentData.nNitrogen.ToString();
+            textBox2.Text = synth.currentData.nHydrogen.ToString();
+            textBox3.Text = synth.currentData.nAmmonia.ToString();
+            textBox4.Text = synth.currentData.temperature.ToString();
         }
 
         private void stop_Click(object sender, EventArgs e)
