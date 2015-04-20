@@ -101,26 +101,6 @@ namespace P2
             this.pGraphArea.TabIndex = 1;
             this.pGraphArea.CreateAxis("Tid", "Partial tryk");
             this.pGraphArea.Paint += new PaintEventHandler(pGraphArea.EventHandler_RePaint);
-			this.pGraphArea.xMaxRange = 5;
-			this.pGraphArea.yMaxRange = 5;
-
-			Graph hej2 = new Graph ("Lee", Color.Purple, pGraphArea);
-			hej2.addPoint (new GraphPoint (3, 3, pGraphArea));
-			hej2.addPoint (new GraphPoint (2, 2, pGraphArea));
-			this.pGraphArea.AddGraph (hej2);
-			hej2.isActive = true;
-
-			Graph hej = new Graph ("Test", Color.Red, pGraphArea);
-			hej.addPoint (new GraphPoint (1, 1, pGraphArea));
-			hej.addPoint (new GraphPoint (2, 3, pGraphArea));
-			this.pGraphArea.AddGraph (hej);
-			hej.isActive = true;
-
-			GraphPoint test = new GraphPoint (3, 3, pGraphArea);
-			this.pGraphArea.AddDrawable (test as IDrawable);
-			this.pGraphArea.Paint += new PaintEventHandler(pGraphArea.EventHandler_RePaint);
-			hej2.AddAndDraw(new GraphPoint(4, 4, pGraphArea));
-			hej.AddAndDraw (new GraphPoint (5, 5, pGraphArea));
             // 
             // lTemperature
             // 
@@ -587,36 +567,6 @@ namespace P2
             this.hInfoBox.TabIndex = 11;
             this.hInfoBox.Text = "Vejledning";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(287, 33);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(87, 13);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Hastighedsfaktor";
-            // 
-            // comboBox5
-            // 
-            this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Items.AddRange(new object[] {
-            "x1",
-            "x2",
-            "x5",
-            "x10",
-            "x20",
-            "x50",
-            "x100",
-            "x200",
-            "x500",
-            "x1000"});
-            this.comboBox5.Location = new System.Drawing.Point(400, 30);
-            this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(121, 21);
-            this.comboBox5.TabIndex = 5;
-            this.comboBox5.Text = "x1";
-            this.comboBox5.SelectedIndexChanged += new System.EventHandler(this.comboBox5_SelectedIndexChanged);
-            //
             // GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
