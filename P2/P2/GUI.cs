@@ -42,6 +42,11 @@ namespace P2
             this.pInfoBox.Controls.Add(buttons[8]);
             buttons[8].BackColor = (Color.White);
             pInfoBox.Controls.Add(new Label());
+            String[] helpText = helper.Next();
+            updateHelpText(helpText[0], helpText[1]);
+
+            //midlertidig graf
+            this.pGraphArea.Paint += new PaintEventHandler(pGraphArea.EventHandler_RePaint);
         }
 
         /// <summary>
@@ -309,6 +314,11 @@ namespace P2
             helpText.Font = new Font("Microsoft Sans Serif", 11);
             helpText.Text = "NU: " + currentHelp + "\n\nNÆSTE: " + nextHelp;
             pInfoBox.Controls.Add(helpText);
+        }
+
+        private void saveGraph_Click(object sender, EventArgs e)
+        {
+            SaveLoadTools.saveToImage(pGraphArea);
         }
     }
 }
