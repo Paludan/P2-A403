@@ -78,11 +78,12 @@ namespace P2Graph
 		}
 
 		/// <summary>
-		/// Adds a point and draws the line to it.
+		/// Adds a point and draws it.
 		/// </summary>
-		/// <param name="newPoint">New point.</param>
-		public void AddAndDraw(GraphPoint newPoint){
-			points.Add (newPoint);
+		/// <param name="X">x-coordinate.</param>
+		/// <param name="Y">y-coordinate.</param>
+		public void AddAndDraw(double X, double Y){
+			points.Add (new GraphPoint(X, Y, _master));
 			_master.Paint += new PaintEventHandler (_master.EventHandler_UpdatePanel);
 		}
 
