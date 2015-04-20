@@ -16,5 +16,12 @@ namespace P2
         {
             InitializeComponent();
         }
+
+		public void UpdateData(DataPoint updateData){
+			this.temperature.Text = updateData.temperature.ToString ();
+			this.molarmass.Text = updateData.nNitrogen.ToString ();
+			this.partialpressure.Text = ((updateData.nNitrogen * updateData.temperature * double.Parse (this.gasConst.Text))
+			/ double.Parse (this.Volume.Text)).ToString ();
+		}
     }
 }

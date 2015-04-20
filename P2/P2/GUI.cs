@@ -136,6 +136,7 @@ namespace P2
             if ((IsFormAlreadyOpen(typeof(CalcForm))) == null)
             {
                 CalcForm calcForm = new CalcForm();
+				calcForm.UpdateData (synth.currentData);
                 calcForm.Show();
             }
         }
