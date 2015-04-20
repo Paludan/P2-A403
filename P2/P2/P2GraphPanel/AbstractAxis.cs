@@ -14,6 +14,7 @@ namespace P2Graph
 		public string name
 		{
 			get { return _name; }
+			set { _name = value; }
 		}
 
 		protected int _minRange;

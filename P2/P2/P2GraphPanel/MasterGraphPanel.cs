@@ -64,8 +64,26 @@ namespace P2Graph
 		/// <param name="xName">Name of the x-axis.</param>
 		/// <param name="yName">Name of the y-axis.</param>
 		public void CreateAxis(string xName, string yName){
-			X = new xAxis (xName, this);
-			Y = new yAxis (yName, this);
+			if (xName.Length > 12 || yName.Length > 12) {
+				throw new AxisnameTooLongException ();
+			} else {
+				X = new xAxis (xName, this);
+				Y = new yAxis (yName, this);
+			}
+		}
+
+		/// <summary>
+		/// Changes the axis names.
+		/// </summary>
+		/// <param name="xName">X-axis name.</param>
+		/// <param name="yName">Y-axis name.</param>
+		public void ChangeAxisNames(string xName, string yName){
+			if (xName.Length > 12 || yName.Length > 12) {
+				throw new AxisnameTooLongException ();
+			} else {
+				X.name = xName;
+				Y.name = yName;
+			}
 		}
 
 		/// <summary>
@@ -83,19 +101,18 @@ namespace P2Graph
 			}
 		}
 
+		/// <summary>
+		/// Adds the drawable to the MasterGraphPanel.
+		/// </summary>
+		/// <param name="drawableObject">Object implementing the IDrawable interface.</param>
 		public void AddDrawable(IDrawable drawableObject){
 			otherObjects.Add (drawableObject);
 		}
 
-		public void SetActive(bool activeness, int index){
-			if (index < graphList.Count)
-				graphList [index].isActive = activeness;
-			else
-				throw new IndexOutOfRangeException ("The index of the selected graph is out of range!");
-		}
-
-		/* Draws all the names of the graphs in the graphlist
-		 */
+		/// <summary>
+		/// Draws the legends on the panel.
+		/// </summary>
+		/// <param name="g">The graphics component.</param>
 		private void DrawLegends(Graphics g){
 			int width = this.Width - 100;
 
@@ -185,50 +202,10 @@ namespace P2Graph
 				panel.yMaxRange = (int)Math.Ceiling (maxY + 10);
 				panel.EventHandler_RePaint (sender, e);
 			} else {
-
+				//Draw the single graph
 			}
 		}
 		#endregion
-	}
-
-	
-	[Serializable]
-	public class TooManyGraphsException : Exception
-	{
-		/// <summary>
-		/// Initializes a new instance of the <see cref="T:MyException"/> class
-		/// </summary>
-		public TooManyGraphsException () : base ("There were too many graphs")
-		{
-
-		}
-
-		/// <summary>
-		/// Initializes a new instance of the <see cref="T:MyException"/> class
-		/// </summary>
-		/// <param name="message">A <see cref="T:System.String"/> that describes the exception. </param>
-		public TooManyGraphsException (string message) : base (message)
-		{
-
-		}
-
-		/// <summary>
-		/// Initializes a new instance of the <see cref="T:MyException"/> class
-		/// </summary>
-		/// <param name="message">A <see cref="T:System.String"/> that describes the exception. </param>
-		/// <param name="inner">The exception that is the cause of the current exception. </param>
-		public TooManyGraphsException (string message, Exception inner) : base (message, inner)
-		{
-		}
-
-		/// <summary>
-		/// Initializes a new instance of the <see cref="T:MyException"/> class
-		/// </summary>
-		/// <param name="context">The contextual information about the source or destination.</param>
-		/// <param name="info">The object that holds the serialized object data.</param>
-		protected TooManyGraphsException (System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) : base (info, context)
-		{
-		}
 	}
 }
 

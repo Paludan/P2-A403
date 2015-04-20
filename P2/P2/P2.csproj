@@ -80,6 +80,7 @@
     <Compile Include="P2GraphPanel\IDrawable.cs" />
     <Compile Include="P2GraphPanel\Constants.cs" />
     <Compile Include="viewCalculations\CalculationForm.cs" />
+    <Compile Include="P2GraphPanel\CustomExceptions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
