@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Drawing;
+using P2Graph;
 
 namespace P2
 {
@@ -11,7 +13,7 @@ namespace P2
     public static class SaveLoadTools
     {
         static string dir = Directory.GetCurrentDirectory();
-        public static string path = dir + "\\SaveFiles";
+        public static string path = dir + "\\Simulation Data";
         static string[] files = Directory.GetFiles(path, "*.eqsave");
         static int i = files.Length + 1;
         /// <summary>
@@ -57,12 +59,18 @@ namespace P2
         /// <returns>String array containing loaded file, or null if file doesn't exist</returns>
         public static String[] loadText(string input)
         {
-            if (System.IO.File.Exists(dir + input))
+            if (File.Exists(path + input))
             {
-                String[] helpText = System.IO.File.ReadAllLines(dir + input);
+                String[] helpText = File.ReadAllLines(path + input);
                 return helpText;
             }
             else { return null; }
+        }
+        public static void saveToImage(MasterGraphPanel PaneltoPNG)
+        {
+            Bitmap tempBitmap = new Bitmap(PaneltoPNG.ClientSize.Width, PaneltoPNG.ClientSize.Height);
+            PaneltoPNG.DrawToBitmap(tempBitmap, PaneltoPNG.ClientRectangle);
+            tempBitmap.Save(SaveLoadTools.path + "Graf.png", System.Drawing.Imaging.ImageFormat.Png);
         }
     }
 }

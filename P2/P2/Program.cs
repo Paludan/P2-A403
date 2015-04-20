@@ -11,7 +11,7 @@ namespace P2
     {
         public static void Main()
         {
-            string dir = Directory.GetCurrentDirectory() + "\\SaveFiles";
+            string dir = Directory.GetCurrentDirectory() + "\\Simulation Data";
             Directory.CreateDirectory(dir);
             GUI gui = new GUI();
             gui.ShowDialog();
