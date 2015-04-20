@@ -278,9 +278,6 @@ namespace P2
                 Y = Cursor.Position.Y,
                 Sx = this.Location.X,
                 Sy = this.Location.Y;
-
-            textBox1.Text = ((10 + X - Sx)/75).ToString();
-            textBox2.Text = this.Location.X.ToString();
             if ((55 + X - Sx) % 75 <= 65 && (55 + X - Sx) % 75 >= 52 && graphTaps >= 0)
             {
                 this.pTabs.Controls.Remove(buttons[--graphTaps]);

@@ -42,7 +42,7 @@
       <DependentUpon>CalcForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DataToSerialize.cs" />
-    <Compile Include="GraphTools.cs" />
+    <Compile Include="GraphHandler.cs" />
     <Compile Include="helpTextController.cs" />
     <Compile Include="LoadMenu.cs">
       <SubType>Form</SubType>
@@ -68,7 +68,6 @@
     <Compile Include="Model.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Serializer.cs" />
-    <Compile Include="Snapshot.cs" />
     <Compile Include="Synthesis.cs" />
     <Compile Include="P2GraphPanel\MasterGraphPanel.cs">
       <SubType>Component</SubType>

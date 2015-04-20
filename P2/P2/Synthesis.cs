@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Threading;
 using System.Timers;
 using P2Graph;
+using System.Drawing;
 
 namespace P2
 {
@@ -15,7 +16,7 @@ namespace P2
     /// </summary>
     public class Synthesis
     {
-        MasterGraphPanel _graphPanel;
+        GraphHandler _graphHandler;
         DataHandler simulationData;
         Model SimulationModel;
         public bool running = false, selected = true;
@@ -74,11 +75,6 @@ namespace P2
             get { return simulationData.SimulationData; }
         }
 
-        public MasterGraphPanel GraphPanel
-        {
-            get { return _graphPanel; }
-        }
-
         /// <summary>
         /// This is the constructor for the class. It initializes the datahandler, model and timer.
         /// </summary>
@@ -88,9 +84,8 @@ namespace P2
             SimulationModel = new Model(currentData);
             timer = new System.Timers.Timer(100);
             timer.Elapsed += this.OnElapsed;
-            
-            _graphPanel = graphPanel;
-            //_graphPanel.AddGraph();
+
+            _graphHandler = new GraphHandler(graphPanel);
         }
         /*This function starts a new thread that runs the timer and controls the generation of data points
          */
@@ -137,7 +132,7 @@ namespace P2
             simulationData.addDataPoint(SimulationModel.calculateDataPoint(interval * Scale));
             if (selected)
             {
-
+                _graphHandler.Update(currentData);
             }
         }
 

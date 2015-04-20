@@ -7,7 +7,7 @@ namespace P2Graph
 {
 	public class MasterGraphPanel : Panel
 	{
-		private List<Graph> graphList = new List<Graph> ();
+		public List<Graph> graphList = new List<Graph> ();
 		private List<IDrawable> otherObjects = new List<IDrawable> ();
 		private PointF _O;
 
@@ -78,6 +78,7 @@ namespace P2Graph
 			if (graphList.Count + 1 > 5) {
 				throw new TooManyGraphsException ();
 			} else {
+				addedGraph.MGP = this;
 				graphList.Add (addedGraph);
 			}
 		}
@@ -163,17 +164,29 @@ namespace P2Graph
 		/// <param name="e">Event-information.</param>
 		public void EventHandler_UpdatePanel( object sender, PaintEventArgs e ){
 			Graphics g = e.Graphics;
-			var graph = sender.GetType();
+			var panel = sender as MasterGraphPanel;
+			float maxX = 0, maxY = 0;
 
-//			if (graph.largestX >= this.xMaxRange) {
-//				this.xMaxRange = (int)Math.Ceiling (graph.largestX + 10);
-//				this.EventHandler_RePaint (sender, e);
-//			} else if (graph.largestY >= this.yMaxRange) {
-//				this.yMaxRange = (int)Math.Ceiling (graph.largestY + 10);
-//				this.EventHandler_UpdatePanel (sender, e);
-//			} else {
-//				graph.DrawLastLine (g);
-//			}
+			foreach (var graph in panel.graphList) {
+				if (graph.largestX > maxX) {
+					maxX = graph.largestX;
+				}
+
+				if (graph.largestY > maxY) {
+					maxY = graph.largestY;
+				}
+			}
+
+			if (maxX >= panel.xMaxRange) {
+				panel.xMaxRange = (int)Math.Ceiling (maxX + 10);
+				panel.EventHandler_RePaint (sender, e);
+			} 
+			if (maxY >= panel.yMaxRange) {
+				panel.yMaxRange = (int)Math.Ceiling (maxY + 10);
+				panel.EventHandler_RePaint (sender, e);
+			} else {
+
+			}
 		}
 		#endregion
 	}

@@ -66,11 +66,15 @@ namespace P2
             }
             else { return null; }
         }
+        /// <summary>
+        /// This method presents tools to take a snapshot of the graph at a current time and save it as a .png-file
+        /// </summary>
+        /// <param name="PaneltoPNG"></param>
         public static void saveToImage(MasterGraphPanel PaneltoPNG)
         {
             Bitmap tempBitmap = new Bitmap(PaneltoPNG.ClientSize.Width, PaneltoPNG.ClientSize.Height);
             PaneltoPNG.DrawToBitmap(tempBitmap, PaneltoPNG.ClientRectangle);
-            tempBitmap.Save(SaveLoadTools.path + "Graf.png", System.Drawing.Imaging.ImageFormat.Png);
+            tempBitmap.Save(path + "Graf.png", System.Drawing.Imaging.ImageFormat.Png);
         }
     }
 }
