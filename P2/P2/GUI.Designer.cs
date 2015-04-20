@@ -99,8 +99,8 @@ namespace P2
             this.pGraphArea.Name = "pGraphArea";
             this.pGraphArea.Size = new System.Drawing.Size(630, 510);
             this.pGraphArea.TabIndex = 1;
-            this.pGraphArea.CreateAxis("Tid", "Partial tryk");
-            this.pGraphArea.Paint += new PaintEventHandler(pGraphArea.EventHandler_RePaint);
+            this.pGraphArea.xMaxRange = 1;
+            this.pGraphArea.yMaxRange = 1;
             // 
             // lTemperature
             // 
@@ -569,8 +569,7 @@ namespace P2
             // 
             // GUI
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1264, 681);
             this.Controls.Add(this.hInfoBox);
             this.Controls.Add(this.pInfoBox);

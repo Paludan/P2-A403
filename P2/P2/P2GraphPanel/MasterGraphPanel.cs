@@ -38,6 +38,7 @@ namespace P2Graph
 		{
 			this.Size = new Size (620, 500);
 			CalculateOrego ();
+            CreateAxis("Tid", "Partial tryk");
 		}
 
 		/// <summary>
