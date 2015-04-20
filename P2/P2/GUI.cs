@@ -280,8 +280,12 @@ namespace P2
             {
                 this.pTabs.Controls.Remove(buttons[--graphTaps]);
                 buttons[7].Location = new Point(buttons[7].Location.X - 75, 0);
-            }
 
+            }
+            else
+            {
+
+            }
         }
 
 
@@ -305,6 +309,11 @@ namespace P2
             helpText.Font = new Font("Microsoft Sans Serif", 11);
             helpText.Text = "NU: " + currentHelp + "\n\nNÆSTE: " + nextHelp;
             pInfoBox.Controls.Add(helpText);
+        }
+
+        private void GUI_Load(object sender, EventArgs e)
+        {
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
         }
     }
 }
