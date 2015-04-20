@@ -9,7 +9,7 @@ using System.Windows.Forms;
 namespace P2
 {
     //This abstract class presents graph-drawing tools
-    public static class GraphTools
+    public class GraphHandler
     {
 
         public static void drawGraph()
