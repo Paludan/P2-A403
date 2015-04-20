@@ -75,6 +75,7 @@ namespace P2
             this.hTimeControl = new System.Windows.Forms.Label();
             this.pInfoBox = new System.Windows.Forms.Panel();
             this.hInfoBox = new System.Windows.Forms.Label();
+            this.FurtherInfoBox = new System.Windows.Forms.Button();
             this.pGraphArea = new P2Graph.MasterGraphPanel();
             this.pSimulationArea.SuspendLayout();
             this.pColourDescription.SuspendLayout();
@@ -83,6 +84,7 @@ namespace P2
             this.panel1.SuspendLayout();
             this.pTimeControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            this.pInfoBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // pSimulationArea
@@ -93,15 +95,6 @@ namespace P2
             this.pSimulationArea.Name = "pSimulationArea";
             this.pSimulationArea.Size = new System.Drawing.Size(630, 510);
             this.pSimulationArea.TabIndex = 0;
-            // 
-            // pGraphArea
-            // 
-            this.pGraphArea.Location = new System.Drawing.Point(0, 0);
-            this.pGraphArea.Name = "pGraphArea";
-            this.pGraphArea.Size = new System.Drawing.Size(630, 510);
-            this.pGraphArea.TabIndex = 1;
-            this.pGraphArea.xMaxRange = 1;
-            this.pGraphArea.yMaxRange = 1;
             // 
             // lTemperature
             // 
@@ -151,7 +144,7 @@ namespace P2
             "Laksefarvet"});
             this.comboBox4.Location = new System.Drawing.Point(145, 252);
             this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(110, 21);
+            this.comboBox4.Size = new System.Drawing.Size(110, 24);
             this.comboBox4.TabIndex = 5;
             // 
             // comboBox3
@@ -166,7 +159,7 @@ namespace P2
             "Laksefarvet"});
             this.comboBox3.Location = new System.Drawing.Point(145, 192);
             this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(110, 21);
+            this.comboBox3.Size = new System.Drawing.Size(110, 24);
             this.comboBox3.TabIndex = 4;
             // 
             // comboBox2
@@ -181,7 +174,7 @@ namespace P2
             "Laksefarvet"});
             this.comboBox2.Location = new System.Drawing.Point(145, 130);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(110, 21);
+            this.comboBox2.Size = new System.Drawing.Size(110, 24);
             this.comboBox2.TabIndex = 3;
             // 
             // pColourDescription
@@ -245,7 +238,7 @@ namespace P2
             "Laksefarvet"});
             this.comboBox1.Location = new System.Drawing.Point(145, 68);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(110, 21);
+            this.comboBox1.Size = new System.Drawing.Size(110, 24);
             this.comboBox1.TabIndex = 1;
             // 
             // pTabs
@@ -397,7 +390,7 @@ namespace P2
             // 
             this.textBox1.Location = new System.Drawing.Point(515, 69);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(70, 20);
+            this.textBox1.Size = new System.Drawing.Size(70, 22);
             this.textBox1.TabIndex = 0;
             this.textBox1.Text = "0";
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
@@ -417,7 +410,7 @@ namespace P2
             // 
             this.textBox2.Location = new System.Drawing.Point(515, 132);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(70, 20);
+            this.textBox2.Size = new System.Drawing.Size(70, 22);
             this.textBox2.TabIndex = 1;
             this.textBox2.Text = "0";
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
@@ -427,7 +420,7 @@ namespace P2
             // 
             this.textBox3.Location = new System.Drawing.Point(515, 194);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(70, 20);
+            this.textBox3.Size = new System.Drawing.Size(70, 22);
             this.textBox3.TabIndex = 12;
             this.textBox3.Text = "0";
             this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
@@ -437,7 +430,7 @@ namespace P2
             // 
             this.textBox4.Location = new System.Drawing.Point(515, 253);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(70, 20);
+            this.textBox4.Size = new System.Drawing.Size(70, 22);
             this.textBox4.TabIndex = 13;
             this.textBox4.Text = "0";
             this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
@@ -490,7 +483,7 @@ namespace P2
             "x1000"});
             this.comboBox5.Location = new System.Drawing.Point(400, 30);
             this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(121, 21);
+            this.comboBox5.Size = new System.Drawing.Size(121, 24);
             this.comboBox5.TabIndex = 5;
             this.comboBox5.Text = "x1";
             this.comboBox5.SelectedIndexChanged += new System.EventHandler(this.comboBox5_SelectedIndexChanged);
@@ -504,7 +497,7 @@ namespace P2
             0,
             0});
             this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDown1.Size = new System.Drawing.Size(120, 22);
             this.numericUpDown1.TabIndex = 4;
             this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
             // 
@@ -549,6 +542,7 @@ namespace P2
             // 
             this.pInfoBox.BackColor = System.Drawing.Color.Silver;
             this.pInfoBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pInfoBox.Controls.Add(this.FurtherInfoBox);
             this.pInfoBox.Location = new System.Drawing.Point(12, 550);
             this.pInfoBox.Name = "pInfoBox";
             this.pInfoBox.Size = new System.Drawing.Size(977, 119);
@@ -563,6 +557,26 @@ namespace P2
             this.hInfoBox.Size = new System.Drawing.Size(66, 13);
             this.hInfoBox.TabIndex = 11;
             this.hInfoBox.Text = "Vejledning";
+            // 
+            // FurtherInfoBox
+            // 
+            this.FurtherInfoBox.BackColor = System.Drawing.SystemColors.Control;
+            this.FurtherInfoBox.Location = new System.Drawing.Point(875, 25);
+            this.FurtherInfoBox.Name = "FurtherInfoBox";
+            this.FurtherInfoBox.Size = new System.Drawing.Size(75, 25);
+            this.FurtherInfoBox.TabIndex = 0;
+            this.FurtherInfoBox.Text = "Videre";
+            this.FurtherInfoBox.UseVisualStyleBackColor = false;
+            this.FurtherInfoBox.Click += new System.EventHandler(this.FurtherInfoBox_Click);
+            // 
+            // pGraphArea
+            // 
+            this.pGraphArea.Location = new System.Drawing.Point(0, 0);
+            this.pGraphArea.Name = "pGraphArea";
+            this.pGraphArea.Size = new System.Drawing.Size(630, 510);
+            this.pGraphArea.TabIndex = 1;
+            this.pGraphArea.xMaxRange = 1;
+            this.pGraphArea.yMaxRange = 1;
             // 
             // GUI
             // 
@@ -589,6 +603,7 @@ namespace P2
             this.panel1.ResumeLayout(false);
             this.pTimeControl.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            this.pInfoBox.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -639,5 +654,6 @@ namespace P2
         private ComboBox comboBox5;
         private Button OpenCalc;
         private Button saveGraph;
+        private Button FurtherInfoBox;
     }
 }

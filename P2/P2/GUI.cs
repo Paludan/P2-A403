@@ -16,7 +16,7 @@ namespace P2
         Synthesis synth;
         helpTextController helper;
         double tempDouble;
-        Button[] buttons = new Button[9];
+        Button[] buttons = new Button[8];
         int graphTaps = 1;
                 
         public GUI()
@@ -35,18 +35,34 @@ namespace P2
             buttons[7].Text = "Tilføj graf";
             buttons[7].Click += addGraph_Click;
             this.pTabs.Controls.Add(buttons[7]);
-            buttons[8] = new Button();
-            buttons[8].Location = new Point(875,15);
-            buttons[8].Text = "Videre";
-            buttons[8].Click += cycleHelp_Click;
-            this.pInfoBox.Controls.Add(buttons[8]);
-            buttons[8].BackColor = (Color.White);
             pInfoBox.Controls.Add(new Label());
             String[] helpText = helper.Next();
             updateHelpText(helpText[0], helpText[1]);
 
+            //while (label1.Width < System.Windows.Forms.TextRenderer.MeasureText(label1.Text, new Font(label1.Font.FontFamily,
+            //       label1.Font.Size, label1.Font.Style)).Width)
+            //{
+            //    label1.Font = new Font(label1.Font.FontFamily, label1.Font.Size - 0.01f, label1.Font.Style);
+            //}
+
+            foreach (Control label in this.Controls)
+            {
+                if (label.GetType() == typeof(Label))
+                {
+                    autoScaleText(label);
+                }
+            }
+
             //midlertidig graf
             this.pGraphArea.Paint += new PaintEventHandler(pGraphArea.EventHandler_RePaint);
+        }
+
+        private void autoScaleText(Control label){
+            while (label.Width < System.Windows.Forms.TextRenderer.MeasureText(label.Text, new Font(label.Font.FontFamily,
+                   label.Font.Size, label.Font.Style)).Width)
+            {
+                label.Font = new Font(label.Font.FontFamily, label.Font.Size - 0.01f, label.Font.Style);
+            }
         }
 
         /// <summary>
@@ -294,14 +310,7 @@ namespace P2
 
             }
         }
-
-
-        private void cycleHelp_Click(object sender, EventArgs e)
-        {
-            String[] helpText = helper.Next();
-            updateHelpText(helpText[0], helpText[1]);
-        }
-
+        
         /// <summary>
         /// Sets the text of the gray instructions panel at the bottom of the main GUI
         /// </summary>
@@ -321,6 +330,12 @@ namespace P2
         private void saveGraph_Click(object sender, EventArgs e)
         {
             SaveLoadTools.saveToImage(pGraphArea);
+        }
+
+        private void FurtherInfoBox_Click(object sender, EventArgs e)
+        {
+            String[] helpText = helper.Next();
+            updateHelpText(helpText[0], helpText[1]);
         }
     }
 }
