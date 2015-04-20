@@ -17,7 +17,7 @@ namespace P2
         {
             helpText = SaveLoadTools.loadText("vejledning.txt");
             currentLine = -1;
-            if (helpText == null) { helpText = new String[1]; helpText[0] = "Ingen vejledning fundet."; }
+            if (helpText == null) { helpText = new String[2]; helpText[0] = "Ingen vejledning fundet."; helpText[1] = "opret 'vejledning.txt' i program mappen."; }
         }
 
         /// <summary>
@@ -28,9 +28,9 @@ namespace P2
         {
             currentLine++;
             String[] output = new String[2];
-            if (currentLine > helpText.Length) { currentLine = 0; }
-            else if (currentLine == helpText.Length) { output[0] = helpText.ElementAt(currentLine); output[1] = "Færdig. Klik 'Videre' igen for at gentage vejledning."; }
-            else { output[0] = helpText.ElementAt(currentLine); output[1] = helpText.ElementAt(currentLine); }
+            if (currentLine >= helpText.Length) { currentLine = 0; }
+            else if (currentLine == helpText.Length - 1) { output[0] = helpText.ElementAt(currentLine); output[1] = "Færdig. Klik 'Videre' igen for at gentage vejledning."; }
+            else { output[0] = helpText.ElementAt(currentLine); output[1] = helpText.ElementAt(currentLine + 1); }
             return output;
         }
     }
