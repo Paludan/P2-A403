@@ -62,7 +62,7 @@ namespace P2
                 String[] helpText = System.IO.File.ReadAllLines(dir + input);
                 return helpText;
             }
-            return null;   
+            else { return null; }
         }
     }
 }
