@@ -54,18 +54,17 @@ namespace P2Graph
 		/// </summary>
 		/// <param name="Name">Name of the graph.</param>
 		/// <param name="c">Color of the graph.</param>
-		public Graph (string Name, Color c, MasterGraphPanel gPanel)
+		public Graph (string Name, Color c)
 		{
 			this._name = Name;
 			this._colorOfGraph = c;
-			this._master = gPanel;
 		}
 		/// <summary>
 		/// Initializes a new instance of the <see cref="P2Graph.Graph"/> class with unspecifed color, default is black.
 		/// </summary>
 		/// <param name="Name">Name of the graph.</param>
-		public Graph (string Name, MasterGraphPanel gPanel)
-			: this(Name, Color.Black, gPanel)
+		public Graph (string Name)
+			: this(Name, Color.Black)
 		{
 		}
 

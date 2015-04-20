@@ -78,6 +78,7 @@ namespace P2Graph
 			if (graphList.Count + 1 > 5) {
 				throw new TooManyGraphsException ();
 			} else {
+				addedGraph.MGP = this;
 				graphList.Add (addedGraph);
 			}
 		}
