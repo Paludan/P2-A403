@@ -67,6 +67,9 @@ namespace P2
             }
         }
 
+        /// <summary>
+        /// This property gives acces to the 
+        /// </summary>
         public List<DataPoint> Datapoints{
             get { return simulationData.SimulationData; }
         }
@@ -112,7 +115,8 @@ namespace P2
         }
 
         /// <summary>
-        /// This method will add a new datapoint using the
+        /// This method will run when the elapsed event is raised from the timer object. 
+        /// If the simulation should be running the update function is called.
         /// </summary>
         /// <param name="source">The object that invoked the event</param>
         /// <param name="e">arguments dunno</param>
