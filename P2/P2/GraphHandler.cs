@@ -28,11 +28,11 @@ namespace P2
 
         private void InitGraphs()
         {
-            _temperature = new Graph("Temperatur", Color.Red, _graphPanel);
-            _pressure = new Graph("Tryk", Color.Yellow, _graphPanel);
-            _pAmmonia = new Graph("Ammoniak", Color.Black, _graphPanel);
-            _pHydrogen = new Graph("Hydrogen", Color.Blue, _graphPanel);
-            _pNitrogen = new Graph("Nitrogen", Color.Green, _graphPanel);
+            _temperature = new Graph("Temperatur", Color.Red);
+            _pressure = new Graph("Tryk", Color.Yellow);
+            _pAmmonia = new Graph("Ammoniak", Color.Black);
+            _pHydrogen = new Graph("Hydrogen", Color.Blue);
+            _pNitrogen = new Graph("Nitrogen", Color.Green);
 
             _graphPanel.AddGraph(_temperature);
             _graphPanel.AddGraph(_pressure);
