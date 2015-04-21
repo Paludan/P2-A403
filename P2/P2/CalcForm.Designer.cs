@@ -296,7 +296,7 @@ namespace P2
             this.gasConst.Image = null;
             this.gasConst.TabIndex = 21;
             this.gasConst.Size = new System.Drawing.Size(56, 16);
-			this.gasConst.Text = gasConstant.ToString ();;
+            this.gasConst.Text = gasConstant.ToString ();;
             // 
             // label27
             // 
@@ -332,7 +332,7 @@ namespace P2
             this.Volume.Image = null;
             this.Volume.TabIndex = 24;
             this.Volume.Size = new System.Drawing.Size(56, 16);
-			this.Volume.Text = volume.ToString ();;
+            this.Volume.Text = volume.ToString ();;
             // 
             // CalcForm
             // 

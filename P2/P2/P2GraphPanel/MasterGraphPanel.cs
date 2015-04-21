@@ -115,13 +115,17 @@ namespace P2Graph
 		/// <param name="g">The graphics component.</param>
 		private void DrawLegends(Graphics g){
 			int width = this.Width - 100;
+            Font legendFont = new Font("Microsoft Sans Serif", 30);
+            while (80 < System.Windows.Forms.TextRenderer.MeasureText("Temperatur", new Font(legendFont.FontFamily,
+                   legendFont.Size, legendFont.Style)).Width)
+                legendFont = new Font(legendFont.FontFamily, legendFont.Size - 0.01f, legendFont.Style);
 
 			for (int i = 0; i < graphList.Count; i++) {
 				SolidBrush drawPen = new SolidBrush(graphList[i].color);
 				PointF drawPoint = new PointF (width + 5, 2);
 
 				g.DrawRectangle (new Pen (graphList[i].color, 1), width, 0, 80, 20);
-				g.DrawString (graphList[i].name, Constants.GraphFont, drawPen, drawPoint);   
+				g.DrawString (graphList[i].name, legendFont, drawPen, drawPoint);   
 				width -= 100;
 			}
 		}
