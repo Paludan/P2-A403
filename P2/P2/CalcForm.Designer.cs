@@ -14,9 +14,6 @@ namespace P2
     #region Windows Form Designer generated code
     public partial class CalcForm
     {
-		private const double gasConstant = 8.3145;
-		private const double preExpontentialFactor = 884900000000000;
-		private const double volume = 50000; // liter
 
         private void InitializeComponent()
         {
@@ -42,7 +39,7 @@ namespace P2
             this.label20 = new System.Windows.Forms.Label();
             this.partialpressure = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
-            this.molarmass = new System.Windows.Forms.Label();
+            this.molarmassNitrogen = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.gasConst = new System.Windows.Forms.Label();
@@ -50,6 +47,7 @@ namespace P2
             this.temperature = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.Volume = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
             // 
             // label1
             // 
@@ -130,7 +128,7 @@ namespace P2
             // label5
             // 
             this.label5.Name = "label5";
-            this.label5.Location = new System.Drawing.Point(16, 120);
+            this.label5.Location = new System.Drawing.Point(368, 120);
             this.label5.Image = null;
             this.label5.TabIndex = 4;
             this.label5.Size = new System.Drawing.Size(128, 16);
@@ -156,7 +154,7 @@ namespace P2
             this.label11.Size = new System.Drawing.Size(148, 16);
             this.label11.Font = new System.Drawing.Font("DejaVu Sans", 8.25F, (System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline), System.Drawing.GraphicsUnit.Point);
             this.label11.Text = "Hastighedskonstanten:";
-          //  this.label11.Click += new System.EventHandler(this.label11_Click);
+   //         this.label11.Click += new System.EventHandler(this.label11_Click);
             // 
             // label12
             // 
@@ -212,7 +210,7 @@ namespace P2
             this.label16.TabIndex = 12;
             this.label16.Size = new System.Drawing.Size(40, 16);
             this.label16.Text = "______";
-      //      this.label16.Click += new System.EventHandler(this.label16_Click);
+         //   this.label16.Click += new System.EventHandler(this.label16_Click);
             // 
             // label18
             // 
@@ -233,7 +231,7 @@ namespace P2
             this.label19.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label19.Size = new System.Drawing.Size(15, 304);
             this.label19.Text = "";
-      //      this.label19.Click += new System.EventHandler(this.label19_Click);
+   //        this.label19.Click += new System.EventHandler(this.label19_Click);
             // 
             // label20
             // 
@@ -247,13 +245,20 @@ namespace P2
             // 
             // label21
             // 
-            this.partialpressure.Name = "partialpressure";
+            this.partialpressure.Name = "label21";
             this.partialpressure.Location = new System.Drawing.Point(368, 56);
             this.partialpressure.Image = null;
             this.partialpressure.TabIndex = 15;
             this.partialpressure.Size = new System.Drawing.Size(48, 16);
-			this.partialpressure.Text = "asdf";
-            // 
+            this.partialpressure.Text = "Partial";
+			this.partialpressure.ContextMenu = cm;
+			//this.partialpressureNitrogen.ContextMenu.MenuItems[1]. += new System.EventHandler (this.menuItem1_ItemClick);
+
+			cm.MenuItems.Add ("Nitrogen");
+			cm.MenuItems.Add ("Hydrogen");
+			cm.MenuItems.Add ("Ammoniak");
+		
+			// 
             // label22
             // 
             this.label22.Name = "label22";
@@ -265,12 +270,12 @@ namespace P2
             // 
             // label24
             // 
-            this.molarmass.Name = "molarmass";
-            this.molarmass.Location = new System.Drawing.Point(432, 40);
-            this.molarmass.Image = null;
-            this.molarmass.TabIndex = 18;
-            this.molarmass.Size = new System.Drawing.Size(64, 16);
-            this.molarmass.Text = "molar";
+            this.molarmassNitrogen.Name = "label24";
+            this.molarmassNitrogen.Location = new System.Drawing.Point(432, 40);
+            this.molarmassNitrogen.Image = null;
+            this.molarmassNitrogen.TabIndex = 18;
+            this.molarmassNitrogen.Size = new System.Drawing.Size(64, 16);
+            this.molarmassNitrogen.Text = "molar";
             // 
             // label23
             // 
@@ -291,12 +296,13 @@ namespace P2
             // 
             // label26
             // 
-            this.gasConst.Name = "gasConst";
+            this.gasConst.Name = "label26";
             this.gasConst.Location = new System.Drawing.Point(512, 40);
             this.gasConst.Image = null;
             this.gasConst.TabIndex = 21;
             this.gasConst.Size = new System.Drawing.Size(56, 16);
-            this.gasConst.Text = gasConstant.ToString ();;
+            this.gasConst.Text = gasConstant.ToString ();
+            this.gasConst.Text = "gasConst";
             // 
             // label27
             // 
@@ -309,7 +315,7 @@ namespace P2
             // 
             // label28
             // 
-            this.temperature.Name = "temperature";
+            this.temperature.Name = "label28";
             this.temperature.Location = new System.Drawing.Point(592, 40);
             this.temperature.Image = null;
             this.temperature.TabIndex = 22;
@@ -327,12 +333,23 @@ namespace P2
             // 
             // label30
             // 
-            this.Volume.Name = "volume";
+            this.Volume.Name = "label30";
             this.Volume.Location = new System.Drawing.Point(496, 64);
             this.Volume.Image = null;
             this.Volume.TabIndex = 24;
             this.Volume.Size = new System.Drawing.Size(56, 16);
-            this.Volume.Text = volume.ToString ();;
+            this.Volume.Text = volume.ToString ();
+            this.Volume.Text = "Volumen";
+            // 
+            // label31
+            // 
+            this.label31.Name = "label31";
+            this.label31.Location = new System.Drawing.Point(16, 120);
+            this.label31.Image = null;
+            this.label31.TabIndex = 4;
+            this.label31.Size = new System.Drawing.Size(128, 16);
+            this.label31.Font = new System.Drawing.Font("DejaVu Sans", 8.25F, (System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline), System.Drawing.GraphicsUnit.Point);
+            this.label31.Text = "Ligevægtsbrøken:";
             // 
             // CalcForm
             // 
@@ -362,7 +379,7 @@ namespace P2
             this.Controls.Add(this.label20);
             this.Controls.Add(this.partialpressure);
             this.Controls.Add(this.label22);
-            this.Controls.Add(this.molarmass);
+            this.Controls.Add(this.molarmassNitrogen);
             this.Controls.Add(this.label23);
             this.Controls.Add(this.label25);
             this.Controls.Add(this.gasConst);
@@ -370,6 +387,7 @@ namespace P2
             this.Controls.Add(this.temperature);
             this.Controls.Add(this.label29);
             this.Controls.Add(this.Volume);
+            this.Controls.Add(this.label31);
             this.Text = "CalcForm";
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
         }
@@ -395,7 +413,7 @@ namespace P2
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label partialpressure;
         private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label molarmass;
+        private System.Windows.Forms.Label molarmassNitrogen;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label gasConst;
@@ -403,6 +421,7 @@ namespace P2
         private System.Windows.Forms.Label temperature;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Label Volume;
+        private System.Windows.Forms.Label label31;
     }
     #endregion
 }
