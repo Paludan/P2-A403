@@ -251,7 +251,13 @@ namespace P2
             this.partialpressureNitrogen.TabIndex = 15;
             this.partialpressureNitrogen.Size = new System.Drawing.Size(48, 16);
             this.partialpressureNitrogen.Text = "Partial";
-            // 
+			this.partialpressureNitrogen.ContextMenu = cm;
+			//this.partialpressureNitrogen.ContextMenu.MenuItems[1]. += new System.EventHandler (this.menuItem1_ItemClick);
+
+			cm.MenuItems.Add("Hydrogen");
+			cm.MenuItems.Add("Ammoniak");
+		
+			// 
             // label22
             // 
             this.label22.Name = "label22";
