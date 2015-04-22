@@ -39,18 +39,13 @@ namespace P2
             String[] helpText = helper.Next();
             updateHelpText(helpText[0], helpText[1]);
 
-            //while (label1.Width < System.Windows.Forms.TextRenderer.MeasureText(label1.Text, new Font(label1.Font.FontFamily,
-            //       label1.Font.Size, label1.Font.Style)).Width)
-            //{
-            //    label1.Font = new Font(label1.Font.FontFamily, label1.Font.Size - 0.01f, label1.Font.Style);
-            //}
-
-            foreach (Control label in this.Controls)
+            foreach (Control formItem in this.Controls)
             {
-                if (label.GetType() == typeof(Label))
-                {
-                    autoScaleText(label);
-                }
+                if (formItem.GetType() == typeof(Panel))
+                    foreach (Control item in formItem.Controls)
+                        autoScaleText(item);
+                else if (formItem.GetType() == typeof(Label) || formItem.GetType() == typeof(CheckBox))
+                    autoScaleText(formItem);
             }
 
             //midlertidig graf
@@ -60,9 +55,7 @@ namespace P2
         private void autoScaleText(Control label){
             while (label.Width < System.Windows.Forms.TextRenderer.MeasureText(label.Text, new Font(label.Font.FontFamily,
                    label.Font.Size, label.Font.Style)).Width)
-            {
                 label.Font = new Font(label.Font.FontFamily, label.Font.Size - 0.01f, label.Font.Style);
-            }
         }
 
         /// <summary>
@@ -162,7 +155,7 @@ namespace P2
         /// </summary>
         private void Save_Click(object sender, EventArgs e)
         {
-            //SaveLoadTools.save();
+            SaveLoadTools.save(synth.Datapoints);
         }
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
@@ -189,36 +182,28 @@ namespace P2
         {
             textChanged(textBox1, hScrollBarN2);
             if (!synth.running && Double.TryParse(textBox1.Text, out tempDouble))
-            {
                 synth.currentData.nNitrogen = tempDouble;
-            }
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
             textChanged(textBox2, hScrollBarH2);
             if (!synth.running && Double.TryParse(textBox2.Text, out tempDouble))
-            {
                 synth.currentData.nHydrogen = tempDouble;
-            }
         }
 
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
             textChanged(textBox3, hScrollBarNH3);
             if (!synth.running && Double.TryParse(textBox3.Text, out tempDouble))
-            {
                 synth.currentData.nAmmonia = tempDouble;
-            }
         }
 
         private void textBox4_TextChanged(object sender, EventArgs e)
         {
             textChanged(textBox4, hScrollBarTemperature);
             if (!synth.running && Double.TryParse(textBox4.Text, out tempDouble))
-            {
                 synth.currentData.temperature = tempDouble;
-            }
         }
 
         private void hScrollBarN2_Scroll(object sender, ScrollEventArgs e)
@@ -303,7 +288,6 @@ namespace P2
             {
                 this.pTabs.Controls.Remove(buttons[--graphTaps]);
                 buttons[7].Location = new Point(buttons[7].Location.X - 75, 0);
-
             }
             else
             {
@@ -322,9 +306,10 @@ namespace P2
             Label helpText = new Label();
             helpText.Location = new Point(15, 15);
             helpText.Size = new Size(850, 100);
-            helpText.Font = new Font("Microsoft Sans Serif", 11);
+            helpText.Font = new Font("Microsoft Sans Serif", 30);
             helpText.Text = "NU: " + currentHelp + "\n\nNÆSTE: " + nextHelp;
             pInfoBox.Controls.Add(helpText);
+            autoScaleText(helpText);
         }
 
         private void saveGraph_Click(object sender, EventArgs e)

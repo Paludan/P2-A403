@@ -33,6 +33,7 @@ namespace P2
         private void InitializeComponent()
         {
             this.pSimulationArea = new System.Windows.Forms.Panel();
+            this.pGraphArea = new P2Graph.MasterGraphPanel();
             this.lTemperature = new System.Windows.Forms.Label();
             this.lNH3 = new System.Windows.Forms.Label();
             this.lH2 = new System.Windows.Forms.Label();
@@ -55,8 +56,6 @@ namespace P2
             this.hProject = new System.Windows.Forms.Label();
             this.pParameters = new System.Windows.Forms.Panel();
             this.hScrollBarN2 = new System.Windows.Forms.HScrollBar();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.checkBoxCatalyst = new System.Windows.Forms.CheckBox();
             this.hScrollBarTemperature = new System.Windows.Forms.HScrollBar();
             this.hScrollBarNH3 = new System.Windows.Forms.HScrollBar();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -64,6 +63,8 @@ namespace P2
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.checkBoxCatalyst = new System.Windows.Forms.CheckBox();
             this.hParameters = new System.Windows.Forms.Label();
             this.pTimeControl = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
@@ -74,9 +75,8 @@ namespace P2
             this.start = new System.Windows.Forms.Button();
             this.hTimeControl = new System.Windows.Forms.Label();
             this.pInfoBox = new System.Windows.Forms.Panel();
-            this.hInfoBox = new System.Windows.Forms.Label();
             this.FurtherInfoBox = new System.Windows.Forms.Button();
-            this.pGraphArea = new P2Graph.MasterGraphPanel();
+            this.hInfoBox = new System.Windows.Forms.Label();
             this.pSimulationArea.SuspendLayout();
             this.pColourDescription.SuspendLayout();
             this.pProjectHandling.SuspendLayout();
@@ -96,9 +96,18 @@ namespace P2
             this.pSimulationArea.Size = new System.Drawing.Size(630, 510);
             this.pSimulationArea.TabIndex = 0;
             // 
+            // pGraphArea
+            // 
+            this.pGraphArea.Location = new System.Drawing.Point(0, 0);
+            this.pGraphArea.Name = "pGraphArea";
+            this.pGraphArea.Size = new System.Drawing.Size(630, 510);
+            this.pGraphArea.TabIndex = 1;
+            this.pGraphArea.xMaxRange = 1;
+            this.pGraphArea.yMaxRange = 1;
+            // 
             // lTemperature
             // 
-            this.lTemperature.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lTemperature.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lTemperature.Location = new System.Drawing.Point(9, 254);
             this.lTemperature.Name = "lTemperature";
             this.lTemperature.Size = new System.Drawing.Size(132, 17);
@@ -107,7 +116,7 @@ namespace P2
             // 
             // lNH3
             // 
-            this.lNH3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lNH3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lNH3.Location = new System.Drawing.Point(43, 195);
             this.lNH3.Name = "lNH3";
             this.lNH3.Size = new System.Drawing.Size(68, 17);
@@ -116,7 +125,7 @@ namespace P2
             // 
             // lH2
             // 
-            this.lH2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lH2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lH2.Location = new System.Drawing.Point(49, 133);
             this.lH2.Name = "lH2";
             this.lH2.Size = new System.Drawing.Size(58, 17);
@@ -125,7 +134,7 @@ namespace P2
             // 
             // lN2
             // 
-            this.lN2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lN2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lN2.Location = new System.Drawing.Point(49, 70);
             this.lN2.Name = "lN2";
             this.lN2.Size = new System.Drawing.Size(58, 17);
@@ -185,9 +194,9 @@ namespace P2
             this.pColourDescription.Controls.Add(this.hVariabelControl);
             this.pColourDescription.Controls.Add(this.hColour);
             this.pColourDescription.Controls.Add(this.hVariable);
-            this.pColourDescription.Location = new System.Drawing.Point(3, 9);
+            this.pColourDescription.Location = new System.Drawing.Point(655, 190);
             this.pColourDescription.Name = "pColourDescription";
-            this.pColourDescription.Size = new System.Drawing.Size(591, 25);
+            this.pColourDescription.Size = new System.Drawing.Size(590, 25);
             this.pColourDescription.TabIndex = 2;
             // 
             // label1
@@ -302,10 +311,10 @@ namespace P2
             // 
             // hProject
             // 
-            this.hProject.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.hProject.Location = new System.Drawing.Point(1010, 540);
+            this.hProject.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.hProject.Location = new System.Drawing.Point(1010, 535);
             this.hProject.Name = "hProject";
-            this.hProject.Size = new System.Drawing.Size(107, 13);
+            this.hProject.Size = new System.Drawing.Size(160, 20);
             this.hProject.TabIndex = 5;
             this.hProject.Text = "Projekthåndtering";
             // 
@@ -314,12 +323,10 @@ namespace P2
             this.pParameters.BackColor = System.Drawing.SystemColors.Control;
             this.pParameters.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pParameters.Controls.Add(this.hScrollBarN2);
-            this.pParameters.Controls.Add(this.panel1);
             this.pParameters.Controls.Add(this.lTemperature);
             this.pParameters.Controls.Add(this.hScrollBarTemperature);
             this.pParameters.Controls.Add(this.comboBox1);
             this.pParameters.Controls.Add(this.lNH3);
-            this.pParameters.Controls.Add(this.pColourDescription);
             this.pParameters.Controls.Add(this.hScrollBarNH3);
             this.pParameters.Controls.Add(this.textBox1);
             this.pParameters.Controls.Add(this.lH2);
@@ -333,7 +340,7 @@ namespace P2
             this.pParameters.Controls.Add(this.comboBox4);
             this.pParameters.Location = new System.Drawing.Point(650, 180);
             this.pParameters.Name = "pParameters";
-            this.pParameters.Size = new System.Drawing.Size(600, 350);
+            this.pParameters.Size = new System.Drawing.Size(600, 301);
             this.pParameters.TabIndex = 6;
             // 
             // hScrollBarN2
@@ -345,26 +352,6 @@ namespace P2
             this.hScrollBarN2.Size = new System.Drawing.Size(200, 17);
             this.hScrollBarN2.TabIndex = 14;
             this.hScrollBarN2.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBarN2_Scroll);
-            // 
-            // panel1
-            // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.checkBoxCatalyst);
-            this.panel1.Location = new System.Drawing.Point(-1, 300);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(600, 49);
-            this.panel1.TabIndex = 19;
-            // 
-            // checkBoxCatalyst
-            // 
-            this.checkBoxCatalyst.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxCatalyst.Location = new System.Drawing.Point(251, 15);
-            this.checkBoxCatalyst.Name = "checkBoxCatalyst";
-            this.checkBoxCatalyst.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.checkBoxCatalyst.Size = new System.Drawing.Size(98, 21);
-            this.checkBoxCatalyst.TabIndex = 18;
-            this.checkBoxCatalyst.Text = "Katalysator";
-            this.checkBoxCatalyst.UseVisualStyleBackColor = true;
             // 
             // hScrollBarTemperature
             // 
@@ -436,12 +423,32 @@ namespace P2
             this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
             this.textBox4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox4_KeyPress);
             // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.checkBoxCatalyst);
+            this.panel1.Location = new System.Drawing.Point(650, 480);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(600, 50);
+            this.panel1.TabIndex = 19;
+            // 
+            // checkBoxCatalyst
+            // 
+            this.checkBoxCatalyst.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxCatalyst.Location = new System.Drawing.Point(251, 15);
+            this.checkBoxCatalyst.Name = "checkBoxCatalyst";
+            this.checkBoxCatalyst.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.checkBoxCatalyst.Size = new System.Drawing.Size(98, 21);
+            this.checkBoxCatalyst.TabIndex = 18;
+            this.checkBoxCatalyst.Text = "Katalysator";
+            this.checkBoxCatalyst.UseVisualStyleBackColor = true;
+            // 
             // hParameters
             // 
-            this.hParameters.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.hParameters.Location = new System.Drawing.Point(660, 170);
+            this.hParameters.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.hParameters.Location = new System.Drawing.Point(660, 165);
             this.hParameters.Name = "hParameters";
-            this.hParameters.Size = new System.Drawing.Size(64, 13);
+            this.hParameters.Size = new System.Drawing.Size(100, 20);
             this.hParameters.TabIndex = 7;
             this.hParameters.Text = "Parametre";
             // 
@@ -461,9 +468,10 @@ namespace P2
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(287, 33);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(284, 33);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(87, 13);
+            this.label2.Size = new System.Drawing.Size(90, 13);
             this.label2.TabIndex = 6;
             this.label2.Text = "Hastighedsfaktor";
             // 
@@ -503,6 +511,7 @@ namespace P2
             // 
             // lTime
             // 
+            this.lTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lTime.Location = new System.Drawing.Point(350, 92);
             this.lTime.Name = "lTime";
             this.lTime.Size = new System.Drawing.Size(22, 13);
@@ -531,10 +540,10 @@ namespace P2
             // 
             // hTimeControl
             // 
-            this.hTimeControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.hTimeControl.Location = new System.Drawing.Point(660, 10);
+            this.hTimeControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.hTimeControl.Location = new System.Drawing.Point(660, 5);
             this.hTimeControl.Name = "hTimeControl";
-            this.hTimeControl.Size = new System.Drawing.Size(70, 13);
+            this.hTimeControl.Size = new System.Drawing.Size(105, 20);
             this.hTimeControl.TabIndex = 9;
             this.hTimeControl.Text = "Tidskontrol";
             // 
@@ -548,16 +557,6 @@ namespace P2
             this.pInfoBox.Size = new System.Drawing.Size(977, 119);
             this.pInfoBox.TabIndex = 10;
             // 
-            // hInfoBox
-            // 
-            this.hInfoBox.BackColor = System.Drawing.Color.Transparent;
-            this.hInfoBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.hInfoBox.Location = new System.Drawing.Point(20, 540);
-            this.hInfoBox.Name = "hInfoBox";
-            this.hInfoBox.Size = new System.Drawing.Size(66, 13);
-            this.hInfoBox.TabIndex = 11;
-            this.hInfoBox.Text = "Vejledning";
-            // 
             // FurtherInfoBox
             // 
             this.FurtherInfoBox.BackColor = System.Drawing.SystemColors.Control;
@@ -569,23 +568,26 @@ namespace P2
             this.FurtherInfoBox.UseVisualStyleBackColor = false;
             this.FurtherInfoBox.Click += new System.EventHandler(this.FurtherInfoBox_Click);
             // 
-            // pGraphArea
+            // hInfoBox
             // 
-            this.pGraphArea.Location = new System.Drawing.Point(0, 0);
-            this.pGraphArea.Name = "pGraphArea";
-            this.pGraphArea.Size = new System.Drawing.Size(630, 510);
-            this.pGraphArea.TabIndex = 1;
-            this.pGraphArea.xMaxRange = 1;
-            this.pGraphArea.yMaxRange = 1;
+            this.hInfoBox.BackColor = System.Drawing.Color.Transparent;
+            this.hInfoBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.hInfoBox.Location = new System.Drawing.Point(20, 535);
+            this.hInfoBox.Name = "hInfoBox";
+            this.hInfoBox.Size = new System.Drawing.Size(100, 20);
+            this.hInfoBox.TabIndex = 11;
+            this.hInfoBox.Text = "Vejledning";
             // 
             // GUI
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1264, 681);
             this.Controls.Add(this.hInfoBox);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.pInfoBox);
             this.Controls.Add(this.hTimeControl);
             this.Controls.Add(this.pTimeControl);
+            this.Controls.Add(this.pColourDescription);
             this.Controls.Add(this.hParameters);
             this.Controls.Add(this.pParameters);
             this.Controls.Add(this.hProject);

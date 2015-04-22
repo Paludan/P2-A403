@@ -37,7 +37,7 @@ namespace P2
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
-            this.partialpressureNitrogen = new System.Windows.Forms.Label();
+            this.partialpressure = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.molarmassNitrogen = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
@@ -245,13 +245,20 @@ namespace P2
             // 
             // label21
             // 
-            this.partialpressureNitrogen.Name = "label21";
-            this.partialpressureNitrogen.Location = new System.Drawing.Point(368, 56);
-            this.partialpressureNitrogen.Image = null;
-            this.partialpressureNitrogen.TabIndex = 15;
-            this.partialpressureNitrogen.Size = new System.Drawing.Size(48, 16);
-            this.partialpressureNitrogen.Text = "Partial";
-            // 
+            this.partialpressure.Name = "label21";
+            this.partialpressure.Location = new System.Drawing.Point(368, 56);
+            this.partialpressure.Image = null;
+            this.partialpressure.TabIndex = 15;
+            this.partialpressure.Size = new System.Drawing.Size(48, 16);
+            this.partialpressure.Text = "Partial";
+			this.partialpressure.ContextMenu = cm;
+			//this.partialpressureNitrogen.ContextMenu.MenuItems[1]. += new System.EventHandler (this.menuItem1_ItemClick);
+
+			cm.MenuItems.Add ("Nitrogen");
+			cm.MenuItems.Add ("Hydrogen");
+			cm.MenuItems.Add ("Ammoniak");
+		
+			// 
             // label22
             // 
             this.label22.Name = "label22";
@@ -294,6 +301,7 @@ namespace P2
             this.gasConst.Image = null;
             this.gasConst.TabIndex = 21;
             this.gasConst.Size = new System.Drawing.Size(56, 16);
+            this.gasConst.Text = gasConstant.ToString ();
             this.gasConst.Text = "gasConst";
             // 
             // label27
@@ -330,6 +338,7 @@ namespace P2
             this.Volume.Image = null;
             this.Volume.TabIndex = 24;
             this.Volume.Size = new System.Drawing.Size(56, 16);
+            this.Volume.Text = volume.ToString ();
             this.Volume.Text = "Volumen";
             // 
             // label31
@@ -368,7 +377,7 @@ namespace P2
             this.Controls.Add(this.label18);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.label20);
-            this.Controls.Add(this.partialpressureNitrogen);
+            this.Controls.Add(this.partialpressure);
             this.Controls.Add(this.label22);
             this.Controls.Add(this.molarmassNitrogen);
             this.Controls.Add(this.label23);
@@ -402,7 +411,7 @@ namespace P2
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Label partialpressureNitrogen;
+        private System.Windows.Forms.Label partialpressure;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label molarmassNitrogen;
         private System.Windows.Forms.Label label23;

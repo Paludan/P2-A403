@@ -12,6 +12,8 @@ namespace P2
 {
     public partial class CalcForm : Form
     {
+		ContextMenu cm = new ContextMenu();
+
 		private const double gasConstant = 8.3145;
 		private const double preExpontentialFactor = 884900000000000;
 		private const double volume = 50000; // liter
@@ -21,7 +23,12 @@ namespace P2
 		public CalcForm(Synthesis synth)
         {
 			this._synth = synth;
+
             InitializeComponent();
+
+			this.cm.MenuItems[0].Click +=  menuItem1_ItemClick;
+			this.cm.MenuItems[1].Click +=  menuItem2_ItemClick;
+			this.cm.MenuItems[2].Click +=  menuItem3_ItemClick;
         }
 
 		public void UpdateData(){
@@ -29,8 +36,38 @@ namespace P2
 			this.molarmassNitrogen.Text = _synth.currentData.nNitrogen.ToString();
 			this.gasConst.Text = gasConstant.ToString ();
 			this.Volume.Text = volume.ToString ();
-			this.partialpressureNitrogen.Text = ((_synth.currentData.nNitrogen * _synth.currentData.temperature * gasConstant)
+			this.partialpressure.Text = ((_synth.currentData.nNitrogen * _synth.currentData.temperature * gasConstant)
 				/ volume).ToString ();
 		}
-    }
+
+		private void menuItem1_ItemClick (object sender, System.EventArgs e)
+		{	
+			this.temperature.Text = _synth.currentData.temperature.ToString();
+			this.molarmassNitrogen.Text = _synth.currentData.nNitrogen.ToString();
+			this.gasConst.Text = gasConstant.ToString ();
+			this.Volume.Text = volume.ToString ();
+			this.partialpressure.Text = ((_synth.currentData.nNitrogen * _synth.currentData.temperature * gasConstant)
+			/ volume).ToString ();
+		}
+    
+		private void menuItem2_ItemClick (object sender, System.EventArgs e)
+		{	
+			this.temperature.Text = _synth.currentData.temperature.ToString();
+			this.molarmassNitrogen.Text = _synth.currentData.nHydrogen.ToString();
+			this.gasConst.Text = gasConstant.ToString ();
+			this.Volume.Text = volume.ToString ();
+			this.partialpressure.Text = ((_synth.currentData.nHydrogen * _synth.currentData.temperature * gasConstant)
+			/ volume).ToString ();
+		}
+
+		private void menuItem3_ItemClick (object sender, System.EventArgs e)
+		{	
+			this.temperature.Text = _synth.currentData.temperature.ToString();
+			this.molarmassNitrogen.Text = _synth.currentData.nAmmonia.ToString();
+			this.gasConst.Text = gasConstant.ToString ();
+			this.Volume.Text = volume.ToString ();
+			this.partialpressure.Text = ((_synth.currentData.nAmmonia * _synth.currentData.temperature * gasConstant)
+			/ volume).ToString ();
+		}
+	}
 }
