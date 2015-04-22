@@ -51,18 +51,18 @@ namespace P2
         /// </summary>
         public double Time
         {
-            get { return currentData.time; }
+            get { return currentData.time / 1000; }
             set
             {
                 if (value >= 0)
                 {
                     if (value > Time)
                     {
-                        FastForward(value);
+                        FastForward(value*1000);
                     }
                     else
                     {
-                        currentData = simulationData.getDataPoint(value);
+                        currentData = simulationData.getDataPoint(value*1000);
                     }
                 }
             }
@@ -140,11 +140,12 @@ namespace P2
         private void Update()
         {
             currentData.time += interval * Scale;
-            simulationData.addDataPoint(SimulationModel.calculateDataPoint(interval * Scale));
+            simulationData.addDataPoint( SimulationModel.calculateDataPoint((interval * Scale) / 1000) );
             currentData = simulationData.SimulationData.Last();
             if (selected)
             {
                 _graphHandler.Update(currentData);
+                Console.WriteLine("I'm updating! Time: " + Time);
             }
         }
 
