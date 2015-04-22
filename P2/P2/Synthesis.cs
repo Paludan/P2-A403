@@ -140,8 +140,9 @@ namespace P2
         private void Update()
         {
             currentData.time += interval * Scale;
-            simulationData.addDataPoint(SimulationModel.calculateDataPoint(interval * Scale));
+            simulationData.addDataPoint(SimulationModel.calculateDataPoint((interval * Scale)/1000));
             currentData = simulationData.SimulationData.Last();
+            currentData.time *= 1000;
             if (selected)
             {
                 _graphHandler.Update(currentData);

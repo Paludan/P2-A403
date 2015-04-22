@@ -12,7 +12,7 @@ namespace P2
 	{ 
 		/* the following 3 constant variables are constants that cannot be regulated */
 		private const double gasConstant = 8.3145;
-		private const double preExpontentialFactor = 884900000000000;
+		private const double preExpontentialFactor = 10000000;
 		private const double volume = 50000; // liter
 		private const double entalpi = -91800;
 		private const double entropi = -198.05;
@@ -101,7 +101,7 @@ namespace P2
 		/* calulates the reactionrate constant */
 		private double calculateReactionRateConstant(double temperature, double activationEnergy)
 		{
-			double RRConst = preExpontentialFactor * Math.Pow(Math.E, (activationEnergy/(gasConstant*temperature)));
+			double RRConst = preExpontentialFactor * Math.Pow(Math.E, (activationEnergy / (gasConstant * temperature)));
 
 			return RRConst;
 		}
@@ -159,9 +159,8 @@ namespace P2
 		/// <param name="deltaTime">Delta time.</param>
 		private double calculateDeltaNitrogen (double pNitrogen, double RRConst, double deltaTime)
 		{
-			double deltaNitrogen = pNitrogen * RRConst * deltaTime;
-
-			return deltaNitrogen;
+			double nextPNitrogen = pNitrogen * Math.Pow(Math.E, -RRConst * deltaTime);
+            return pNitrogen - nextPNitrogen;
 		}
 
 		private void UpdatePartialPressures(double deltaNitrogen, ref double pNitrogen, ref double pHydrogen, ref double pAmmonia){

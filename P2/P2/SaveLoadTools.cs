@@ -13,19 +13,19 @@ namespace P2
     public static class SaveLoadTools
     {
         static string dir = Directory.GetCurrentDirectory();
-        public static string path = dir + "\\Simulation Data";
-        static string[] files = Directory.GetFiles(path, "*.eqsave");
-        static int i = files.Length + 1;
+        public static string path = dir + @"\Simulation Data";
         /// <summary>
         /// Saves a list of DataPoints to a numbered savefile
         /// </summary>
         /// <param name="CurrentDataList">The list to be saved</param>
         public static void save(List<DataPoint> CurrentDataList)
         {
+            string[] files = Directory.GetFiles(path, "*.eqsave");
+            int i = files.Length + 1;
             DataToSerialize SerializedData = new DataToSerialize();
             SerializedData.DataList[0] = CurrentDataList;
             Serializer DataSerializer = new Serializer();
-            DataSerializer.SerializeObject(path + "SaveData" + i + ".eqsave", SerializedData);
+            DataSerializer.SerializeObject(@"Simulation Data\SaveData" + i + ".eqsave", SerializedData);
         }
         /// <summary>
         /// Saves a list of lists of DataPoints to a numbered savefile
@@ -33,10 +33,12 @@ namespace P2
         /// <param name="CurrentDataList">The list of lists to be saved</param>
         public static void save(List<List<DataPoint>> CurrentDataList)
         {
+            string[] files = Directory.GetFiles(path, "*.eqsave");
+            int i = files.Length + 1;
             DataToSerialize SerializedData = new DataToSerialize();
             SerializedData.DataList = CurrentDataList;
             Serializer DataSerializer = new Serializer();
-            DataSerializer.SerializeObject(path + "SaveData" + i + ".eqsave", SerializedData);
+            DataSerializer.SerializeObject(@"Simulation Data\SaveData" + i + ".eqsave", SerializedData);
         }
         /// <summary>
         /// Loads a specific savefile and returns the stored data
