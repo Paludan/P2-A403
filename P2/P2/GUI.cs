@@ -73,7 +73,7 @@ namespace P2
         /// <param name="e">The key pressed when typing in the textbox</param>
         private void intTextbox(KeyPressEventArgs e)
         {
-            if (!char.IsNumber(e.KeyChar))
+            if (!char.IsNumber(e.KeyChar) && e.KeyChar != '.')
                 e.Handled = e.KeyChar != (char)Keys.Back;
         }
         
@@ -86,11 +86,11 @@ namespace P2
         /// <param name="hScrollBar">The scrollbar which is to be controlled</param>
         private void textChanged(TextBox textBox, HScrollBar hScrollBar)
         {
-            if (!textBox.Text.Equals("") && int.Parse(textBox.Text) != 0)
+            if (!textBox.Text.Equals("") && double.Parse(textBox.Text) != 0)
             {
                 textBox.Text = textBox.Text.ToString().TrimStart('0');
-                if (int.Parse(textBox.Text) <= hScrollBar.Maximum)
-                    hScrollBar.Value = int.Parse(textBox.Text);
+                if (double.Parse(textBox.Text) <= hScrollBar.Maximum)
+                    hScrollBar.Value = (int) double.Parse(textBox.Text);
                 else
                 {
                     hScrollBar.Value = hScrollBar.Maximum;
@@ -286,12 +286,15 @@ namespace P2
             }
         }
 
+        /// <summary>
+        /// If the button is pushed the curser and forms x-value is saved to two integers
+        /// It is then checked if the location is within the area where the close "button" is
+        /// and if that is the case it removes the button furthest to the right and moves the addButton
+        /// </summary>
         private void chooseGraph(object sender, EventArgs e)
         {
             int X = Cursor.Position.X,
-                Y = Cursor.Position.Y,
-                Sx = this.Location.X,
-                Sy = this.Location.Y;
+                Sx = this.Location.X;
             if ((55 + X - Sx) % 75 <= 65 && (55 + X - Sx) % 75 >= 52 && graphTaps >= 0)
             {
                 this.pTabs.Controls.Remove(buttons[--graphTaps]);
@@ -320,26 +323,36 @@ namespace P2
             autoScaleText(helpText);
         }
 
-        private void saveGraph_Click(object sender, EventArgs e)
-        {
-            SaveLoadTools.saveToImage(pGraphArea);
-        }
-
+        /// <summary>
+        /// 
+        /// </summary>
         private void FurtherInfoBox_Click(object sender, EventArgs e)
         {
             String[] helpText = helper.Next();
             updateHelpText(helpText[0], helpText[1]);
         }
 
+        /// <summary>
+        /// Saves the current graph to a .png file
+        /// </summary>
+        private void saveGraph_Click(object sender, EventArgs e)
+        {
+            SaveLoadTools.saveToImage(pGraphArea);
+        }
+
+        /// <summary>
+        /// If checkbox is checked the calculations is made with catalyst
+        /// If it is not checked the calculations is made without catalyst
+        /// </summary>
         private void checkBoxCatalyst_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBoxCatalyst.CheckState.ToString() == "Unchecked")
+            if (checkBoxCatalyst.Checked)
             {
-                //Model.calculateActivationEnergy(false);
+                //Model.calculateActivationEnergy(true);
             }   
             else
             {
-                //Model.calculateActivationEnergy(true);
+                //Model.calculateActivationEnergy(false);
             }
         }
     }
