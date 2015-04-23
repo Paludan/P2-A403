@@ -206,6 +206,15 @@ namespace P2Graph
         }
 
 		/// <summary>
+		/// Events for updating graphranges, when graph is drawn.
+		/// </summary>
+		/// <param name="sender">Sender.</param>
+		/// <param name="e">E.</param>
+		public void Event_PaintContent(object sender, PaintEventArgs e){
+			PaintContent ();
+		}
+
+		/// <summary>
 		/// Updates the displayed graph by drawing last point.
 		/// </summary>
 		/// <param name="updateGraph">The graph being updated.</param>

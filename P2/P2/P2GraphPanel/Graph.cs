@@ -144,6 +144,7 @@ namespace P2Graph
 		/// </summary>
 		/// <param name="painter">Painter.</param>
 		public void DrawLastLine(Graphics painter){
+			points [points.Count - 1].Draw (painter);
 			painter.DrawLine (new Pen (_colorOfGraph, 1), points [points.Count - 2], points [points.Count - 1]); 
 		}
 
@@ -157,17 +158,17 @@ namespace P2Graph
 			bool invalidated = false;
 
 			if (X > _master.xMaxRange) {
-				_master.Invalidate ();
-				_master.PaintContent ();
 				invalidated = true;
 			}
 			if (Y > _master.yMaxRange) {
-				_master.Invalidate ();
-				_master.PaintContent ();
 				invalidated = true;
 			}
 
-			if (!invalidated) {
+			if (invalidated) {
+				_master.Paint += _master.Event_PaintContent;
+				_master.Invalidate ();
+			} else {
+				_master.Paint -= _master.Event_PaintContent;
 				_master.UpdateGraph (this);
 			}
 		}
