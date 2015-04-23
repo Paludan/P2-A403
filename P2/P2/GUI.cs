@@ -28,6 +28,10 @@ namespace P2
             startUpTaps();
             startUpInfo();
             correctTextSize();
+
+            //Eventhandling til pGraphArea
+            this.pGraphArea.Paint += pGraphArea.OnInvalidateEvent;
+            this.pGraphArea.Invalidate();
         }
 
         #region Startup
@@ -73,10 +77,6 @@ namespace P2
                 else if (formItem.GetType() == typeof(Label) || formItem.GetType() == typeof(CheckBox))
                     autoScaleText(formItem);
             }
-
-			//Eventhandling til pGraphArea
-			this.pGraphArea.Paint += pGraphArea.OnInvalidateEvent;
-			this.pGraphArea.Invalidate();
         }
 
         /// <summary>
@@ -460,7 +460,49 @@ namespace P2
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            colorChoice(comboBox1, graph.nitrogen);
+        }
 
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            colorChoice(comboBox2, graph.hydrogen);
+        }
+
+        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            colorChoice(comboBox3, graph.ammonia);
+        }
+
+        private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            colorChoice(comboBox4, graph.temperature);
+        }
+
+        private void colorChoice(ComboBox comboBox, graph graphToDraw)
+        {
+            switch ((colors) comboBox.SelectedItem)
+            {
+                case colors.Rød:
+                    synth._graphHandler.ChangeGraphColor(Color.Red, graphToDraw);
+                    break;
+                case colors.Grøn:
+                    synth._graphHandler.ChangeGraphColor(Color.Green, graphToDraw);
+                    break;
+                case colors.Blå:
+                    synth._graphHandler.ChangeGraphColor(Color.Blue, graphToDraw);
+                    break;
+                case colors.Lilla:
+                    synth._graphHandler.ChangeGraphColor(Color.Purple, graphToDraw);
+                    break;
+                case colors.Sort:
+                    synth._graphHandler.ChangeGraphColor(Color.Black, graphToDraw);
+                    break;
+                case colors.Gennemsigtig:
+                    synth._graphHandler.ChangeGraphColor(Color.Transparent, graphToDraw);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
