@@ -82,7 +82,7 @@ namespace P2
         {
             simulationData = new DataHandler();
             SimulationModel = new Model(currentData);
-            timer = new System.Timers.Timer(100);
+            timer = new System.Timers.Timer(1000);
             timer.Elapsed += this.OnElapsed;
             _graphHandler = new GraphHandler(graphPanel);
         }
@@ -140,13 +140,12 @@ namespace P2
         private void Update()
         {
             currentData.time += interval * Scale;
-            simulationData.addDataPoint( SimulationModel.calculateDataPoint((interval * Scale) / 1000) );
+            simulationData.addDataPoint( SimulationModel.calculateDataPoint((interval * Scale) /1000 ) );
             currentData = simulationData.SimulationData.Last();
             currentData.time *= 1000;
             if (selected)
             {
                 _graphHandler.Update(currentData);
-                Console.WriteLine("I'm updating! Time: " + Time);
             }
         }
 

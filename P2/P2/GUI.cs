@@ -236,7 +236,7 @@ namespace P2
         public void Update(Object source,  System.Timers.ElapsedEventArgs e)
         {
             //BackColor = Color.FromArgb(rand.Next(255), rand.Next(255), rand.Next(255));
-            numericUpDown1.Value = (decimal)synth.Time/1000;
+            numericUpDown1.Value = (decimal)synth.Time;
 
             textBox1.Text = synth.currentData.nNitrogen.ToString();
             textBox2.Text = synth.currentData.nHydrogen.ToString();
