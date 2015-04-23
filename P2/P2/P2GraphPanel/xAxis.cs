@@ -4,6 +4,9 @@ using System.Drawing;
 
 namespace P2Graph
 {
+	/// <summary>
+	/// X axis.
+	/// </summary>
 	public class xAxis : AbstractAxis
 	{
 		/// <summary>
@@ -16,6 +19,7 @@ namespace P2Graph
 		{
 		}
 
+		#region Calculations
 		/// <summary>
 		/// Calculates the axis ends.
 		/// </summary>
@@ -26,19 +30,27 @@ namespace P2Graph
 		}
 
 		/// <summary>
-		/// Draws the arrow ends.
+		/// Calculates the next partition.
 		/// </summary>
-		/// <param name="g">The graphics component to draw with.</param>
-		protected override void DrawArrowEnds (Graphics g)
-		{
-			PointF[] pointList = new PointF[3] { new PointF(_endsAt.RealX + 15, _endsAt.RealY), 
-												 new PointF (_endsAt.RealX, _endsAt.RealY - 7),
-												 new PointF (_endsAt.RealX, _endsAt.RealY + 7)};
+		/// <returns>The next partition.</returns>
+		/// <param name="currentPoint">Current point.</param>
+		protected override GraphPoint CalcNextPartition(GraphPoint currentPoint){
+			currentPoint.RealX += Constants.xPixelScale;
 
-			g.FillPolygon (Brushes.Black, pointList);
+			return currentPoint;
 		}
 
-		#region IDrawable implementation
+		/// <summary>
+		/// Scale this instance.
+		/// </summary>
+		public void Scale ()
+		{
+			float PixelLengthOfAxis = this._endsAt.RealX - this._beginsAt.RealX;
+			Constants.xPixelScale = PixelLengthOfAxis / (float) Math.Ceiling(CalculateAxisRange());
+		}
+		#endregion
+
+		#region Draw-methods
 		/// <summary>
 		/// Draw the xAxis to a panel.
 		/// </summary>
@@ -60,17 +72,18 @@ namespace P2Graph
 				}
 			}
 		}
-		#endregion
 
 		/// <summary>
-		/// Calculates the next partition.
+		/// Draws the arrow ends.
 		/// </summary>
-		/// <returns>The next partition.</returns>
-		/// <param name="currentPoint">Current point.</param>
-		protected override GraphPoint CalcNextPartition(GraphPoint currentPoint){
-			currentPoint.RealX += Constants.xPixelScale;
+		/// <param name="g">The graphics component to draw with.</param>
+		protected override void DrawArrowEnds (Graphics g)
+		{
+			PointF[] pointList = new PointF[3] { new PointF(_endsAt.RealX + 15, _endsAt.RealY), 
+				new PointF (_endsAt.RealX, _endsAt.RealY - 7),
+				new PointF (_endsAt.RealX, _endsAt.RealY + 7)};
 
-			return currentPoint;
+			g.FillPolygon (Brushes.Black, pointList);
 		}
 
 		/// <summary>
@@ -84,17 +97,12 @@ namespace P2Graph
 			//Calculates the ends of the partition-line
 			beginning.RealY -= 4;
 			end.RealY += 4;
-			
+
 			DrawLine (beginning, end, painter, Color.Black);
 			end.RealY += Constants.partitionOffset;
 			DrawNumber(painter, end, partitionNumber.ToString());
 		}
-
-		public void Scale ()
-		{
-			float PixelLengthOfAxis = this._endsAt.RealX - this._beginsAt.RealX;
-			Constants.xPixelScale = PixelLengthOfAxis / (float) Math.Ceiling(CalculateAxisRange());
-		}
+		#endregion
 	}
 }
 

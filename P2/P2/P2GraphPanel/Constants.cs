@@ -3,6 +3,9 @@ using System.Drawing;
 
 namespace P2Graph
 {
+	/// <summary>
+	/// Constants used in the calculations by P2Graph.
+	/// </summary>
 	public static class Constants
 	{
 		public static readonly float xOffset = 0.04f;

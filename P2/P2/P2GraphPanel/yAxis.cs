@@ -16,6 +16,28 @@ namespace P2Graph
 		{
 		}
 
+		#region Calculations
+		/// <summary>
+		/// Scale this instance.
+		/// </summary>
+		public void Scale ()
+		{
+			float PixelLengthOfAxis = this._beginsAt.RealY - this._endsAt.RealY;
+			Constants.yPixelScale = PixelLengthOfAxis / (float) Math.Ceiling(CalculateAxisRange());
+		}
+
+		/// <summary>
+		/// Calculates the next partition.
+		/// </summary>
+		/// <returns>The next partition.</returns>
+		/// <param name="currentPoint">Current point.</param>
+		protected override GraphPoint CalcNextPartition (GraphPoint currentPoint)
+		{
+			currentPoint.RealY -= Constants.yPixelScale;
+
+			return currentPoint;
+		}
+
 		/// <summary>
 		/// Calculates the axis ends.
 		/// </summary>
@@ -24,21 +46,9 @@ namespace P2Graph
 			this._endsAt.RealX = _MGP.O.X;
 			this._endsAt.RealY = _MGP.Height * (1 - Constants.endOffset);
 		}
+		#endregion
 
-		/// <summary>
-		/// Draws the arrow ends.
-		/// </summary>
-		/// <param name="g">The graphics component with which to draw.</param>
-		protected override void DrawArrowEnds (Graphics g)
-		{
-			PointF[] pointList = new PointF[3] { new PointF(_endsAt.RealX, _endsAt.RealY - 15), 
-				new PointF (_endsAt.RealX - 7, _endsAt.RealY),
-				new PointF (_endsAt.RealX + 7, _endsAt.RealY)};
-
-			g.FillPolygon (Brushes.Black, pointList);
-		}
-
-		#region IDrawable implementation
+		#region Draw-methods
 		/// <summary>
 		/// Draw the axis with a specified Graphics object.
 		/// </summary>
@@ -60,14 +70,6 @@ namespace P2Graph
 				}
 			}
 		}
-		#endregion
-
-		protected override GraphPoint CalcNextPartition (GraphPoint currentPoint)
-		{
-			currentPoint.RealY -= Constants.yPixelScale;
-
-			return currentPoint;
-		}
 
 		protected override void DrawPartition (Graphics painter, GraphPoint centerPoint, int partitionNumber)
 		{
@@ -82,11 +84,21 @@ namespace P2Graph
 			DrawNumber(painter, end, partitionNumber.ToString());
 		}
 
-		public void Scale ()
+		/// <summary>
+		/// Draws the arrow ends.
+		/// </summary>
+		/// <param name="g">The graphics component with which to draw.</param>
+		protected override void DrawArrowEnds (Graphics g)
 		{
-			float PixelLengthOfAxis = this._beginsAt.RealY - this._endsAt.RealY;
-			Constants.yPixelScale = PixelLengthOfAxis / (float) Math.Ceiling(CalculateAxisRange());
+			PointF[] pointList = new PointF[3] { new PointF(_endsAt.RealX, _endsAt.RealY - 15), 
+				new PointF (_endsAt.RealX - 7, _endsAt.RealY),
+				new PointF (_endsAt.RealX + 7, _endsAt.RealY)};
+
+			g.FillPolygon (Brushes.Black, pointList);
 		}
+		#endregion
+
+
 	}
 }
 

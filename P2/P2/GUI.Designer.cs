@@ -102,8 +102,7 @@ namespace P2
             this.pGraphArea.Name = "pGraphArea";
             this.pGraphArea.Size = new System.Drawing.Size(630, 510);
             this.pGraphArea.TabIndex = 1;
-            this.pGraphArea.xMaxRange = 1;
-            this.pGraphArea.yMaxRange = 1;
+			this.pGraphArea.BackColor = Color.WhiteSmoke;
             // 
             // lTemperature
             // 

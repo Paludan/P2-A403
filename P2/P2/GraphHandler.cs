@@ -49,6 +49,5 @@ namespace P2
             _pHydrogen.AddAndDraw(data.time, data.nHydrogen);
             _pNitrogen.AddAndDraw(data.time, data.nNitrogen);
         }
-
     }
 }

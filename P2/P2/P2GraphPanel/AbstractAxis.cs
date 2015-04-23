@@ -6,9 +6,16 @@ namespace P2Graph
 {
 	public abstract class AbstractAxis
 	{
+		#region Properties
 		protected string _name;
+		protected int _minRange;
+		protected int _maxRange;
+		protected GraphPoint _beginsAt;
+		protected GraphPoint _endsAt;
+		protected MasterGraphPanel _MGP;
+
 		/// <summary>
-		/// Gets the name.
+		/// Gets and sets the name.
 		/// </summary>
 		/// <value>The name of the axis.</value>
 		public string name
@@ -17,7 +24,6 @@ namespace P2Graph
 			set { _name = value; }
 		}
 
-		protected int _minRange;
 		/// <summary>
 		/// Gets or sets the minimum range of the axis.
 		/// </summary>
@@ -33,8 +39,7 @@ namespace P2Graph
 				}
 			}
 		}
-
-		protected int _maxRange;
+			
 		/// <summary>
 		/// Gets or sets the max range of the axis.
 		/// </summary>
@@ -50,8 +55,7 @@ namespace P2Graph
 				}
 			}
 		}
-
-		protected GraphPoint _beginsAt;
+			
 		/// <summary>
 		/// Gets the <see cref="P2Graph.GraphPoint"/> where the axis begins.
 		/// </summary>
@@ -62,12 +66,10 @@ namespace P2Graph
 		/// <summary>
 		/// Gets the <see cref="P2Graph.GraphPoint"/> where the axis ends.
 		/// </summary>
-		protected GraphPoint _endsAt;
 		public GraphPoint endsAt {
 			get { return _endsAt; }
 		}
-
-		protected MasterGraphPanel _MGP;
+		#endregion
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="P2Graph.AbstractAxis"/> class.
@@ -87,14 +89,11 @@ namespace P2Graph
 			CalculateAxisEnds ();
 		}
 
+		#region Calculations
 		/// <summary>
 		/// Calculates the axis ends.
 		/// </summary>
 		protected abstract void CalculateAxisEnds();
-		/// <summary>
-		/// Draws the arrow ends.
-		/// </summary>
-		protected abstract void DrawArrowEnds(Graphics g);
 
 		/// <summary>
 		/// Calculates the next partition.
@@ -102,48 +101,6 @@ namespace P2Graph
 		/// <returns>The next partition.</returns>
 		/// <param name="currentPoint">Current point.</param>
 		protected abstract GraphPoint CalcNextPartition (GraphPoint currentPoint);
-
-		/// <summary>
-		/// Draws the partition.
-		/// </summary>
-		/// <param name="painter">Graphics with reference to panel.</param>
-		/// <param name="centerPoint">Center point.</param>
-		protected abstract void DrawPartition (Graphics painter, GraphPoint centerPoint, int partitionNumber);
-
-		/// <summary>
-		/// Draws a line between two points.
-		/// </summary>
-		/// <param name="P1">The starting <see cref="P2Graph.GraphPoint"/> of the line.</param>
-		/// <param name="P2">The ending <see cref="P2Graph.GraphPoint"/> of the line.</param>
-		/// <param name="painter">The graphics object with which to draw.</param>
-		/// <param name="col">Color of the graph</param>
-		protected virtual void DrawLine(GraphPoint P1, GraphPoint P2, Graphics painter, Color col){
-			painter.DrawLine (new Pen (col, 2), P1, P2);
-		}
-
-		/// <summary>
-		/// Draws a number to the panel.
-		/// </summary>
-		/// <param name="painter">Painter.</param>
-		/// <param name="centerPoint">Center point of the string.</param>
-		/// <param name="toDraw">The string being drawn.</param>
-		protected void DrawNumber(Graphics painter, GraphPoint centerPoint, string toDraw){
-			Rectangle Rec= new Rectangle ((int) centerPoint.RealX, (int) centerPoint.RealY, 25, 20);
-			Rec.X -= (Rec.Width / 2);
-			Rec.Y -= (Rec.Height / 2);
-			painter.DrawString(toDraw, Constants.GraphFont, Brushes.Black, Rec);
-		}
-		/// <summary>
-		/// Draws the number.
-		/// </summary>
-		/// <param name="painter">Painter.</param>
-		/// <param name="x">The x-coordinate.</param>
-		/// <param name="y">The y-coordinate.</param>
-		/// <param name="toDraw">The string to draw.</param>
-		protected void DrawNumber(Graphics painter, float x, float y, string toDraw)
-		{
-			DrawNumber (painter, new GraphPoint (new PointF(x, y), _MGP), toDraw);
-		}
 
 		/// <summary>
 		/// Calculates the axis range.
@@ -160,5 +117,58 @@ namespace P2Graph
 		protected int CalculateDistanceBetweenPartitions(){
 			return (_maxRange / Constants.maxNumberPartitions) + 1;
 		}
+		#endregion
+
+		#region Draw-methods
+		/// <summary>
+		/// Draws the number.
+		/// </summary>
+		/// <param name="painter">Painter.</param>
+		/// <param name="x">The x-coordinate.</param>
+		/// <param name="y">The y-coordinate.</param>
+		/// <param name="toDraw">The string to draw.</param>
+		protected void DrawNumber(Graphics painter, float x, float y, string toDraw)
+		{
+			DrawNumber (painter, new GraphPoint (new PointF(x, y), _MGP), toDraw);
+		}
+
+		/// <summary>
+		/// Draws a number to the panel.
+		/// </summary>
+		/// <param name="painter">Painter.</param>
+		/// <param name="centerPoint">Center point of the string.</param>
+		/// <param name="toDraw">The string being drawn.</param>
+		protected void DrawNumber(Graphics painter, GraphPoint centerPoint, string toDraw){
+			Rectangle Rec= new Rectangle ((int) centerPoint.RealX, (int) centerPoint.RealY, 25, 20);
+			Rec.X -= (Rec.Width / 2);
+			Rec.Y -= (Rec.Height / 2);
+			painter.DrawString(toDraw, Constants.GraphFont, Brushes.Black, Rec);
+		}
+
+		/// <summary>
+		/// Draws a line between two points.
+		/// </summary>
+		/// <param name="P1">The starting <see cref="P2Graph.GraphPoint"/> of the line.</param>
+		/// <param name="P2">The ending <see cref="P2Graph.GraphPoint"/> of the line.</param>
+		/// <param name="painter">The graphics object with which to draw.</param>
+		/// <param name="col">Color of the graph</param>
+		protected virtual void DrawLine(GraphPoint P1, GraphPoint P2, Graphics painter, Color col){
+			painter.DrawLine (new Pen (col, 2), P1, P2);
+		}
+
+		/// <summary>
+		/// Draws the arrow ends.
+		/// </summary>
+		/// <param name="g">The graphics component.</param>
+		protected abstract void DrawArrowEnds(Graphics g);
+
+		/// <summary>
+		/// Draws the partition.
+		/// </summary>
+		/// <param name="painter">Graphics component.</param>
+		/// <param name="centerPoint">Center point.</param>
+		/// <param name="partitionNumber">Partition number.</param>
+		protected abstract void DrawPartition (Graphics painter, GraphPoint centerPoint, int partitionNumber);
+		#endregion
 	}
 }

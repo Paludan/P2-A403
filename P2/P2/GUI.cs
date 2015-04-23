@@ -28,9 +28,6 @@ namespace P2
             startUpTaps();
             startUpInfo();
             correctTextSize();
-
-            //midlertidig graf
-            this.pGraphArea.Paint += new PaintEventHandler(pGraphArea.EventHandler_RePaint);
         }
 
         private void startUpTaps()
@@ -64,6 +61,10 @@ namespace P2
                 else if (formItem.GetType() == typeof(Label) || formItem.GetType() == typeof(CheckBox))
                     autoScaleText(formItem);
             }
+
+			//Eventhandling til pGraphArea
+			this.pGraphArea.Paint += pGraphArea.OnInvalidateEvent;
+			this.pGraphArea.Invalidate();
         }
 
         private void autoScaleText(Control label){
