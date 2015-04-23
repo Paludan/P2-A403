@@ -40,7 +40,7 @@ namespace P2Graph
 		/// <value>The color.</value>
 		public Color color {
 			get { return _colorOfGraph; }
-			set { _colorOfGraph = value; }
+			set { _colorOfGraph = value; this.Draw (_master.CreateGraphics()); }
 		}
 
 		/// <summary>

@@ -26,6 +26,9 @@ namespace P2
             InitGraphs();
         }
 
+		/// <summary>
+		/// Initialized the graphs.
+		/// </summary>
         private void InitGraphs()
         {
             _temperature = new Graph("Temperatur", Color.Red);
@@ -49,25 +52,54 @@ namespace P2
 		public void ChangeGraphColor(Color col, graph enumGraph){
 			switch (enumGraph) {
 			case graph.ammonia:
-				_pAmmonia.color = col;
+				if (col == Color.Transparent) {
+					_pAmmonia.isActive = false;
+				} else {
+					_pAmmonia.color = col;
+					_pAmmonia.isActive = true;
+				}
 				break;
 			case graph.hydrogen:
-				_pHydrogen.color = col;
+				if (col == Color.Transparent) {
+					_pHydrogen.isActive = false;
+				} else {
+					_pHydrogen.color = col;
+					_pHydrogen.isActive = true;
+				}
 				break;
 			case graph.nitrogen:
-				_pNitrogen.color = col;
+				if (col == Color.Transparent) {
+					_pNitrogen.isActive = false;
+				} else {
+					_pNitrogen.color = col;
+					_pNitrogen.isActive = true;
+				}
 				break;
 			case graph.pressure:
-				_pressure.color = col;
+				if (col == Color.Transparent) {
+					_pressure.isActive = false;
+				} else {
+					_pressure.color = col;
+					_pressure.isActive = true;
+				}
 				break;
 			case graph.temperature:
-				_temperature.color = col;
+				if (col == Color.Transparent) {
+					_temperature.isActive = false;
+				} else {
+					_temperature.color = col;
+					_temperature.isActive = true;
+				}
 				break;
 			default:
 				throw new IndexOutOfRangeException();
 			}
 		}
 
+		/// <summary>
+		/// Update the graphs with new date.
+		/// </summary>
+		/// <param name="data">Datapoint to update with.</param>
         public void Update(DataPoint data)
         {
             _pressure.AddAndDraw(data.time, data.pressure);
