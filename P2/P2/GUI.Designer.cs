@@ -95,6 +95,14 @@ namespace P2
             this.pSimulationArea.Name = "pSimulationArea";
             this.pSimulationArea.Size = new System.Drawing.Size(630, 510);
             this.pSimulationArea.TabIndex = 0;
+            //
+            // pGraphArea
+            // 
+            this.pGraphArea.Location = new System.Drawing.Point(0, 0);
+            this.pGraphArea.Name = "pGraphArea";
+            this.pGraphArea.Size = new System.Drawing.Size(630, 510);
+            this.pGraphArea.TabIndex = 1;
+			this.pGraphArea.BackColor = Color.WhiteSmoke;
             // 
             // lTemperature
             // 
@@ -570,15 +578,6 @@ namespace P2
             this.hInfoBox.Size = new System.Drawing.Size(85, 20);
             this.hInfoBox.TabIndex = 11;
             this.hInfoBox.Text = "Vejledning";
-            // 
-            // pGraphArea
-            // 
-            this.pGraphArea.Location = new System.Drawing.Point(0, 0);
-            this.pGraphArea.Name = "pGraphArea";
-            this.pGraphArea.Size = new System.Drawing.Size(630, 510);
-            this.pGraphArea.TabIndex = 1;
-            this.pGraphArea.xMaxRange = 1;
-            this.pGraphArea.yMaxRange = 1;
             // 
             // GUI
             // 

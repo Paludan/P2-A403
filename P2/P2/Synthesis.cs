@@ -16,7 +16,7 @@ namespace P2
     /// </summary>
     public class Synthesis
     {
-        GraphHandler _graphHandler;
+        public GraphHandler _graphHandler;
         DataHandler simulationData;
         Model SimulationModel;
         public bool running = false, selected = true;

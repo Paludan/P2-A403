@@ -15,7 +15,6 @@ namespace P2
             Directory.CreateDirectory(dir);
             GUI gui = new GUI();
             gui.ShowDialog();
-            
         }
     }
 }

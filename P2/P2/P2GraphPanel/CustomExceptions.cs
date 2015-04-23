@@ -43,12 +43,12 @@ namespace P2Graph
 
 	
 	[Serializable]
-	public class AxisnameTooLongException : ArgumentException
+	public class NameTooLongException : ArgumentException
 	{
 		/// <summary>
 		/// Initializes a new instance of the <see cref="T:AxisnameTooLongException"/> class
 		/// </summary>
-		public AxisnameTooLongException ()
+		public NameTooLongException ()
 			: base("The maximum lenght of axis-names is 12 characters")
 		{
 		}
@@ -57,7 +57,7 @@ namespace P2Graph
 		/// Initializes a new instance of the <see cref="T:AxisnameTooLongException"/> class
 		/// </summary>
 		/// <param name="message">A <see cref="T:System.String"/> that describes the exception. </param>
-		public AxisnameTooLongException (string message) : base (message)
+		public NameTooLongException (string message) : base (message)
 		{
 		}
 
@@ -66,7 +66,7 @@ namespace P2Graph
 		/// </summary>
 		/// <param name="message">A <see cref="T:System.String"/> that describes the exception. </param>
 		/// <param name="inner">The exception that is the cause of the current exception. </param>
-		public AxisnameTooLongException (string message, Exception inner) : base (message, inner)
+		public NameTooLongException (string message, Exception inner) : base (message, inner)
 		{
 		}
 
@@ -75,7 +75,7 @@ namespace P2Graph
 		/// </summary>
 		/// <param name="context">The contextual information about the source or destination.</param>
 		/// <param name="info">The object that holds the serialized object data.</param>
-		protected AxisnameTooLongException (System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) : base (info, context)
+		protected NameTooLongException (System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) : base (info, context)
 		{
 		}
 	}
