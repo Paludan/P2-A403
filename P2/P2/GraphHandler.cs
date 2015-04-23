@@ -9,6 +9,8 @@ using P2Graph;
 
 namespace P2
 {
+	public enum graph {temperature, pressure, ammonia, hydrogen, nitrogen}
+
     public class GraphHandler
     {
         public MasterGraphPanel _graphPanel;
@@ -17,8 +19,6 @@ namespace P2
         Graph _pAmmonia;
         Graph _pHydrogen;
         Graph _pNitrogen;
-
-
 
         public GraphHandler(MasterGraphPanel graphArea)
         {
@@ -40,6 +40,33 @@ namespace P2
             _graphPanel.AddGraph(_pHydrogen);
             _graphPanel.AddGraph(_pNitrogen);
         }
+
+		/// <summary>
+		/// Changes the color of the selected graph.
+		/// </summary>
+		/// <param name="col">Color.</param>
+		/// <param name="enumGraph">Enum graph.</param>
+		public void ChangeGraphColor(Color col, graph enumGraph){
+			switch (enumGraph) {
+			case graph.ammonia:
+				_pAmmonia.color = col;
+				break;
+			case graph.hydrogen:
+				_pHydrogen.color = col;
+				break;
+			case graph.nitrogen:
+				_pNitrogen.color = col;
+				break;
+			case graph.pressure:
+				_pressure.color = col;
+				break;
+			case graph.temperature:
+				_temperature.color = col;
+				break;
+			default:
+				throw new IndexOutOfRangeException();
+			}
+		}
 
         public void Update(DataPoint data)
         {
