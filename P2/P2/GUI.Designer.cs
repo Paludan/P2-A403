@@ -153,7 +153,7 @@ namespace P2
             "Laksefarvet"});
             this.comboBox4.Location = new System.Drawing.Point(145, 252);
             this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(110, 24);
+            this.comboBox4.Size = new System.Drawing.Size(110, 21);
             this.comboBox4.TabIndex = 5;
             // 
             // comboBox3
@@ -168,7 +168,7 @@ namespace P2
             "Laksefarvet"});
             this.comboBox3.Location = new System.Drawing.Point(145, 192);
             this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(110, 24);
+            this.comboBox3.Size = new System.Drawing.Size(110, 21);
             this.comboBox3.TabIndex = 4;
             // 
             // comboBox2
@@ -183,7 +183,7 @@ namespace P2
             "Laksefarvet"});
             this.comboBox2.Location = new System.Drawing.Point(145, 130);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(110, 24);
+            this.comboBox2.Size = new System.Drawing.Size(110, 21);
             this.comboBox2.TabIndex = 3;
             // 
             // pColourDescription
@@ -247,7 +247,7 @@ namespace P2
             "Laksefarvet"});
             this.comboBox1.Location = new System.Drawing.Point(145, 68);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(110, 24);
+            this.comboBox1.Size = new System.Drawing.Size(110, 21);
             this.comboBox1.TabIndex = 1;
             // 
             // pTabs
@@ -314,7 +314,7 @@ namespace P2
             this.hProject.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.hProject.Location = new System.Drawing.Point(1010, 535);
             this.hProject.Name = "hProject";
-            this.hProject.Size = new System.Drawing.Size(160, 20);
+            this.hProject.Size = new System.Drawing.Size(140, 20);
             this.hProject.TabIndex = 5;
             this.hProject.Text = "Projekthåndtering";
             // 
@@ -377,7 +377,7 @@ namespace P2
             // 
             this.textBox1.Location = new System.Drawing.Point(515, 69);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(70, 22);
+            this.textBox1.Size = new System.Drawing.Size(70, 20);
             this.textBox1.TabIndex = 0;
             this.textBox1.Text = "0";
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
@@ -397,7 +397,7 @@ namespace P2
             // 
             this.textBox2.Location = new System.Drawing.Point(515, 132);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(70, 22);
+            this.textBox2.Size = new System.Drawing.Size(70, 20);
             this.textBox2.TabIndex = 1;
             this.textBox2.Text = "0";
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
@@ -407,7 +407,7 @@ namespace P2
             // 
             this.textBox3.Location = new System.Drawing.Point(515, 194);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(70, 22);
+            this.textBox3.Size = new System.Drawing.Size(70, 20);
             this.textBox3.TabIndex = 12;
             this.textBox3.Text = "0";
             this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
@@ -417,7 +417,7 @@ namespace P2
             // 
             this.textBox4.Location = new System.Drawing.Point(515, 253);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(70, 22);
+            this.textBox4.Size = new System.Drawing.Size(70, 20);
             this.textBox4.TabIndex = 13;
             this.textBox4.Text = "0";
             this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
@@ -442,13 +442,14 @@ namespace P2
             this.checkBoxCatalyst.TabIndex = 18;
             this.checkBoxCatalyst.Text = "Katalysator";
             this.checkBoxCatalyst.UseVisualStyleBackColor = true;
+            this.checkBoxCatalyst.CheckedChanged += new System.EventHandler(this.checkBoxCatalyst_CheckedChanged);
             // 
             // hParameters
             // 
             this.hParameters.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.hParameters.Location = new System.Drawing.Point(660, 165);
             this.hParameters.Name = "hParameters";
-            this.hParameters.Size = new System.Drawing.Size(100, 20);
+            this.hParameters.Size = new System.Drawing.Size(85, 20);
             this.hParameters.TabIndex = 7;
             this.hParameters.Text = "Parametre";
             // 
@@ -491,7 +492,7 @@ namespace P2
             "x1000"});
             this.comboBox5.Location = new System.Drawing.Point(400, 30);
             this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(121, 24);
+            this.comboBox5.Size = new System.Drawing.Size(121, 21);
             this.comboBox5.TabIndex = 5;
             this.comboBox5.Text = "x1";
             this.comboBox5.SelectedIndexChanged += new System.EventHandler(this.comboBox5_SelectedIndexChanged);
@@ -505,7 +506,7 @@ namespace P2
             0,
             0});
             this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(120, 22);
+            this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
             this.numericUpDown1.TabIndex = 4;
             this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
             // 
@@ -543,7 +544,7 @@ namespace P2
             this.hTimeControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.hTimeControl.Location = new System.Drawing.Point(660, 5);
             this.hTimeControl.Name = "hTimeControl";
-            this.hTimeControl.Size = new System.Drawing.Size(105, 20);
+            this.hTimeControl.Size = new System.Drawing.Size(90, 20);
             this.hTimeControl.TabIndex = 9;
             this.hTimeControl.Text = "Tidskontrol";
             // 
@@ -574,7 +575,7 @@ namespace P2
             this.hInfoBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.hInfoBox.Location = new System.Drawing.Point(20, 535);
             this.hInfoBox.Name = "hInfoBox";
-            this.hInfoBox.Size = new System.Drawing.Size(100, 20);
+            this.hInfoBox.Size = new System.Drawing.Size(85, 20);
             this.hInfoBox.TabIndex = 11;
             this.hInfoBox.Text = "Vejledning";
             // 

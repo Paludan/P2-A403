@@ -17,7 +17,7 @@ namespace P2
         helpTextController helper;
         double tempDouble;
         Button[] buttons = new Button[8];
-        int graphTaps = 1;
+        int graphTaps = 0;
                 
         public GUI()
         {
@@ -25,11 +25,11 @@ namespace P2
             synth = new Synthesis(pGraphArea);
             helper = new helpTextController();
             Control.CheckForIllegalCrossThreadCalls = false;
-            buttons[0] = new Button();
-            buttons[0].Location = new Point(0, 0);
-            buttons[0].Text = "Graf 1      [X]";
-            buttons[0].Click += chooseGraph;
-            this.pTabs.Controls.Add(buttons[0]);
+            buttons[graphTaps] = new Button();
+            buttons[graphTaps].Location = new Point(0, 0);
+            insertButtonText(buttons[graphTaps]);
+            buttons[graphTaps].Click += chooseGraph;
+            this.pTabs.Controls.Add(buttons[graphTaps++]);
             buttons[7] = new Button();
             buttons[7].Location = new Point(75, 0);
             buttons[7].Text = "Tilføj graf";
@@ -56,6 +56,14 @@ namespace P2
             while (label.Width < System.Windows.Forms.TextRenderer.MeasureText(label.Text, new Font(label.Font.FontFamily,
                    label.Font.Size, label.Font.Style)).Width)
                 label.Font = new Font(label.Font.FontFamily, label.Font.Size - 0.01f, label.Font.Style);
+        }
+
+        private void insertButtonText(Button button)
+        {
+            int spaces = ((int)((75 / ((double)TextRenderer.MeasureText("Graf 1      [X]", new Font(button.Font.FontFamily, button.Font.Size, button.Font.Style)).Width)) * 15) - 10);
+            string space = "";
+            space = space.PadRight(spaces);
+            button.Text = "Graf " + (graphTaps + 1) + space + "[x]";
         }
 
         /// <summary>
@@ -271,7 +279,7 @@ namespace P2
                 {
                     buttons[graphTaps] = new Button();
                     buttons[graphTaps].Location = new Point((graphTaps * 75), 0);
-                    buttons[graphTaps].Text = "Graf " + (graphTaps + 1) + "     [X]";
+                    insertButtonText(buttons[graphTaps]);
                     buttons[graphTaps].Click += chooseGraph;
                     this.pTabs.Controls.Add(buttons[graphTaps++]);
                 }
@@ -321,6 +329,18 @@ namespace P2
         {
             String[] helpText = helper.Next();
             updateHelpText(helpText[0], helpText[1]);
+        }
+
+        private void checkBoxCatalyst_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxCatalyst.CheckState.ToString() == "Unchecked")
+            {
+                //Model.calculateActivationEnergy(false);
+            }   
+            else
+            {
+                //Model.calculateActivationEnergy(true);
+            }
         }
     }
 }
