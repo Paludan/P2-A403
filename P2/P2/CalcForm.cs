@@ -40,8 +40,6 @@ namespace P2
         }
 
 		public void UpdateData(){
-
-
             setupStartIdealGasLaw();
             calcEquiFrac();
             calcRRConst();

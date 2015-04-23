@@ -63,7 +63,6 @@ namespace P2
             this.activationEnergy = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
             this.gasConstRR = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
             this.preExponentialFactor = new System.Windows.Forms.Label();
             this.label38 = new System.Windows.Forms.Label();
@@ -446,15 +445,6 @@ namespace P2
             this.gasConstRR.TabIndex = 39;
             this.gasConstRR.Text = "R";
             // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(0, 0);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(41, 13);
-            this.label21.TabIndex = 40;
-            this.label21.Text = "label21";
-            // 
             // label36
             // 
             this.label36.AutoSize = true;
@@ -508,7 +498,6 @@ namespace P2
             this.Controls.Add(this.label38);
             this.Controls.Add(this.preExponentialFactor);
             this.Controls.Add(this.label36);
-            this.Controls.Add(this.label21);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.RRConst);
             this.Controls.Add(this.label24);
@@ -608,7 +597,6 @@ namespace P2
         private System.Windows.Forms.Label activationEnergy;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Label gasConstRR;
-        private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label36;
         private System.Windows.Forms.Label preExponentialFactor;
         private System.Windows.Forms.Label label38;
