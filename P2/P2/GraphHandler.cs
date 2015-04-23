@@ -13,6 +13,7 @@ namespace P2
 
     public class GraphHandler
     {
+		#region Setup
         public MasterGraphPanel _graphPanel;
         Graph _temperature;
         Graph _pressure;
@@ -41,9 +42,11 @@ namespace P2
             _graphPanel.AddGraph(_pressure);
             _graphPanel.AddGraph(_pAmmonia);
             _graphPanel.AddGraph(_pHydrogen);
-            _graphPanel.AddGraph(_pNitrogen);
+			_graphPanel.AddGraph (_pNitrogen);
         }
+		#endregion
 
+		#region Colorchange
 		/// <summary>
 		/// Changes the color of the selected graph.
 		/// </summary>
@@ -57,6 +60,7 @@ namespace P2
 				} else {
 					_pAmmonia.color = col;
 					_pAmmonia.isActive = true;
+					SolutionColorChange ();
 				}
 				break;
 			case graph.hydrogen:
@@ -65,6 +69,7 @@ namespace P2
 				} else {
 					_pHydrogen.color = col;
 					_pHydrogen.isActive = true;
+					SolutionColorChange ();
 				}
 				break;
 			case graph.nitrogen:
@@ -73,6 +78,7 @@ namespace P2
 				} else {
 					_pNitrogen.color = col;
 					_pNitrogen.isActive = true;
+					SolutionColorChange ();
 				}
 				break;
 			case graph.pressure:
@@ -80,7 +86,7 @@ namespace P2
 					_pressure.isActive = false;
 				} else {
 					_pressure.color = col;
-					_pressure.isActive = true;
+					PressureSelected ();
 				}
 				break;
 			case graph.temperature:
@@ -88,13 +94,49 @@ namespace P2
 					_temperature.isActive = false;
 				} else {
 					_temperature.color = col;
-					_temperature.isActive = true;
+					TemperatureSelected ();
 				}
 				break;
 			default:
 				throw new IndexOutOfRangeException();
 			}
+
+			_graphPanel.Invalidate ();
 		}
+
+		/// <summary>
+		/// Changes the axis and hides temperature and preesure graphs
+		/// </summary>
+		private void SolutionColorChange(){
+			_temperature.isActive = false;
+			_pressure.isActive = false;
+			_graphPanel.ChangeAxisNames ("Tid", "Stofmængde");
+		}
+
+		/// <summary>
+		/// Changes the axis and hides partialpressures and temperature graphs.
+		/// </summary>
+		private void PressureSelected(){
+			_pressure.isActive = true;
+			_pAmmonia.isActive = false;
+			_pHydrogen.isActive = false;
+			_pNitrogen.isActive = false;
+			_temperature.isActive = false;
+			_graphPanel.ChangeAxisNames ("Tid", "Tryk");
+		}
+
+		/// <summary>
+		/// Changes the acis and hides partialpressures and pressure graphs.
+		/// </summary>
+		private void TemperatureSelected(){
+			_temperature.isActive = true;
+			_pAmmonia.isActive = false;
+			_pHydrogen.isActive = false;
+			_pNitrogen.isActive = false;
+			_pressure.isActive = false;
+			_graphPanel.ChangeAxisNames ("Tid", "Temperatur");
+		}
+		#endregion
 
 		/// <summary>
 		/// Update the graphs with new date.

@@ -40,7 +40,7 @@ namespace P2Graph
 		/// <value>The color.</value>
 		public Color color {
 			get { return _colorOfGraph; }
-			set { _colorOfGraph = value; this.Draw (_master.CreateGraphics()); }
+			set { _colorOfGraph = value; }
 		}
 
 		/// <summary>
@@ -130,13 +130,15 @@ namespace P2Graph
 		/// </summary>
 		/// <param name="painter">The graphics-object used to paint with.</param>
 		public void Draw(Graphics painter){
-			foreach (var GP in points) {
-				GP.Draw (painter);
+			if (points.Count > 0) {
+				foreach (var GP in points) {
+					GP.Draw (painter);
+				}
+
+				var PFArr = points.Select (GP => new PointF (GP.RealX, GP.RealY)).ToArray ();
+
+				painter.DrawLines (new Pen (_colorOfGraph, 1), PFArr);
 			}
-
-			var PFArr = points.Select(GP => new PointF(GP.RealX, GP.RealY)).ToArray();
-
-			painter.DrawLines (new Pen (_colorOfGraph, 1), PFArr);
 		}
 
 		/// <summary>
@@ -165,10 +167,8 @@ namespace P2Graph
 			}
 
 			if (invalidated) {
-				_master.Paint += _master.Event_PaintContent;
 				_master.Invalidate ();
 			} else {
-				_master.Paint -= _master.Event_PaintContent;
 				_master.UpdateGraph (this);
 			}
 		}

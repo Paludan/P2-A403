@@ -29,8 +29,6 @@ namespace P2
             startUpInfo();
             correctTextSize();
 
-            //Eventhandling til pGraphArea
-            this.pGraphArea.Paint += pGraphArea.OnInvalidateEvent;
             this.pGraphArea.Invalidate();
         }
 

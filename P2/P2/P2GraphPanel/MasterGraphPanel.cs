@@ -52,8 +52,10 @@ namespace P2Graph
 			CalculateOrego ();
 			CreateAxis("x-akse", "y-akse");
 			_g = this.CreateGraphics ();
-			X.Scale ();
-			Y.Scale ();
+
+			//Adds delegates to the paint-event
+			this.Paint += this.OnInvalidateEvent;
+			this.Paint += this.Event_PaintContent;
 		}
 
 		/// <summary>
@@ -165,19 +167,11 @@ namespace P2Graph
 
 		#region Draw-methods
 		/// <summary>
-		/// Paints the active content in the GraphPanel.
-		/// </summary>
-		public void PaintContent(){
-			this.UpdateMGP ();
-			this.Draw (_g);
-		}
-
-		/// <summary>
 		/// Delegate method for the invalidate event.
 		/// </summary>
 		/// <param name="sender">Not used.</param>
 		/// <param name="e">Not used.</param>
-		public void OnInvalidateEvent(object sender, PaintEventArgs e){
+		private void OnInvalidateEvent(object sender, PaintEventArgs e){
 			this.BackColor = Color.WhiteSmoke;
 			this.UpdateMGP ();
 
@@ -210,8 +204,8 @@ namespace P2Graph
 		/// </summary>
 		/// <param name="sender">Sender.</param>
 		/// <param name="e">E.</param>
-		public void Event_PaintContent(object sender, PaintEventArgs e){
-			PaintContent ();
+		private void Event_PaintContent(object sender, PaintEventArgs e){
+			this.Draw (_g);
 		}
 
 		/// <summary>
