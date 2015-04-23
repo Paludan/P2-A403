@@ -25,6 +25,16 @@ namespace P2
             synth = new Synthesis(pGraphArea);
             helper = new helpTextController();
             Control.CheckForIllegalCrossThreadCalls = false;
+            startUpTaps();
+            startUpInfo();
+            correctTextSize();
+
+            //midlertidig graf
+            this.pGraphArea.Paint += new PaintEventHandler(pGraphArea.EventHandler_RePaint);
+        }
+
+        private void startUpTaps()
+        {
             buttons[graphTaps] = new Button();
             buttons[graphTaps].Location = new Point(0, 0);
             insertButtonText(buttons[graphTaps]);
@@ -35,10 +45,17 @@ namespace P2
             buttons[7].Text = "Tilføj graf";
             buttons[7].Click += addGraph_Click;
             this.pTabs.Controls.Add(buttons[7]);
+        }
+
+        private void startUpInfo()
+        {
             pInfoBox.Controls.Add(new Label());
             String[] helpText = helper.Next();
             updateHelpText(helpText[0], helpText[1]);
+        }
 
+        private void correctTextSize()
+        {
             foreach (Control formItem in this.Controls)
             {
                 if (formItem.GetType() == typeof(Panel))
@@ -47,9 +64,6 @@ namespace P2
                 else if (formItem.GetType() == typeof(Label) || formItem.GetType() == typeof(CheckBox))
                     autoScaleText(formItem);
             }
-
-            //midlertidig graf
-            this.pGraphArea.Paint += new PaintEventHandler(pGraphArea.EventHandler_RePaint);
         }
 
         private void autoScaleText(Control label){
@@ -78,7 +92,17 @@ namespace P2
             if (!char.IsNumber(e.KeyChar) && e.KeyChar != '.')
                 e.Handled = e.KeyChar != (char)Keys.Back;
         }
-        
+
+        private bool denyTextWhenSynthRun(KeyPressEventArgs e)
+        {
+            if (synth.running)
+            {
+                e.Handled = e.KeyChar != (char)Keys.Back;
+                return false;
+            }
+            return true;
+        }
+
         /// <summary>
         /// Makes sure a number have been inserted and that it is not larger than the max input
         /// Removes unwanted zeroes
@@ -170,22 +194,26 @@ namespace P2
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            intTextbox(e);
+            if(denyTextWhenSynthRun(e))
+                intTextbox(e);
         }
 
         private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
         {
-            intTextbox(e);
+            if (denyTextWhenSynthRun(e))
+                intTextbox(e);
         }
 
         private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
         {
-            intTextbox(e);
+            if (denyTextWhenSynthRun(e))
+                intTextbox(e);
         }
 
         private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
         {
-            intTextbox(e);
+            if (denyTextWhenSynthRun(e))
+                intTextbox(e);
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -259,19 +287,17 @@ namespace P2
             synth.stop();
         }
 
-        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
-        {
-            if (!synth.running)
-            {
-                //synth.Time = (double) numericUpDown1.Value;
-            }
-        }
-
+        /// <summary>
+        /// If the selected reaction rate multiplier is changed then the new selected value is send to the synthesis
+        /// </summary>
         private void comboBox5_SelectedIndexChanged(object sender, EventArgs e)
         {
             synth.Scale = (double) int.Parse(comboBox5.SelectedItem.ToString().TrimStart('x'));
         }
 
+        /// <summary>
+        /// If the addButton is pressed and the location is not too much to the right then it creates a new graph tap
+        /// </summary>
         private void addGraph_Click(object sender, EventArgs e)
         {
             if (buttons[7].Location.X <= 450)
@@ -292,6 +318,9 @@ namespace P2
         /// If the button is pushed the curser and forms x-value is saved to two integers
         /// It is then checked if the location is within the area where the close "button" is
         /// and if that is the case it removes the button furthest to the right and moves the addButton
+        /// 
+        /// else stuff happens
+        /// 
         /// </summary>
         private void chooseGraph(object sender, EventArgs e)
         {
@@ -326,7 +355,7 @@ namespace P2
         }
 
         /// <summary>
-        /// 
+        /// Switches the current text in the infobox
         /// </summary>
         private void FurtherInfoBox_Click(object sender, EventArgs e)
         {
@@ -356,6 +385,11 @@ namespace P2
             {
                 //Model.calculateActivationEnergy(false);
             }
+        }
+
+        private void numericUpDown1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            denyTextWhenSynthRun(e);
         }
     }
 }

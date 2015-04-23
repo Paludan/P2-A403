@@ -155,7 +155,8 @@ namespace P2
         /// </summary>
         public void stop()
         {
-            timer.Stop();
+            //timer.Stop();
+            running = false;
         }
 
         /// <summary>
