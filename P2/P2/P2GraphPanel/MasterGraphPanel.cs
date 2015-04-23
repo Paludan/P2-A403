@@ -136,7 +136,7 @@ namespace P2Graph
 		}
 
 		/// <summary>
-		/// Changes the axis names.
+		/// Changes the axis names, then draws the names.
 		/// </summary>
 		/// <param name="xName">X-axis name.</param>
 		/// <param name="yName">Y-axis name.</param>
@@ -183,7 +183,27 @@ namespace P2Graph
 
 			X.Draw (_g);
 			Y.Draw (_g);
+            DrawAxisNames();
 		}
+
+        private void DrawAxisNames()
+        {
+            FontFamily fontFamily = new FontFamily("Lucida Console");
+            Font font = new Font(
+            fontFamily,
+               14,
+               FontStyle.Regular,
+               GraphicsUnit.Point);
+            Point pointY = new Point(3, this.Height-(this.Height/2)-50);
+            Point pointX = new Point(this.Width-(this.Width/2)-20, this.Height - 27);
+            StringFormat stringFormat = new StringFormat();
+            SolidBrush brush = new SolidBrush(Color.Black);
+
+            stringFormat.FormatFlags = StringFormatFlags.DirectionVertical;
+
+            _g.DrawString(Y.name, font, brush, pointY, stringFormat);
+            _g.DrawString(X.name, font, brush, pointX);
+        }
 
 		/// <summary>
 		/// Updates the displayed graph by drawing last point.

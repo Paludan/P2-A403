@@ -97,10 +97,12 @@ namespace P2Graph
 			//Calculates the ends of the partition-line
 			beginning.RealY -= 4;
 			end.RealY += 4;
+            StringFormat format = new StringFormat();
+            format.FormatFlags = StringFormatFlags.DirectionVertical;
 
 			DrawLine (beginning, end, painter, Color.Black);
 			end.RealY += Constants.partitionOffset;
-			DrawNumber(painter, end, partitionNumber.ToString());
+			DrawNumber(painter, end, partitionNumber.ToString(), format);
 		}
 		#endregion
 	}

@@ -137,13 +137,21 @@ namespace P2Graph
 		/// </summary>
 		/// <param name="painter">Painter.</param>
 		/// <param name="centerPoint">Center point of the string.</param>
-		/// <param name="toDraw">The string being drawn.</param>
+		/// <param name="toDraw">The strinsg being drawn.</param>
 		protected void DrawNumber(Graphics painter, GraphPoint centerPoint, string toDraw){
-			Rectangle Rec= new Rectangle ((int) centerPoint.RealX, (int) centerPoint.RealY, 25, 20);
+			Rectangle Rec= new Rectangle ((int) centerPoint.RealX+2, (int) centerPoint.RealY, 50, 20);
 			Rec.X -= (Rec.Width / 2);
 			Rec.Y -= (Rec.Height / 2);
 			painter.DrawString(toDraw, Constants.GraphFont, Brushes.Black, Rec);
 		}
+
+        protected void DrawNumber(Graphics painter, GraphPoint centerPoint, string toDraw, StringFormat format)
+        {
+            Rectangle Rec = new Rectangle((int)centerPoint.RealX, (int)centerPoint.RealY+12, 20, 50);
+            Rec.X -= (Rec.Width / 2);
+            Rec.Y -= (Rec.Height / 2);
+            painter.DrawString(toDraw, Constants.GraphFont, Brushes.Black, Rec, format);
+        }
 
 		/// <summary>
 		/// Draws a line between two points.
