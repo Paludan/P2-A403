@@ -99,10 +99,21 @@ namespace P2Graph
 			end.RealY += 4;
             StringFormat format = new StringFormat();
             format.FormatFlags = StringFormatFlags.DirectionVertical;
+            string numberToDraw = partitionNumber.ToString();
+            if (partitionNumber > 9999 && partitionNumber < 10000000)
+            {
+                numberToDraw = numberToDraw.Remove(numberToDraw.Length - 3);
+                numberToDraw = string.Concat(numberToDraw, "k");
+            }
+            else if(partitionNumber > 9999999)
+            {
+                numberToDraw = numberToDraw.Remove(numberToDraw.Length - 7);
+                numberToDraw = string.Concat(numberToDraw, "m");
+            }
 
 			DrawLine (beginning, end, painter, Color.Black);
 			end.RealY += Constants.partitionOffset;
-			DrawNumber(painter, end, partitionNumber.ToString(), format);
+			DrawNumber(painter, end, numberToDraw, format);
 		}
 		#endregion
 	}
