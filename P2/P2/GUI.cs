@@ -54,7 +54,9 @@ namespace P2
 
         private void autoScaleText(Control label){
             while (label.Width < System.Windows.Forms.TextRenderer.MeasureText(label.Text, new Font(label.Font.FontFamily,
-                   label.Font.Size, label.Font.Style)).Width)
+                   label.Font.Size, label.Font.Style)).Width &&
+                   label.Height < System.Windows.Forms.TextRenderer.MeasureText(label.Text, new Font(label.Font.FontFamily,
+                   label.Font.Size, label.Font.Style)).Height)
                 label.Font = new Font(label.Font.FontFamily, label.Font.Size - 0.01f, label.Font.Style);
         }
 
