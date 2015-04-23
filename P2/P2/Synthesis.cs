@@ -63,6 +63,7 @@ namespace P2
                     else
                     {
                         currentData = simulationData.getDataPoint(value*1000);
+                        simulationData.revertTo(value * 1000);
                     }
                 }
             }
