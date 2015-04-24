@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
   <Class Name="P2.DataHandler" Collapsed="true">
-    <Position X="4.5" Y="2.25" Width="1.5" />
+    <Position X="0.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AACAAAQAgAAAAAAAAAAAAACAAAAAAAAAAAKAAAACgAA=</HashCode>
       <FileName>Datahandler.cs</FileName>
@@ -10,12 +10,12 @@
   <Class Name="P2.GUI" Collapsed="true">
     <Position X="5.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>guQBBIBAQTElhDq0IEH2aAVTJiQhQCIDOgBBMSAAQAA=</HashCode>
+      <HashCode>guQBBMBAQTAlhDq0IEH2eAVTJiQjQCIDOgBBMSAAQQA=</HashCode>
       <FileName>GUI.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="P2.Model" Collapsed="true">
-    <Position X="6.25" Y="2.25" Width="1.5" />
+    <Position X="2.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAUEAAAAAACABIAAAAAANAwAABEkgAUQAgAAGAAA=</HashCode>
       <FileName>Model.cs</FileName>
@@ -29,7 +29,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="P2.Synthesis" Collapsed="true">
-    <Position X="5.5" Y="1.5" Width="1.5" />
+    <Position X="2.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAgEBAAAAEAAgAAIAAACAAAgwAABAAQIAAgAAATA=</HashCode>
       <FileName>Synthesis.cs</FileName>
@@ -50,6 +50,20 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
+  <Class Name="P2.GraphHandler" Collapsed="true">
+    <Position X="4.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQdAAAAAQAAQAAAAABEAAAAQAAAAgAAAAQAAAAAAAA=</HashCode>
+      <FileName>GraphHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="P2.helpTextController" Collapsed="true">
+    <Position X="7.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAIAAAAAAAAAAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>helpTextController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Struct Name="P2.DataPoint" Collapsed="true" BaseTypeListCollapsed="true">
     <Position X="0.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
@@ -58,5 +72,12 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Struct>
+  <Enum Name="P2.graph" Collapsed="true">
+    <Position X="4.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAkAAAAAACAAAAACAAQAAAAAAAA=</HashCode>
+      <FileName>GraphHandler.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
