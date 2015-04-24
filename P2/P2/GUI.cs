@@ -197,6 +197,51 @@ namespace P2
             pInfoBox.Controls.Add(helpText);
             autoScaleText(helpText);
         }
+
+        /// <summary>
+        /// Sends the color chosen for a specific curve to the graphHandler
+        /// </summary>
+        /// <param name="comboBox">The comboBox where a color is selected in</param>
+        /// <param name="graphToDraw">The curve that is to be colored with the specified color</param>
+        private void colorChoice(ComboBox comboBox, graph graphToDraw)
+        {
+            switch ((colors)comboBox.SelectedItem)
+            {
+                case colors.Rød:
+                    synth._graphHandler.ChangeGraphColor(Color.Red, graphToDraw);
+                    break;
+                case colors.Grøn:
+                    synth._graphHandler.ChangeGraphColor(Color.Green, graphToDraw);
+                    break;
+                case colors.Blå:
+                    synth._graphHandler.ChangeGraphColor(Color.Blue, graphToDraw);
+                    break;
+                case colors.Lilla:
+                    synth._graphHandler.ChangeGraphColor(Color.Purple, graphToDraw);
+                    break;
+                case colors.Sort:
+                    synth._graphHandler.ChangeGraphColor(Color.Black, graphToDraw);
+                    break;
+                case colors.Gennemsigtig:
+                    synth._graphHandler.ChangeGraphColor(Color.Transparent, graphToDraw);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Changes the values of the textBoxes to the current state of the synthesis
+        /// </summary>
+        public void Update(Object source, System.Timers.ElapsedEventArgs e)
+        {
+            numericUpDown1.Value = (decimal)synth.Time;
+
+            textBox1.Text = synth.currentData.nNitrogen.ToString();
+            textBox2.Text = synth.currentData.nHydrogen.ToString();
+            textBox3.Text = synth.currentData.nAmmonia.ToString();
+            textBox4.Text = synth.currentData.temperature.ToString();
+        }
         #endregion
 
         #region Event functions
@@ -294,7 +339,39 @@ namespace P2
             String[] helpText = helper.Next();
             updateHelpText(helpText[0], helpText[1]);
         }
+
+        /// <summary>
+        /// If the button is pushed the curser and forms x-value is saved to two integers
+        /// It is then checked if the location is within the area where the close "button" is
+        /// and if that is the case it removes the button furthest to the right and moves the addButton
+        /// 
+        /// else stuff happens
+        /// 
+        /// </summary>
+        private void chooseGraph(object sender, EventArgs e)
+        {
+            int X = Cursor.Position.X,
+                Sx = this.Location.X;
+            if ((55 + X - Sx) % 75 <= 65 && (55 + X - Sx) % 75 >= 52 && graphTaps >= 0)
+            {
+                this.pTabs.Controls.Remove(buttons[--graphTaps]);
+                buttons[7].Location = new Point(buttons[7].Location.X - 75, 0);
+            }
+            else
+            {
+
+            }
+        }
         #endregion
+
+        /// <summary>
+        /// Makes sure the user cant change the variable when the synthesis is runnning
+        /// </summary>
+        /// <param name="e">The numericUpDown1's keyPress event parameters</param>
+        private void numericUpDown1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            denyTextWhenSynthRun(e);
+        }
 
         /// <summary>
         /// If the selected reaction rate multiplier is changed then the new selected value is send to the synthesis
@@ -305,13 +382,45 @@ namespace P2
         }
 
         /// <summary>
-        /// Makes sure the user cant change the variable when the synthesis is runnning
+        /// If checkbox is checked the calculations is made with catalyst
+        /// If it is not checked the calculations is made without catalyst
         /// </summary>
-        /// <param name="e">The numericUpDown1's keyPress event parameters</param>
-        private void numericUpDown1_KeyPress(object sender, KeyPressEventArgs e)
+        private void checkBoxCatalyst_CheckedChanged(object sender, EventArgs e)
         {
-            denyTextWhenSynthRun(e);
+            if (checkBoxCatalyst.Checked)
+            {
+                //Model.calculateActivationEnergy(true);
+            }
+            else
+            {
+                //Model.calculateActivationEnergy(false);
+            }
         }
+
+        /// <summary>
+        /// Changes the color of the corresponting curve to the color selected for the comboBox
+        /// </summary>
+        #region colorComboBox
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            colorChoice(comboBox1, graph.nitrogen);
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            colorChoice(comboBox2, graph.hydrogen);
+        }
+
+        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            colorChoice(comboBox3, graph.ammonia);
+        }
+
+        private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            colorChoice(comboBox4, graph.temperature);
+        }
+        #endregion
 
         /// <summary>
         /// Makes sure user can only input doubles in the text boxes and not when synthesis is runnning
@@ -400,107 +509,6 @@ namespace P2
             scrollEnd(textBox4, hScrollBarTemperature);
         }
         #endregion
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="source"></param>
-        /// <param name="e"></param>
-        public void Update(Object source,  System.Timers.ElapsedEventArgs e)
-        {
-            numericUpDown1.Value = (decimal)synth.Time;
-
-            textBox1.Text = synth.currentData.nNitrogen.ToString();
-            textBox2.Text = synth.currentData.nHydrogen.ToString();
-            textBox3.Text = synth.currentData.nAmmonia.ToString();
-            textBox4.Text = synth.currentData.temperature.ToString();
-        }
-        
-        /// <summary>
-        /// If the button is pushed the curser and forms x-value is saved to two integers
-        /// It is then checked if the location is within the area where the close "button" is
-        /// and if that is the case it removes the button furthest to the right and moves the addButton
-        /// 
-        /// else stuff happens
-        /// 
-        /// </summary>
-        private void chooseGraph(object sender, EventArgs e)
-        {
-            int X = Cursor.Position.X,
-                Sx = this.Location.X;
-            if ((55 + X - Sx) % 75 <= 65 && (55 + X - Sx) % 75 >= 52 && graphTaps >= 0)
-            {
-                this.pTabs.Controls.Remove(buttons[--graphTaps]);
-                buttons[7].Location = new Point(buttons[7].Location.X - 75, 0);
-            }
-            else
-            {
-
-            }
-        }
-        
-        /// <summary>
-        /// If checkbox is checked the calculations is made with catalyst
-        /// If it is not checked the calculations is made without catalyst
-        /// </summary>
-        private void checkBoxCatalyst_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkBoxCatalyst.Checked)
-            {
-                //Model.calculateActivationEnergy(true);
-            }   
-            else
-            {
-                //Model.calculateActivationEnergy(false);
-            }
-        }
         #endregion
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            colorChoice(comboBox1, graph.nitrogen);
-        }
-
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            colorChoice(comboBox2, graph.hydrogen);
-        }
-
-        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            colorChoice(comboBox3, graph.ammonia);
-        }
-
-        private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            colorChoice(comboBox4, graph.temperature);
-        }
-
-        private void colorChoice(ComboBox comboBox, graph graphToDraw)
-        {
-            switch ((colors) comboBox.SelectedItem)
-            {
-                case colors.Rød:
-                    synth._graphHandler.ChangeGraphColor(Color.Red, graphToDraw);
-                    break;
-                case colors.Grøn:
-                    synth._graphHandler.ChangeGraphColor(Color.Green, graphToDraw);
-                    break;
-                case colors.Blå:
-                    synth._graphHandler.ChangeGraphColor(Color.Blue, graphToDraw);
-                    break;
-                case colors.Lilla:
-                    synth._graphHandler.ChangeGraphColor(Color.Purple, graphToDraw);
-                    break;
-                case colors.Sort:
-                    synth._graphHandler.ChangeGraphColor(Color.Black, graphToDraw);
-                    break;
-                case colors.Gennemsigtig:
-                    synth._graphHandler.ChangeGraphColor(Color.Transparent, graphToDraw);
-                    break;
-                default:
-                    break;
-            }
-        }
     }
 }
