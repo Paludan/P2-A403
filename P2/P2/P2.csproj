@@ -46,6 +46,9 @@
       <DependentUpon>CalcForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DataToSerialize.cs" />
+    <Compile Include="GraphButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="GraphHandler.cs" />
     <Compile Include="helpTextController.cs" />
     <Compile Include="LoadMenu.cs">

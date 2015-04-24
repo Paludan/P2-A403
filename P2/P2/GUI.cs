@@ -356,10 +356,14 @@ namespace P2
             {
                 this.pTabs.Controls.Remove(buttons[--graphTaps]);
                 buttons[7].Location = new Point(buttons[7].Location.X - 75, 0);
+
             }
             else
             {
-
+                if (true)
+                {
+                   // MessageBox.Show(buttons[i].Text);
+                }
             }
         }
         #endregion

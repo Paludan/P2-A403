@@ -123,7 +123,7 @@ namespace P2Graph
 			}
 		}
 		#endregion
-
+        
 		#region Draw-methods
 		/// <summary>
 		/// Draw the graph.
