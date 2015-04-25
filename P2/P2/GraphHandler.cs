@@ -11,21 +11,38 @@ namespace P2
 {
 	public enum graph {temperature, pressure, ammonia, hydrogen, nitrogen}
 
-    public class GraphHandler
+	public class GraphHandler : ICloneable
     {
 		#region Setup
-        public MasterGraphPanel _graphPanel;
+        private MasterGraphPanel _graphPanel;
+		public MasterGraphPanel graphPanel {
+			set { _graphPanel = value; }
+		}
         Graph _temperature;
         Graph _pressure;
         Graph _pAmmonia;
         Graph _pHydrogen;
         Graph _pNitrogen;
+		bool _isActive;
+		public bool isActive {
+			get { return _isActive; }
+			set { _isActive = value; }
+		}
 
         public GraphHandler(MasterGraphPanel graphArea)
         {
             _graphPanel = graphArea;
+			InitializeGraphArea (graphArea);
             InitGraphs();
         }
+
+		private void InitializeGraphArea(MasterGraphPanel MGP){
+			this._graphPanel = MGP;
+			MGP.BackColor = System.Drawing.Color.WhiteSmoke;
+			MGP.Location = new System.Drawing.Point(0, 0);
+			MGP.Name = "GraphArea";
+			MGP.Size = new System.Drawing.Size(630, 510);
+		}
 
 		/// <summary>
 		/// Initialized the graphs.
@@ -46,95 +63,80 @@ namespace P2
         }
 		#endregion
 
-		#region Colorchange
-		/// <summary>
-		/// Changes the color of the selected graph.
-		/// </summary>
-		/// <param name="col">Color.</param>
-		/// <param name="enumGraph">Enum graph.</param>
-		public void ChangeGraphColor(Color col, graph enumGraph){
-			switch (enumGraph) {
-			case graph.ammonia:
-				if (col == Color.Transparent) {
-					_pAmmonia.isActive = false;
-				} else {
-					_pAmmonia.color = col;
-					_pAmmonia.isActive = true;
-					SolutionColorChange ();
-				}
-				break;
-			case graph.hydrogen:
-				if (col == Color.Transparent) {
-					_pHydrogen.isActive = false;
-				} else {
-					_pHydrogen.color = col;
-					_pHydrogen.isActive = true;
-					SolutionColorChange ();
-				}
-				break;
-			case graph.nitrogen:
-				if (col == Color.Transparent) {
-					_pNitrogen.isActive = false;
-				} else {
-					_pNitrogen.color = col;
-					_pNitrogen.isActive = true;
-					SolutionColorChange ();
-				}
-				break;
-			case graph.pressure:
-				if (col == Color.Transparent) {
-					_pressure.isActive = false;
-				} else {
-					_pressure.color = col;
-					PressureSelected ();
-				}
-				break;
-			case graph.temperature:
-				if (col == Color.Transparent) {
-					_temperature.isActive = false;
-				} else {
-					_temperature.color = col;
-					TemperatureSelected ();
-				}
-				break;
-			default:
-				throw new IndexOutOfRangeException();
-			}
-
-			_graphPanel.Invalidate ();
-		}
-
+		#region Graph-options
 		/// <summary>
 		/// Changes the axis and hides temperature and preesure graphs
 		/// </summary>
-		private void SolutionColorChange(){
-			_temperature.isActive = false;
-			_pressure.isActive = false;
+		public void ChangeAmmoniaState(object sender, EventArgs e){
+			if (_pAmmonia.isActive)
+				_pAmmonia.isActive = false;
+			else
+				_pAmmonia.isActive = true;
+
+			SetAxisPartial ();
+		}
+
+		public void ChangeAmmoniaColor(Color col){
+			_pAmmonia.color = col;
+			CheckInvalidate ();
+		}
+
+		public void ChangeHydrogenState(object sender, EventArgs e){
+			if (_pHydrogen.isActive)
+				_pHydrogen.isActive = false;
+			else
+				_pHydrogen.isActive = true;
+
+			SetAxisPartial ();
+		}
+
+		public void ChangeHydrogenColor(Color col){
+			_pHydrogen.color = col;
+			CheckInvalidate ();
+		}
+
+		public void ChangeNitrogenState(object sender, EventArgs e){
+			if (_pNitrogen.isActive)
+				_pNitrogen.isActive = false;
+			else
+				_pNitrogen.isActive = true;
+
+			SetAxisPartial ();
+		}
+
+		public void ChangeNitrogenColor(Color col){
+			_pNitrogen.color = col;
+			CheckInvalidate ();
+		}
+
+		private void SetAxisPartial(){
 			_graphPanel.ChangeAxisNames ("Tid", "Stofmængde");
+			_graphPanel.Invalidate ();
 		}
 
-		/// <summary>
-		/// Changes the axis and hides partialpressures and temperature graphs.
-		/// </summary>
-		private void PressureSelected(){
-			_pressure.isActive = true;
-			_pAmmonia.isActive = false;
-			_pHydrogen.isActive = false;
-			_pNitrogen.isActive = false;
-			_temperature.isActive = false;
-			_graphPanel.ChangeAxisNames ("Tid", "Tryk");
+		public void ChangeTemperatureState(object sender, EventArgs e){
+			if (_temperature.isActive)
+				_temperature.isActive = false;
+			else
+				_temperature.isActive = true;
+
+			SetAxisTemperature ();
 		}
 
-		/// <summary>
-		/// Changes the acis and hides partialpressures and pressure graphs.
-		/// </summary>
-		private void TemperatureSelected(){
-			_temperature.isActive = true;
-			_pAmmonia.isActive = false;
-			_pHydrogen.isActive = false;
-			_pNitrogen.isActive = false;
-			_pressure.isActive = false;
+		public void ChangeTemperatureColor(Color col){
+			_temperature.color = col;
+			CheckInvalidate ();
+		}
+			
+		private void SetAxisTemperature(){
 			_graphPanel.ChangeAxisNames ("Tid", "Temperatur");
+			_graphPanel.Invalidate ();
+		}
+
+		private void CheckInvalidate(){
+			if (this.isActive) {
+				_graphPanel.Invalidate ();
+			}
 		}
 		#endregion
 
@@ -144,11 +146,37 @@ namespace P2
 		/// <param name="data">Datapoint to update with.</param>
         public void Update(DataPoint data)
         {
-            _pressure.AddAndDraw(data.time, data.pressure);
-            _pAmmonia.AddAndDraw(data.time, data.nAmmonia);
-            _temperature.AddAndDraw(data.time, data.temperature);
-            _pHydrogen.AddAndDraw(data.time, data.nHydrogen);
-            _pNitrogen.AddAndDraw(data.time, data.nNitrogen);
+			if (isActive) {
+				_pressure.AddAndDraw (data.time, data.pressure);
+				_pAmmonia.AddAndDraw (data.time, data.nAmmonia);
+				_temperature.AddAndDraw (data.time, data.temperature);
+				_pHydrogen.AddAndDraw (data.time, data.nHydrogen);
+				_pNitrogen.AddAndDraw (data.time, data.nNitrogen);
+			} else {
+				_pressure.AddPoint (data.time, data.pressure);
+				_pAmmonia.AddPoint (data.time, data.nAmmonia);
+				_temperature.AddPoint (data.time, data.temperature);
+				_pHydrogen.AddPoint (data.time, data.nHydrogen);
+				_pNitrogen.AddPoint (data.time, data.nNitrogen);
+			}
         }
+
+		public void ShowGraphPanel(){
+			_graphPanel.Invalidate ();
+			_graphPanel.Show ();
+		}
+
+		public void HideGraphPanel(){
+			_graphPanel.Hide ();
+		}
+
+		#region ICloneable implementation
+
+		public object Clone ()
+		{
+			return (GraphHandler) this.MemberwiseClone();
+		}
+
+		#endregion
     }
 }

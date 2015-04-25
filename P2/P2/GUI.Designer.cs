@@ -96,17 +96,7 @@ namespace P2
             this.pSimulationArea.Location = new System.Drawing.Point(10, 20);
             this.pSimulationArea.Name = "pSimulationArea";
             this.pSimulationArea.Size = new System.Drawing.Size(630, 510);
-            this.pSimulationArea.TabIndex = 0;
-            // 
-            // pGraphArea
-            // 
-            this.pGraphArea.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.pGraphArea.Location = new System.Drawing.Point(0, 0);
-            this.pGraphArea.Name = "pGraphArea";
-            this.pGraphArea.Size = new System.Drawing.Size(630, 510);
-            this.pGraphArea.TabIndex = 1;
-            this.pGraphArea.xMaxRange = 1;
-            this.pGraphArea.yMaxRange = 1;
+            this.pSimulationArea.TabIndex = 0;       
             // 
             // lTemperature
             // 

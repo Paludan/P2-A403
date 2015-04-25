@@ -16,7 +16,10 @@ namespace P2
         Synthesis synth;
         helpTextController helper;
         double tempDouble;
-        Button[] buttons = new Button[8];
+		private const int maxButtons = 7;
+		private const int buttonOffset = 75;
+		GraphButton[] buttons = new GraphButton[maxButtons];
+		Button addGraph = new Button();
         int graphTaps = 0;
                 
         public GUI()
@@ -38,16 +41,20 @@ namespace P2
         /// </summary>
         private void startUpTaps()
         {
-            buttons[graphTaps] = new Button();
-            buttons[graphTaps].Location = new Point(0, 0);
-            insertButtonText(buttons[graphTaps]);
-            buttons[graphTaps].Click += chooseGraph;
+			//Adds the GraphButton to the screen
+			GraphButton tempGP = new GraphButton(synth.graphHandler, buttons);
+            tempGP.Location = new Point(0, 0);
+			insertButtonText(tempGP);
+			tempGP.AssignToClose (this.OnTabClose);
+			buttons [graphTaps] = tempGP;
             this.pTabs.Controls.Add(buttons[graphTaps++]);
-            buttons[7] = new Button();
-            buttons[7].Location = new Point(75, 0);
-            buttons[7].Text = "Tilføj graf";
-            buttons[7].Click += addGraph_Click;
-            this.pTabs.Controls.Add(buttons[7]);
+
+			//Adds the button to add more graphs
+            addGraph = new Button();
+			addGraph.Text = "Tilføj graf";
+            this.pTabs.Controls.Add(addGraph);
+			addGraph.Location = new Point (buttonOffset, 0);
+			addGraph.Click += AddGraph;
         }
 
         /// <summary>
@@ -96,10 +103,7 @@ namespace P2
         /// <param name="button">Is the button where the text is to be written in</param>
         private void insertButtonText(Button button)
         {
-            int spaces = ((int)((75 / ((double)TextRenderer.MeasureText("Graf 1      [X]", new Font(button.Font.FontFamily, button.Font.Size, button.Font.Style)).Width)) * 15) - 10);
-            string space = "";
-            space = space.PadRight(spaces);
-            button.Text = "Graf " + (graphTaps + 1) + space + "[x]";
+            button.Text = "Graf " + (graphTaps + 1);
         }
                 
         /// <summary>
@@ -208,22 +212,22 @@ namespace P2
             switch ((colors)comboBox.SelectedItem)
             {
                 case colors.Rød:
-                    synth._graphHandler.ChangeGraphColor(Color.Red, graphToDraw);
+                    synth.ChangeGraphColor(Color.Red, graphToDraw);
                     break;
                 case colors.Grøn:
-                    synth._graphHandler.ChangeGraphColor(Color.Green, graphToDraw);
+                    synth.ChangeGraphColor(Color.Green, graphToDraw);
                     break;
                 case colors.Blå:
-                    synth._graphHandler.ChangeGraphColor(Color.Blue, graphToDraw);
+                    synth.ChangeGraphColor(Color.Blue, graphToDraw);
                     break;
                 case colors.Lilla:
-                    synth._graphHandler.ChangeGraphColor(Color.Purple, graphToDraw);
+                    synth.ChangeGraphColor(Color.Purple, graphToDraw);
                     break;
                 case colors.Sort:
-                    synth._graphHandler.ChangeGraphColor(Color.Black, graphToDraw);
+                    synth.ChangeGraphColor(Color.Black, graphToDraw);
                     break;
                 case colors.Gennemsigtig:
-                    synth._graphHandler.ChangeGraphColor(Color.Transparent, graphToDraw);
+                    synth.ChangeGraphColor(Color.Transparent, graphToDraw);
                     break;
                 default:
                     break;
@@ -258,7 +262,51 @@ namespace P2
             }
         }
 
-        /// <summary>
+		/// <summary>
+		/// If the addButton is pressed and the location is not too much to the right then it creates a new graph tap
+		/// </summary>
+		private void AddGraph(object sender, EventArgs e)
+		{
+			if (graphTaps < maxButtons)
+			{
+				//Moves button to the right
+				addGraph.Location = new Point((graphTaps+1) * buttonOffset, 0);
+
+				//Instantiates a new GraphHandler and GraphPanel with previous Synthesis
+				//This allows the graphdrawing to continue on a new panel
+				P2Graph.MasterGraphPanel newMGP = new P2Graph.MasterGraphPanel ();
+				GraphHandler gh = synth.CloneGraphHandler(graphTaps-1);
+				gh.graphPanel = newMGP;
+				synth.AddGraphHandler (gh);
+
+				//Sets location, text and adds the button to the controls.
+				//Also notifies the rest of the buttons of the new button.
+				GraphButton tempGB =  new GraphButton(gh, buttons);
+				tempGB.Location = new Point((graphTaps * buttonOffset), 0);
+				tempGB.AssignToClose (OnTabClose);
+				insertButtonText(tempGB);
+				foreach (var existingGB in buttons) {
+					if(existingGB != null)
+						existingGB.ButtonCreated (tempGB);
+				}
+				buttons [graphTaps] = tempGB;
+				this.pTabs.Controls.Add(buttons[graphTaps++]);
+			}
+		}
+
+		private void OnTabClose(object sender, EventArgs e){
+			graphTaps--;
+			ReplaceButtons ();
+		}
+
+		private void ReplaceButtons(){
+			for (int i = 0; i < graphTaps; i++) {
+				buttons [i].Location = new Point(i * buttonOffset, 0);
+			}
+			addGraph.Location = new Point((graphTaps) * buttonOffset, 0);
+		}
+
+		/// <summary>
         /// Opens an instance of the calcForm if one is not open
         /// </summary>
         private void OpenCalc_Click(object sender, EventArgs e)
@@ -305,25 +353,6 @@ namespace P2
         }
 
         /// <summary>
-        /// If the addButton is pressed and the location is not too much to the right then it creates a new graph tap
-        /// </summary>
-        private void addGraph_Click(object sender, EventArgs e)
-        {
-            if (buttons[7].Location.X <= 450)
-            {
-                buttons[7].Location = new Point((buttons[7].Location.X + 75), 0);
-                if (graphTaps <= 7)
-                {
-                    buttons[graphTaps] = new Button();
-                    buttons[graphTaps].Location = new Point((graphTaps * 75), 0);
-                    insertButtonText(buttons[graphTaps]);
-                    buttons[graphTaps].Click += chooseGraph;
-                    this.pTabs.Controls.Add(buttons[graphTaps++]);
-                }
-            }
-        }
-
-        /// <summary>
         /// Saves the current graph to a .png file
         /// </summary>
         private void saveGraph_Click(object sender, EventArgs e)
@@ -338,33 +367,6 @@ namespace P2
         {
             String[] helpText = helper.Next();
             updateHelpText(helpText[0], helpText[1]);
-        }
-
-        /// <summary>
-        /// If the button is pushed the curser and forms x-value is saved to two integers
-        /// It is then checked if the location is within the area where the close "button" is
-        /// and if that is the case it removes the button furthest to the right and moves the addButton
-        /// 
-        /// else stuff happens
-        /// 
-        /// </summary>
-        private void chooseGraph(object sender, EventArgs e)
-        {
-            int X = Cursor.Position.X,
-                Sx = this.Location.X;
-            if ((55 + X - Sx) % 75 <= 65 && (55 + X - Sx) % 75 >= 52 && graphTaps >= 0)
-            {
-                this.pTabs.Controls.Remove(buttons[--graphTaps]);
-                buttons[7].Location = new Point(buttons[7].Location.X - 75, 0);
-
-            }
-            else
-            {
-                if (true)
-                {
-                   // MessageBox.Show(buttons[i].Text);
-                }
-            }
         }
         #endregion
 

@@ -16,7 +16,10 @@ namespace P2
     /// </summary>
     public class Synthesis
     {
-        public GraphHandler _graphHandler;
+		private List<GraphHandler> _graphHandler = new List<GraphHandler>();
+		public GraphHandler graphHandler {
+			get { return _graphHandler [0]; }
+		}
         DataHandler simulationData;
         Model SimulationModel;
         public bool running = false, selected = true;
@@ -85,7 +88,7 @@ namespace P2
             SimulationModel = new Model(currentData);
             timer = new System.Timers.Timer(1000);
             timer.Elapsed += this.OnElapsed;
-            _graphHandler = new GraphHandler(graphPanel);
+			_graphHandler.Add(new GraphHandler(graphPanel));
         }
         /*This function starts a new thread that runs the timer and controls the generation of data points
          */
@@ -146,7 +149,9 @@ namespace P2
             currentData.time *= 1000;
             if (selected)
             {
-                _graphHandler.Update(currentData);
+				foreach (var gh in _graphHandler) {
+					gh.Update (currentData);
+				}
             }
         }
 
@@ -172,5 +177,37 @@ namespace P2
                 Update();
             }
         }
+
+		public GraphHandler CloneGraphHandler(int index){
+			return (GraphHandler) this._graphHandler[index].Clone ();
+		}
+
+		public void AddGraphHandler(GraphHandler gh){
+			_graphHandler.Add (gh);
+		}
+
+		/// <summary>
+		/// Changes the color of the selected graph.
+		/// </summary>
+		/// <param name="col">Color.</param>
+		/// <param name="enumGraph">Enum graph.</param>
+		public void ChangeGraphColor(Color col, graph enumGraph){
+			switch (enumGraph) {
+			case graph.ammonia:
+				_graphHandler.ForEach (gh => gh.ChangeAmmoniaColor (col));
+				break;
+			case graph.hydrogen:
+				_graphHandler.ForEach (gh => gh.ChangeHydrogenColor (col));
+				break;
+			case graph.nitrogen:
+				_graphHandler.ForEach (gh => gh.ChangeNitrogenColor (col));
+				break;
+			case graph.temperature:
+				_graphHandler.ForEach (gh => gh.ChangeTemperatureColor (col));
+				break;
+			default:
+				throw new IndexOutOfRangeException();
+			}
+		}
     }
 }

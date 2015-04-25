@@ -124,12 +124,12 @@ namespace P2Graph
 				double xMax = item.largestX, yMax = item.largestY;
 
 				if (this.xMaxRange < xMax) {
-					this.xMaxRange = (int) Math.Ceiling(xMax + 2);
+					this.xMaxRange += (int) Math.Ceiling(xMax);
 					axisChanged = true;
 				}
 
 				if (this.yMaxRange < yMax) {
-					this.yMaxRange = (int) Math.Ceiling(yMax + 2);
+					this.yMaxRange += (int) Math.Ceiling(yMax);
 					axisChanged = true;
 				}
 			}
