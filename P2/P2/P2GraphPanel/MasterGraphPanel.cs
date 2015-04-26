@@ -48,7 +48,7 @@ namespace P2Graph
 		public MasterGraphPanel ()
 			: base ()
 		{
-			this.Size = new Size (620, 500);
+            this.Size = new System.Drawing.Size(628, 487);
 			CalculateOrego ();
 			CreateAxis("x-akse", "y-akse");
 			_g = this.CreateGraphics ();

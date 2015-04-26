@@ -16,11 +16,6 @@ namespace P2
         Synthesis synth;
         helpTextController helper;
         double tempDouble;
-		private const int maxButtons = 7;
-		private const int buttonOffset = 75;
-		GraphButton[] buttons = new GraphButton[maxButtons];
-		Button addGraph = new Button();
-        int graphTaps = 0;
                 
         public GUI()
         {
@@ -28,33 +23,10 @@ namespace P2
             synth = new Synthesis(pGraphArea);
             helper = new helpTextController();
             Control.CheckForIllegalCrossThreadCalls = false;
-            startUpTaps();
             startUpInfo();
             correctTextSize();
 
-            this.pGraphArea.Invalidate();
-        }
-
-        #region Startup
-        /// <summary>
-        /// Creates the initial taps
-        /// </summary>
-        private void startUpTaps()
-        {
-			//Adds the GraphButton to the screen
-			GraphButton tempGP = new GraphButton(synth.graphHandler, buttons);
-            tempGP.Location = new Point(0, 0);
-			insertButtonText(tempGP);
-			tempGP.AssignToClose (this.OnTabClose);
-			buttons [graphTaps] = tempGP;
-            this.pTabs.Controls.Add(buttons[graphTaps++]);
-
-			//Adds the button to add more graphs
-            addGraph = new Button();
-			addGraph.Text = "Tilføj graf";
-            this.pTabs.Controls.Add(addGraph);
-			addGraph.Location = new Point (buttonOffset, 0);
-			addGraph.Click += AddGraph;
+            page1.gh = synth.graphHandlers[0];
         }
 
         /// <summary>
@@ -66,7 +38,6 @@ namespace P2
             String[] helpText = helper.Next();
             updateHelpText(helpText[0], helpText[1]);
         }
-        #endregion
 
         #region Support functions
         /// <summary>
@@ -101,10 +72,10 @@ namespace P2
         /// Writes the text of the button taps with variating spacing depending on the text size
         /// </summary>
         /// <param name="button">Is the button where the text is to be written in</param>
-        private void insertButtonText(Button button)
-        {
-            button.Text = "Graf " + (graphTaps + 1);
-        }
+        //private void insertButtonText(Button button)
+        //{
+        //    button.Text = "Graf " + (graphTaps + 1);
+        //}
                 
         /// <summary>
         /// Makes sure only positive integers can be inserted into a textbox
@@ -212,22 +183,22 @@ namespace P2
             switch ((colors)comboBox.SelectedItem)
             {
                 case colors.Rød:
-                    synth.ChangeGraphColor(Color.Red, graphToDraw);
+                    ChangeGraphColor(Color.Red, graphToDraw);
                     break;
                 case colors.Grøn:
-                    synth.ChangeGraphColor(Color.Green, graphToDraw);
+                    ChangeGraphColor(Color.Green, graphToDraw);
                     break;
                 case colors.Blå:
-                    synth.ChangeGraphColor(Color.Blue, graphToDraw);
+                    ChangeGraphColor(Color.Blue, graphToDraw);
                     break;
                 case colors.Lilla:
-                    synth.ChangeGraphColor(Color.Purple, graphToDraw);
+                    ChangeGraphColor(Color.Purple, graphToDraw);
                     break;
                 case colors.Sort:
-                    synth.ChangeGraphColor(Color.Black, graphToDraw);
+                    ChangeGraphColor(Color.Black, graphToDraw);
                     break;
                 case colors.Gennemsigtig:
-                    synth.ChangeGraphColor(Color.Transparent, graphToDraw);
+                    ChangeGraphColor(Color.Transparent, graphToDraw);
                     break;
                 default:
                     break;
@@ -261,50 +232,6 @@ namespace P2
                 loadMenu.Show();
             }
         }
-
-		/// <summary>
-		/// If the addButton is pressed and the location is not too much to the right then it creates a new graph tap
-		/// </summary>
-		private void AddGraph(object sender, EventArgs e)
-		{
-			if (graphTaps < maxButtons)
-			{
-				//Moves button to the right
-				addGraph.Location = new Point((graphTaps+1) * buttonOffset, 0);
-
-				//Instantiates a new GraphHandler and GraphPanel with previous Synthesis
-				//This allows the graphdrawing to continue on a new panel
-				P2Graph.MasterGraphPanel newMGP = new P2Graph.MasterGraphPanel ();
-				GraphHandler gh = synth.CloneGraphHandler(graphTaps-1);
-				gh.graphPanel = newMGP;
-				synth.AddGraphHandler (gh);
-
-				//Sets location, text and adds the button to the controls.
-				//Also notifies the rest of the buttons of the new button.
-				GraphButton tempGB =  new GraphButton(gh, buttons);
-				tempGB.Location = new Point((graphTaps * buttonOffset), 0);
-				tempGB.AssignToClose (OnTabClose);
-				insertButtonText(tempGB);
-				foreach (var existingGB in buttons) {
-					if(existingGB != null)
-						existingGB.ButtonCreated (tempGB);
-				}
-				buttons [graphTaps] = tempGB;
-				this.pTabs.Controls.Add(buttons[graphTaps++]);
-			}
-		}
-
-		private void OnTabClose(object sender, EventArgs e){
-			graphTaps--;
-			ReplaceButtons ();
-		}
-
-		private void ReplaceButtons(){
-			for (int i = 0; i < graphTaps; i++) {
-				buttons [i].Location = new Point(i * buttonOffset, 0);
-			}
-			addGraph.Location = new Point((graphTaps) * buttonOffset, 0);
-		}
 
 		/// <summary>
         /// Opens an instance of the calcForm if one is not open
@@ -515,6 +442,66 @@ namespace P2
             scrollEnd(textBox4, hScrollBarTemperature);
         }
         #endregion
+
+        private void addGraph_Click(object sender, EventArgs e)
+        {
+            if (pTabs.Controls.Count < 6)
+            {
+                GraphPage addThis = GenerateTabPage();
+
+                //Lav funktion, der tager delegate og fjernes graphhandleren
+                addThis.AddToClose(RemoveGHOnClose);
+
+                pTabs.Controls.Add(addThis);
+            }
+        }
+
+        private void RemoveGHOnClose(object sender, EventArgs e){
+            synth.graphHandlers.RemoveAt(pTabs.SelectedIndex);
+        }
+
+        private GraphPage GenerateTabPage()
+        {
+            var mgp = new P2Graph.MasterGraphPanel();
+            GraphHandler newGH = new GraphHandler(mgp);
+            GraphPage testPage = new GraphPage(mgp);
+            testPage.gh = newGH;
+            synth.graphHandlers.Add(newGH);
+            testPage.Location = new System.Drawing.Point(4, 22);
+            testPage.Name = "graphTab" + pTabs.Controls.Count + 1;
+            testPage.Padding = new System.Windows.Forms.Padding(3);
+            testPage.Size = new System.Drawing.Size(509, 384);
+            testPage.Text = "Graf " + (pTabs.Controls.Count + 1);
+            testPage.UseVisualStyleBackColor = true;
+
+            return testPage;
+        }
+
+        /// <summary>
+        /// Changes the color of the selected graph.
+        /// </summary>
+        /// <param name="col">Color.</param>
+        /// <param name="enumGraph">Enum graph.</param>
+        public void ChangeGraphColor(Color col, graph enumGraph)
+        {
+            switch (enumGraph)
+            {
+                case graph.ammonia:
+                    synth.graphHandlers[pTabs.SelectedIndex].ChangeAmmoniaColor(col);
+                    break;
+                case graph.hydrogen:
+                    synth.graphHandlers[pTabs.SelectedIndex].ChangeHydrogenColor(col);
+                    break;
+                case graph.nitrogen:
+                    synth.graphHandlers[pTabs.SelectedIndex].ChangeNitrogenColor(col);
+                    break;
+                case graph.temperature:
+                    synth.graphHandlers[pTabs.SelectedIndex].ChangeTemperatureColor(col);
+                    break;
+                default:
+                    throw new IndexOutOfRangeException();
+            }
+        }
         #endregion
     }
 }

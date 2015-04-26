@@ -83,7 +83,7 @@ namespace P2Graph
 			this._maxRange = 1;
 			this._MGP = gPanel;
 
-			this._beginsAt = new GraphPoint (_MGP.O, _MGP);
+			this._beginsAt = new GraphPoint (0, 0, _MGP);
 			this._endsAt = new GraphPoint (0, 0, _MGP);
 
 			CalculateAxisEnds ();

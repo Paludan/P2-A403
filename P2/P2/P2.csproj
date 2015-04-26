@@ -43,10 +43,10 @@
       <DependentUpon>CalcForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DataToSerialize.cs" />
-    <Compile Include="GraphButton.cs">
+    <Compile Include="GraphHandler.cs" />
+    <Compile Include="GraphPage.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="GraphHandler.cs" />
     <Compile Include="helpTextController.cs" />
     <Compile Include="LoadMenu.cs">
       <SubType>Form</SubType>

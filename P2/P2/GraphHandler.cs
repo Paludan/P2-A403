@@ -38,10 +38,6 @@ namespace P2
 
 		private void InitializeGraphArea(MasterGraphPanel MGP){
 			this._graphPanel = MGP;
-			MGP.BackColor = System.Drawing.Color.WhiteSmoke;
-			MGP.Location = new System.Drawing.Point(0, 0);
-			MGP.Name = "GraphArea";
-			MGP.Size = new System.Drawing.Size(630, 510);
 		}
 
 		/// <summary>
@@ -68,10 +64,12 @@ namespace P2
 		/// Changes the axis and hides temperature and preesure graphs
 		/// </summary>
 		public void ChangeAmmoniaState(object sender, EventArgs e){
-			if (_pAmmonia.isActive)
-				_pAmmonia.isActive = false;
-			else
-				_pAmmonia.isActive = true;
+            if (_pAmmonia.isActive)
+                _pAmmonia.isActive = false;
+            else
+            {
+                _pAmmonia.isActive = true;
+            }
 
 			SetAxisPartial ();
 		}
@@ -111,6 +109,10 @@ namespace P2
 
 		private void SetAxisPartial(){
 			_graphPanel.ChangeAxisNames ("Tid", "Stofmængde");
+
+            _temperature.isActive = false;
+            _pressure.isActive = false;
+
 			_graphPanel.Invalidate ();
 		}
 
@@ -130,13 +132,16 @@ namespace P2
 			
 		private void SetAxisTemperature(){
 			_graphPanel.ChangeAxisNames ("Tid", "Temperatur");
+
+            _pAmmonia.isActive = false;
+            _pNitrogen.isActive = false;
+            _pHydrogen.isActive = false;
+
 			_graphPanel.Invalidate ();
 		}
 
 		private void CheckInvalidate(){
-			if (this.isActive) {
-				_graphPanel.Invalidate ();
-			}
+		    _graphPanel.Invalidate ();
 		}
 		#endregion
 
@@ -146,19 +151,23 @@ namespace P2
 		/// <param name="data">Datapoint to update with.</param>
         public void Update(DataPoint data)
         {
-			if (isActive) {
-				_pressure.AddAndDraw (data.time, data.pressure);
-				_pAmmonia.AddAndDraw (data.time, data.nAmmonia);
-				_temperature.AddAndDraw (data.time, data.temperature);
-				_pHydrogen.AddAndDraw (data.time, data.nHydrogen);
-				_pNitrogen.AddAndDraw (data.time, data.nNitrogen);
-			} else {
-				_pressure.AddPoint (data.time, data.pressure);
-				_pAmmonia.AddPoint (data.time, data.nAmmonia);
-				_temperature.AddPoint (data.time, data.temperature);
-				_pHydrogen.AddPoint (data.time, data.nHydrogen);
-				_pNitrogen.AddPoint (data.time, data.nNitrogen);
-			}
+            if (this.isActive)
+            {
+                _pressure.AddAndDraw(data.time, data.pressure);
+                _pAmmonia.AddAndDraw(data.time, data.nAmmonia);
+                _temperature.AddAndDraw(data.time, data.temperature);
+                _pHydrogen.AddAndDraw(data.time, data.nHydrogen);
+                _pNitrogen.AddAndDraw(data.time, data.nNitrogen);
+            }
+            else
+            {
+                _pressure.AddPoint(data.time, data.pressure);
+                _pAmmonia.AddPoint(data.time, data.nAmmonia);
+                _temperature.AddPoint(data.time, data.temperature);
+                _pHydrogen.AddPoint(data.time, data.nHydrogen);
+                _pNitrogen.AddPoint(data.time, data.nNitrogen);
+            }
+			
         }
 
 		public void ShowGraphPanel(){
@@ -170,13 +179,9 @@ namespace P2
 			_graphPanel.Hide ();
 		}
 
-		#region ICloneable implementation
-
-		public object Clone ()
-		{
-			return (GraphHandler) this.MemberwiseClone();
-		}
-
-		#endregion
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
     }
 }

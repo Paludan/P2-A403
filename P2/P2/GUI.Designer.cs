@@ -34,8 +34,6 @@ namespace P2
         /// </summary>
         private void InitializeComponent()
         {
-            this.pSimulationArea = new System.Windows.Forms.Panel();
-            this.pGraphArea = new P2Graph.MasterGraphPanel();
             this.lTemperature = new System.Windows.Forms.Label();
             this.lNH3 = new System.Windows.Forms.Label();
             this.lH2 = new System.Windows.Forms.Label();
@@ -49,7 +47,6 @@ namespace P2
             this.hColour = new System.Windows.Forms.Label();
             this.hVariable = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.pTabs = new System.Windows.Forms.Panel();
             this.Save = new System.Windows.Forms.Button();
             this.LoadButton = new System.Windows.Forms.Button();
             this.pProjectHandling = new System.Windows.Forms.Panel();
@@ -79,7 +76,11 @@ namespace P2
             this.pInfoBox = new System.Windows.Forms.Panel();
             this.FurtherInfoBox = new System.Windows.Forms.Button();
             this.hInfoBox = new System.Windows.Forms.Label();
-            this.pSimulationArea.SuspendLayout();
+            this.pTabs = new System.Windows.Forms.TabControl();
+            this.page1 = new GraphPage(pGraphArea);
+            this.pSimulationArea = new System.Windows.Forms.Panel();
+            this.addGraph = new System.Windows.Forms.Button();
+            this.pGraphArea = new P2Graph.MasterGraphPanel();
             this.pColourDescription.SuspendLayout();
             this.pProjectHandling.SuspendLayout();
             this.pParameters.SuspendLayout();
@@ -87,16 +88,10 @@ namespace P2
             this.pTimeControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.pInfoBox.SuspendLayout();
+            this.pTabs.SuspendLayout();
+            this.page1.SuspendLayout();
+            this.pSimulationArea.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // pSimulationArea
-            // 
-            this.pSimulationArea.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pSimulationArea.Controls.Add(this.pGraphArea);
-            this.pSimulationArea.Location = new System.Drawing.Point(10, 20);
-            this.pSimulationArea.Name = "pSimulationArea";
-            this.pSimulationArea.Size = new System.Drawing.Size(630, 510);
-            this.pSimulationArea.TabIndex = 0;       
             // 
             // lTemperature
             // 
@@ -246,13 +241,6 @@ namespace P2
             this.comboBox1.Size = new System.Drawing.Size(110, 21);
             this.comboBox1.TabIndex = 1;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-            // 
-            // pTabs
-            // 
-            this.pTabs.Location = new System.Drawing.Point(10, 0);
-            this.pTabs.Name = "pTabs";
-            this.pTabs.Size = new System.Drawing.Size(630, 20);
-            this.pTabs.TabIndex = 1;
             // 
             // Save
             // 
@@ -576,10 +564,51 @@ namespace P2
             this.hInfoBox.TabIndex = 11;
             this.hInfoBox.Text = "Vejledning";
             // 
+            // pTabs
+            // 
+            this.pTabs.Controls.Add(this.page1);
+            this.pTabs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pTabs.Location = new System.Drawing.Point(0, 0);
+            this.pTabs.Name = "pTabs";
+            this.pTabs.SelectedIndex = 0;
+            this.pTabs.Size = new System.Drawing.Size(628, 508);
+            this.pTabs.TabIndex = 20;
+            // 
+            // page1
+            // 
+            this.page1.Controls.Add(this.pGraphArea);
+            this.page1.Location = new System.Drawing.Point(4, 22);
+            this.page1.Name = "page1";
+            this.page1.Padding = new System.Windows.Forms.Padding(3);
+            this.page1.Size = new System.Drawing.Size(620, 482);
+            this.page1.TabIndex = 0;
+            this.page1.Text = "Graf 1";
+            this.page1.UseVisualStyleBackColor = true;
+            // 
+            // pSimulationArea
+            // 
+            this.pSimulationArea.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pSimulationArea.Controls.Add(this.pTabs);
+            this.pSimulationArea.Location = new System.Drawing.Point(10, 20);
+            this.pSimulationArea.Name = "pSimulationArea";
+            this.pSimulationArea.Size = new System.Drawing.Size(630, 510);
+            this.pSimulationArea.TabIndex = 0;
+            // 
+            // addGraph
+            // 
+            this.addGraph.Location = new System.Drawing.Point(565, 20);
+            this.addGraph.Name = "addGraph";
+            this.addGraph.Size = new System.Drawing.Size(75, 23);
+            this.addGraph.TabIndex = 20;
+            this.addGraph.Text = "Tilføj Graf";
+            this.addGraph.UseVisualStyleBackColor = true;
+            this.addGraph.Click += new System.EventHandler(this.addGraph_Click);
+            // 
             // GUI
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.addGraph);
             this.Controls.Add(this.hInfoBox);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pInfoBox);
@@ -590,12 +619,10 @@ namespace P2
             this.Controls.Add(this.pParameters);
             this.Controls.Add(this.hProject);
             this.Controls.Add(this.pProjectHandling);
-            this.Controls.Add(this.pTabs);
             this.Controls.Add(this.pSimulationArea);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "GUI";
             this.Text = "GUI";
-            this.pSimulationArea.ResumeLayout(false);
             this.pColourDescription.ResumeLayout(false);
             this.pProjectHandling.ResumeLayout(false);
             this.pParameters.ResumeLayout(false);
@@ -604,14 +631,15 @@ namespace P2
             this.pTimeControl.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.pInfoBox.ResumeLayout(false);
+            this.pTabs.ResumeLayout(false);
+            this.page1.ResumeLayout(false);
+            this.pSimulationArea.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel pSimulationArea;
-        private System.Windows.Forms.Panel pTabs;
         private System.Windows.Forms.Button Save;
         private System.Windows.Forms.Button LoadButton;
         private System.Windows.Forms.Panel pProjectHandling;
@@ -634,7 +662,6 @@ namespace P2
         private System.Windows.Forms.Label lNH3;
         private System.Windows.Forms.Label lH2;
         private System.Windows.Forms.Label lTemperature;
-        private MasterGraphPanel pGraphArea;
         private System.Windows.Forms.Label hInfoBox;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox3;
@@ -655,5 +682,10 @@ namespace P2
         private Button OpenCalc;
         private Button saveGraph;
         private Button FurtherInfoBox;
+        private TabControl pTabs;
+        private GraphPage page1;
+        private MasterGraphPanel pGraphArea;
+        private Panel pSimulationArea;
+        private Button addGraph;
     }
 }
