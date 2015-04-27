@@ -8,10 +8,6 @@ namespace P2
 {
     static class SortTools
     {
-        /* Takes a DP list and a time double. Searches the list for a DP with the timestamp = time and returns it, or the closest after.
-         * list - the list to be searched
-         * timeToFind the time of the DP you wish the locate
-         * use this to extract specific, already-known DP's*/
         /// <summary>
         /// Use to extract a DP from a list or array, specified by it's time variable, or the closest DP after
         /// </summary>
@@ -22,11 +18,11 @@ namespace P2
         {
             int max = list.Count - 1;
             int i = max;
-            DataPoint tempDP = list.ElementAt(max);
+            DataPoint tempDP = new DataPoint();
 
             //exception handling
             if (list.Count == 0) { throw new InvalidOperationException("MergeSearch: List is empty. Run the simulation before trying to access data."); }
-            else if (tempDP.time < timeToFind) { System.Windows.Forms.MessageBox.Show("Tiden er højere end det sidste DataPoint"); return list.ElementAt(max); }
+            else if (list.ElementAt(max).time < timeToFind) { System.Windows.Forms.MessageBox.Show("Tiden er højere end det sidste DataPoint"); return list.ElementAt(max); }
             else if (list.ElementAt(0).time > timeToFind) { System.Windows.Forms.MessageBox.Show("Tiden er lavere end det tidligste DataPoint"); return list.ElementAt(0); }
 
             //searching for a DP with the exact time
@@ -38,7 +34,7 @@ namespace P2
             {
                 if (list.ElementAt(y).time < timeToFind && list.ElementAt(y + 1).time > timeToFind) { return list.ElementAt(y + 1); }
             }
-            System.Windows.Forms.MessageBox.Show("Error: Sorting algorithm failed. (SortTools.byTime)"); //If you reach this code, you're going to have a bad time.
+            System.Windows.Forms.MessageBox.Show("Error: Search failed. (SortTools.byTime)"); //If you reach this code, you're going to have a bad time.
             return tempDP;                                                                               //but hey, it keeps the IDE happy =)
         }
 
@@ -57,11 +53,11 @@ namespace P2
             int max = list.Count - 1;
             int i = max;
             int ID = -1;
-            DataPoint tempDP = list.ElementAt(max);
+            DataPoint tempDP = new DataPoint();
 
             //exception handling
             if (list.Count == 0) { throw new InvalidOperationException("MergeSearch: List is empty. Run the simulation before trying to access data."); }
-            else if (tempDP.time < timeToFind) { System.Windows.Forms.MessageBox.Show("Tiden er højere end det sidste DataPoint"); return max; }
+            else if (list.ElementAt(max).time < timeToFind) { System.Windows.Forms.MessageBox.Show("Tiden er højere end det sidste DataPoint"); return max; }
             else if (list.ElementAt(0).time > timeToFind) { System.Windows.Forms.MessageBox.Show("Tiden er lavere end det tidligste DataPoint"); return 0; }
 
             //searching for DP with exact time
@@ -71,9 +67,9 @@ namespace P2
             //searching for closest above
             for (int y = 0; y < max; y++)
             {
-                if (list.ElementAt(y).time < timeToFind && list.ElementAt(y + 1).time > timeToFind) { return y+1; }
+                if (list.ElementAt(y).time <= timeToFind && list.ElementAt(y + 1).time > timeToFind) { return y+1; }
             }
-            System.Windows.Forms.MessageBox.Show("Error: Sorting algorithm failed. (SortTools.byTime)");
+            System.Windows.Forms.MessageBox.Show("Error: Search failed. (SortTools.byTime)");
             return ID;
         }
     }
