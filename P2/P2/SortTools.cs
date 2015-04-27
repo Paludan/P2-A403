@@ -32,7 +32,7 @@ namespace P2
             //searching for closest above
             for (int y = 0; y < max; y++)
             {
-                if (list.ElementAt(y).time < timeToFind && list.ElementAt(y + 1).time > timeToFind) { return list.ElementAt(y + 1); }
+                if (list.ElementAt(y).time < timeToFind && list.ElementAt(y + 1).time >= timeToFind) { return list.ElementAt(y + 1); }
             }
             System.Windows.Forms.MessageBox.Show("Error: Search failed. (SortTools.byTime)"); //If you reach this code, you're going to have a bad time.
             return tempDP;                                                                               //but hey, it keeps the IDE happy =)
@@ -67,7 +67,7 @@ namespace P2
             //searching for closest above
             for (int y = 0; y < max; y++)
             {
-                if (list.ElementAt(y).time <= timeToFind && list.ElementAt(y + 1).time > timeToFind) { return y+1; }
+                if (list.ElementAt(y).time < timeToFind && list.ElementAt(y + 1).time >= timeToFind) { return y+1; }
             }
             System.Windows.Forms.MessageBox.Show("Error: Search failed. (SortTools.byTime)");
             return ID;
