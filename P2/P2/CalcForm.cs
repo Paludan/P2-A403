@@ -41,9 +41,9 @@ namespace P2
 
 		public void UpdateData(){
             setupStartIdealGasLaw();
+            calcEquiConst();
             calcEquiFrac();
             calcRRConst();
-        
 		}
 
         private void setupContextMenu()
@@ -68,6 +68,16 @@ namespace P2
                 / volume).ToString("#.##");
         }
 
+        private void calcEquiConst()
+        {
+            this.entalpiLabel.Text = CalcForm.entalpi.ToString();
+            this.entropiLabel.Text = CalcForm.entropi.ToString();
+            this.temperatureEqui.Text = this._synth.currentData.temperature.ToString();
+            this.gasConstEqui.Text = CalcForm.gasConstant.ToString();
+            this.gasConstEqui2.Text = CalcForm.gasConstant.ToString();
+            this.equiConst.Text = String.Format("{0:N4}", Math.Pow(Math.E, -(CalcForm.entalpi / (this._synth.currentData.temperature * CalcForm.gasConstant)) + (CalcForm.entropi / CalcForm.gasConstant)));
+        }
+
         private void calcEquiFrac()
         {
             this.equiFracResult.Text = string.Format("{0:N7}", (Math.Pow(((this._synth.currentData.nAmmonia * this._synth.currentData.temperature * gasConstant)
@@ -75,7 +85,7 @@ namespace P2
         / volume), 2) * Math.Pow(((this._synth.currentData.nHydrogen * this._synth.currentData.temperature * gasConstant)
         / volume), 2))));
 
-            this.equiTitle.Text = "Ligevægtsbrøken: " + "Y = " + string.Format("{0:N7}", (Math.Pow(Math.E, -(entalpi
+            this.equiTitle.Text = "Ligevægtsbrøken: " + "Y = " + string.Format("{0:N4}", (Math.Pow(Math.E, -(entalpi
                     / (this._synth.currentData.temperature * gasConstant)) + (entropi / gasConstant))));
 
             this.pAmmoniaEqui.Text = string.Format("{0:N3}", Math.Pow(((this._synth.currentData.nAmmonia * this._synth.currentData.temperature * gasConstant)

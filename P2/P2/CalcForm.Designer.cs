@@ -68,12 +68,35 @@ namespace P2
             this.label38 = new System.Windows.Forms.Label();
             this.temperatureRR = new System.Windows.Forms.Label();
             this.label40 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
+            this.label35 = new System.Windows.Forms.Label();
+            this.label37 = new System.Windows.Forms.Label();
+            this.label39 = new System.Windows.Forms.Label();
+            this.label41 = new System.Windows.Forms.Label();
+            this.label42 = new System.Windows.Forms.Label();
+            this.label43 = new System.Windows.Forms.Label();
+            this.label44 = new System.Windows.Forms.Label();
+            this.label45 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.entropiLabel = new System.Windows.Forms.Label();
+            this.label47 = new System.Windows.Forms.Label();
+            this.gasConstEqui = new System.Windows.Forms.Label();
+            this.label49 = new System.Windows.Forms.Label();
+            this.entalpiLabel = new System.Windows.Forms.Label();
+            this.label51 = new System.Windows.Forms.Label();
+            this.gasConstEqui2 = new System.Windows.Forms.Label();
+            this.label54 = new System.Windows.Forms.Label();
+            this.label55 = new System.Windows.Forms.Label();
+            this.temperatureEqui = new System.Windows.Forms.Label();
+            this.label57 = new System.Windows.Forms.Label();
+            this.equiConst = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic);
-            this.label1.Location = new System.Drawing.Point(16, 160);
+            this.label1.Location = new System.Drawing.Point(16, 268);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(24, 23);
             this.label1.TabIndex = 0;
@@ -81,7 +104,7 @@ namespace P2
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(56, 144);
+            this.label2.Location = new System.Drawing.Point(56, 252);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(56, 16);
             this.label2.TabIndex = 1;
@@ -89,7 +112,7 @@ namespace P2
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(48, 152);
+            this.label3.Location = new System.Drawing.Point(48, 260);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(88, 15);
             this.label3.TabIndex = 2;
@@ -97,7 +120,7 @@ namespace P2
             // 
             // label4
             // 
-            this.label4.Location = new System.Drawing.Point(48, 168);
+            this.label4.Location = new System.Drawing.Point(48, 276);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(88, 24);
             this.label4.TabIndex = 3;
@@ -141,7 +164,7 @@ namespace P2
             // equiTitle
             // 
             this.equiTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
-            this.equiTitle.Location = new System.Drawing.Point(368, 120);
+            this.equiTitle.Location = new System.Drawing.Point(368, 227);
             this.equiTitle.Name = "equiTitle";
             this.equiTitle.Size = new System.Drawing.Size(239, 16);
             this.equiTitle.TabIndex = 4;
@@ -159,7 +182,7 @@ namespace P2
             // label11
             // 
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
-            this.label11.Location = new System.Drawing.Point(16, 224);
+            this.label11.Location = new System.Drawing.Point(16, 323);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(148, 16);
             this.label11.TabIndex = 5;
@@ -167,7 +190,7 @@ namespace P2
             // 
             // label12
             // 
-            this.label12.Location = new System.Drawing.Point(16, 264);
+            this.label12.Location = new System.Drawing.Point(16, 363);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(8, 16);
             this.label12.TabIndex = 6;
@@ -176,7 +199,7 @@ namespace P2
             // label13
             // 
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F);
-            this.label13.Location = new System.Drawing.Point(24, 272);
+            this.label13.Location = new System.Drawing.Point(24, 371);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(8, 8);
             this.label13.TabIndex = 7;
@@ -184,7 +207,7 @@ namespace P2
             // 
             // label14
             // 
-            this.label14.Location = new System.Drawing.Point(38, 264);
+            this.label14.Location = new System.Drawing.Point(38, 363);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(16, 16);
             this.label14.TabIndex = 8;
@@ -192,7 +215,7 @@ namespace P2
             // 
             // label15
             // 
-            this.label15.Location = new System.Drawing.Point(72, 264);
+            this.label15.Location = new System.Drawing.Point(72, 363);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(24, 16);
             this.label15.TabIndex = 9;
@@ -200,24 +223,26 @@ namespace P2
             // 
             // label17
             // 
-            this.label17.Location = new System.Drawing.Point(104, 248);
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(102, 346);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(18, 16);
+            this.label17.Size = new System.Drawing.Size(18, 10);
             this.label17.TabIndex = 11;
             this.label17.Text = "Eₐ";
             // 
             // label16
             // 
-            this.label16.Location = new System.Drawing.Point(96, 256);
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(96, 350);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(40, 16);
+            this.label16.Size = new System.Drawing.Size(40, 10);
             this.label16.TabIndex = 12;
             this.label16.Text = "______";
             // 
             // label18
             // 
-            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic);
-            this.label18.Location = new System.Drawing.Point(96, 272);
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(96, 359);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(40, 16);
             this.label18.TabIndex = 13;
@@ -228,7 +253,7 @@ namespace P2
             this.label19.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label19.Location = new System.Drawing.Point(336, -8);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(15, 304);
+            this.label19.Size = new System.Drawing.Size(15, 447);
             this.label19.TabIndex = 14;
             // 
             // label20
@@ -323,7 +348,7 @@ namespace P2
             // label31
             // 
             this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
-            this.label31.Location = new System.Drawing.Point(16, 120);
+            this.label31.Location = new System.Drawing.Point(16, 228);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(192, 15);
             this.label31.TabIndex = 4;
@@ -332,7 +357,7 @@ namespace P2
             // equiFracResult
             // 
             this.equiFracResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.equiFracResult.Location = new System.Drawing.Point(368, 160);
+            this.equiFracResult.Location = new System.Drawing.Point(368, 267);
             this.equiFracResult.Name = "equiFracResult";
             this.equiFracResult.Size = new System.Drawing.Size(80, 15);
             this.equiFracResult.TabIndex = 25;
@@ -340,7 +365,7 @@ namespace P2
             // 
             // pAmmoniaEqui
             // 
-            this.pAmmoniaEqui.Location = new System.Drawing.Point(496, 151);
+            this.pAmmoniaEqui.Location = new System.Drawing.Point(496, 258);
             this.pAmmoniaEqui.Name = "pAmmoniaEqui";
             this.pAmmoniaEqui.Size = new System.Drawing.Size(88, 16);
             this.pAmmoniaEqui.TabIndex = 26;
@@ -348,7 +373,7 @@ namespace P2
             // 
             // label26
             // 
-            this.label26.Location = new System.Drawing.Point(465, 160);
+            this.label26.Location = new System.Drawing.Point(465, 267);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(129, 15);
             this.label26.TabIndex = 27;
@@ -356,7 +381,7 @@ namespace P2
             // 
             // pNitrogenEqui
             // 
-            this.pNitrogenEqui.Location = new System.Drawing.Point(471, 177);
+            this.pNitrogenEqui.Location = new System.Drawing.Point(471, 284);
             this.pNitrogenEqui.Name = "pNitrogenEqui";
             this.pNitrogenEqui.Size = new System.Drawing.Size(59, 24);
             this.pNitrogenEqui.TabIndex = 28;
@@ -364,7 +389,7 @@ namespace P2
             // 
             // label30
             // 
-            this.label30.Location = new System.Drawing.Point(523, 177);
+            this.label30.Location = new System.Drawing.Point(523, 284);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(19, 24);
             this.label30.TabIndex = 29;
@@ -372,7 +397,7 @@ namespace P2
             // 
             // pHydrogenEqui
             // 
-            this.pHydrogenEqui.Location = new System.Drawing.Point(548, 175);
+            this.pHydrogenEqui.Location = new System.Drawing.Point(548, 282);
             this.pHydrogenEqui.Name = "pHydrogenEqui";
             this.pHydrogenEqui.Size = new System.Drawing.Size(88, 24);
             this.pHydrogenEqui.TabIndex = 30;
@@ -381,7 +406,7 @@ namespace P2
             // label33
             // 
             this.label33.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label33.Location = new System.Drawing.Point(443, 160);
+            this.label33.Location = new System.Drawing.Point(443, 267);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(16, 23);
             this.label33.TabIndex = 31;
@@ -390,7 +415,7 @@ namespace P2
             // label5
             // 
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
-            this.label5.Location = new System.Drawing.Point(368, 201);
+            this.label5.Location = new System.Drawing.Point(368, 323);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(148, 16);
             this.label5.TabIndex = 32;
@@ -398,7 +423,7 @@ namespace P2
             // 
             // RRConst
             // 
-            this.RRConst.Location = new System.Drawing.Point(368, 241);
+            this.RRConst.Location = new System.Drawing.Point(368, 363);
             this.RRConst.Name = "RRConst";
             this.RRConst.Size = new System.Drawing.Size(64, 16);
             this.RRConst.TabIndex = 33;
@@ -406,7 +431,7 @@ namespace P2
             // 
             // label24
             // 
-            this.label24.Location = new System.Drawing.Point(432, 241);
+            this.label24.Location = new System.Drawing.Point(432, 363);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(16, 16);
             this.label24.TabIndex = 35;
@@ -414,7 +439,7 @@ namespace P2
             // 
             // label28
             // 
-            this.label28.Location = new System.Drawing.Point(515, 241);
+            this.label28.Location = new System.Drawing.Point(515, 363);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(24, 16);
             this.label28.TabIndex = 36;
@@ -422,7 +447,8 @@ namespace P2
             // 
             // activationEnergy
             // 
-            this.activationEnergy.Location = new System.Drawing.Point(562, 224);
+            this.activationEnergy.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.activationEnergy.Location = new System.Drawing.Point(558, 339);
             this.activationEnergy.Name = "activationEnergy";
             this.activationEnergy.Size = new System.Drawing.Size(74, 16);
             this.activationEnergy.TabIndex = 37;
@@ -430,7 +456,8 @@ namespace P2
             // 
             // label34
             // 
-            this.label34.Location = new System.Drawing.Point(539, 233);
+            this.label34.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label34.Location = new System.Drawing.Point(539, 347);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(85, 16);
             this.label34.TabIndex = 38;
@@ -438,8 +465,8 @@ namespace P2
             // 
             // gasConstRR
             // 
-            this.gasConstRR.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gasConstRR.Location = new System.Drawing.Point(539, 249);
+            this.gasConstRR.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gasConstRR.Location = new System.Drawing.Point(540, 359);
             this.gasConstRR.Name = "gasConstRR";
             this.gasConstRR.Size = new System.Drawing.Size(40, 16);
             this.gasConstRR.TabIndex = 39;
@@ -448,7 +475,7 @@ namespace P2
             // label36
             // 
             this.label36.AutoSize = true;
-            this.label36.Location = new System.Drawing.Point(49, 264);
+            this.label36.Location = new System.Drawing.Point(49, 363);
             this.label36.Name = "label36";
             this.label36.Size = new System.Drawing.Size(26, 13);
             this.label36.TabIndex = 41;
@@ -457,7 +484,7 @@ namespace P2
             // preExponentialFactor
             // 
             this.preExponentialFactor.AutoSize = true;
-            this.preExponentialFactor.Location = new System.Drawing.Point(443, 241);
+            this.preExponentialFactor.Location = new System.Drawing.Point(443, 363);
             this.preExponentialFactor.Name = "preExponentialFactor";
             this.preExponentialFactor.Size = new System.Drawing.Size(17, 13);
             this.preExponentialFactor.TabIndex = 42;
@@ -466,7 +493,7 @@ namespace P2
             // label38
             // 
             this.label38.AutoSize = true;
-            this.label38.Location = new System.Drawing.Point(496, 241);
+            this.label38.Location = new System.Drawing.Point(496, 363);
             this.label38.Name = "label38";
             this.label38.Size = new System.Drawing.Size(13, 13);
             this.label38.TabIndex = 43;
@@ -474,8 +501,8 @@ namespace P2
             // 
             // temperatureRR
             // 
-            this.temperatureRR.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.temperatureRR.Location = new System.Drawing.Point(592, 249);
+            this.temperatureRR.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.temperatureRR.Location = new System.Drawing.Point(592, 359);
             this.temperatureRR.Name = "temperatureRR";
             this.temperatureRR.Size = new System.Drawing.Size(40, 16);
             this.temperatureRR.TabIndex = 44;
@@ -484,17 +511,250 @@ namespace P2
             // label40
             // 
             this.label40.AutoSize = true;
-            this.label40.Location = new System.Drawing.Point(581, 249);
+            this.label40.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label40.Location = new System.Drawing.Point(578, 359);
             this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(13, 13);
+            this.label40.Size = new System.Drawing.Size(8, 9);
             this.label40.TabIndex = 45;
             this.label40.Text = "•";
             // 
+            // label10
+            // 
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
+            this.label10.Location = new System.Drawing.Point(16, 119);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(148, 15);
+            this.label10.TabIndex = 46;
+            this.label10.Text = "Ligevægtskonstanten:";
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(23, 180);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(22, 13);
+            this.label32.TabIndex = 48;
+            this.label32.Text = "k =";
+            // 
+            // label35
+            // 
+            this.label35.Location = new System.Drawing.Point(48, 181);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(10, 16);
+            this.label35.TabIndex = 49;
+            this.label35.Text = "e";
+            // 
+            // label37
+            // 
+            this.label37.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label37.Location = new System.Drawing.Point(71, 161);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(25, 10);
+            this.label37.TabIndex = 50;
+            this.label37.Text = "∆H";
+            // 
+            // label39
+            // 
+            this.label39.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label39.Location = new System.Drawing.Point(63, 164);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(40, 16);
+            this.label39.TabIndex = 51;
+            this.label39.Text = "______";
+            // 
+            // label41
+            // 
+            this.label41.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label41.Location = new System.Drawing.Point(64, 173);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(40, 16);
+            this.label41.TabIndex = 52;
+            this.label41.Text = "R • T";
+            // 
+            // label42
+            // 
+            this.label42.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label42.Location = new System.Drawing.Point(110, 160);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(32, 10);
+            this.label42.TabIndex = 53;
+            this.label42.Text = "∆S";
+            // 
+            // label43
+            // 
+            this.label43.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label43.Location = new System.Drawing.Point(102, 164);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(40, 16);
+            this.label43.TabIndex = 54;
+            this.label43.Text = "______";
+            // 
+            // label44
+            // 
+            this.label44.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label44.Location = new System.Drawing.Point(110, 173);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(24, 16);
+            this.label44.TabIndex = 55;
+            this.label44.Text = "R";
+            // 
+            // label45
+            // 
+            this.label45.AutoSize = true;
+            this.label45.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F);
+            this.label45.Location = new System.Drawing.Point(93, 169);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(10, 9);
+            this.label45.TabIndex = 56;
+            this.label45.Text = "+";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(540, 169);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(10, 9);
+            this.label21.TabIndex = 66;
+            this.label21.Text = "+";
+            // 
+            // entropiLabel
+            // 
+            this.entropiLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.entropiLabel.Location = new System.Drawing.Point(567, 157);
+            this.entropiLabel.Name = "entropiLabel";
+            this.entropiLabel.Size = new System.Drawing.Size(55, 16);
+            this.entropiLabel.TabIndex = 63;
+            this.entropiLabel.Text = "∆S";
+            // 
+            // label47
+            // 
+            this.label47.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label47.Location = new System.Drawing.Point(559, 165);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(63, 16);
+            this.label47.TabIndex = 64;
+            this.label47.Text = "____________";
+            // 
+            // gasConstEqui
+            // 
+            this.gasConstEqui.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gasConstEqui.Location = new System.Drawing.Point(562, 177);
+            this.gasConstEqui.Name = "gasConstEqui";
+            this.gasConstEqui.Size = new System.Drawing.Size(45, 16);
+            this.gasConstEqui.TabIndex = 65;
+            this.gasConstEqui.Text = "R";
+            // 
+            // label49
+            // 
+            this.label49.Location = new System.Drawing.Point(428, 182);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(10, 16);
+            this.label49.TabIndex = 59;
+            this.label49.Text = "e";
+            // 
+            // entalpiLabel
+            // 
+            this.entalpiLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.entalpiLabel.Location = new System.Drawing.Point(466, 156);
+            this.entalpiLabel.Name = "entalpiLabel";
+            this.entalpiLabel.Size = new System.Drawing.Size(64, 16);
+            this.entalpiLabel.TabIndex = 60;
+            this.entalpiLabel.Text = "∆H";
+            // 
+            // label51
+            // 
+            this.label51.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label51.Location = new System.Drawing.Point(443, 165);
+            this.label51.Name = "label51";
+            this.label51.Size = new System.Drawing.Size(94, 16);
+            this.label51.TabIndex = 61;
+            this.label51.Text = "_____________________";
+            // 
+            // gasConstEqui2
+            // 
+            this.gasConstEqui2.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gasConstEqui2.Location = new System.Drawing.Point(444, 177);
+            this.gasConstEqui2.Name = "gasConstEqui2";
+            this.gasConstEqui2.Size = new System.Drawing.Size(45, 12);
+            this.gasConstEqui2.TabIndex = 62;
+            this.gasConstEqui2.Text = "R";
+            // 
+            // label54
+            // 
+            this.label54.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
+            this.label54.Location = new System.Drawing.Point(368, 119);
+            this.label54.Name = "label54";
+            this.label54.Size = new System.Drawing.Size(148, 15);
+            this.label54.TabIndex = 57;
+            this.label54.Text = "Ligevægtskonstanten:";
+            // 
+            // label55
+            // 
+            this.label55.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label55.Location = new System.Drawing.Point(494, 177);
+            this.label55.Name = "label55";
+            this.label55.Size = new System.Drawing.Size(10, 16);
+            this.label55.TabIndex = 67;
+            this.label55.Text = "•";
+            // 
+            // temperatureEqui
+            // 
+            this.temperatureEqui.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.temperatureEqui.Location = new System.Drawing.Point(505, 177);
+            this.temperatureEqui.Name = "temperatureEqui";
+            this.temperatureEqui.Size = new System.Drawing.Size(32, 16);
+            this.temperatureEqui.TabIndex = 68;
+            this.temperatureEqui.Text = "T";
+            // 
+            // label57
+            // 
+            this.label57.AutoSize = true;
+            this.label57.Location = new System.Drawing.Point(409, 180);
+            this.label57.Name = "label57";
+            this.label57.Size = new System.Drawing.Size(13, 13);
+            this.label57.TabIndex = 69;
+            this.label57.Text = "=";
+            // 
+            // equiConst
+            // 
+            this.equiConst.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.equiConst.Location = new System.Drawing.Point(368, 178);
+            this.equiConst.Name = "equiConst";
+            this.equiConst.Size = new System.Drawing.Size(48, 15);
+            this.equiConst.TabIndex = 70;
+            this.equiConst.Text = "k";
+            // 
             // CalcForm
             // 
-            this.ClientSize = new System.Drawing.Size(681, 292);
+            this.ClientSize = new System.Drawing.Size(681, 390);
             this.Controls.Add(this.label40);
             this.Controls.Add(this.temperatureRR);
+            this.Controls.Add(this.gasConstRR);
+            this.Controls.Add(this.label34);
+            this.Controls.Add(this.label55);
+            this.Controls.Add(this.temperatureEqui);
+            this.Controls.Add(this.gasConstEqui);
+            this.Controls.Add(this.label47);
+            this.Controls.Add(this.gasConstEqui2);
+            this.Controls.Add(this.label51);
+            this.Controls.Add(this.label45);
+            this.Controls.Add(this.label41);
+            this.Controls.Add(this.label44);
+            this.Controls.Add(this.label57);
+            this.Controls.Add(this.equiConst);
+            this.Controls.Add(this.label21);
+            this.Controls.Add(this.entropiLabel);
+            this.Controls.Add(this.label49);
+            this.Controls.Add(this.entalpiLabel);
+            this.Controls.Add(this.label54);
+            this.Controls.Add(this.label42);
+            this.Controls.Add(this.label43);
+            this.Controls.Add(this.label35);
+            this.Controls.Add(this.label37);
+            this.Controls.Add(this.label39);
+            this.Controls.Add(this.label32);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.label38);
             this.Controls.Add(this.preExponentialFactor);
             this.Controls.Add(this.label36);
@@ -503,8 +763,6 @@ namespace P2
             this.Controls.Add(this.label24);
             this.Controls.Add(this.label28);
             this.Controls.Add(this.activationEnergy);
-            this.Controls.Add(this.label34);
-            this.Controls.Add(this.gasConstRR);
             this.Controls.Add(this.label33);
             this.Controls.Add(this.pHydrogenEqui);
             this.Controls.Add(this.label30);
@@ -602,6 +860,29 @@ namespace P2
         private System.Windows.Forms.Label label38;
         private System.Windows.Forms.Label temperatureRR;
         private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.Label label42;
+        private System.Windows.Forms.Label label43;
+        private System.Windows.Forms.Label label44;
+        private System.Windows.Forms.Label label45;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label entropiLabel;
+        private System.Windows.Forms.Label label47;
+        private System.Windows.Forms.Label gasConstEqui;
+        private System.Windows.Forms.Label label49;
+        private System.Windows.Forms.Label entalpiLabel;
+        private System.Windows.Forms.Label label51;
+        private System.Windows.Forms.Label gasConstEqui2;
+        private System.Windows.Forms.Label label54;
+        private System.Windows.Forms.Label label55;
+        private System.Windows.Forms.Label temperatureEqui;
+        private System.Windows.Forms.Label label57;
+        private System.Windows.Forms.Label equiConst;
     }
     #endregion
 }
