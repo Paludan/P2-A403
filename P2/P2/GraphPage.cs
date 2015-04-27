@@ -108,6 +108,10 @@ namespace P2
             this._gh.isActive = false;
         }
 
+        /// <summary>
+        /// Adds a given method to the "close"-button in the ContextMenu
+        /// </summary>
+        /// <param name="onClose">The method to be called, when closing a GraphPage</param>
         public void AddToClose(EventHandler onClose)
         {
             int indexOfClose = this.ContextMenu.MenuItems.Count - 1;
