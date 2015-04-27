@@ -457,7 +457,8 @@ namespace P2
         }
 
         private void RemoveGHOnClose(object sender, EventArgs e){
-            synth.graphHandlers.RemoveAt(pTabs.SelectedIndex);
+            if(pTabs.SelectedIndex >= 0)
+                synth.graphHandlers.RemoveAt(pTabs.SelectedIndex);
         }
 
         private GraphPage GenerateTabPage()
