@@ -443,6 +443,9 @@ namespace P2
         }
         #endregion
 
+        /// <summary>
+        /// Creates tab and adds it to the tab panel
+        /// </summary>
         private void addGraph_Click(object sender, EventArgs e)
         {
             if (pTabs.Controls.Count < 6)
@@ -456,11 +459,18 @@ namespace P2
             }
         }
 
+        /// <summary>
+        /// Removes the graphHandler for the button
+        /// </summary>
         private void RemoveGHOnClose(object sender, EventArgs e){
             if(pTabs.SelectedIndex >= 0)
                 synth.graphHandlers.RemoveAt(pTabs.SelectedIndex);
         }
 
+        /// <summary>
+        /// Creates the tab with its own graphHandler and masterGraphPanel
+        /// </summary>
+        /// <returns>A new graphPage</returns>
         private GraphPage GenerateTabPage()
         {
             var mgp = new P2Graph.MasterGraphPanel();
