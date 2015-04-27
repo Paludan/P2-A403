@@ -16,7 +16,10 @@ namespace P2
         Synthesis synth;
         helpTextController helper;
         double tempDouble;
-                
+        
+		/// <summary>
+		/// Initializes a new instance of the <see cref="P2.GUI"/> class.
+		/// </summary>
         public GUI()
         {
             InitializeComponent();
@@ -443,6 +446,7 @@ namespace P2
         }
         #endregion
 
+		#region GraphTabs
         /// <summary>
         /// Creates tab and adds it to the tab panel
         /// </summary>
@@ -513,6 +517,7 @@ namespace P2
                     throw new IndexOutOfRangeException();
             }
         }
+		#endregion
         #endregion
     }
 }
