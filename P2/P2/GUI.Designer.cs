@@ -4,8 +4,6 @@ using System.Drawing;
 
 namespace P2
 {
-    enum colors { Rød, Grøn, Blå, Lilla, Sort, Gennemsigtig}
-
     partial class GUI
     {
         /// <summary>

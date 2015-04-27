@@ -9,8 +9,6 @@ using P2Graph;
 
 namespace P2
 {
-	public enum graph {temperature, pressure, ammonia, hydrogen, nitrogen}
-
 	public class GraphHandler : ICloneable
     {
 		#region Setup
@@ -29,16 +27,15 @@ namespace P2
 			set { _isActive = value; }
 		}
 
+        /// <summary>
+        /// Instantiates a new object of the GraphHandler class
+        /// </summary>
+        /// <param name="graphArea">A reference to the <see cref="P2Graph.MasterGraphPanel"/>, which the GraphHandler controls</param>
         public GraphHandler(MasterGraphPanel graphArea)
         {
             _graphPanel = graphArea;
-			InitializeGraphArea (graphArea);
             InitGraphs();
         }
-
-		private void InitializeGraphArea(MasterGraphPanel MGP){
-			this._graphPanel = MGP;
-		}
 
 		/// <summary>
 		/// Initialized the graphs.
@@ -61,8 +58,10 @@ namespace P2
 
 		#region Graph-options
 		/// <summary>
-		/// Changes the axis and hides temperature and preesure graphs
+		/// Change the state of the ammonia-graph
 		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		public void ChangeAmmoniaState(object sender, EventArgs e){
             if (_pAmmonia.isActive)
                 _pAmmonia.isActive = false;
@@ -74,11 +73,20 @@ namespace P2
 			SetAxisPartial ();
 		}
 
+        /// <summary>
+        /// Change the color of the ammonia-graph and redraws the graph
+        /// </summary>
+        /// <param name="col">The desired color</param>
 		public void ChangeAmmoniaColor(Color col){
 			_pAmmonia.color = col;
-			CheckInvalidate ();
+			InvalidatePanel ();
 		}
 
+        /// <summary>
+        /// Changes state of the hydrogen-graph
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
 		public void ChangeHydrogenState(object sender, EventArgs e){
 			if (_pHydrogen.isActive)
 				_pHydrogen.isActive = false;
@@ -88,11 +96,20 @@ namespace P2
 			SetAxisPartial ();
 		}
 
+        /// <summary>
+        /// Change the color of the hydrogen-graph
+        /// </summary>
+        /// <param name="col">The desired color</param>
 		public void ChangeHydrogenColor(Color col){
 			_pHydrogen.color = col;
-			CheckInvalidate ();
+			InvalidatePanel ();
 		}
 
+        /// <summary>
+        /// Changes state of the Nitrogen-graph
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
 		public void ChangeNitrogenState(object sender, EventArgs e){
 			if (_pNitrogen.isActive)
 				_pNitrogen.isActive = false;
@@ -102,11 +119,18 @@ namespace P2
 			SetAxisPartial ();
 		}
 
+        /// <summary>
+        /// Changes color of the nitrogen-graph
+        /// </summary>
+        /// <param name="col">The desired color</param>
 		public void ChangeNitrogenColor(Color col){
 			_pNitrogen.color = col;
-			CheckInvalidate ();
+			InvalidatePanel ();
 		}
 
+        /// <summary>
+        /// Changes names of the axis to fit the solution-graphs
+        /// </summary>
 		private void SetAxisPartial(){
 			_graphPanel.ChangeAxisNames ("Tid", "Stofmængde");
 
@@ -116,6 +140,11 @@ namespace P2
 			_graphPanel.Invalidate ();
 		}
 
+        /// <summary>
+        /// Changes the state of the temperature-graph
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
 		public void ChangeTemperatureState(object sender, EventArgs e){
 			if (_temperature.isActive)
 				_temperature.isActive = false;
@@ -125,11 +154,18 @@ namespace P2
 			SetAxisTemperature ();
 		}
 
+        /// <summary>
+        /// Changes color of the temperature graph
+        /// </summary>
+        /// <param name="col"></param>
 		public void ChangeTemperatureColor(Color col){
 			_temperature.color = col;
-			CheckInvalidate ();
+			InvalidatePanel ();
 		}
-			
+		
+	    /// <summary>
+	    /// Changes the names of the axis to fit the temperature-graph
+	    /// </summary>
 		private void SetAxisTemperature(){
 			_graphPanel.ChangeAxisNames ("Tid", "Temperatur");
 
@@ -140,7 +176,10 @@ namespace P2
 			_graphPanel.Invalidate ();
 		}
 
-		private void CheckInvalidate(){
+        /// <summary>
+        /// Redraws the panel and it's content
+        /// </summary>
+		private void InvalidatePanel(){
 		    _graphPanel.Invalidate ();
 		}
 		#endregion
@@ -170,15 +209,10 @@ namespace P2
 			
         }
 
-		public void ShowGraphPanel(){
-			_graphPanel.Invalidate ();
-			_graphPanel.Show ();
-		}
-
-		public void HideGraphPanel(){
-			_graphPanel.Hide ();
-		}
-
+        /// <summary>
+        /// Clones this instance of the GraphHandler
+        /// </summary>
+        /// <returns>A clone of this GraphHandler</returns>
         public object Clone()
         {
             return this.MemberwiseClone();

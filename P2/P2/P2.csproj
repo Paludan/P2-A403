@@ -43,6 +43,7 @@
       <DependentUpon>CalcForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DataToSerialize.cs" />
+    <Compile Include="Enums.cs" />
     <Compile Include="GraphHandler.cs" />
     <Compile Include="GraphPage.cs">
       <SubType>Component</SubType>
