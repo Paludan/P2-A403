@@ -45,10 +45,10 @@ namespace P2Graph
 		/// <summary>
 		/// Initializes a new instance of the <see cref="P2Graph.MasterGraphPanel"/> class.
 		/// </summary>
-		public MasterGraphPanel ()
+		public MasterGraphPanel (int width, int height)
 			: base ()
 		{
-            this.Size = new System.Drawing.Size(628, 487);
+			this.Size = new System.Drawing.Size(width, height);
 			CalculateOrego ();
 			CreateAxis("x-akse", "y-akse");
 			_g = this.CreateGraphics ();

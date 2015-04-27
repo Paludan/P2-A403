@@ -80,7 +80,7 @@ namespace P2
             this.page1 = new GraphPage(pGraphArea);
             this.pSimulationArea = new System.Windows.Forms.Panel();
             this.addGraph = new System.Windows.Forms.Button();
-            this.pGraphArea = new P2Graph.MasterGraphPanel();
+            this.pGraphArea = new P2Graph.MasterGraphPanel(628, 487);
             this.pColourDescription.SuspendLayout();
             this.pProjectHandling.SuspendLayout();
             this.pParameters.SuspendLayout();

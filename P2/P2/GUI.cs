@@ -477,7 +477,7 @@ namespace P2
         /// <returns>A new graphPage</returns>
         private GraphPage GenerateTabPage()
         {
-            var mgp = new P2Graph.MasterGraphPanel();
+			var mgp = new P2Graph.MasterGraphPanel(628, 487);
             GraphHandler newGH = new GraphHandler(mgp);
             GraphPage testPage = new GraphPage(mgp);
             testPage.gh = newGH;

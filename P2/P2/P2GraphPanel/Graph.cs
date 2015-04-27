@@ -155,14 +155,12 @@ namespace P2Graph
 		/// </summary>
 		/// <param name="X">x-coordinate.</param>
 		/// <param name="Y">y-coordinate.</param>
-		public void AddAndDraw(double X, double Y){
+		public void AddAndDraw(double X, double Y)
+		{
 			AddPoint (X, Y);
 			bool invalidated = false;
 
-			if (X > _master.xMaxRange) {
-				invalidated = true;
-			}
-			if (Y > _master.yMaxRange) {
+			if (X > _master.xMaxRange || Y > _master.yMaxRange) {
 				invalidated = true;
 			}
 
