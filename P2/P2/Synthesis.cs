@@ -51,19 +51,19 @@ namespace P2
         /// </summary>
         public double Time
         {
-            get { return currentData.time / 1000; }
+            get { return currentData.time; }
             set
             {
                 if (value >= 0)
                 {
                     if (value > Time)
                     {
-                        FastForward(value*1000);
+                        FastForward(value);
                     }
                     else
                     {
-                        currentData = simulationData.getDataPoint(value*1000);
-                        simulationData.revertTo(value * 1000);
+                        currentData = simulationData.getDataPoint(value);
+                        simulationData.revertTo(value);
                     }
                 }
             }
@@ -143,7 +143,6 @@ namespace P2
             currentData.time += interval * Scale;
             simulationData.addDataPoint( SimulationModel.calculateDataPoint((interval * Scale) /1000 ) );
             currentData = simulationData.SimulationData.Last();
-            currentData.time *= 1000;
             if (selected)
             {
                 foreach (GraphHandler GH in graphHandlers)
