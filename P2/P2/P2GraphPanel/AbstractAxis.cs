@@ -139,10 +139,7 @@ namespace P2Graph
 		/// <param name="centerPoint">Center point of the string.</param>
 		/// <param name="toDraw">The strinsg being drawn.</param>
 		protected void DrawNumber(Graphics painter, GraphPoint centerPoint, string toDraw){
-			Rectangle Rec= new Rectangle ((int) centerPoint.RealX+2, (int) centerPoint.RealY, 50, 20);
-			Rec.X -= (Rec.Width / 2);
-			Rec.Y -= (Rec.Height / 2);
-			painter.DrawString(toDraw, Constants.GraphFont, Brushes.Black, Rec);
+            this.DrawNumber(painter, centerPoint, toDraw, StringFormat.GenericDefault);
 		}
 
         protected void DrawNumber(Graphics painter, GraphPoint centerPoint, string toDraw, StringFormat format)
