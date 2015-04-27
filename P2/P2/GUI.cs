@@ -85,7 +85,7 @@ namespace P2
         /// If e.handled is set to true the key pressed is cancelled
         /// </summary>
         /// <param name="e">The key pressed when typing in the textbox</param>
-        private void intTextbox(KeyPressEventArgs e)
+        private void doubleTextbox(KeyPressEventArgs e)
         {
             if (!char.IsNumber(e.KeyChar) && e.KeyChar != '.')
                 e.Handled = e.KeyChar != (char)Keys.Back;
@@ -365,25 +365,25 @@ namespace P2
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
             if(denyTextWhenSynthRun(e))
-                intTextbox(e);
+                doubleTextbox(e);
         }
 
         private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (denyTextWhenSynthRun(e))
-                intTextbox(e);
+                doubleTextbox(e);
         }
 
         private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (denyTextWhenSynthRun(e))
-                intTextbox(e);
+                doubleTextbox(e);
         }
 
         private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (denyTextWhenSynthRun(e))
-                intTextbox(e);
+                doubleTextbox(e);
         }
         #endregion
 
