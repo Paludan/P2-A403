@@ -54,9 +54,9 @@ namespace AmmoniaTest
 			Console.WriteLine ("a: " + a);
 			b = -_RRConst * (27 * _hydrogen + 27 * _nitrogen);
 			Console.WriteLine ("b: " + b);
-			c = (_RRConst * (9*Math.Pow(_hydrogen, 2) + 27*_hydrogen*_nitrogen)+1);
+			c = (_RRConst * (9*Math.Pow(_hydrogen, 2) + 27*_hydrogen*_nitrogen) - 1);
 			Console.WriteLine ("c: " + c.ToString("E"));
-			d = (_RRConst*(-Math.Pow(_hydrogen, 3) - 9*Math.Pow(_hydrogen,2)*_nitrogen)+4*_ammonia);
+			d = (_RRConst*(-Math.Pow(_hydrogen, 3) - 9*Math.Pow(_hydrogen,2)*_nitrogen) - 4*_ammonia);
 			Console.WriteLine ("d: " + d.ToString("E"));
 			e = _RRConst * Math.Pow (_hydrogen, 3) * _nitrogen - _ammonia;
 			Console.WriteLine ("e: " + e.ToString("G"));

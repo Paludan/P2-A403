@@ -52,6 +52,7 @@ namespace P2Graph
 			CalculateOrego ();
 			CreateAxis("x-akse", "y-akse");
 			_g = this.CreateGraphics ();
+			this.BackColor = Color.WhiteSmoke;
 
 			//Adds delegates to the paint-event
 			this.Paint += this.OnInvalidateEvent;
@@ -172,7 +173,6 @@ namespace P2Graph
 		/// <param name="sender">Not used.</param>
 		/// <param name="e">Not used.</param>
 		private void OnInvalidateEvent(object sender, PaintEventArgs e){
-			this.BackColor = Color.WhiteSmoke;
 			this.UpdateMGP ();
 
 			X.Draw (_g);

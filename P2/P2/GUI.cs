@@ -31,8 +31,22 @@ namespace P2
             correctTextSize();
 
             this.pTabs.Controls.Add(this.page1);
+			this.pTabs.Deselecting += DeactivatePage;
+			this.pTabs.Selecting += ActivatePage;
             page1.gh = synth.graphHandlers[0];
         }
+
+		private void ActivatePage(object sender, EventArgs e){
+			var tc = sender as TabControl;
+
+			(tc.SelectedTab as GraphPage).Clicked ();
+		}
+
+		private void DeactivatePage(object sender, EventArgs e){
+			var tc = sender as TabControl;
+
+			(tc.SelectedTab as GraphPage).PageLeft ();
+		}
 
         /// <summary>
         /// Creates the initial text for the infobox

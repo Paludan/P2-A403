@@ -15,6 +15,7 @@ namespace P2
         /// </summary>
         public GraphHandler gh
         {
+			get { return _gh; }
             set { _gh = value; InitializeContextMenu(); }
         }
 
@@ -29,8 +30,6 @@ namespace P2
         {
             _mgp = mgp;
             this.Controls.Add(_mgp);
-            this.Click += Clicked;
-            this.Leave += PageLeft;
         }
 
         /// <summary>
@@ -93,7 +92,7 @@ namespace P2
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Clicked(object sender, EventArgs e)
+        public void Clicked()
         {
             this._gh.isActive = true;
         }
@@ -103,7 +102,7 @@ namespace P2
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void PageLeft(object sender, EventArgs e)
+        public void PageLeft()
         {
             this._gh.isActive = false;
         }
