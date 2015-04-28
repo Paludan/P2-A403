@@ -63,7 +63,7 @@ namespace P2
         {
             if (File.Exists(path + input))
             {
-                String[] helpText = File.ReadAllLines(path + input);
+                String[] helpText = File.ReadAllLines(path + input, Encoding.UTF7);
                 return helpText;
             }
             else { return null; }
