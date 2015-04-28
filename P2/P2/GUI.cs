@@ -71,15 +71,6 @@ namespace P2
                    label.Font.Size, label.Font.Style)).Height)
                 label.Font = new Font(label.Font.FontFamily, label.Font.Size - 0.01f, label.Font.Style);
         }
-
-        /// <summary>
-        /// Writes the text of the button taps with variating spacing depending on the text size
-        /// </summary>
-        /// <param name="button">Is the button where the text is to be written in</param>
-        //private void insertButtonText(Button button)
-        //{
-        //    button.Text = "Graf " + (graphTaps + 1);
-        //}
                 
         /// <summary>
         /// Makes sure only positive integers can be inserted into a textbox

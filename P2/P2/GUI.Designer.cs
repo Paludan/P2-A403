@@ -330,7 +330,7 @@ namespace P2
             // 
             this.hScrollBarN2.LargeChange = 1;
             this.hScrollBarN2.Location = new System.Drawing.Point(290, 69);
-            this.hScrollBarN2.Maximum = 4000;
+            this.hScrollBarN2.Maximum = 65000;
             this.hScrollBarN2.Name = "hScrollBarN2";
             this.hScrollBarN2.Size = new System.Drawing.Size(200, 17);
             this.hScrollBarN2.TabIndex = 14;
@@ -350,7 +350,7 @@ namespace P2
             // 
             this.hScrollBarNH3.LargeChange = 1;
             this.hScrollBarNH3.Location = new System.Drawing.Point(290, 196);
-            this.hScrollBarNH3.Maximum = 4000;
+            this.hScrollBarNH3.Maximum = 65000;
             this.hScrollBarNH3.Name = "hScrollBarNH3";
             this.hScrollBarNH3.Size = new System.Drawing.Size(200, 17);
             this.hScrollBarNH3.TabIndex = 16;
@@ -370,7 +370,7 @@ namespace P2
             // 
             this.hScrollBarH2.LargeChange = 1;
             this.hScrollBarH2.Location = new System.Drawing.Point(290, 132);
-            this.hScrollBarH2.Maximum = 4000;
+            this.hScrollBarH2.Maximum = 65000;
             this.hScrollBarH2.Name = "hScrollBarH2";
             this.hScrollBarH2.Size = new System.Drawing.Size(200, 17);
             this.hScrollBarH2.TabIndex = 15;
@@ -571,6 +571,16 @@ namespace P2
             this.pTabs.SelectedIndex = 0;
             this.pTabs.Size = new System.Drawing.Size(628, 508);
             this.pTabs.TabIndex = 20;
+            // 
+            // pGraphArea
+            // 
+            this.pGraphArea.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.pGraphArea.Location = new System.Drawing.Point(0, 0);
+            this.pGraphArea.Name = "pGraphArea";
+            this.pGraphArea.Size = new System.Drawing.Size(628, 487);
+            this.pGraphArea.TabIndex = 0;
+            this.pGraphArea.xMaxRange = 1;
+            this.pGraphArea.yMaxRange = 1;
             // 
             // page1
             // 
