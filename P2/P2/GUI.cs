@@ -24,6 +24,7 @@ namespace P2
         {
             InitializeComponent();
             synth = new Synthesis(pGraphArea);
+			synth.timer.Elapsed += Update;
             helper = new helpTextController();
             Control.CheckForIllegalCrossThreadCalls = false;
             startUpInfo();
@@ -263,7 +264,7 @@ namespace P2
         private void start_Click(object sender, EventArgs e)
         {
             synth.start();
-            synth.timer.Elapsed += Update;
+            
             hScrollBarNH3.Enabled = false;
             hScrollBarH2.Enabled = false;
             hScrollBarN2.Enabled = false;
