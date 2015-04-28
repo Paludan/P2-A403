@@ -30,6 +30,7 @@ namespace P2
             startUpInfo();
             correctTextSize();
 
+            this.pTabs.Controls.Add(this.page1);
             page1.gh = synth.graphHandlers[0];
         }
 

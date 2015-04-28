@@ -564,7 +564,6 @@ namespace P2
             // 
             // pTabs
             // 
-            this.pTabs.Controls.Add(this.page1);
             this.pTabs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pTabs.Location = new System.Drawing.Point(0, 0);
             this.pTabs.Name = "pTabs";
