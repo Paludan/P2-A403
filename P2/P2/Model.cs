@@ -199,7 +199,7 @@ namespace P2
 			UpdatePartialPressures (deltaNitrogen, ref pNitrogen, ref pHydrogen, ref pAmmonia);
 
 			//Update the combined pressure
-			nextState.pressure = calculateActualPressure (pAmmonia, pNitrogen, pHydrogen);
+			//nextState.pressure = calculateActualPressure (pAmmonia, pNitrogen, pHydrogen);
 
 			/* calculate the molar amounts */
 			nextState.nHydrogen = calculateMolarAmount(pHydrogen);

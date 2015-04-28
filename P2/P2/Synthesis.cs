@@ -21,7 +21,7 @@ namespace P2
         Model SimulationModel;
         public bool running = false, selected = true;
         public System.Timers.Timer timer;//There are other classes called Timer so we must specify the path when initializing.
-        public DataPoint currentData = new DataPoint(0,0,0,0,0,0,false);
+        public DataPoint currentData = new DataPoint(0,0,0,0,0,false);
         double _scale = 1.0; // this variable will decide at what scale the time runs. by making this 2.0, the virtual time elapsed
                             // when calculating a new datapoint will be double the actual alapsed time.
 

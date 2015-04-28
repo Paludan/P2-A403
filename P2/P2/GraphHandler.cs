@@ -192,7 +192,6 @@ namespace P2
         {
             if (this.isActive)
             {
-                _pressure.AddAndDraw(data.time, data.pressure);
                 _pAmmonia.AddAndDraw(data.time, data.nAmmonia);
                 _temperature.AddAndDraw(data.time, data.temperature);
                 _pHydrogen.AddAndDraw(data.time, data.nHydrogen);
@@ -200,7 +199,6 @@ namespace P2
             }
             else
             {
-                _pressure.AddPoint(data.time, data.pressure);
                 _pAmmonia.AddPoint(data.time, data.nAmmonia);
                 _temperature.AddPoint(data.time, data.temperature);
                 _pHydrogen.AddPoint(data.time, data.nHydrogen);
