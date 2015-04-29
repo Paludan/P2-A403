@@ -34,6 +34,7 @@ namespace P2
 			this.pTabs.Deselecting += DeactivatePage;
 			this.pTabs.Selecting += ActivatePage;
             page1.gh = synth.graphHandlers[0];
+			page1.gh.isActive = true;
         }
 
 		private void ActivatePage(object sender, EventArgs e){
