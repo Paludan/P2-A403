@@ -81,11 +81,7 @@ namespace P2
             double tempAmmonia = nextPAmmonia;
             double tempNitrogen = nextPNitrogen;
             double tempHydrogen = nextPHydrogen;
-            if (nextPHydrogen < 0)
-                tempHydrogen = 0;
-            else
-                nextPAmmonia = tempAmmonia + (2 * (pNitrogen - tempNitrogen));
-
+            nextPAmmonia = tempAmmonia + (2 * (pNitrogen - tempNitrogen));
             nextPNitrogen = tempNitrogen + (0.5 * (pAmmonia - tempAmmonia));
             nextPHydrogen = tempHydrogen + (1.5 * (pAmmonia - tempAmmonia));
         }
