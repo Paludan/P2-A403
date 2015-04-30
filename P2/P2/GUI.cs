@@ -333,11 +333,11 @@ namespace P2
         {
             if (checkBoxCatalyst.Checked)
             {
-                //Model.calculateActivationEnergy(true);
+                synth.currentData.catalyst = true;
             }
             else
             {
-                //Model.calculateActivationEnergy(false);
+                synth.currentData.catalyst = false;
             }
         }
 

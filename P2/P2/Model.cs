@@ -56,7 +56,7 @@ namespace P2
             double pAmmonia = CalculatePartialPressure(currentState.nAmmonia);
             double Y = CalculateEquilibriumConstant();
             double rateConstant;
-            if (!currentState.catalyst)
+            if (currentState.catalyst)
                 rateConstant = CalculateRateConstant(EaCatalyst);
             else
                 rateConstant = CalculateRateConstant(EaNoCatalyst);
