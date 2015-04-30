@@ -39,14 +39,14 @@ namespace P2
 
 		private void ActivatePage(object sender, EventArgs e){
 			var tc = sender as TabControl;
-
-			(tc.SelectedTab as GraphPage).Clicked ();
+            if(tc.SelectedTab != null)
+			    (tc.SelectedTab as GraphPage).Clicked ();
 		}
 
 		private void DeactivatePage(object sender, EventArgs e){
 			var tc = sender as TabControl;
-
-			(tc.SelectedTab as GraphPage).PageLeft ();
+            if(tc.SelectedTab != null)
+			    (tc.SelectedTab as GraphPage).PageLeft ();
 		}
 
         /// <summary>
