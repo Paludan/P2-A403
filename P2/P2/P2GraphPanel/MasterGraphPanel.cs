@@ -16,6 +16,7 @@ namespace P2Graph
 		private Graphics _g;
 		public float yPixelScale;
 		public float xPixelScale;
+        private Font legendFont;
 
 		/// <summary>
 		/// Gets or sets the max range of x-axis.
@@ -53,6 +54,7 @@ namespace P2Graph
 			this.Size = new System.Drawing.Size(width, height);
 			CalculateOrego ();
 			CreateAxis("x-akse", "y-akse");
+            MeasureFont();
 			_g = this.CreateGraphics ();
 			this.BackColor = Color.WhiteSmoke;
 
@@ -250,10 +252,6 @@ namespace P2Graph
 		/// <param name="g">The graphics component.</param>
 		private void DrawLegends(Graphics g){
 			int width = this.Width - 100;
-			Font legendFont = new Font("Microsoft Sans Serif", 30);
-			while (80 < System.Windows.Forms.TextRenderer.MeasureText("Temperatur", new Font(legendFont.FontFamily,
-				legendFont.Size, legendFont.Style)).Width)
-				legendFont = new Font(legendFont.FontFamily, legendFont.Size - 0.01f, legendFont.Style);
 
 			for (int i = 0; i < graphList.Count; i++) {
 				if (graphList [i].isActive) {
@@ -266,6 +264,14 @@ namespace P2Graph
 				}
 			}
 		}
+
+        private void MeasureFont()
+        {
+            legendFont = new Font("Microsoft Sans Serif", 30);
+            while (80 < System.Windows.Forms.TextRenderer.MeasureText("Temperatur", new Font(legendFont.FontFamily,
+                legendFont.Size, legendFont.Style)).Width)
+                legendFont = new Font(legendFont.FontFamily, legendFont.Size - 0.1f, legendFont.Style);
+        }
 		#endregion
 	}
 }

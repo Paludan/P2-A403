@@ -83,7 +83,7 @@ namespace P2
         {
             simulationData = new DataHandler();
             SimulationModel = new Model(currentData);
-            timer = new System.Timers.Timer(500);
+            timer = new System.Timers.Timer(1000);
             timer.Elapsed += this.OnElapsed;
 			graphHandlers.Add(new GraphHandler(graphPanel));
         }
