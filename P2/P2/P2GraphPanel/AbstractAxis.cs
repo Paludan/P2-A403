@@ -13,6 +13,7 @@ namespace P2Graph
 		protected GraphPoint _beginsAt;
 		protected GraphPoint _endsAt;
 		protected MasterGraphPanel _MGP;
+        Font toUse = Constants.GraphFont;
 
 		/// <summary>
 		/// Gets and sets the name.
@@ -87,6 +88,10 @@ namespace P2Graph
 			this._endsAt = new GraphPoint (0, 0, _MGP);
 
 			CalculateAxisEnds ();
+
+            while (35 < TextRenderer.MeasureText("9999", new Font(toUse.FontFamily,
+                   toUse.Size, toUse.Style)).Width)
+                toUse = new Font(toUse.FontFamily, toUse.Size - 0.01f, toUse.Style);
 		}
 
 		#region Calculations
@@ -147,7 +152,7 @@ namespace P2Graph
             Rectangle Rec = new Rectangle((int)centerPoint.RealX, (int)centerPoint.RealY+12, 50, 50);
             Rec.X -= (Rec.Width / 2);
             Rec.Y -= (Rec.Height / 2);
-            painter.DrawString(toDraw, Constants.GraphFont, Brushes.Black, Rec, format);
+            painter.DrawString(toDraw, toUse, Brushes.Black, Rec, format);
         }
 
 		/// <summary>
