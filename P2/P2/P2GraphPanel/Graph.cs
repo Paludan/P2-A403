@@ -136,8 +136,8 @@ namespace P2Graph
 				}
 
 				var PFArr = points.Select (GP => new PointF (GP.RealX, GP.RealY)).ToArray ();
-
-				painter.DrawLines (new Pen (_colorOfGraph, 1), PFArr);
+                if(PFArr.Length > 1)
+				    painter.DrawLines (new Pen (_colorOfGraph, 1), PFArr);
 			}
 		}
 
@@ -147,7 +147,8 @@ namespace P2Graph
 		/// <param name="painter">Painter.</param>
 		public void DrawLastLine(Graphics painter){
 			points [points.Count - 1].Draw (painter);
-			painter.DrawLine (new Pen (_colorOfGraph, 1), points [points.Count - 2], points [points.Count - 1]); 
+            if(points.Count > 1)
+			    painter.DrawLine (new Pen (_colorOfGraph, 1), points [points.Count - 2], points [points.Count - 1]); 
 		}
 
 		/// <summary>
