@@ -28,7 +28,6 @@ namespace P2
         public Model(DataPoint InitData)
         {
             currentState = InitData;
-            AmmoniaAtEQ = 0;
         }
 
         public DataPoint Fetch()
