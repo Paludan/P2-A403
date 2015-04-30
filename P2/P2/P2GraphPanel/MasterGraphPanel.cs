@@ -180,8 +180,8 @@ namespace P2Graph
 		private void OnInvalidateEvent(object sender, PaintEventArgs e){
 			this.UpdateMGP ();
 
-			X.Draw (_g);
-			Y.Draw (_g);
+			X.Draw (e.Graphics);
+			Y.Draw (e.Graphics);
             DrawAxisNames();
 		}
 
