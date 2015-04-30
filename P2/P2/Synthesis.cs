@@ -141,7 +141,7 @@ namespace P2
         private void Update()
         {
             currentData.time += interval * Scale;
-            simulationData.addDataPoint( SimulationModel.calculateDataPoint((interval * Scale) /1000 ) );
+            simulationData.addDataPoint( SimulationModel.Update((interval * Scale) /1000 ) );
             currentData = simulationData.SimulationData.Last();
             if (selected)
             {

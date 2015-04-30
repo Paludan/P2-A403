@@ -6,213 +6,137 @@ using System.Threading.Tasks;
 
 namespace P2
 {
+    class Model
+    {
+        /* the following 8 constant variables are constants that cannot be regulated */
+        private double gasConstant = 8.314472;
+        private double gasConstantCal = 1.987;
+        private double preExpontentialFactor = 884900000000000;
+        private double volume = 50000; //         liter
+        private double entalpi = -91800; //       J/mol
+        private double entropi = -198.05; //      J/(mol*kelvin)
+        private double EaCatalyst = 60000; //     J/mol
+        private double EaNoCatalyst = 120000; //  J/mol
+        private double AmmoniaAtEQ;
+        private AmmoniaCalc AC = new AmmoniaCalc();
 
-	//This class runs the simulation and presents results
-	public class Model
-	{ 
-		/* the following 3 constant variables are constants that cannot be regulated */
-		private const double gasConstant = 8.3145;
-		private const double preExpontentialFactor = 10000000;
-		private const double volume = 50000; // liter
-		private const double entalpi = -91800;
-		private const double entropi = -198.05;
+        DataPoint currentState = new DataPoint();
 
-		private DataPoint currentState = new DataPoint (); //wut
+        public double Ammonia { set { currentState.nAmmonia = (double)value; } }
+        public double Hydrogen { set { currentState.nHydrogen = (double)value; } }
+        public double Nitrogen { set { currentState.nNitrogen = (double)value; } }
+        public double Temperature { set { currentState.temperature = (double)value; } }
 
-		/* The constructor for Model
-		 * "dp" is a DataPoint received at the instancing of Model
-		 * currentState receives the value of dp
-         */
-		public Model(DataPoint dp)
-		{
-			currentState = dp;
-		}
+        public Model(DataPoint InitData)
+        {
+            currentState = InitData;
+            AmmoniaAtEQ = 0;
+        }
 
-		/* allows outside classes to regulate the current amount of ammonia */
-		public double Ammonia
-		{
-			set {
-				currentState.nAmmonia = value;
-			}
+        public DataPoint Fetch()
+        {
+            return currentState;
+        }
 
-		}
+        public DataPoint Update(double deltaTime)
+        {
+            DataPoint NextState;
+            CalculateNextState(deltaTime, out NextState);
+            //if (NextState.nHydrogen >= 0 && NextState.nNitrogen >= 0 && NextState.nAmmonia >= 0)
+                currentState = NextState;
+            return currentState;
+        }
 
-		/* allows outside classes to regulate the current amount of hydrogen */
-		public double Hydrogen
-		{
-			set {
-				currentState.nHydrogen = value;
-			}
-		}
+        private void CalculateNextState(double deltaTime, out DataPoint nextState)
+        {
+            nextState = new DataPoint();
 
-		/* allows outside classes to regulate the current amount of nitrogen */
-		public double Nitrogen
-		{
-			set {
-				currentState.nNitrogen = value;
-			}
-		}
+            double pNitrogen = CalculatePartialPressure(currentState.nNitrogen);
+            double pHydrogen = CalculatePartialPressure(currentState.nHydrogen);
+            double pAmmonia = CalculatePartialPressure(currentState.nAmmonia);
+            double Y = CalculateEquilibriumConstant();
+            double rateConstant;
+            if (!currentState.catalyst)
+                rateConstant = CalculateRateConstant(EaCatalyst);
+            else
+                rateConstant = CalculateRateConstant(EaNoCatalyst);
 
-		/* allows outside classes to regulate the current temperature */
-		public double Temperature
-		{
-			set {
-				currentState.temperature = value;
-			}
-		}
+            if (nextState.time == 1)
+                AmmoniaAtEQ = AC.solveQuadricEquation(pNitrogen, pHydrogen, pAmmonia, rateConstant);
 
-		/* utilizes the ideal gas law to calculate a given gas' partial pressure */
-		private double calculatePartialPressure(double temperature, double nSubstance, double volume)
-		{
-			double partialPressure = (nSubstance * gasConstant * temperature) / volume;
+            double halfLife = CalculateHalfLife(rateConstant);
+            double nextPNitrogen = CalculateNextPartialPressureFirstOrder(pNitrogen, rateConstant, deltaTime);
+            double nextPAmmonia;
+            if (pAmmonia > 0)
+                nextPAmmonia = CalculateNextPartialPressureZerothOrder(pAmmonia, rateConstant, deltaTime);
+            else
+                nextPAmmonia = 0;
 
-			return partialPressure;
-		}
+            double nextPHydrogen = pHydrogen - (3 * (pNitrogen - nextPNitrogen));
+            CalculateChanges(ref nextPAmmonia, ref nextPNitrogen, ref nextPHydrogen, pAmmonia, pNitrogen, pHydrogen);
 
-		/* calculates the equillibrium constant */
-		private double calculateEquillibriumConstant(double temperature)
-		{
-			double equiConst = Math.Pow(Math.E, -(entalpi/ (temperature * gasConstant)) + (entropi/gasConstant));
+            nextState.nAmmonia = (double)CalculateMolarAmount(nextPAmmonia);
+            nextState.nHydrogen = (double)CalculateMolarAmount(nextPHydrogen);
+            nextState.nNitrogen = (double)CalculateMolarAmount(nextPNitrogen);
+            nextState.temperature = currentState.temperature;
+            nextState.catalyst = currentState.catalyst;
+            nextState.time = currentState.time + deltaTime;
+            /*if (AmmoniaAtEQ > pAmmonia)
+                nextState = currentState; */
+        }
 
-			return equiConst;
-		}
+        private void CalculateChanges(ref double nextPAmmonia, ref double nextPNitrogen, ref double nextPHydrogen,
+                                          double pAmmonia, double pNitrogen, double pHydrogen)
+        {
+            double tempAmmonia = nextPAmmonia;
+            double tempNitrogen = nextPNitrogen;
+            double tempHydrogen = nextPHydrogen;
+            nextPAmmonia = tempAmmonia + (2 * (pNitrogen - tempNitrogen));
+            nextPNitrogen = tempNitrogen + (0.5 * (pAmmonia - tempAmmonia));
+            nextPHydrogen = tempHydrogen + (1.5 * (pAmmonia - tempAmmonia));
+        }
 
-		/* uses the equillibrium fraction to isolate the pressure of ammonia */
-		private double calculateAmmoniaAtEquillibrium(double pHydrogen, double pNitrogen, double equiConst)
-		{
-			double pAmmonia = equiConst * Math.Pow(pHydrogen, 3) * pNitrogen;
+        private double CalculateNextPartialPressureFirstOrder(double pSubstance, double rateConstant, double deltaTime)
+        {
+            return pSubstance * Math.Pow(Math.E, (double)(-rateConstant * deltaTime));
+        }
 
-			return Math.Sqrt(pAmmonia);
-		}
+        private double CalculateNextPartialPressureZerothOrder(double pSubstance, double rateConstant, double deltaTime)
+        {
+            return (double)((-rateConstant * (currentState.temperature/28) * deltaTime + pSubstance));
+        }
 
-		/* takes a bool to decide which activation energy is used */
-		private double calculateActivationEnergy(bool catalyst)
-		{
-			double activationEnergy = 0;
+        private double CalculateHalfLife(double rateConstant)
+        {
+            return Math.Log(2, Math.E) / rateConstant;
+        }
 
-			if (catalyst)
-				activationEnergy = 60;
-			else if (!catalyst) // can also be written as else instead of else if (...)
-				activationEnergy = 1100;
+        private double CalculateRateConstant(double Ea)
+        {
+            return preExpontentialFactor * Math.Pow(Math.E, (double)(-Ea / (gasConstantCal * currentState.temperature)));
+        }
 
-			return activationEnergy;
-		}
+        private bool CalculateEquilibrium(double Y, double pNitrogen, double pHydrogen, double pAmmonia)
+        {
+            if ((Math.Pow(pAmmonia, 2) / (pNitrogen * Math.Pow(pHydrogen, 3))) >= Y)
+                return true;
+            else
+                return false;
+        }
 
-		/* calulates the reactionrate constant */
-		private double calculateReactionRateConstant(double temperature, double activationEnergy)
-		{
-			double RRConst = preExpontentialFactor * Math.Pow(Math.E, (activationEnergy / (gasConstant * temperature)));
+        private double CalculateEquilibriumConstant()
+        {
+            return Math.Pow(Math.E, (double)(-(entalpi / (gasConstant * currentState.temperature)) + entropi / gasConstant));
+        }
 
-			return RRConst;
-		}
+        private double CalculatePartialPressure(double nSubstance)
+        {
+            return (nSubstance * gasConstant * currentState.temperature) / volume;
+        }
 
-		/* uses the pressure of a reagent to calculate the molar amount */
-		private double calculateMolarAmount (double pReagent)
-		{
-			double molarAmount = (pReagent * volume) / (gasConstant * currentState.temperature);
-
-			return molarAmount;
-		}
-
-		/* calculates the pressure of the mixture */
-		private double calculateActualPressure(double pAmmonia, double pNitrogen, double pHydrogen)
-		{
-			double pressure = pAmmonia + pNitrogen + pHydrogen;
-
-			return pressure;
-		}
-
-		/* checks if the reaction has reached equilllibrium
-		 * "atEquillibrium" is a boolean that is true if we reached equillibrium
-		 * "equiFrac" is a variable calculating the equillibrium fraction
-		 */
-		private bool isAtEquillibrium(double pAmmonia, double pNitrogen, double pHydrogen, double equiConst)
-		{
-			bool atEquillibrium = false;
-			double equiFrac = Math.Pow(pAmmonia,2) / (pNitrogen * Math.Pow(pHydrogen, 3));
-
-			if (equiFrac.Equals (equiConst))
-				atEquillibrium = true;
-
-			return atEquillibrium;
-		}
-
-		/* acts like a property to check if we have equillibrium */
-		public bool IsAtEquillibrium{
-
-			get
-			{
-				return isAtEquillibrium (
-					calculatePartialPressure(currentState.temperature, currentState.nAmmonia, volume), 
-					calculatePartialPressure(currentState.temperature, currentState.nNitrogen, volume), 
-					calculatePartialPressure(currentState.temperature, currentState.nHydrogen, volume), 
-					calculateEquillibriumConstant(currentState.temperature));
-			}
-		}
-
-		/// <summary>
-		/// Calculates the delta nitrogen.
-		/// </summary>
-		/// <returns>The delta nitrogen.</returns>
-		/// <param name="pNitrogen">Partial pressure of nitrogen.</param>
-		/// <param name="RRConst">Reactionrate constant.</param>
-		/// <param name="deltaTime">Delta time.</param>
-		private double calculateDeltaNitrogen (double pNitrogen, double RRConst, double deltaTime)
-		{
-			double nextPNitrogen = pNitrogen * Math.Pow(Math.E, -RRConst * deltaTime);
-            return pNitrogen - nextPNitrogen;
-		}
-
-		private void UpdatePartialPressures(double deltaNitrogen, ref double pNitrogen, ref double pHydrogen, ref double pAmmonia){
-			pNitrogen -= deltaNitrogen;
-			pAmmonia += 2 * deltaNitrogen;
-			pHydrogen -= 3 * deltaNitrogen;
-		}
-
-		/* calculates a DataPoint
-		 * "deltaTime" is a variable describing the current time
-		 * "nextState" is a DataPoint containing the upcoming state of the simulation
-		 * the "local variables" are used as place holders, until they are finally
-		 * added to the DataPoint "nextState"
-		 */
-		public DataPoint calculateDataPoint (double deltaTime)
-		{
-			DataPoint nextState = new DataPoint (currentState);
-			double equiConst = 0, equiAmmonia = 0, 
-			pHydrogen = calculatePartialPressure (currentState.temperature, currentState.nHydrogen, volume), 
-			pNitrogen = calculatePartialPressure (currentState.temperature, currentState.nNitrogen, volume), 
-			pAmmonia = calculatePartialPressure (currentState.temperature, currentState.nAmmonia, volume),
-			deltaNitrogen = 0, reactionRateconst = 0, activationEnergy = 0;
-
-			/* calculate equillibrium constant */
-			equiConst = calculateEquillibriumConstant (currentState.temperature);
-
-			/* calculate amount of ammonia */
-			equiAmmonia = calculateAmmoniaAtEquillibrium (pHydrogen, pNitrogen, equiConst);
-
-			//Calculates activationenergy and reactionrate
-			activationEnergy = calculateActivationEnergy (nextState.catalyst);
-			reactionRateconst = calculateReactionRateConstant (currentState.temperature, activationEnergy);
-
-			//Calculate the difference in nitrogen and update partial-pressures
-			deltaNitrogen = calculateDeltaNitrogen (pNitrogen, reactionRateconst, deltaTime);
-			UpdatePartialPressures (deltaNitrogen, ref pNitrogen, ref pHydrogen, ref pAmmonia);
-
-			//Update the combined pressure
-			//nextState.pressure = calculateActualPressure (pAmmonia, pNitrogen, pHydrogen);
-
-			/* calculate the molar amounts */
-			nextState.nHydrogen = calculateMolarAmount(pHydrogen);
-			nextState.nNitrogen = calculateMolarAmount(pNitrogen);
-			nextState.nAmmonia = calculateMolarAmount (pAmmonia);
-
-			//Update time
-			nextState.time += deltaTime;
-
-			//Update current state
-			currentState = nextState;
-
-			return currentState;
-		}
-	}
+        private double CalculateMolarAmount(double pSubstance)
+        {
+            return (pSubstance * volume) / (gasConstant * currentState.temperature);
+        }
+    }
 }

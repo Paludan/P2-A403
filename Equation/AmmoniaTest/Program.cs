@@ -8,8 +8,9 @@ namespace AmmoniaTest
 		{
 			AmmoniaCalc ac = new AmmoniaCalc ();
 
-			double solution = ac.solveQuadricEquation (200, 200, 12, 0.25);
+			double solution = ac.solveQuadricEquation (1898, 5694, 0, 0.05);
 			Console.WriteLine ("\nSolution: " + solution);
+            Console.ReadKey();
 		}
 	}
 }
