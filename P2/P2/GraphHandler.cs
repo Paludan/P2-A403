@@ -137,7 +137,7 @@ namespace P2
             _temperature.isActive = false;
             _pressure.isActive = false;
 
-			_graphPanel.Invalidate ();
+			_graphPanel.Refresh ();
 		}
 
         /// <summary>
@@ -173,14 +173,14 @@ namespace P2
             _pNitrogen.isActive = false;
             _pHydrogen.isActive = false;
 
-			_graphPanel.Invalidate ();
+			_graphPanel.Refresh ();
 		}
 
         /// <summary>
         /// Redraws the panel and it's content
         /// </summary>
 		private void InvalidatePanel(){
-		    _graphPanel.Invalidate ();
+		    _graphPanel.Refresh ();
 		}
 		#endregion
 

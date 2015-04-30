@@ -63,10 +63,11 @@ namespace P2
             double nextPAmmonia;
             if (pAmmonia > 0)
                 nextPAmmonia = CalculateNextPartialPressureZerothOrder(pAmmonia, rateConstant, deltaTime);
-            else
+           else
                 nextPAmmonia = 0;
             double nextPHydrogen = pHydrogen - (3 * (pNitrogen - nextPNitrogen));
             CalculateChanges(ref nextPAmmonia, ref nextPNitrogen, ref nextPHydrogen, pAmmonia, pNitrogen, pHydrogen);
+
             nextState.nAmmonia = (double)CalculateMolarAmount(nextPAmmonia);
             nextState.nHydrogen = (double)CalculateMolarAmount(nextPHydrogen);
             nextState.nNitrogen = (double)CalculateMolarAmount(nextPNitrogen);

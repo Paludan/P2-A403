@@ -114,7 +114,7 @@ namespace P2Graph
 			Y.Scale ();
 
 			if (updateAxis) {
-				this.Invalidate ();
+				this.Refresh ();
 			}
 		}
 

@@ -166,7 +166,7 @@ namespace P2Graph
 			}
 
 			if (invalidated) {
-				_master.Invalidate ();
+				_master.Refresh ();
 			} else {
 				_master.UpdateGraph (this);
 			}
