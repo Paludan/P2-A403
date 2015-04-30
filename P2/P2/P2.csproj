@@ -39,7 +39,6 @@
     <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AmmoniaCalc.cs" />
     <Compile Include="CalcForm.cs">
       <SubType>Form</SubType>
     </Compile>

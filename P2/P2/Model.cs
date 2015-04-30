@@ -17,8 +17,6 @@ namespace P2
         private double entropi = -198.05; //      J/(mol*kelvin)
         private double EaCatalyst = 55000; //     J/mol
         private double EaNoCatalyst = 120000; //  J/mol
-        private double AmmoniaAtEQ;
-        private AmmoniaCalc AC = new AmmoniaCalc();
 
         DataPoint currentState = new DataPoint();
 
@@ -60,10 +58,6 @@ namespace P2
                 rateConstant = CalculateRateConstant(EaCatalyst);
             else
                 rateConstant = CalculateRateConstant(EaNoCatalyst);
-
-            if (currentState.time == 0)
-                AmmoniaAtEQ = AC.solveQuadricEquation(pNitrogen, pHydrogen, pAmmonia, rateConstant);
-
             double halfLife = CalculateHalfLife(rateConstant);
             double nextPNitrogen = CalculateNextPartialPressureFirstOrder(pNitrogen, rateConstant, deltaTime);
             double nextPAmmonia;
@@ -71,21 +65,16 @@ namespace P2
                 nextPAmmonia = CalculateNextPartialPressureZerothOrder(pAmmonia, rateConstant, deltaTime);
             else
                 nextPAmmonia = 0;
-
             double nextPHydrogen = pHydrogen - (3 * (pNitrogen - nextPNitrogen));
             CalculateChanges(ref nextPAmmonia, ref nextPNitrogen, ref nextPHydrogen, pAmmonia, pNitrogen, pHydrogen);
-
+            if (nextPHydrogen < 0)
+                nextPHydrogen = 0;
             nextState.nAmmonia = (double)CalculateMolarAmount(nextPAmmonia);
             nextState.nHydrogen = (double)CalculateMolarAmount(nextPHydrogen);
             nextState.nNitrogen = (double)CalculateMolarAmount(nextPNitrogen);
             nextState.temperature = currentState.temperature;
             nextState.catalyst = currentState.catalyst;
             nextState.time = currentState.time + deltaTime;
-           /* if (AmmoniaAtEQ < pAmmonia)
-            {
-                currentState.time = nextState.time;
-                nextState = currentState;
-            } */
         }
 
         private void CalculateChanges(ref double nextPAmmonia, ref double nextPNitrogen, ref double nextPHydrogen,
