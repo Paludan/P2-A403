@@ -81,10 +81,7 @@ namespace P2
             double tempAmmonia = nextPAmmonia;
             double tempNitrogen = nextPNitrogen;
             double tempHydrogen = nextPHydrogen;
-<<<<<<< Updated upstream
             nextPAmmonia = tempAmmonia + (2 * (pNitrogen - tempNitrogen));
-=======
->>>>>>> Stashed changes
             nextPNitrogen = tempNitrogen + (0.5 * (pAmmonia - tempAmmonia));
             nextPHydrogen = tempHydrogen + (1.5 * (pAmmonia - tempAmmonia));
         }
