@@ -71,17 +71,29 @@ namespace P2Graph
 			}
 		}
 
-		protected override void DrawPartition (Graphics painter, GraphPoint centerPoint, int partitionNumber)
-		{
+		protected override void DrawPartition(Graphics painter, GraphPoint centerPoint, int partitionNumber){
 			GraphPoint beginning = centerPoint, end = centerPoint;
 
 			//Calculates the ends of the partition-line
 			beginning.RealX -= 4;
 			end.RealX += 4;
 
+
+            string numberToDraw = partitionNumber.ToString();
+            if (partitionNumber > 999 && partitionNumber < 10000000)
+            {
+                numberToDraw = numberToDraw.Remove(numberToDraw.Length - 3);
+                numberToDraw = string.Concat(numberToDraw, "k");
+            }
+            else if (partitionNumber > 9999999)
+            {
+                numberToDraw = numberToDraw.Remove(numberToDraw.Length - 7);
+                numberToDraw = string.Concat(numberToDraw, "m");
+            }
+
 			DrawLine (beginning, end, painter, Color.Black);
 			end.RealX -= Constants.partitionOffset;
-			DrawNumber(painter, end, partitionNumber.ToString());
+			DrawNumber(painter, end, numberToDraw);
 		}
 
 		/// <summary>
