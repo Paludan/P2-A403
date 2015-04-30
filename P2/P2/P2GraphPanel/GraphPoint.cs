@@ -104,9 +104,9 @@ namespace P2Graph
 			this._xCoord = (float) x;
 			this._yCoord = (float) y;
 			//Same as method ConvertToPanelX(x);
-			_panelX = _MGP.O.X + (float)(x * Constants.xPixelScale);
+			_panelX = _MGP.O.X + (float)(x * _MGP.xPixelScale);
 			//Same as method ConvertToPanelY(y);
-			_panelY = _MGP.O.Y - (float) (y * Constants.yPixelScale);
+			_panelY = _MGP.O.Y - (float) (y * _MGP.yPixelScale);
 
 			_color = col;
 		}
@@ -120,7 +120,7 @@ namespace P2Graph
 		/// <returns>The panel-coordinate of x.</returns>
 		/// <param name="xCoordinate">The graph-coordinate of x.</param>
 		private float ConvertToPanelX(float xCoordinate){
-			return _MGP.O.X + (xCoordinate * Constants.xPixelScale);
+			return _MGP.O.X + (xCoordinate * _MGP.xPixelScale);
 		}
 
 		/// <summary>
@@ -129,7 +129,7 @@ namespace P2Graph
 		/// <returns>The to panel-coordinate of y.</returns>
 		/// <param name="yCoordinate">The graph-coordinate of y.</param>
 		private float ConvertToPanelY(float yCoordinate){
-			return _MGP.O.Y - (yCoordinate * Constants.yPixelScale);
+			return _MGP.O.Y - (yCoordinate * _MGP.yPixelScale);
 		}
 		#endregion
 
@@ -140,7 +140,7 @@ namespace P2Graph
 		/// <param name="painter">A graphics object to paint with.</param>
 		public void Draw (Graphics painter)
 		{
-			RectangleF pointCentre = new RectangleF (_panelX - 2.5f, _panelY - 2.5f, 5, 5);
+			RectangleF pointCentre = new RectangleF (_panelX - 1.5f, _panelY - 1.5f, 3, 3);
 			painter.FillEllipse (new SolidBrush(_color), pointCentre);
 		}
 

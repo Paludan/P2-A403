@@ -14,6 +14,8 @@ namespace P2Graph
 		private xAxis X;
 		private yAxis Y;
 		private Graphics _g;
+		public float yPixelScale;
+		public float xPixelScale;
 
 		/// <summary>
 		/// Gets or sets the max range of x-axis.

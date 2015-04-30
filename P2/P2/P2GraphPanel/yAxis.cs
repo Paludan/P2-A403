@@ -23,7 +23,7 @@ namespace P2Graph
 		public void Scale ()
 		{
 			float PixelLengthOfAxis = this._beginsAt.RealY - this._endsAt.RealY;
-			Constants.yPixelScale = PixelLengthOfAxis / (float) Math.Ceiling(CalculateAxisRange());
+			_MGP.yPixelScale = PixelLengthOfAxis / (float) Math.Ceiling(CalculateAxisRange());
 		}
 
 		/// <summary>
@@ -33,7 +33,7 @@ namespace P2Graph
 		/// <param name="currentPoint">Current point.</param>
 		protected override GraphPoint CalcNextPartition (GraphPoint currentPoint)
 		{
-			currentPoint.RealY -= Constants.yPixelScale;
+			currentPoint.RealY -= _MGP.yPixelScale;
 
 			return currentPoint;
 		}

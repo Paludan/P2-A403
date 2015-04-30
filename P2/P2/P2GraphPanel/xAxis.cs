@@ -35,7 +35,7 @@ namespace P2Graph
 		/// <returns>The next partition.</returns>
 		/// <param name="currentPoint">Current point.</param>
 		protected override GraphPoint CalcNextPartition(GraphPoint currentPoint){
-			currentPoint.RealX += Constants.xPixelScale;
+			currentPoint.RealX += _MGP.xPixelScale;
 
 			return currentPoint;
 		}
@@ -46,7 +46,7 @@ namespace P2Graph
 		public void Scale ()
 		{
 			float PixelLengthOfAxis = this._endsAt.RealX - this._beginsAt.RealX;
-			Constants.xPixelScale = PixelLengthOfAxis / (float) Math.Ceiling(CalculateAxisRange());
+			_MGP.xPixelScale = PixelLengthOfAxis / (float) Math.Ceiling(CalculateAxisRange());
 		}
 		#endregion
 

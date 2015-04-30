@@ -14,8 +14,6 @@ namespace P2Graph
         public static Font GraphFont = new Font("Arial", 10);
 		public static readonly float partitionOffset = 12;
 		public static readonly int maxNumberPartitions = 25;
-		public static float yPixelScale;
-		public static float xPixelScale;
 	}
 }
 
