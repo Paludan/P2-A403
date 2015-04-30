@@ -24,6 +24,7 @@ namespace P2
         public double Hydrogen { set { currentState.nHydrogen = (double)value; } }
         public double Nitrogen { set { currentState.nNitrogen = (double)value; } }
         public double Temperature { set { currentState.temperature = (double)value; } }
+        public bool Catalyst { set { currentState.catalyst = value; } }
 
         public Model(DataPoint InitData)
         {
@@ -66,8 +67,6 @@ namespace P2
                 nextPAmmonia = 0;
             double nextPHydrogen = pHydrogen - (3 * (pNitrogen - nextPNitrogen));
             CalculateChanges(ref nextPAmmonia, ref nextPNitrogen, ref nextPHydrogen, pAmmonia, pNitrogen, pHydrogen);
-            if (nextPHydrogen < 0)
-                nextPHydrogen = 0;
             nextState.nAmmonia = (double)CalculateMolarAmount(nextPAmmonia);
             nextState.nHydrogen = (double)CalculateMolarAmount(nextPHydrogen);
             nextState.nNitrogen = (double)CalculateMolarAmount(nextPNitrogen);
@@ -82,7 +81,11 @@ namespace P2
             double tempAmmonia = nextPAmmonia;
             double tempNitrogen = nextPNitrogen;
             double tempHydrogen = nextPHydrogen;
-            nextPAmmonia = tempAmmonia + (2 * (pNitrogen - tempNitrogen));
+            if (nextPHydrogen < 0)
+                tempHydrogen = 0;
+            else
+                nextPAmmonia = tempAmmonia + (2 * (pNitrogen - tempNitrogen));
+
             nextPNitrogen = tempNitrogen + (0.5 * (pAmmonia - tempAmmonia));
             nextPHydrogen = tempHydrogen + (1.5 * (pAmmonia - tempAmmonia));
         }

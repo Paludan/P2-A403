@@ -119,6 +119,7 @@ namespace P2
             SimulationModel.Hydrogen = currentData.nHydrogen;
             SimulationModel.Nitrogen = currentData.nNitrogen;
             SimulationModel.Temperature = currentData.temperature;
+            SimulationModel.Catalyst = currentData.catalyst;
         }
 
         /// <summary>
