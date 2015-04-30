@@ -165,7 +165,7 @@ namespace P2Graph
 		protected virtual void DrawLine(GraphPoint P1, GraphPoint P2, Graphics painter, Color col){
 			painter.DrawLine (new Pen (col, 2), P1, P2);
 		}
-
+         
 		/// <summary>
 		/// Draws the arrow ends.
 		/// </summary>

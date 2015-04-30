@@ -15,7 +15,7 @@ namespace P2
         private double volume = 50000; //         liter
         private double entalpi = -91800; //       J/mol
         private double entropi = -198.05; //      J/(mol*kelvin)
-        private double EaCatalyst = 60000; //     J/mol
+        private double EaCatalyst = 55000; //     J/mol
         private double EaNoCatalyst = 120000; //  J/mol
         private double AmmoniaAtEQ;
         private AmmoniaCalc AC = new AmmoniaCalc();
@@ -61,7 +61,7 @@ namespace P2
             else
                 rateConstant = CalculateRateConstant(EaNoCatalyst);
 
-            if (nextState.time == 1)
+            if (currentState.time == 0)
                 AmmoniaAtEQ = AC.solveQuadricEquation(pNitrogen, pHydrogen, pAmmonia, rateConstant);
 
             double halfLife = CalculateHalfLife(rateConstant);
@@ -81,8 +81,11 @@ namespace P2
             nextState.temperature = currentState.temperature;
             nextState.catalyst = currentState.catalyst;
             nextState.time = currentState.time + deltaTime;
-            /*if (AmmoniaAtEQ > pAmmonia)
-                nextState = currentState; */
+           /* if (AmmoniaAtEQ < pAmmonia)
+            {
+                currentState.time = nextState.time;
+                nextState = currentState;
+            } */
         }
 
         private void CalculateChanges(ref double nextPAmmonia, ref double nextPNitrogen, ref double nextPHydrogen,
@@ -103,7 +106,7 @@ namespace P2
 
         private double CalculateNextPartialPressureZerothOrder(double pSubstance, double rateConstant, double deltaTime)
         {
-            return (double)((-rateConstant * (currentState.temperature/28) * deltaTime + pSubstance));
+            return (double)((-rateConstant * Math.Pow(currentState.temperature, 1.2) * deltaTime + pSubstance));
         }
 
         private double CalculateHalfLife(double rateConstant)
