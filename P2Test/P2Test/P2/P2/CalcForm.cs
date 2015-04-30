@@ -15,7 +15,7 @@ namespace P2
 		ContextMenu cm = new ContextMenu();
 
 		private const double gasConstant = 8.3145;
-		private const double preExpontentialFactor = 884900000000000;
+		private const double preExpontentialFactor = 1;
 		private const double volume = 50000; // liter
 		private const double entalpi = -91800;
 		private const double entropi = -198.05;
@@ -105,7 +105,7 @@ namespace P2
 
 		private void calcRRConst()
 		{
-	   		this.preExponentialFactor.Text = string.Format("{0:E2}", preExpontentialFactor);
+	   		this.preExponentialFactor.Text = preExpontentialFactor.ToString();
 	    	this.activationEnergy.Text = (this._synth.currentData.catalyst == true) ? 60.ToString() : 1100.ToString();
 	    	this.gasConstRR.Text = gasConstant.ToString();
 	    	this.temperatureRR.Text = this._synth.currentData.temperature.ToString();
