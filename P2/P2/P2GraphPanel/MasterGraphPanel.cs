@@ -123,17 +123,20 @@ namespace P2Graph
 		private bool CheckAxisRanges(){
 			bool axisChanged = false;
 
-			foreach (var item in graphList) {
-				double xMax = item.largestX, yMax = item.largestY;
+			foreach (var item in graphList)
+			{
+				if (item.isActive) {
+					double xMax = item.largestX, yMax = item.largestY;
 
-				if (this.xMaxRange < xMax) {
-					this.xMaxRange += (int) Math.Ceiling(xMax);
-					axisChanged = true;
-				}
+					if (this.xMaxRange < xMax) {
+						this.xMaxRange += (int)Math.Ceiling (xMax);
+						axisChanged = true;
+					}
 
-				if (this.yMaxRange < yMax) {
-					this.yMaxRange += (int) Math.Ceiling(yMax);
-					axisChanged = true;
+					if (this.yMaxRange < yMax) {
+						this.yMaxRange += (int)Math.Ceiling (yMax);
+						axisChanged = true;
+					}
 				}
 			}
 
