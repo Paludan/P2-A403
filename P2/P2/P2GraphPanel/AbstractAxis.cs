@@ -89,7 +89,7 @@ namespace P2Graph
 
 			CalculateAxisEnds ();
 
-            while (35 < TextRenderer.MeasureText("9999", new Font(toUse.FontFamily,
+            while (34 < TextRenderer.MeasureText("9999", new Font(toUse.FontFamily,
                    toUse.Size, toUse.Style)).Width)
                 toUse = new Font(toUse.FontFamily, toUse.Size - 0.01f, toUse.Style);
 		}
