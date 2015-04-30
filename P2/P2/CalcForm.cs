@@ -13,13 +13,14 @@ namespace P2
     public partial class CalcForm : Form
     {
 		ContextMenu cm = new ContextMenu();
-
-		private const double gasConstant = 8.3145;
-		private const double preExpontentialFactor = 884900000000000;
-		private const double volume = 50000; // liter
-		private const double entalpi = -91800;
-		private const double entropi = -198.05;
-
+		private double gasConstant = 8.314472;
+        private double gasConstantCal = 1.987;
+        private double preExpontentialFactor = 884900000000000;
+        private double volume = 50000; //         liter
+        private double entalpi = -91800; //       J/mol
+        private double entropi = -198.05; //      J/(mol*kelvin)
+        private double EaCatalyst = 55000; //     J/mol
+        private double EaNoCatalyst = 120000; //  J/mol
 		private Synthesis _synth;
 	
 		public CalcForm(Synthesis synth)
@@ -110,8 +111,8 @@ namespace P2
 	    	this.gasConstRR.Text = gasConstant.ToString();
 	    	this.temperatureRR.Text = this._synth.currentData.temperature.ToString();
 	    	this.RRConst.Text = string.Format("{0:N7}", preExpontentialFactor
-				* Math.Pow(Math.E, ((this._synth.currentData.catalyst == true) ? 60 : 1100)
-				/ (gasConstant * this._synth.currentData.temperature)));  
+				* Math.Pow(Math.E, ((this._synth.currentData.catalyst == true) ? EaCatalyst : EaNoCatalyst)
+				/ (gasConstantCal * this._synth.currentData.temperature)));  
 		}
 
 		private void menuItem1_ItemClick (object sender, System.EventArgs e)
