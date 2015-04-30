@@ -126,7 +126,7 @@ namespace P2
             if (!textBox.Text.Equals("") && double.Parse(textBox.Text) != 0)
             {
                 textBox.Text = textBox.Text.ToString().TrimStart('0');
-                if (double.Parse(textBox.Text) <= hScrollBar.Maximum)
+                if (double.Parse(textBox.Text) <= hScrollBar.Maximum && double.Parse(textBox.Text) >= hScrollBar.Minimum)
                     hScrollBar.Value = (int) double.Parse(textBox.Text);
                 else
                 {
