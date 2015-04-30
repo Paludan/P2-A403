@@ -144,7 +144,7 @@ namespace P2Graph
 
         protected void DrawNumber(Graphics painter, GraphPoint centerPoint, string toDraw, StringFormat format)
         {
-            Rectangle Rec = new Rectangle((int)centerPoint.RealX, (int)centerPoint.RealY+12, 20, 50);
+            Rectangle Rec = new Rectangle((int)centerPoint.RealX, (int)centerPoint.RealY+12, 50, 50);
             Rec.X -= (Rec.Width / 2);
             Rec.Y -= (Rec.Height / 2);
             painter.DrawString(toDraw, Constants.GraphFont, Brushes.Black, Rec, format);
