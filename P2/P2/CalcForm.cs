@@ -13,25 +13,19 @@ namespace P2
     public partial class CalcForm : Form
     {
 		ContextMenu cm = new ContextMenu();
-		private double gasConstant = 8.314472;
-        private double gasConstantCal = 1.987;
-        private double preExpontentialFactor = 884900000000000;
-        private double volume = 50000; //         liter
-        private double entalpi = -91800; //       J/mol
-        private double entropi = -198.05; //      J/(mol*kelvin)
-        private double EaCatalyst = 55000; //     J/mol
-        private double EaNoCatalyst = 120000; //  J/mol
+		private const double gasConstant = 8.314472;
+        private const double gasConstantCal = 1.987;
+        private const double preExpontentialFactor = 884900000000000;
+        private const double volume = 50000; //         liter
+        private const double entalpi = -91800; //       J/mol
+        private const double entropi = -198.05; //      J/(mol*kelvin)
+        private const double EaCatalyst = 55000; //     J/mol
+        private const double EaNoCatalyst = 120000; //  J/mol
 		private Synthesis _synth;
 	
 		public CalcForm(Synthesis synth)
 		{
 	    	this._synth = synth;
-
-	    	/* for test!!! slet senere */
-	    	_synth.currentData.temperature = 500;
-	    	_synth.currentData.nHydrogen = 232;
-	    	_synth.currentData.nNitrogen = 343;
-	    	_synth.currentData.nAmmonia = 212;
 
 	    	InitializeComponent();
 	    	UpdateData();
@@ -107,11 +101,11 @@ namespace P2
 		private void calcRRConst()
 		{
 	   		this.preExponentialFactor.Text = string.Format("{0:E2}", preExpontentialFactor);
-	    	this.activationEnergy.Text = (this._synth.currentData.catalyst == true) ? 60.ToString() : 1100.ToString();
-	    	this.gasConstRR.Text = gasConstant.ToString();
+	    	this.activationEnergy.Text = (this._synth.currentData.catalyst == true) ? EaCatalyst.ToString() : EaNoCatalyst.ToString();
+	    	this.gasConstRR.Text = gasConstantCal.ToString();
 	    	this.temperatureRR.Text = this._synth.currentData.temperature.ToString();
 	    	this.RRConst.Text = string.Format("{0:N7}", preExpontentialFactor
-				* Math.Pow(Math.E, ((this._synth.currentData.catalyst == true) ? EaCatalyst : EaNoCatalyst)
+				* Math.Pow(Math.E, -((this._synth.currentData.catalyst == true) ? EaCatalyst : EaNoCatalyst)
 				/ (gasConstantCal * this._synth.currentData.temperature)));  
 		}
 
