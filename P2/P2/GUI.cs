@@ -131,8 +131,7 @@ namespace P2
                 else
                 {
                     hScrollBar.Value = hScrollBar.Maximum;
-                    if(!synth.running)
-                        textBox.Text = hScrollBar.Maximum.ToString();
+                    textBox.Text = hScrollBar.Maximum.ToString();
                 }
             }
             else
