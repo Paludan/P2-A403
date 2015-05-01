@@ -12,7 +12,7 @@ namespace P2
 {
     /// <summary>
     /// This class handles the time of the simulation and presents features to stop, 
-    /// fastforward and convert time from realtime to virtualtime fisk
+    /// fastforward and convert time from realtime to virtualtime
     /// </summary>
     public class Synthesis
     {
@@ -70,7 +70,7 @@ namespace P2
         }
 
         /// <summary>
-        /// This property gives acces to the 
+        /// This property gives access to the 
         /// </summary>
         public List<DataPoint> Datapoints{
             get { return simulationData.SimulationData; }
@@ -144,12 +144,14 @@ namespace P2
             currentData.time += interval * Scale;
             simulationData.addDataPoint( SimulationModel.Update((interval * Scale) /1000 ) );
             currentData = simulationData.SimulationData.Last();
-            if (selected)
+            if (selected && running)
             {
+                this.stop();
                 foreach (GraphHandler GH in graphHandlers)
                 {
                     GH.Update(currentData);
                 }
+                this.start();
             }
         }
 

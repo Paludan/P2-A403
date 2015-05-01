@@ -31,11 +31,21 @@ namespace P2
             currentState = InitData;
         }
 
+        /// <summary>
+        /// This method fetches the current DataPoint without updating it.
+        /// </summary>
+        /// <returns></returns>
         public DataPoint Fetch()
         {
             return currentState;
         }
 
+        /// <summary>
+        /// This method simulates the difference between the current data and the data
+        /// after the specified deltatime has passed. The method then sets current data equals to the new data and returns it.
+        /// </summary>
+        /// <param name="deltaTime">The time that is simulated form the old datapoint to the new</param>
+        /// <returns></returns>
         public DataPoint Update(double deltaTime)
         {
             DataPoint NextState;
@@ -45,6 +55,12 @@ namespace P2
             return currentState;
         }
 
+        /// <summary>
+        /// This method calculates the new state of the current data after the specified time has passed.
+        /// </summary>
+        /// <param name="deltaTime">Specified time that passes</param>
+        /// <param name="nextState">An out parameter that represents the state of the 
+        /// simulation after the specified time has passed</param>
         private void CalculateNextState(double deltaTime, out DataPoint nextState)
         {
             nextState = new DataPoint();
@@ -76,6 +92,17 @@ namespace P2
             nextState.time = currentState.time + deltaTime;
         }
 
+        /// <summary>
+        /// This method calculates the resulting changes in partial pressure for all substances in the simulation.
+        /// This calculation is to be made after the initial changes calculation, where the fact that all changes on one side of the equation
+        /// will result in equivalent changes on the other side is ignored.
+        /// </summary>
+        /// <param name="nextPAmmonia"> the initially calculated value of the next partial pressure of ammonia</param>
+        /// <param name="nextPNitrogen">the initially calculated value of the next partial pressure of nitrogen</param>
+        /// <param name="nextPHydrogen">the initially calculated value of the next partial pressure of hydrogen</param>
+        /// <param name="pAmmonia">the previous partial pressure of ammonia</param>
+        /// <param name="pNitrogen">the previous partial pressure of nitrogen</param>
+        /// <param name="pHydrogen">the previous partial pressure of hydrogen</param>
         private void CalculateChanges(ref double nextPAmmonia, ref double nextPNitrogen, ref double nextPHydrogen,
                                           double pAmmonia, double pNitrogen, double pHydrogen)
         {
@@ -87,21 +114,46 @@ namespace P2
             nextPHydrogen = tempHydrogen + (1.5 * (pAmmonia - tempAmmonia));
         }
 
+        /// <summary>
+        /// This method calculates the the next partial pressure of a substance, that decays at first order.
+        /// </summary>
+        /// <param name="pSubstance">The partial preassure of the substance being calculated on</param>
+        /// <param name="rateConstant">The rate constant of the reaction</param>
+        /// <param name="deltaTime"> The time that has passed since the initial conditions for this calculation</param>
+        /// <returns></returns>
         private double CalculateNextPartialPressureFirstOrder(double pSubstance, double rateConstant, double deltaTime)
         {
             return pSubstance * Math.Pow(Math.E, (double)(-rateConstant * deltaTime));
         }
 
+        /// <summary>
+        /// This method calculates the the next partial pressure of a substance, that decays at zeroth order.
+        /// </summary>
+        /// <param name="pSubstance">The partial preassure of the substance being calculated on</param>
+        /// <param name="rateConstant">The rate constant of the reaction</param>
+        /// <param name="deltaTime">The time that has passed since the initial conditions for this calculation</param>
+        /// <returns></returns>
         private double CalculateNextPartialPressureZerothOrder(double pSubstance, double rateConstant, double deltaTime)
         {
             return (double)((-rateConstant * Math.Pow(currentState.temperature, 1.2) * deltaTime + pSubstance));
         }
 
+        /// <summary>
+        /// This method calculates the half-life of a substance according to first order.
+        /// (Redundant function)
+        /// </summary>
+        /// <param name="rateConstant">The rate constant of the reaction</param>
+        /// <returns>half-life</returns>
         private double CalculateHalfLife(double rateConstant)
         {
             return Math.Log(2, Math.E) / rateConstant;
         }
 
+        /// <summary>
+        /// This method calculates the rate constant for the current simulation.
+        /// </summary>
+        /// <param name="Ea"></param>
+        /// <returns></returns>
         private double CalculateRateConstant(double Ea)
         {
             return preExpontentialFactor * Math.Pow(Math.E, (double)(-Ea / (gasConstantCal * currentState.temperature)));
