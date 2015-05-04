@@ -20,6 +20,10 @@ namespace P2
         }
 
         P2Graph.MasterGraphPanel _mgp;
+        public P2Graph.MasterGraphPanel CurrentTab
+        {
+            get { return this._mgp;  }
+        }
 
         /// <summary>
         /// Instantiates a new <see cref="P2.GraphPage"/>
@@ -28,7 +32,7 @@ namespace P2
         public GraphPage(P2Graph.MasterGraphPanel mgp)
             : base()
         {
-            _mgp = mgp;
+            this._mgp = mgp;
             this.Controls.Add(_mgp);
         }
 

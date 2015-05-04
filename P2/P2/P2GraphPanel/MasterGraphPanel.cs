@@ -212,7 +212,7 @@ namespace P2Graph
 		/// <param name="sender">Sender.</param>
 		/// <param name="e">E.</param>
 		private void Event_PaintContent(object sender, PaintEventArgs e){
-			this.Draw (_g);
+			this.Draw (e.Graphics);
 		}
 
 		/// <summary>

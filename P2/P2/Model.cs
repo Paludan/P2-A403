@@ -8,7 +8,7 @@ namespace P2
 {
     class Model
     {
-        /* the following 8 constant variables are constants that cannot be regulated */
+        /* the following 8 variables are constants that cannot be regulated */
         private double gasConstant = 8.314472;
         private double gasConstantCal = 1.987;
         private double preExpontentialFactor = 884900000000000;
@@ -25,6 +25,7 @@ namespace P2
         public double Nitrogen { set { currentState.nNitrogen = (double)value; } }
         public double Temperature { set { currentState.temperature = (double)value; } }
         public bool Catalyst { set { currentState.catalyst = value; } }
+        double nextPAmmonia = 0;
 
         public Model(DataPoint InitData)
         {
@@ -50,8 +51,7 @@ namespace P2
         {
             DataPoint NextState;
             CalculateNextState(deltaTime, out NextState);
-            //if (NextState.nHydrogen >= 0 && NextState.nNitrogen >= 0 && NextState.nAmmonia >= 0)
-                currentState = NextState;
+            currentState = NextState;
             return currentState;
         }
 
@@ -76,13 +76,21 @@ namespace P2
                 rateConstant = CalculateRateConstant(EaNoCatalyst);
             double halfLife = CalculateHalfLife(rateConstant);
             double nextPNitrogen = CalculateNextPartialPressureFirstOrder(pNitrogen, rateConstant, deltaTime);
-            double nextPAmmonia;
             if (pAmmonia > 0)
                 nextPAmmonia = CalculateNextPartialPressureZerothOrder(pAmmonia, rateConstant, deltaTime);
-           else
-                nextPAmmonia = 0;
             double nextPHydrogen = pHydrogen - (3 * (pNitrogen - nextPNitrogen));
-            CalculateChanges(ref nextPAmmonia, ref nextPNitrogen, ref nextPHydrogen, pAmmonia, pNitrogen, pHydrogen);
+            double tempAmmonia = nextPAmmonia;
+            if (nextPHydrogen > 0 && nextPNitrogen > 0)
+                CalculateAmmoniaProduction(ref nextPAmmonia, pNitrogen, nextPNitrogen);
+            else
+            {
+                nextPNitrogen = pNitrogen;
+                nextPHydrogen = pHydrogen;
+            }
+            if (nextPAmmonia > 0)
+                CalculateReactantProduction(tempAmmonia, ref nextPNitrogen, ref nextPHydrogen, pAmmonia);
+            else
+                nextPAmmonia = 0;
 
             nextState.nAmmonia = (double)CalculateMolarAmount(nextPAmmonia);
             nextState.nHydrogen = (double)CalculateMolarAmount(nextPHydrogen);
@@ -90,6 +98,11 @@ namespace P2
             nextState.temperature = currentState.temperature;
             nextState.catalyst = currentState.catalyst;
             nextState.time = currentState.time + deltaTime;
+        }
+
+        private void CalculateAmmoniaProduction(ref double nextPAmmonia, double pNitrogen, double nextPNitrogen)
+        {
+            nextPAmmonia = nextPAmmonia + (2 * (pNitrogen - nextPNitrogen));
         }
 
         /// <summary>
@@ -103,15 +116,13 @@ namespace P2
         /// <param name="pAmmonia">the previous partial pressure of ammonia</param>
         /// <param name="pNitrogen">the previous partial pressure of nitrogen</param>
         /// <param name="pHydrogen">the previous partial pressure of hydrogen</param>
-        private void CalculateChanges(ref double nextPAmmonia, ref double nextPNitrogen, ref double nextPHydrogen,
-                                          double pAmmonia, double pNitrogen, double pHydrogen)
+        private void CalculateReactantProduction(double nextPAmmonia, ref double nextPNitrogen, ref double nextPHydrogen,
+                                                 double pAmmonia)
         {
-            double tempAmmonia = nextPAmmonia;
             double tempNitrogen = nextPNitrogen;
             double tempHydrogen = nextPHydrogen;
-            nextPAmmonia = tempAmmonia + (2 * (pNitrogen - tempNitrogen));
-            nextPNitrogen = tempNitrogen + (0.5 * (pAmmonia - tempAmmonia));
-            nextPHydrogen = tempHydrogen + (1.5 * (pAmmonia - tempAmmonia));
+            nextPNitrogen = tempNitrogen + (0.5 * (pAmmonia - nextPAmmonia));
+            nextPHydrogen = tempHydrogen + (1.5 * (pAmmonia - nextPAmmonia));
         }
 
         /// <summary>

@@ -29,7 +29,7 @@ namespace P2
             Control.CheckForIllegalCrossThreadCalls = false;
             startUpInfo();
             correctTextSize();
-
+            
             this.pTabs.Controls.Add(this.page1);
 			this.pTabs.Deselecting += DeactivatePage;
 			this.pTabs.Selecting += ActivatePage;
@@ -295,7 +295,7 @@ namespace P2
         /// </summary>
         private void saveGraph_Click(object sender, EventArgs e)
         {
-            SaveLoadTools.saveToImage(pGraphArea);
+            SaveLoadTools.saveToImage((pTabs.SelectedTab as GraphPage).CurrentTab);
         }
 
         /// <summary>

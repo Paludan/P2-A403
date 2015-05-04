@@ -75,13 +75,13 @@ namespace P2
             this.FurtherInfoBox = new System.Windows.Forms.Button();
             this.hInfoBox = new System.Windows.Forms.Label();
             this.pTabs = new System.Windows.Forms.TabControl();
-            this.page1 = new GraphPage(pGraphArea);
             this.pSimulationArea = new System.Windows.Forms.Panel();
             this.addGraph = new System.Windows.Forms.Button();
             this.pGraphArea = new P2Graph.MasterGraphPanel(628, 487);
             this.pColourDescription.SuspendLayout();
             this.pProjectHandling.SuspendLayout();
             this.pParameters.SuspendLayout();
+            this.page1 = new GraphPage(pGraphArea);
             this.panel1.SuspendLayout();
             this.pTimeControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
@@ -570,16 +570,6 @@ namespace P2
             this.pTabs.SelectedIndex = 0;
             this.pTabs.Size = new System.Drawing.Size(628, 508);
             this.pTabs.TabIndex = 20;
-            // 
-            // pGraphArea
-            // 
-            this.pGraphArea.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.pGraphArea.Location = new System.Drawing.Point(0, 0);
-            this.pGraphArea.Name = "pGraphArea";
-            this.pGraphArea.Size = new System.Drawing.Size(628, 487);
-            this.pGraphArea.TabIndex = 0;
-            this.pGraphArea.xMaxRange = 1;
-            this.pGraphArea.yMaxRange = 1;
             // 
             // page1
             // 
