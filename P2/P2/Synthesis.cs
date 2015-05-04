@@ -17,10 +17,12 @@ namespace P2
     public class Synthesis
     {
         public List<GraphHandler> graphHandlers = new List<GraphHandler>();
+        public delegate void UpdateEventHandler();
+        public event UpdateEventHandler Updated; 
         DataHandler simulationData;
         Model SimulationModel;
-        public bool running = false, selected = true;
-        public System.Timers.Timer timer;//There are other classes called Timer so we must specify the path when initializing.
+        public bool running = false, selected = true; //not in use
+        System.Timers.Timer timer;//There are other classes called Timer so we must specify the path when initializing.
         public DataPoint currentData = new DataPoint(0,0,0,0,0,false);
         double _scale = 1.0; // this variable will decide at what scale the time runs. by making this 2.0, the virtual time elapsed
                              // when calculating a new datapoint will be double the actual alapsed time.
@@ -30,7 +32,7 @@ namespace P2
         /// </summary>
         public double interval
         {
-            get { return timer.Interval; }
+            get { return timer.Interval; } //cannot be negative
             set { timer.Interval = value; }
         }
 
@@ -63,7 +65,7 @@ namespace P2
                     else
                     {
                         currentData = simulationData.getDataPoint(value);
-                        simulationData.revertTo(value);
+                        simulationData.revertTo(value); //overflødigt
                     }
                 }
             }
@@ -83,7 +85,7 @@ namespace P2
         {
             simulationData = new DataHandler();
             SimulationModel = new Model(currentData);
-            timer = new System.Timers.Timer(1000);
+            timer = new System.Timers.Timer(100);
             timer.Elapsed += this.OnElapsed;
 			graphHandlers.Add(new GraphHandler(graphPanel));
         }
@@ -105,9 +107,12 @@ namespace P2
         /// </summary>
         public void start()
         {
-            SetData();
-            running = true;
-            timer.Start();
+            if (currentData.temperature != 0)
+            {
+                SetData();
+                running = true;
+                timer.Start();
+            }
         }
 
         /// <summary>
@@ -150,6 +155,10 @@ namespace P2
                 foreach (GraphHandler GH in graphHandlers)
                 {
                     GH.Update(currentData);
+                }
+                if (Updated != null)
+                {
+                    Updated();
                 }
                 this.start();
             }

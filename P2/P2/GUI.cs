@@ -15,7 +15,7 @@ namespace P2
     {
         Synthesis synth;
         helpTextController helper;
-        double tempDouble;
+        double tempDouble; // for temporary storage of floating point numbers
         
 		/// <summary>
 		/// Initializes a new instance of the <see cref="P2.GUI"/> class.
@@ -24,7 +24,7 @@ namespace P2
         {
             InitializeComponent();
             synth = new Synthesis(pGraphArea);
-			synth.timer.Elapsed += Update;
+			synth.Updated += Update;
             helper = new helpTextController();
             Control.CheckForIllegalCrossThreadCalls = false;
             startUpInfo();
@@ -219,7 +219,7 @@ namespace P2
         /// <summary>
         /// Changes the values of the textBoxes to the current state of the synthesis
         /// </summary>
-        public void Update(Object source, System.Timers.ElapsedEventArgs e)
+        public void Update()
         {
             numericUpDown1.Value = (decimal)synth.Time;
 

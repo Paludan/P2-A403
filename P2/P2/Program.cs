@@ -9,10 +9,12 @@ namespace P2
 {
     class Program
     {
+        /// <summary>
+        /// The program starts here.
+        /// </summary>
         public static void Main()
         {
-            string dir = Directory.GetCurrentDirectory() + "\\Simulation Data";
-            Directory.CreateDirectory(dir);
+            Directory.CreateDirectory( Directory.GetCurrentDirectory() + "\\Simulation Data" ); //create a directory for saved files.
             GUI gui = new GUI();
             gui.ShowDialog();
         }
