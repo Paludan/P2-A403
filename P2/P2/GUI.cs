@@ -81,9 +81,9 @@ namespace P2
         /// <param name="label">The label which text is to be resized</param>
         private void autoScaleText(Control label)
         {
-            while (label.Width < System.Windows.Forms.TextRenderer.MeasureText(label.Text, new Font(label.Font.FontFamily,
+            while (label.Width < TextRenderer.MeasureText(label.Text, new Font(label.Font.FontFamily,
                    label.Font.Size, label.Font.Style)).Width ||
-                   label.Height < System.Windows.Forms.TextRenderer.MeasureText(label.Text, new Font(label.Font.FontFamily,
+                   label.Height < TextRenderer.MeasureText(label.Text, new Font(label.Font.FontFamily,
                    label.Font.Size, label.Font.Style)).Height)
                 label.Font = new Font(label.Font.FontFamily, label.Font.Size - 0.01f, label.Font.Style);
         }
