@@ -32,6 +32,7 @@ namespace P2
             if (chosenFile != null && chosenFile != "Der findes ingen gemte grafer")
             {
                 _synth.Datapoints = SaveLoadTools.load(chosenFile);
+                _synth.CurrentData = _synth.Datapoints.Last();
                 this.Close();
             }
         }
