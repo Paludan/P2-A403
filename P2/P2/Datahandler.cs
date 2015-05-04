@@ -81,10 +81,8 @@ namespace P2
         /// </summary>
         public List<DataPoint> SimulationData
         {
-            get
-            {
-                return simulationData;
-            }
+            get { return simulationData; }
+            set { simulationData = value; }
         }
 
         /// <summary>

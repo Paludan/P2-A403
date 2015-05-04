@@ -570,7 +570,7 @@ namespace P2
             this.pTabs.SelectedIndex = 0;
             this.pTabs.Size = new System.Drawing.Size(628, 508);
             this.pTabs.TabIndex = 20;
-            // 
+            //
             // page1
             // 
             this.page1.Controls.Add(this.pGraphArea);
@@ -619,7 +619,7 @@ namespace P2
             this.Controls.Add(this.pSimulationArea);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "GUI";
-            this.Text = "GUI";
+            this.Text = "Ammoniak Syntese";
             this.pColourDescription.ResumeLayout(false);
             this.pProjectHandling.ResumeLayout(false);
             this.pParameters.ResumeLayout(false);

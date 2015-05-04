@@ -14,10 +14,12 @@ namespace P2
     public partial class LoadMenu : Form
     {
         string chosenFile;
-
-        public LoadMenu()
+        private Synthesis _synth;
+        
+        public LoadMenu(Synthesis synth)
         {
             InitializeComponent();
+            _synth = synth;
         }
 
         /// <summary>
@@ -29,7 +31,7 @@ namespace P2
         {
             if (chosenFile != null && chosenFile != "Der findes ingen gemte grafer")
             {
-                SaveLoadTools.load(chosenFile);
+                _synth.Datapoints = SaveLoadTools.load(chosenFile);
                 this.Close();
             }
         }
@@ -45,16 +47,15 @@ namespace P2
         /// <summary>
         /// Inserts the names of the save files in the listbox as strings
         /// Informs user that no files exists if that is the case
-        /// Removes the path in the begining and datatype in the end of the strings before inserting them into the listbox
         /// </summary>
         private void LoadMenu_Load(object sender, EventArgs e)
         {
+            DirectoryInfo dinfo = new DirectoryInfo(SaveLoadTools.path);
             if (Directory.GetFiles(SaveLoadTools.path).Length > 0)
             {
-                string[] files = Directory.GetFiles(SaveLoadTools.path);
-                foreach (string fileInDirectory in files)
-                    if (fileInDirectory.EndsWith(".eqsave"))
-                        listBox1.Items.Add(fileInDirectory.Remove(0, 12).Remove((fileInDirectory.Length - 20), 7));
+                FileInfo[] files = dinfo.GetFiles("*.eqsave");
+                foreach (FileInfo file in files)
+                        listBox1.Items.Add(file.Name);
             }
             if (listBox1.Items.Count == 0)
                 listBox1.Items.Add("Der findes ingen gemte grafer");

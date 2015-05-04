@@ -19,7 +19,7 @@ namespace P2
         public List<GraphHandler> graphHandlers = new List<GraphHandler>();
         public delegate void UpdateEventHandler();
         public event UpdateEventHandler Updated; 
-        DataHandler simulationData;
+        DataHandler simulationDataHandler;
         AmmoniaModel SimulationModel;
         public bool running = false, selected = true; //not in use
         System.Timers.Timer timer;//There are other classes called Timer so we must specify the path when initializing.
@@ -65,20 +65,28 @@ namespace P2
                 }
             }
         }
-
-        /// <summary>
-        /// This property gives access to the 
-        /// </summary>
-        public List<DataPoint> Datapoints{
-            get { return simulationData.SimulationData; }
+        public DataHandler dh
+        {
+            get { return simulationDataHandler; }
         }
 
+        /// <summary>
+        /// This property gives access to the list of datapoints
+        /// </summary>
+        public List<DataPoint> Datapoints{
+            get { return simulationDataHandler.SimulationData; }
+            set { simulationDataHandler.SimulationData = value;  }
+        }
+        public DataPoint CurrentData
+        {
+            set { currentData = value; }
+        }
         /// <summary>
         /// This is the constructor for the class. It initializes the datahandler, model and timer.
         /// </summary>
         public Synthesis(MasterGraphPanel graphPanel)
         {
-            simulationData = new DataHandler();
+            simulationDataHandler = new DataHandler();
             SimulationModel = new AmmoniaModel(currentData);
             timer = new System.Timers.Timer(100);
             timer.Elapsed += this.OnElapsed;
@@ -142,8 +150,8 @@ namespace P2
         private void Update()
         {
             currentData.time += interval * Scale;
-            simulationData.addDataPoint( SimulationModel.Update((interval * Scale) /1000 ) );
-            currentData = simulationData.SimulationData.Last();
+            simulationDataHandler.addDataPoint( SimulationModel.Update((interval * Scale) /1000 ) );
+            currentData = simulationDataHandler.SimulationData.Last();
             if (selected && running)
             {
                 this.stop();

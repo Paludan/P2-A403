@@ -13,8 +13,6 @@ namespace P2
         private double gasConstantCal = 1.987;
         private double preExpontentialFactor = 884900000000000;
         private double volume = 50000; //         liter
-        private double entalpi = -91800; //       J/mol
-        private double entropi = -198.05; //      J/(mol*kelvin)
         private double EaCatalyst = 55000; //     J/mol
         private double EaNoCatalyst = 120000; //  J/mol
 
@@ -76,7 +74,6 @@ namespace P2
             else
                 rateConstant = CalculateRateConstant(EaNoCatalyst);
 
-			double halfLife = CalculateHalfLife(rateConstant);
             double nextPNitrogen = CalculateNextPartialPressureFirstOrder(pNitrogen, rateConstant, deltaTime);
             if (pAmmonia > 0)
                 nextPAmmonia = CalculateNextPartialPressureZerothOrder(pAmmonia, rateConstant, deltaTime);
@@ -92,7 +89,7 @@ namespace P2
             if (nextPAmmonia > 0)
                 CalculateReactantProduction(tempAmmonia, ref nextPNitrogen, ref nextPHydrogen, pAmmonia);
             else
-                nextPAmmonia = 0;
+                nextPAmmonia = pAmmonia;
 
             nextState.nAmmonia = (double)CalculateMolarAmount(nextPAmmonia);
             nextState.nHydrogen = (double)CalculateMolarAmount(nextPHydrogen);
@@ -101,14 +98,19 @@ namespace P2
             nextState.catalyst = currentState.catalyst;
             nextState.time = currentState.time + deltaTime;
         }
-
+        /// <summary>
+        /// This method calculates the resulting changes in partial pressure for the product in the simulation
+        /// </summary>
+        /// <param name="nextPAmmonia">the initially calculated value of the next partial pressure of ammonia</param>
+        /// <param name="pNitrogen">the current partial pressure of nitrogen</param>
+        /// <param name="nextPNitrogen">the initially calculated value of the next partial pressure of nitrogen</param>
         private void CalculateAmmoniaProduction(ref double nextPAmmonia, double pNitrogen, double nextPNitrogen)
         {
             nextPAmmonia = nextPAmmonia + (2 * (pNitrogen - nextPNitrogen));
         }
 
         /// <summary>
-        /// This method calculates the resulting changes in partial pressure for all substances in the simulation.
+        /// This method calculates the resulting changes in partial pressure for the reactants in the simulation.
         /// This calculation is to be made after the initial changes calculation, where the fact that all changes on one side of the equation
         /// will result in equivalent changes on the other side is ignored.
         /// </summary>
@@ -116,8 +118,6 @@ namespace P2
         /// <param name="nextPNitrogen">the initially calculated value of the next partial pressure of nitrogen</param>
         /// <param name="nextPHydrogen">the initially calculated value of the next partial pressure of hydrogen</param>
         /// <param name="pAmmonia">the previous partial pressure of ammonia</param>
-        /// <param name="pNitrogen">the previous partial pressure of nitrogen</param>
-        /// <param name="pHydrogen">the previous partial pressure of hydrogen</param>
         private void CalculateReactantProduction(double nextPAmmonia, ref double nextPNitrogen, ref double nextPHydrogen,
                                                  double pAmmonia)
         {
@@ -152,39 +152,15 @@ namespace P2
         }
 
         /// <summary>
-        /// This method calculates the half-life of a substance according to first order.
-        /// (Redundant function)
-        /// </summary>
-        /// <param name="rateConstant">The rate constant of the reaction</param>
-        /// <returns>half-life</returns>
-        private double CalculateHalfLife(double rateConstant)
-        {
-            return Math.Log(2, Math.E) / rateConstant;
-        }
-
-        /// <summary>
         /// This method calculates the rate constant for the current simulation.
         /// </summary>
-        /// <param name="Ea"></param>
+        /// <param name="Ea">The current activation energy</param>
         /// <returns></returns>
         private double CalculateRateConstant(double Ea)
         {
             return preExpontentialFactor * Math.Pow(Math.E, (double)(-Ea / (gasConstantCal * currentState.temperature)));
         }
-
-        private bool CalculateEquilibrium(double Y, double pNitrogen, double pHydrogen, double pAmmonia)
-        {
-            if ((Math.Pow(pAmmonia, 2) / (pNitrogen * Math.Pow(pHydrogen, 3))) >= Y)
-                return true;
-            else
-                return false;
-        }
-
-        private double CalculateEquilibriumConstant()
-        {
-            return Math.Pow(Math.E, (double)(-(entalpi / (gasConstant * currentState.temperature)) + entropi / gasConstant));
-        }
-
+        
         private double CalculatePartialPressure(double nSubstance)
         {
             return (nSubstance * gasConstant * currentState.temperature) / volume;

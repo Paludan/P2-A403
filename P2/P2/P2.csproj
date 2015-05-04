@@ -49,6 +49,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="helpTextController.cs" />
+    <Compile Include="LoadEventArgs.cs" />
     <Compile Include="LoadMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -74,20 +75,13 @@
     <Compile Include="Program.cs" />
     <Compile Include="Serializer.cs" />
     <Compile Include="Synthesis.cs" />
-    <Compile Include="P2GraphPanel\MasterGraphPanel.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="P2GraphPanel\Graph.cs" />
-    <Compile Include="P2GraphPanel\yAxis.cs" />
-    <Compile Include="P2GraphPanel\xAxis.cs" />
-    <Compile Include="P2GraphPanel\AbstractAxis.cs" />
-    <Compile Include="P2GraphPanel\GraphPoint.cs" />
-    <Compile Include="P2GraphPanel\IDrawable.cs" />
-    <Compile Include="P2GraphPanel\Constants.cs" />
     <Compile Include="viewCalculations\CalculationForm.cs" />
-    <Compile Include="P2GraphPanel\CustomExceptions.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\NUnit 2.6.4\bin\framework\nunit.framework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -120,6 +114,11 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\P2Graph\P2Graph.csproj">
+      <Project>{b67bf511-33ed-41b5-80e0-416f1f0ba572}</Project>
+      <Name>P2Graph</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup />
 </Project>

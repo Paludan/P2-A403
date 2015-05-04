@@ -239,7 +239,7 @@ namespace P2
         {
             if ((IsFormAlreadyOpen(typeof(LoadMenu))) == null)
             {
-                LoadMenu loadMenu = new LoadMenu();
+                LoadMenu loadMenu = new LoadMenu(synth);
                 loadMenu.Show();
             }
         }
