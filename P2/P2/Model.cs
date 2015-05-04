@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace P2
 {
-    class Model
+    public class Model
     {
         /* the following 8 variables are constants that cannot be regulated */
         private double gasConstant = 8.314472;
@@ -68,13 +68,15 @@ namespace P2
             double pNitrogen = CalculatePartialPressure(currentState.nNitrogen);
             double pHydrogen = CalculatePartialPressure(currentState.nHydrogen);
             double pAmmonia = CalculatePartialPressure(currentState.nAmmonia);
-            double Y = CalculateEquilibriumConstant();
+
+			//Calculate Reactionrate constant
             double rateConstant;
             if (currentState.catalyst)
                 rateConstant = CalculateRateConstant(EaCatalyst);
             else
                 rateConstant = CalculateRateConstant(EaNoCatalyst);
-            double halfLife = CalculateHalfLife(rateConstant);
+
+			double halfLife = CalculateHalfLife(rateConstant);
             double nextPNitrogen = CalculateNextPartialPressureFirstOrder(pNitrogen, rateConstant, deltaTime);
             if (pAmmonia > 0)
                 nextPAmmonia = CalculateNextPartialPressureZerothOrder(pAmmonia, rateConstant, deltaTime);
@@ -134,7 +136,7 @@ namespace P2
         /// <returns></returns>
         private double CalculateNextPartialPressureFirstOrder(double pSubstance, double rateConstant, double deltaTime)
         {
-            return pSubstance * Math.Pow(Math.E, (double)(-rateConstant * deltaTime));
+			return pSubstance * Math.Pow(Math.E, (double)(-rateConstant * deltaTime));
         }
 
         /// <summary>

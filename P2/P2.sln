@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
+# Visual Studio 2012
 VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P2", "P2\P2.csproj", "{74336642-2599-4FCD-AFDE-3918A9AA4027}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P2Test", "P2Test\P2Test.csproj", "{12AA6CB7-3F7F-4033-BBA6-A3F4CA2885EF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,6 +13,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{12AA6CB7-3F7F-4033-BBA6-A3F4CA2885EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12AA6CB7-3F7F-4033-BBA6-A3F4CA2885EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12AA6CB7-3F7F-4033-BBA6-A3F4CA2885EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12AA6CB7-3F7F-4033-BBA6-A3F4CA2885EF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{74336642-2599-4FCD-AFDE-3918A9AA4027}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{74336642-2599-4FCD-AFDE-3918A9AA4027}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74336642-2599-4FCD-AFDE-3918A9AA4027}.Release|Any CPU.ActiveCfg = Release|Any CPU
