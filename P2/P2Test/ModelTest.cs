@@ -10,7 +10,7 @@ namespace P2Test
 		public void TestUpdate_Hydrogen100Nitrogen100Temp500WithCatalyst1Second_GeneratesAmmonia(){
 			//Arrange
 			DataPoint start = new DataPoint (0, 100, 100, 500, 0, true);
-			P2.Model m = new Model (start);
+			P2.AmmoniaModel m = new AmmoniaModel (start);
 
 			//Act
 			DataPoint update = m.Update (1);
@@ -23,7 +23,7 @@ namespace P2Test
 		public void TestUpdate_Hydrogen100Nitrogen100Temp500WithCatalyst1Second_ConsumesHydrogen(){
 			//Arrange
 			DataPoint start = new DataPoint (0, 100, 100, 500, 0, true);
-			P2.Model m = new Model (start);
+			P2.AmmoniaModel m = new AmmoniaModel (start);
 
 			//Act
 			DataPoint update = m.Update (1);
@@ -36,7 +36,7 @@ namespace P2Test
 		public void TestUpdate_Hydrogen100Nitrogen100Temp500WithCatalyst1Second_ConsumesNitrogen(){
 			//Arrange
 			DataPoint start = new DataPoint (0, 100, 100, 500, 0, true);
-			P2.Model m = new Model (start);
+			P2.AmmoniaModel m = new AmmoniaModel (start);
 
 			//Act
 			DataPoint update = m.Update (1);
@@ -49,7 +49,7 @@ namespace P2Test
 		public void TestUpdate_200Ammonia0Hydrogen0Nitrogen500TempWithCatalyst1Second_ConsumesAmmonia(){
 			//Arrange
 			DataPoint start = new DataPoint (200, 0, 0, 500, 0, true);
-			P2.Model m = new Model (start);
+			P2.AmmoniaModel m = new AmmoniaModel (start);
 
 			//Act
 			DataPoint update = m.Update (1);
@@ -62,7 +62,7 @@ namespace P2Test
 		public void TestUpdate_200Ammonia0Hyd0Nit500TempWithCatalyst1Second_GeneratesHydrogen(){
 			//Arrange
 			DataPoint start = new DataPoint (200, 0, 0, 500, 0, true);
-			P2.Model m = new Model (start);
+			P2.AmmoniaModel m = new AmmoniaModel (start);
 
 			//Act
 			DataPoint update = m.Update (1);
@@ -75,7 +75,7 @@ namespace P2Test
 		public void TestUpdate_200Ammonia0Hyd0Nit500TempWithCatalyst1Second_GeneratesNitrogen(){
 			//Arrange
 			DataPoint start = new DataPoint (200, 0, 0, 500, 0, true);
-			P2.Model m = new Model (start);
+			P2.AmmoniaModel m = new AmmoniaModel (start);
 
 			//Act
 			DataPoint update = m.Update (1);
@@ -88,7 +88,7 @@ namespace P2Test
 		public void TestFetch_DataPoint_ReturnsSame(){
 			//Arrange
 			DataPoint start = new DataPoint (100, 100, 200, 500, 0, true);
-			P2.Model m = new Model (start);
+			P2.AmmoniaModel m = new AmmoniaModel (start);
 
 			//Act & Assert
 			Assert.AreEqual (start, m.Fetch ());
@@ -98,7 +98,7 @@ namespace P2Test
 		public void TestUpdate_100Nitrogen0Hydrogen0Ammonia_NoReaction(){
 			//Arrange
 			DataPoint start = new DataPoint (0, 0, 100, 500, 0, true);
-			Model m = new Model (start);
+			AmmoniaModel m = new AmmoniaModel (start);
 
 			//Act
 			DataPoint update = m.Update (1);

@@ -20,7 +20,7 @@ namespace P2
         public delegate void UpdateEventHandler();
         public event UpdateEventHandler Updated; 
         DataHandler simulationData;
-        Model SimulationModel;
+        AmmoniaModel SimulationModel;
         public bool running = false, selected = true; //not in use
         System.Timers.Timer timer;//There are other classes called Timer so we must specify the path when initializing.
         public DataPoint currentData = new DataPoint(0,0,0,0,0,false);
@@ -62,11 +62,6 @@ namespace P2
                     {
                         FastForward(value);
                     }
-                    else
-                    {
-                        currentData = simulationData.getDataPoint(value);
-                        simulationData.revertTo(value); //overflødigt
-                    }
                 }
             }
         }
@@ -84,7 +79,7 @@ namespace P2
         public Synthesis(MasterGraphPanel graphPanel)
         {
             simulationData = new DataHandler();
-            SimulationModel = new Model(currentData);
+            SimulationModel = new AmmoniaModel(currentData);
             timer = new System.Timers.Timer(100);
             timer.Elapsed += this.OnElapsed;
 			graphHandlers.Add(new GraphHandler(graphPanel));

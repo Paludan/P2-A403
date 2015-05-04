@@ -24,7 +24,7 @@ namespace P2
         {
             InitializeComponent();
             synth = new Synthesis(pGraphArea);
-			synth.Updated += Update;
+			synth.Updated += SynthUpdate;
             helper = new helpTextController();
             Control.CheckForIllegalCrossThreadCalls = false;
             startUpInfo();
@@ -219,7 +219,7 @@ namespace P2
         /// <summary>
         /// Changes the values of the textBoxes to the current state of the synthesis
         /// </summary>
-        public void Update()
+        public void SynthUpdate()
         {
             numericUpDown1.Value = (decimal)synth.Time;
 
@@ -428,6 +428,7 @@ namespace P2
                 synth.currentData.temperature = tempDouble;
         }
         #endregion
+
 
         /// <summary>
         /// Changes the text of the corresponding textBox

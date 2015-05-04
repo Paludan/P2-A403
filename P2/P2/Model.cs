@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace P2
 {
-    public class Model
+    public class AmmoniaModel
     {
         /* the following 8 variables are constants that cannot be regulated */
         private double gasConstant = 8.314472;
@@ -27,7 +27,7 @@ namespace P2
         public bool Catalyst { set { currentState.catalyst = value; } }
         double nextPAmmonia = 0;
 
-        public Model(DataPoint InitData)
+        public AmmoniaModel(DataPoint InitData)
         {
             currentState = InitData;
         }
