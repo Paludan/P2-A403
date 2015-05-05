@@ -21,10 +21,10 @@ namespace P2
         public event UpdateEventHandler Updated; 
         DataHandler simulationDataHandler;
         AmmoniaModel SimulationModel;
-        public bool running = false, selected = true; //not in use
+        public bool running = false, selected = true;
         System.Timers.Timer timer;//There are other classes called Timer so we must specify the path when initializing.
         public DataPoint currentData = new DataPoint(0,0,0,0,0,false);
-        double _scale = 1.0; // this variable will decide at what scale the time runs. by making this 2.0, the virtual time elapsed
+        int _scale = 1; // this variable will decide at what scale the time runs. by making this 2.0, the virtual time elapsed
                              // when calculating a new datapoint will be double the actual alapsed time.
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace P2
         /// The scale at which the simulation should run. By making this value 2, the simulation will run at 2x real time.
         /// Any operation trying to set this property to 0 will be ignored.
         /// </summary>
-        public double Scale
+        public int Scale
         {
             get { return _scale; }
             set { if (value != 0) { _scale = value;} }
@@ -97,7 +97,7 @@ namespace P2
         /// <summary>
         /// This function starts a new thread that runs the timer and controls the generation of data points
         /// </summary>
-        private void run()
+        private void run() //might not be in use
         {
             if (!timer.Enabled && running)
             {
@@ -149,9 +149,13 @@ namespace P2
         /// </summary>
         private void Update()
         {
-            currentData.time += interval * Scale;
-            simulationDataHandler.addDataPoint( SimulationModel.Update((interval * Scale) /1000 ) );
+            for (int i = 0; i < _scale; i++)
+            {
+                currentData.time += interval;
+                simulationDataHandler.addDataPoint( SimulationModel.Update(interval / 1000) );
+            }
             currentData = simulationDataHandler.SimulationData.Last();
+
             if (selected && running)
             {
                 this.stop();
@@ -172,7 +176,6 @@ namespace P2
         /// </summary>
         public void stop()
         {
-            //timer.Stop();
             running = false;
         }
 

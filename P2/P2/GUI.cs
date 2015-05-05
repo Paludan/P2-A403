@@ -328,7 +328,7 @@ namespace P2
         /// </summary>
         private void comboBox5_SelectedIndexChanged(object sender, EventArgs e)
         {
-            synth.Scale = (double)int.Parse(comboBox5.SelectedItem.ToString().TrimStart('x'));
+            synth.Scale = int.Parse(comboBox5.SelectedItem.ToString().TrimStart('x'));
         }
 
         /// <summary>
