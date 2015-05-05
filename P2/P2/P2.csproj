@@ -49,7 +49,6 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="helpTextController.cs" />
-    <Compile Include="LoadEventArgs.cs" />
     <Compile Include="LoadMenu.cs">
       <SubType>Form</SubType>
     </Compile>
