@@ -29,7 +29,7 @@ namespace P2
         /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
-            if (chosenFile != null && chosenFile != "Der findes ingen gemte grafer")
+            if (chosenFile != null && chosenFile != "Der findes ingen gemt data")
             {
                 _synth.Datapoints = SaveLoadTools.load(chosenFile);
                 _synth.CurrentData = _synth.Datapoints.Last();
@@ -59,7 +59,7 @@ namespace P2
                         listBox1.Items.Add(file.Name);
             }
             if (listBox1.Items.Count == 0)
-                listBox1.Items.Add("Der findes ingen gemte grafer");
+                listBox1.Items.Add("Der findes ingen gemt data");
         }
     }
 }
