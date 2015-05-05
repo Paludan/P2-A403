@@ -805,7 +805,7 @@ namespace P2
             this.Location = new System.Drawing.Point(-104, 0);
             this.Name = "CalcForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "CalcForm";
+            this.Text = "Udregninger";
             this.ResumeLayout(false);
             this.PerformLayout();
 

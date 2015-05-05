@@ -93,12 +93,14 @@ namespace P2
         /// If e.handled is set to true the key pressed is cancelled
         /// </summary>
         /// <param name="e">The key pressed when typing in the textbox</param>
-        private void doubleTextbox(KeyPressEventArgs e)
+        private void doubleTextbox(object sender, KeyPressEventArgs e)
         {
+            int count = (sender as TextBox).Text.ToCharArray().Count(c => c == '.');
             if (!char.IsNumber(e.KeyChar) && e.KeyChar != '.')
                 e.Handled = e.KeyChar != (char)Keys.Back;
+            if (e.KeyChar == '.' && count == 1)
+                e.Handled = e.KeyChar != (char)Keys.Back;
         }
-
         /// <summary>
         /// Stop the user from entering text if the synthesis is running
         /// </summary>
@@ -123,9 +125,11 @@ namespace P2
         /// <param name="hScrollBar">The scrollbar which is to be controlled</param>
         private void textChanged(TextBox textBox, HScrollBar hScrollBar)
         {
+
+            textBox.Text = textBox.Text.TrimStart('.');
             if (!textBox.Text.Equals("") && double.Parse(textBox.Text) != 0)
             {
-                textBox.Text = textBox.Text.ToString().TrimStart('0');
+                textBox.Text = textBox.Text.TrimStart('0');
                 if (double.Parse(textBox.Text) <= hScrollBar.Maximum && double.Parse(textBox.Text) >= hScrollBar.Minimum)
                     hScrollBar.Value = (int) double.Parse(textBox.Text);
                 else
@@ -276,6 +280,7 @@ namespace P2
             hScrollBarH2.Enabled = false;
             hScrollBarN2.Enabled = false;
             hScrollBarTemperature.Enabled = false;
+            checkBoxCatalyst.Enabled = false;
         }
 
         /// <summary>
@@ -288,6 +293,7 @@ namespace P2
             hScrollBarH2.Enabled = true;
             hScrollBarN2.Enabled = true;
             hScrollBarTemperature.Enabled = true;
+            checkBoxCatalyst.Enabled = true;
         }
 
         /// <summary>
@@ -370,28 +376,10 @@ namespace P2
         /// Makes sure user can only input doubles in the text boxes and not when synthesis is runnning
         /// </summary>
         #region textBox_KeyPress
-        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if(denyTextWhenSynthRun(e))
-                doubleTextbox(e);
-        }
-
-        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
+        private void textBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (denyTextWhenSynthRun(e))
-                doubleTextbox(e);
-        }
-
-        private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (denyTextWhenSynthRun(e))
-                doubleTextbox(e);
-        }
-
-        private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (denyTextWhenSynthRun(e))
-                doubleTextbox(e);
+                doubleTextbox(sender, e);
         }
         #endregion
 

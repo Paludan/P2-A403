@@ -13,7 +13,7 @@ namespace P2
     public static class SaveLoadTools
     {
         static string dir = Directory.GetCurrentDirectory();
-        public static string path = dir + @"\Simulation Data\";
+        public static string path = dir + @"\SimData\";
         /// <summary>
         /// Saves a list of DataPoints to a numbered savefile
         /// </summary>
@@ -25,7 +25,7 @@ namespace P2
             DataToSerialize SerializedData = new DataToSerialize();
             SerializedData.DataList = CurrentDataList;
             Serializer DataSerializer = new Serializer();
-            DataSerializer.SerializeObject(@"Simulation Data\SaveData" + i + ".eqsave", SerializedData);
+            DataSerializer.SerializeObject(@"SimData\SaveData" + i + ".eqsave", SerializedData);
         }
         
         /// <summary>
@@ -62,9 +62,11 @@ namespace P2
         /// <param name="PaneltoPNG"></param>
         public static void saveToImage(MasterGraphPanel PaneltoPNG)
         {
+            string[] files = Directory.GetFiles(path, "*.png");
+            int i = files.Length + 1;
             Bitmap tempBitmap = new Bitmap(PaneltoPNG.ClientSize.Width, PaneltoPNG.ClientSize.Height);
             PaneltoPNG.DrawToBitmap(tempBitmap, PaneltoPNG.ClientRectangle);
-            tempBitmap.Save(@"Simulation Data\Simulation graf.png", System.Drawing.Imaging.ImageFormat.Png);
+            tempBitmap.Save(@"SimData\SimulationGraf" + i + ".png", System.Drawing.Imaging.ImageFormat.Png);
         }
     }
 }

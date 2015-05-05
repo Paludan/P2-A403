@@ -14,7 +14,7 @@ namespace P2
         /// </summary>
         public static void Main()
         {
-            Directory.CreateDirectory( Directory.GetCurrentDirectory() + "\\Simulation Data" ); //create a directory for saved files.
+            Directory.CreateDirectory( Directory.GetCurrentDirectory() + "\\SimData" ); //create a directory for saved files.
             GUI gui = new GUI();
             gui.ShowDialog();
         }
