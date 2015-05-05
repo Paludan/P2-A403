@@ -39,6 +39,10 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
+    <ProjectReference Include="..\P2Graph\P2Graph.csproj">
+      <Project>{b67bf511-33ed-41b5-80e0-416f1f0ba572}</Project>
+      <Name>P2Graph</Name>
+    </ProjectReference>
     <ProjectReference Include="..\P2\P2.csproj">
       <Project>{74336642-2599-4FCD-AFDE-3918A9AA4027}</Project>
       <Name>P2</Name>
