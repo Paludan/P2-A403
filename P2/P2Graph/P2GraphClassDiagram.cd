@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="P2Graph.AbstractAxis" Collapsed="true">
+    <Position X="4.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IQKCIAgAAAIAKAAAAgAAKAAAAAkFAAEAAEAAAAAABAA=</HashCode>
+      <FileName>AbstractAxis.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="P2Graph.TooManyGraphsException" Collapsed="true">
+    <Position X="9.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CustomExceptions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="P2Graph.NameTooLongException" Collapsed="true">
+    <Position X="7.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CustomExceptions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="P2Graph.Graph" Collapsed="true">
+    <Position X="10.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AASEIACCAACQQgAAAIAAABAAAAAEAACCAAAAAAAAAAA=</HashCode>
+      <FileName>Graph.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="P2Graph.MasterGraphPanel" Collapsed="true">
+    <Position X="7.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACCQBAAwAAAyFgAAABgAABBAACAAAgAAQAAAkAgAcAE=</HashCode>
+      <FileName>MasterGraphPanel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="P2Graph.xAxis" Collapsed="true">
+    <Position X="5.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQCAAAAAAAAAAgAAAAIAAAAAAAkAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>xAxis.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="P2Graph.yAxis" Collapsed="true">
+    <Position X="3.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQCAAAAAAAAAAgAAAAIAAAAAAAkAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>yAxis.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="P2Graph.GraphPoint" Collapsed="true">
+    <Position X="12.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAIAAAAIIgAAAAAAAAAAAABACEGAAACAMAABBAA=</HashCode>
+      <FileName>GraphPoint.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Struct>
+  <Interface Name="P2Graph.IDrawable" Collapsed="true">
+    <Position X="11.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IDrawable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
