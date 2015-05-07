@@ -7,10 +7,11 @@ namespace P2Test
 	public class ModelTest
 	{
 		[Test]
-		public void TestUpdate_Hydrogen10000Nitrogen10000Temp750WithCatalyst1Second_GeneratesAmmonia(){
+		public void TestUpdate_Hydrogen10000Nitrogen10000Temp750WithCatalyst1Second_GeneratesAmmonia()
+		{
 			//Arrange
 			DataPoint start = new DataPoint (0, 10000, 10000, 750, 0, true);
-            P2.AmmoniaModel m = new AmmoniaModel (start);
+			P2.AmmoniaModel m = new AmmoniaModel (start);
 
 			//Act
 			DataPoint update = m.Update (1);
@@ -20,101 +21,51 @@ namespace P2Test
 		}
 
 		[Test]
-        public void TestUpdate_Hydrogen10000Nitrogen10000Temp750WithCatalyst1Second_ConsumesHydrogen()
-        {
+		public void TestUpdate_Ammonia10000Temp750WithCatalyst1Second_GeneratesNitrogenHydrogenConsumesAmmonia()
+		{
 			//Arrange
-            DataPoint start = new DataPoint(0, 10000, 10000, 750, 0, true);
+			DataPoint start = new DataPoint (10000, 0, 0, 750, 0, true);
 			P2.AmmoniaModel m = new AmmoniaModel (start);
 
 			//Act
 			DataPoint update = m.Update (1);
 
 			//Assert
-			Assert.IsTrue (update.nHydrogen < start.nHydrogen);
+			Assert.IsTrue ((update.nAmmonia < start.nAmmonia) && (update.nHydrogen > start.nHydrogen) && (update.nNitrogen > start.nNitrogen));
 		}
 
 		[Test]
-        public void TestUpdate_Hydrogen10000Nitrogen10000Temp750WithCatalyst1Second_ConsumesNitrogen()
-        {
+		public void TestUpdate_Ammonia30000Hydrogen30000Nitrogen30000Temp750WithCatalyst1Second_GenerateAmmonia()
+		{
 			//Arrange
-            DataPoint start = new DataPoint(0, 10000, 10000, 750, 0, true);
+			DataPoint start = new DataPoint (30000, 30000, 30000, 750, 0, true);
 			P2.AmmoniaModel m = new AmmoniaModel (start);
 
 			//Act
 			DataPoint update = m.Update (1);
 
 			//Assert
-			Assert.IsTrue (update.nNitrogen < start.nNitrogen);
+			Assert.IsTrue ((update.nAmmonia > start.nAmmonia) && (update.nHydrogen < start.nHydrogen) && (update.nNitrogen < start.nNitrogen));
 		}
 
+		/* Mængden af ammoniak påvirker ikke reaktionen fra ammoniak mod reaktanterne, fordi der er
+		 * en 0 ordens reaktion.
+		 * Mængden af nitrogen påvirker reaktionen fra reaktanterne mod ammoniak, fordi det er 
+		 * en 1 ordens reaktion.
+		 */
 		[Test]
-		public void TestUpdate_2000Ammonia0Hydrogen0Nitrogen750TempWithCatalyst1Second_ConsumesAmmonia(){
+		public void TestUpdate_Ammonia2000Hydrogen2000Nitrogen2000Temp750WithCatalyst1Second_GenerateAmmonia()
+		{
 			//Arrange
-			DataPoint start = new DataPoint (2000, 0, 0, 750, 0, true);
-            P2.AmmoniaModel m = new AmmoniaModel (start);
-
-			//Act
-			DataPoint update = m.Update (1);
-
-			//Assert
-			Assert.IsTrue (update.nAmmonia < start.nAmmonia, string.Format("Updated to: {0}, started at: {1}", update.nHydrogen, start.nHydrogen));
-		}
-
-		[Test]
-        public void TestUpdate_2000Ammonia0Hyd0Nit750TempWithCatalyst1Second_GeneratesHydrogen()
-        {
-			//Arrange
-			DataPoint start = new DataPoint (2000, 0, 0, 750, 0, true);
-            P2.AmmoniaModel m = new AmmoniaModel (start);
-
-			//Act
-			DataPoint update = m.Update (1);
-
-			//Assert
-			Assert.IsTrue (update.nHydrogen > start.nHydrogen, string.Format("Updated to: {0}, started at: {1}", update.nHydrogen, start.nHydrogen));
-		}
-
-		[Test]
-		public void TestUpdate_2000Ammonia0Hyd0Nit750TempWithCatalyst1Second_GeneratesNitrogen(){
-			//Arrange
-			DataPoint start = new DataPoint (2000, 0, 0, 750, 0, true);
-            P2.AmmoniaModel m = new AmmoniaModel (start);
-
-			//Act
-			DataPoint update = m.Update (1);
-
-			//Assert
-			Assert.IsTrue (update.nNitrogen > start.nNitrogen, string.Format("Updated to: {0}, started at: {1}", update.nHydrogen, start.nHydrogen));
-		}
-
-		[Test]
-		public void TestFetch_DataPoint_ReturnsSame(){
-			//Arrange
-			DataPoint start = new DataPoint (100, 100, 200, 500, 0, true);
+			DataPoint start = new DataPoint (2000, 2000, 2000, 750, 0, true);
 			P2.AmmoniaModel m = new AmmoniaModel (start);
 
-			//Act & Assert
-			Assert.AreEqual (start, m.Fetch ());
+			//Act
+			DataPoint update = m.Update (1);
+
+			//Assert
+			Assert.IsTrue ((update.nAmmonia < start.nAmmonia) && (update.nHydrogen > start.nHydrogen) && (update.nNitrogen > start.nNitrogen));
 		}
-
-        /*	[Test]
-            public void TestUpdate_100Nitrogen0Hydrogen0Ammonia_NoReaction(){
-                //Arrange
-                DataPoint start = new DataPoint (0, 0, 100, 750, 0, true);
-                AmmoniaModel m = new AmmoniaModel (start);
-
-                //Act
-                DataPoint update = m.Update (1);
-
-                //Assert
-                bool s1 = (start.nAmmonia == update.nAmmonia);
-                bool s2 = (start.nHydrogen == update.nHydrogen);
-                bool s3 = (start.nNitrogen == update.nNitrogen);
-
-                string mes = string.Format ("   Start:           Slut:\nAmm: {0}       {1}\nHyd:   {2}        {3}\nNit:  {4}       {5}", start.nAmmonia, update.nAmmonia, start.nHydrogen, update.nHydrogen, start.nNitrogen, update.nNitrogen);
-
-                Assert.IsTrue (s1 && s2 && s3, mes); 
-            } */
-    }
+	}
 }
 
