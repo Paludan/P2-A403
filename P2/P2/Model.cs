@@ -13,7 +13,7 @@ namespace P2
         private double gasConstantCal = 1.987;
         private double preExpontentialFactor = 884900000000000; //very large number
         private double volume = 50000; //         liter
-        private double EaCatalyst = 55000; //     J/mol
+        private double EaCatalyst = 60000; //     J/mol
         private double EaNoCatalyst = 120000; //  J/mol
 
         DataPoint currentState = new DataPoint();

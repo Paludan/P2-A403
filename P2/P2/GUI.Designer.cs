@@ -330,7 +330,7 @@ namespace P2
             // 
             this.hScrollBarN2.LargeChange = 1;
             this.hScrollBarN2.Location = new System.Drawing.Point(290, 69);
-            this.hScrollBarN2.Maximum = 65000;
+            this.hScrollBarN2.Maximum = 30000;
             this.hScrollBarN2.Name = "hScrollBarN2";
             this.hScrollBarN2.Size = new System.Drawing.Size(200, 17);
             this.hScrollBarN2.TabIndex = 14;
