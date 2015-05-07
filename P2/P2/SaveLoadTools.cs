@@ -39,6 +39,7 @@ namespace P2
             Serializer DataSerializer = new Serializer();
             SerializedData = DataSerializer.DeSerializeObject(path + fileName);
             tempDataList = SerializedData.DataList;
+            System.Windows.Forms.MessageBox.Show("Data indlæst succesfuldt");
             return tempDataList;
         }
 
