@@ -79,6 +79,11 @@ namespace P2
                 nextPAmmonia = CalculateNextPartialPressureZerothOrder(pAmmonia, rateConstant, deltaTime);
             double nextPHydrogen = pHydrogen - (3 * (pNitrogen - nextPNitrogen));
             double tempAmmonia = nextPAmmonia;
+            if (tempAmmonia < 0)
+            {
+                tempAmmonia = 0;
+                nextPAmmonia = 0;
+            }
             if (nextPHydrogen > 0 && nextPNitrogen > 0)
                 CalculateAmmoniaProduction(ref nextPAmmonia, pNitrogen, nextPNitrogen);
             else
