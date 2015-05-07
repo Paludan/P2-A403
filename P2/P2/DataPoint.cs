@@ -26,6 +26,11 @@ namespace P2
             this.time = inputTime;
             this.catalyst = inputCatalyst;
         }
+        // Determines if Data has been added to the datapoint
+        public static DataPoint Default()
+        {
+            return new DataPoint();
+        }
         // Properties are used to set a limit on how much the user can input
         public double nAmmonia
         {

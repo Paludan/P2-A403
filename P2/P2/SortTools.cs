@@ -27,7 +27,7 @@ namespace P2
 
             //searching for a DP with the exact time
             tempDP = list.Find(x => x.time == timeToFind);
-            if (tempDP.temperature != 0) { return tempDP; }
+            if (!(tempDP.Equals(DataPoint.Default()))) { return tempDP; }
 
             //searching for closest above
             for (int y = 0; y < max; y++)
