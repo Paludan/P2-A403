@@ -1,6 +1,7 @@
 ﻿using System;
 using P2;
 using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace P2Test
 {
@@ -66,6 +67,50 @@ namespace P2Test
 			//Assert
 			Assert.IsTrue ((update.nAmmonia < start.nAmmonia) && (update.nHydrogen > start.nHydrogen) && (update.nNitrogen > start.nNitrogen));
 		}
+        [Test]
+        public void TestLoadingFromFile()
+        {
+            //Arrange
+            DataPoint start = new DataPoint(0, 0, 0, 0, 0, true);
+            P2.AmmoniaModel m = new AmmoniaModel (start);
+
+            //Act
+            List<DataPoint> update = SaveLoadTools.load("SaveData1.eqsave");
+
+            //Assert
+            Assert.IsTrue((update[update.Count - 1]).nAmmonia > start.nAmmonia && (update[update.Count - 1]).nHydrogen > start.nHydrogen && (update[update.Count - 1]).nNitrogen > start.nNitrogen);
+        }
+        [Test]
+        public void TestSavingToFile()
+        {
+            //Arrange
+            List<DataPoint> start = new List<DataPoint>();
+            start.Add(new DataPoint(1, 2, 3, 4, 5, true));
+            
+            //Act
+            SaveLoadTools.save(start);
+            List<DataPoint> update = SaveLoadTools.load("SaveData2.eqsave");
+
+            //Assert
+            Assert.IsTrue (start[0].nAmmonia == update[0].nAmmonia && start[0].nHydrogen == update[0].nHydrogen && start[0].nNitrogen == update[0].nNitrogen);
+            
+        }
+        [Test]
+        public void TestDataHandlerAddDataPoint()
+        {
+            //Arrange
+            DataHandler dh = new DataHandler();
+            DataPoint start = new DataPoint(1, 2, 3, 4, 5, true);
+
+            //Act
+            dh.addDataPoint(start);
+            dh.addDataPoint(new DataPoint(5, 4, 3, 2, 1, false));
+
+            //Assert
+            Assert.IsTrue(dh.SimulationData[0].Equals(start) && !dh.SimulationData[1].Equals(start));
+        }
+        [Test]
+        public void TestDataHandler
 	}
 }
 
