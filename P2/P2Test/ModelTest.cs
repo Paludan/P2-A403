@@ -18,7 +18,7 @@ namespace P2Test
 			DataPoint update = m.Update (1);
 
 			//Assert
-			Assert.IsTrue (update.nAmmonia > start.nAmmonia);
+			Assert.IsTrue ((update.nAmmonia > start.nAmmonia) && (update.nNitrogen < start.nNitrogen) && (update.nHydrogen < start.nHydrogen));
 		}
 
 		[Test]
@@ -33,6 +33,34 @@ namespace P2Test
 
 			//Assert
 			Assert.IsTrue ((update.nAmmonia < start.nAmmonia) && (update.nHydrogen > start.nHydrogen) && (update.nNitrogen > start.nNitrogen));
+		}
+
+		[Test]
+		public void TestUpdate_NoNitrogenNoAmmoniaTemp750WithCatalystNoProgress()
+		{
+			//Arrange
+			DataPoint start = new DataPoint (0, 10000, 0, 750, 0, true);
+			P2.AmmoniaModel m = new AmmoniaModel (start);
+
+			//Act
+			DataPoint update = m.Update (1);
+
+			//Assert
+			Assert.IsTrue ((update.nAmmonia == start.nAmmonia) && (update.nHydrogen == start.nHydrogen) && (update.nNitrogen == start.nNitrogen));
+		}
+
+		[Test]
+		public void TestUpdate_NoHydrogenNoAmmoniaTemp750WithCatalystNoProgress()
+		{
+			//Arrange
+			DataPoint start = new DataPoint (0, 0, 10000, 750, 0, true);
+			P2.AmmoniaModel m = new AmmoniaModel (start);
+
+			//Act
+			DataPoint update = m.Update (1);
+
+			//Assert
+			Assert.IsTrue ((update.nAmmonia == start.nAmmonia) && (update.nHydrogen == start.nHydrogen) && (update.nNitrogen == start.nNitrogen));
 		}
 
 		[Test]
@@ -67,6 +95,7 @@ namespace P2Test
 			//Assert
 			Assert.IsTrue ((update.nAmmonia < start.nAmmonia) && (update.nHydrogen > start.nHydrogen) && (update.nNitrogen > start.nNitrogen));
 		}
+
         [Test]
         public void TestLoadingFromFile()
         {
@@ -109,8 +138,6 @@ namespace P2Test
             //Assert
             Assert.IsTrue(dh.SimulationData[0].Equals(start) && !dh.SimulationData[1].Equals(start));
         }
-        [Test]
-        public void TestDataHandler
 	}
 }
 
