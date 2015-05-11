@@ -12,7 +12,7 @@ namespace P2
 {
     public partial class CalcForm : Form
     {
-		ContextMenu cm = new ContextMenu();
+		/* constant values that are used for calculations in the class methods */
 		private const double gasConstant = 8.314472;
         private const double gasConstantCal = 1.987;
         private const double preExpontentialFactor = 884900000000000;
@@ -21,8 +21,14 @@ namespace P2
         private const double entropi = -198.05; //      J/(mol*kelvin)
         private const double EaCatalyst = 55000; //     J/mol
         private const double EaNoCatalyst = 120000; //  J/mol
+
 		private Synthesis _synth;
-	
+		ContextMenu cm = new ContextMenu();
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="P2.CalcForm"/> class.
+		/// </summary>
+		/// <param name="synth">Synth.</param>
 		public CalcForm(Synthesis synth)
 		{
 	    	this._synth = synth;
@@ -34,6 +40,9 @@ namespace P2
 	    	this.idealGasTitle.ContextMenu = cm;
 		}
 
+		/// <summary>
+		/// Updates the data.
+		/// </summary>
 		public void UpdateData()
 		{
 	   		setupStartIdealGasLaw();
@@ -42,6 +51,9 @@ namespace P2
 	    	calcRRConst();
 		}
 
+		/// <summary>
+		/// Setups the context menu.
+		/// </summary>
 		private void setupContextMenu()
 		{
 	    	cm.MenuItems.Add("Nitrogen");
@@ -53,6 +65,9 @@ namespace P2
 	    	cm.MenuItems[2].Click += menuItem3_ItemClick;
 		}
 
+		/// <summary>
+		/// Setups the start ideal gas law.
+		/// </summary>
 		private void setupStartIdealGasLaw()
 		{
 	    	this.idealGasTitle.Text = "Idealgasligningen " + "(nitrogen)";
@@ -64,6 +79,9 @@ namespace P2
 				/volume).ToString("#.##");
 		}
 
+		/// <summary>
+		/// Calculates the equi const.
+		/// </summary>
 		private void calcEquiConst()
 		{
 	    	this.entalpiLabel.Text = CalcForm.entalpi.ToString();
@@ -75,6 +93,9 @@ namespace P2
 				/ (this._synth.currentData.temperature * CalcForm.gasConstant)) + (CalcForm.entropi / CalcForm.gasConstant)));
 		}
 
+		/// <summary>
+		/// Calculates the equi frac.
+		/// </summary>
 		private void calcEquiFrac()
 		{
 	    	this.equiFracResult.Text = string.Format("{0:N7}", (Math.Pow(((this._synth.currentData.nAmmonia * 
@@ -98,6 +119,9 @@ namespace P2
 				* this._synth.currentData.temperature * gasConstant) / volume), 2)));
 		}
 
+		/// <summary>
+		/// Calculates the RR const.
+		/// </summary>
 		private void calcRRConst()
 		{
 	   		this.preExponentialFactor.Text = string.Format("{0:E2}", preExpontentialFactor);
@@ -109,6 +133,11 @@ namespace P2
 				/ (gasConstantCal * this._synth.currentData.temperature)));  
 		}
 
+		/// <summary>
+		/// MenuItem1 eventhandler.
+		/// </summary>
+		/// <param name="sender">Sender.</param>
+		/// <param name="e">E.</param>
 		private void menuItem1_ItemClick (object sender, System.EventArgs e)
 		{
 	    	this.idealGasTitle.Text = "Idealgasligningen " + "(nitrogen)";
@@ -120,6 +149,11 @@ namespace P2
 				/ volume).ToString("#.##");
 		}
     
+		/// <summary>
+		/// MenuItem2 eventhandler.
+		/// </summary>
+		/// <param name="sender">Sender.</param>
+		/// <param name="e">E.</param>
 		private void menuItem2_ItemClick (object sender, System.EventArgs e)
 		{	
 			this.idealGasTitle.Text = "Idealgasligningen " + "(hydrogen)";
@@ -131,6 +165,11 @@ namespace P2
 				/ volume).ToString ("#.##");
 		}
 
+		/// <summary>
+		/// MenuItem3 eventhandler.
+		/// </summary>
+		/// <param name="sender">Sender.</param>
+		/// <param name="e">E.</param>
 		private void menuItem3_ItemClick (object sender, System.EventArgs e)
 		{
 	    	this.idealGasTitle.Text = "Idealgasligningen " + "(ammoniak)";
