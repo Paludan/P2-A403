@@ -8,15 +8,11 @@ using System.Runtime.Serialization;
 namespace P2
 {
     [Serializable]
-    // This class is used to serialize the list of DataPoints
+    // This class contains a list of DataPoints and implements ISerializable.
     public class DataToSerialize : ISerializable
     {
         public List<DataPoint> DataList = new List<DataPoint>();
-        public List<DataPoint> DataProperty
-        {
-            get { return this.DataList; }
-            set { this.DataList = value; }
-        }
+        //DataList.Add is used to make sure that the DataList always contains at least one element.
         public DataToSerialize()
         {
             DataList.Add(new DataPoint());
