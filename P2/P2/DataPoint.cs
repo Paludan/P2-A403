@@ -7,48 +7,32 @@ namespace P2
     // This struct contains the simulation data at a specific time
     public struct DataPoint : ISerializable
     {
-        public double temperature, time;
-        private double _nAmmonia, _nHydrogen, _nNitrogen;
+        public double temperature, time, nAmmonia, nHydrogen, nNitrogen;
         public bool catalyst;
         /// <summary>
         /// Constructs a datapoint from a set of given variables
         /// </summary>
         public DataPoint(double ammonia, double hydrogen, double nitrogen, double inputTemperature, double inputTime, bool inputCatalyst)
         {
-            this._nAmmonia = ammonia;
-            this._nHydrogen = hydrogen;
-            this._nNitrogen = nitrogen;
+            this.nAmmonia = ammonia;
+            this.nHydrogen = hydrogen;
+            this.nNitrogen = nitrogen;
             this.temperature = inputTemperature;
             this.time = inputTime;
             this.catalyst = inputCatalyst;
         }
-        // Determines if Data has been added to the datapoint
+        // Is used to determine if data has been added to the datapoint
         public static DataPoint Default()
         {
             return new DataPoint();
         }
-        // Properties are used to set a limit on how much the user can input
-        public double nAmmonia
-        {
-            get { return _nAmmonia; }
-            set { _nAmmonia = value; }
-        }
-        public double nHydrogen
-        {
-            get { return _nHydrogen; }
-            set { _nHydrogen = value;}
-        }
-        public double nNitrogen
-        {
-            get { return _nNitrogen; }
-            set { _nNitrogen = value;}
-        }
+        
         // Constructs a copy of the given datapoint
         public DataPoint(DataPoint oldData)
         {
-            this._nAmmonia = oldData.nAmmonia;
-            this._nHydrogen = oldData.nHydrogen;
-            this._nNitrogen = oldData.nNitrogen;
+            this.nAmmonia = oldData.nAmmonia;
+            this.nHydrogen = oldData.nHydrogen;
+            this.nNitrogen = oldData.nNitrogen;
             this.temperature = oldData.temperature;
             this.time = oldData.time;
             this.catalyst = oldData.catalyst;
@@ -67,9 +51,9 @@ namespace P2
 		/// <param name="context">Context.</param>
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue("Ammonia", this._nAmmonia);
-            info.AddValue("Hydrogen", this._nHydrogen);
-            info.AddValue("Nitrogen", this._nNitrogen);
+            info.AddValue("Ammonia", this.nAmmonia);
+            info.AddValue("Hydrogen", this.nHydrogen);
+            info.AddValue("Nitrogen", this.nNitrogen);
             info.AddValue("Temperature", this.temperature);
             info.AddValue("Time", this.time);
             info.AddValue("Catalyst", this.catalyst);
@@ -82,9 +66,9 @@ namespace P2
 		/// <param name="ctxt">Ctxt.</param>
         public DataPoint(SerializationInfo info, StreamingContext ctxt)
         {
-            this._nAmmonia = (double)info.GetValue("Ammonia", typeof(double));
-            this._nHydrogen = (double)info.GetValue("Hydrogen", typeof(double));
-            this._nNitrogen = (double)info.GetValue("Nitrogen", typeof(double));
+            this.nAmmonia = (double)info.GetValue("Ammonia", typeof(double));
+            this.nHydrogen = (double)info.GetValue("Hydrogen", typeof(double));
+            this.nNitrogen = (double)info.GetValue("Nitrogen", typeof(double));
             this.temperature = (double)info.GetValue("Temperature", typeof(double));
             this.time = (double)info.GetValue("Time", typeof(double));
             this.catalyst = (bool)info.GetValue("Catalyst", typeof(bool));

@@ -135,8 +135,7 @@ namespace P2
             P2.colors.Grøn,
             P2.colors.Blå,
             P2.colors.Lilla,
-            P2.colors.Sort,
-            P2.colors.Gennemsigtig});
+            P2.colors.Sort});
             this.comboBox4.Location = new System.Drawing.Point(145, 252);
             this.comboBox4.Name = "comboBox4";
             this.comboBox4.Size = new System.Drawing.Size(110, 21);
@@ -151,8 +150,7 @@ namespace P2
             P2.colors.Grøn,
             P2.colors.Blå,
             P2.colors.Lilla,
-            P2.colors.Sort,
-            P2.colors.Gennemsigtig});
+            P2.colors.Sort});
             this.comboBox3.Location = new System.Drawing.Point(145, 192);
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(110, 21);
@@ -167,8 +165,7 @@ namespace P2
             P2.colors.Grøn,
             P2.colors.Blå,
             P2.colors.Lilla,
-            P2.colors.Sort,
-            P2.colors.Gennemsigtig});
+            P2.colors.Sort});
             this.comboBox2.Location = new System.Drawing.Point(145, 130);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(110, 21);
@@ -232,8 +229,7 @@ namespace P2
             P2.colors.Grøn,
             P2.colors.Blå,
             P2.colors.Lilla,
-            P2.colors.Sort,
-            P2.colors.Gennemsigtig});
+            P2.colors.Sort});
             this.comboBox1.Location = new System.Drawing.Point(145, 68);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(110, 21);

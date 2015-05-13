@@ -7,7 +7,7 @@ using P2Graph;
 
 namespace P2
 {
-    //This abstract class presents tools to save and load a project from a file, and to load a text file
+    //This abstract class presents tools to save and load a project from a file, to load a text file, and to save the current graph to a PNG
     public static class SaveLoadTools
     {
         static string dir = Directory.GetCurrentDirectory();
@@ -42,7 +42,7 @@ namespace P2
         }
 
         /// <summary>
-        /// Loads helpText into a string array. Loads from (program directory)/vejledning.txt
+        /// Loads helpText into a string array.
         /// </summary>
         /// <param name="input">The *.txt file to be read</param>
         /// <returns>String array containing loaded file, or null if file doesn't exist</returns>
@@ -56,7 +56,7 @@ namespace P2
             else { return null; }
         }
         /// <summary>
-        /// This method presents tools to take a snapshot of the graph at a current time and save it as a .png-file
+        /// This method allows the user to take a snapshot of the graph at a current time and save it as a .png-file
         /// </summary>
         /// <param name="PaneltoPNG"></param>
         public static void saveToImage(MasterGraphPanel PaneltoPNG)

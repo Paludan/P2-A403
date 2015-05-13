@@ -18,10 +18,9 @@ namespace P2
         DataHandler simulationDataHandler;
         AmmoniaModel SimulationModel;
         public bool running = false, selected = true;
-        System.Timers.Timer timer;//There are other classes called Timer so we must specify the path when initializing.
+        System.Timers.Timer timer;//There are other classes calling timer so we must specify the path when initializing.
         public DataPoint currentData = new DataPoint(0,0,0,0,0,false);
-        int _scale = 1; // this variable will decide at what scale the time runs. by making this 2.0, the virtual time elapsed
-                             // when calculating a new datapoint will be double the actual alapsed time.
+        int _scale = 1; // This variable decides the speed of the simulation, the higher a number the faster the simulation runs.
 
         /// <summary>
         /// With this property, the user of the class can specify the time interval between datapoints being taken.
@@ -44,8 +43,7 @@ namespace P2
 
         /// <summary>
         /// The time that has elapsed in the simulation. 
-        /// Setting this property will cause the simulation to either return to an earlier datapoint,
-        /// or fast-forward the simulation to a later time.
+        /// Setting this property will cause the simulation to fast-forward the simulation to a later time.
         /// </summary>
         public double Time
         {
@@ -88,21 +86,9 @@ namespace P2
             timer.Elapsed += this.OnElapsed;
 			graphHandlers.Add(new GraphHandler(graphPanel));
         }
-        /*This function starts a new thread that runs the timer and controls the generation of data points
-         */
-        /// <summary>
-        /// This function starts a new thread that runs the timer and controls the generation of data points
-        /// </summary>
-        private void run() //might not be in use
-        {
-            if (!timer.Enabled && running)
-            {
-                timer.Start();
-            }
-        }
 
         /// <summary>
-        /// this method is invoked by the caller when the simulation needs to start.
+        /// This method is invoked by the caller when the simulation needs to start.
         /// </summary>
         public void start()
         {
@@ -115,7 +101,7 @@ namespace P2
         }
 
         /// <summary>
-        /// This Method set's the Data from the GUI input to the Simulation model.
+        /// This Method sets the data from the GUI input to the Simulation model.
         /// </summary>
         private void SetData()
         {
@@ -131,7 +117,6 @@ namespace P2
         /// If the simulation should be running the update function is called.
         /// </summary>
         /// <param name="source">The object that invoked the event</param>
-        /// <param name="e">arguments dunno</param>
         private void OnElapsed(Object source, ElapsedEventArgs e)
         {
             if (running)
@@ -168,7 +153,7 @@ namespace P2
         }
 
         /// <summary>
-        /// This method will stop or pause the simulation of this synthesis until it gets started again.
+        /// This method will stop or pause the simulation of the synthesis.
         /// </summary>
         public void stop()
         {
@@ -177,7 +162,6 @@ namespace P2
 
         /// <summary>
         /// This method will be called if we try to set the simulation to a time later than the time it had already processed.
-        /// It does the same as
         /// </summary>
         /// <param name="time"></param>
         public void FastForward(double time)

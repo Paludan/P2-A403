@@ -4,10 +4,10 @@ namespace P2
 {
     public class AmmoniaModel
     {
-        /* the following 8 variables are constants that cannot be regulated */
+        /* the following 6 variables are constants that will not be changed */
         private double gasConstant = 8.314472;
         private double gasConstantCal = 1.987;
-        private double preExpontentialFactor = 884900000000000; //very large number
+        private double preExpontentialFactor = 884900000000000; //RateConstant at infinitely high temperature
         private double volume = 50000; //         liter
         private double EaCatalyst = 60000; //     J/mol
         private double EaNoCatalyst = 120000; //  J/mol

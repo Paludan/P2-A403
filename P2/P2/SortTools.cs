@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace P2
 {
@@ -18,8 +20,8 @@ namespace P2
             int i = max;
             DataPoint tempDP = new DataPoint();
 
-            //exception handling
-            if (list.Count == 0) { throw new InvalidOperationException("MergeSearch: List is empty. Run the simulation before trying to access data."); }
+            //error handling
+            if (list.Count == 0) { throw new InvalidOperationException("MergeSearch: Listen er tom, kør simulationen før du tilgår dataen"); }
             else if (list.ElementAt(max).time < timeToFind) { System.Windows.Forms.MessageBox.Show("Tiden er højere end det sidste DataPoint"); return list.ElementAt(max); }
             else if (list.ElementAt(0).time > timeToFind) { System.Windows.Forms.MessageBox.Show("Tiden er lavere end det tidligste DataPoint"); return list.ElementAt(0); }
 
@@ -32,20 +34,16 @@ namespace P2
             {
                 if (list.ElementAt(y).time < timeToFind && list.ElementAt(y + 1).time >= timeToFind) { return list.ElementAt(y + 1); }
             }
-            System.Windows.Forms.MessageBox.Show("Error: Search failed. (SortTools.byTime)"); //If you reach this code, you're going to have a bad time.
-            return tempDP;                                                                               //but hey, it keeps the IDE happy =)
+            System.Windows.Forms.MessageBox.Show("Error: Search failed. (SortTools.byTime)"); //Techincally unreachable code, but necessary.
+            return tempDP;
         }
-
-        /* Takes a DP list and a time double. Searches the list for a DP with the timestamp = time and returns its number in the list, or the closest after.
-         * list - the list to be searched
-         * timeToFind the time of the DP you wish the locate
-         * use this to extract a DP by their placement in the list*/
         /// <summary>
         /// Use this to find a DP's placement in the list using the time variable. Defaults to closest DP after.
         /// </summary>
         /// <param name="list">DP list to search</param>
         /// <param name="timeToFind">time to search for</param>
         /// <returns>int of DP's location in the list</returns>
+        /// 
         public static int IDbyTime(List<DataPoint> list, double timeToFind)
         {
             int max = list.Count - 1;
@@ -53,8 +51,8 @@ namespace P2
             int ID = -1;
             DataPoint tempDP = new DataPoint();
 
-            //exception handling
-            if (list.Count == 0) { throw new InvalidOperationException("MergeSearch: List is empty. Run the simulation before trying to access data."); }
+            //error handling
+            if (list.Count == 0) { throw new InvalidOperationException("MergeSearch: Listen er tom, kør simulationen før du tilgår dataen"); }
             else if (list.ElementAt(max).time < timeToFind) { System.Windows.Forms.MessageBox.Show("Tiden er højere end det sidste DataPoint"); return max; }
             else if (list.ElementAt(0).time > timeToFind) { System.Windows.Forms.MessageBox.Show("Tiden er lavere end det tidligste DataPoint"); return 0; }
 

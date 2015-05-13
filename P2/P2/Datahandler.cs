@@ -8,12 +8,6 @@ namespace P2
     {
         List<DataPoint> simulationData = new List<DataPoint>();
         List<List<DataPoint>> oldData = new List<List<DataPoint>>();
-
-        /* The constructor for DataHandler
-         * Variable
-         * Variable
-         * Output
-         */
         public DataHandler()
         {
         }
@@ -73,7 +67,7 @@ namespace P2
         }
 
         /// <summary>
-        /// returns a list containing all DataPoints of the current timeline
+        /// returns a list containing all DataPoints of the current timeline, and allows it to be changed
         /// </summary>
         public List<DataPoint> SimulationData
         {
@@ -91,6 +85,5 @@ namespace P2
                 return oldData;
             }
         }
-
     }
 }

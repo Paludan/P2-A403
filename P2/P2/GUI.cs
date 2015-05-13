@@ -206,9 +206,6 @@ namespace P2
                 case colors.Sort:
                     ChangeGraphColor(Color.Black, graphToDraw);
                     break;
-                case colors.Gennemsigtig:
-                    ChangeGraphColor(Color.Transparent, graphToDraw);
-                    break;
                 default:
                     break;
             }
