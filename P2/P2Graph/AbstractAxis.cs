@@ -146,6 +146,13 @@ namespace P2Graph
             this.DrawNumber(painter, centerPoint, toDraw, StringFormat.GenericDefault);
 		}
 
+		/// <summary>
+		/// Draws the number.
+		/// </summary>
+		/// <param name="painter">Painter.</param>
+		/// <param name="centerPoint">Center point.</param>
+		/// <param name="toDraw">To draw.</param>
+		/// <param name="format">Format.</param>
         protected void DrawNumber(Graphics painter, GraphPoint centerPoint, string toDraw, StringFormat format)
         {
             Rectangle Rec = new Rectangle((int)centerPoint.RealX, (int)centerPoint.RealY+12, 50, 50);
