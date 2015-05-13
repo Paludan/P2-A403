@@ -1,6 +1,4 @@
-﻿using System;
-using System.Windows.Forms;
-using System.Drawing;
+﻿using System.Drawing;
 
 namespace P2Graph
 {

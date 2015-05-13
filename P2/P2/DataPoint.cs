@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Runtime.Serialization;
 
 namespace P2
@@ -64,6 +60,11 @@ namespace P2
         }
         #region ISerializable implementation
 
+		/// <summary>
+		/// Gets the object data.
+		/// </summary>
+		/// <param name="info">Info.</param>
+		/// <param name="context">Context.</param>
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue("Ammonia", this._nAmmonia);
@@ -73,6 +74,12 @@ namespace P2
             info.AddValue("Time", this.time);
             info.AddValue("Catalyst", this.catalyst);
         }
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="P2.DataPoint"/> struct.
+		/// </summary>
+		/// <param name="info">Info.</param>
+		/// <param name="ctxt">Ctxt.</param>
         public DataPoint(SerializationInfo info, StreamingContext ctxt)
         {
             this._nAmmonia = (double)info.GetValue("Ammonia", typeof(double));

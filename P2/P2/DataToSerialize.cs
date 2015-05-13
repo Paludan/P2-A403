@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Runtime.Serialization;
 
 namespace P2
@@ -17,16 +14,29 @@ namespace P2
         {
             DataList.Add(new DataPoint());
         }
+
         #region ISerializable implementation
-        public DataToSerialize(SerializationInfo info, StreamingContext ctxt)
+        
+		/// <summary>
+		/// Initializes a new instance of the <see cref="P2.DataToSerialize"/> class.
+		/// </summary>
+		/// <param name="info">Info.</param>
+		/// <param name="ctxt">Ctxt.</param>
+		public DataToSerialize(SerializationInfo info, StreamingContext ctxt)
         {
             this.DataList = (List<DataPoint>)info.GetValue("Data", typeof(List<DataPoint>));
         }
 
+		/// <summary>
+		/// Gets the object data.
+		/// </summary>
+		/// <param name="info">Info.</param>
+		/// <param name="ctxt">Ctxt.</param>
         public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
         {
             info.AddValue("Data", this.DataList);
         }
+
         #endregion
     }
 }
