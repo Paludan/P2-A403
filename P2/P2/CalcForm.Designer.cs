@@ -364,7 +364,7 @@ namespace P2
             // 
             this.pAmmoniaEqui.Location = new System.Drawing.Point(496, 258);
             this.pAmmoniaEqui.Name = "pAmmoniaEqui";
-            this.pAmmoniaEqui.Size = new System.Drawing.Size(88, 16);
+            this.pAmmoniaEqui.Size = new System.Drawing.Size(100, 16);
             this.pAmmoniaEqui.TabIndex = 26;
             this.pAmmoniaEqui.Text = "pNH3^2";
             // 
@@ -372,21 +372,21 @@ namespace P2
             // 
             this.label26.Location = new System.Drawing.Point(465, 267);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(129, 15);
+            this.label26.Size = new System.Drawing.Size(189, 15);
             this.label26.TabIndex = 27;
-            this.label26.Text = "_______________________________";
+            this.label26.Text = "______________________________________________";
             // 
             // pNitrogenEqui
             // 
             this.pNitrogenEqui.Location = new System.Drawing.Point(471, 284);
             this.pNitrogenEqui.Name = "pNitrogenEqui";
-            this.pNitrogenEqui.Size = new System.Drawing.Size(59, 24);
+            this.pNitrogenEqui.Size = new System.Drawing.Size(89, 24);
             this.pNitrogenEqui.TabIndex = 28;
             this.pNitrogenEqui.Text = "pN2^2";
             // 
             // label30
             // 
-            this.label30.Location = new System.Drawing.Point(523, 284);
+            this.label30.Location = new System.Drawing.Point(553, 284);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(19, 24);
             this.label30.TabIndex = 29;
@@ -394,9 +394,9 @@ namespace P2
             // 
             // pHydrogenEqui
             // 
-            this.pHydrogenEqui.Location = new System.Drawing.Point(548, 282);
+            this.pHydrogenEqui.Location = new System.Drawing.Point(578, 282);
             this.pHydrogenEqui.Name = "pHydrogenEqui";
-            this.pHydrogenEqui.Size = new System.Drawing.Size(88, 24);
+            this.pHydrogenEqui.Size = new System.Drawing.Size(100, 24);
             this.pHydrogenEqui.TabIndex = 30;
             this.pHydrogenEqui.Text = "PH2^3";
             // 
@@ -422,13 +422,13 @@ namespace P2
             // 
             this.RRConst.Location = new System.Drawing.Point(368, 363);
             this.RRConst.Name = "RRConst";
-            this.RRConst.Size = new System.Drawing.Size(64, 16);
+            this.RRConst.Size = new System.Drawing.Size(44, 16);
             this.RRConst.TabIndex = 33;
             this.RRConst.Text = "K_h";
             // 
             // label24
             // 
-            this.label24.Location = new System.Drawing.Point(432, 363);
+            this.label24.Location = new System.Drawing.Point(412, 363);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(16, 16);
             this.label24.TabIndex = 35;
@@ -436,7 +436,7 @@ namespace P2
             // 
             // label28
             // 
-            this.label28.Location = new System.Drawing.Point(515, 363);
+            this.label28.Location = new System.Drawing.Point(505, 363);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(24, 16);
             this.label28.TabIndex = 36;
@@ -445,7 +445,7 @@ namespace P2
             // activationEnergy
             // 
             this.activationEnergy.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.activationEnergy.Location = new System.Drawing.Point(558, 339);
+            this.activationEnergy.Location = new System.Drawing.Point(548, 339);
             this.activationEnergy.Name = "activationEnergy";
             this.activationEnergy.Size = new System.Drawing.Size(74, 16);
             this.activationEnergy.TabIndex = 37;
@@ -454,16 +454,16 @@ namespace P2
             // label34
             // 
             this.label34.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label34.Location = new System.Drawing.Point(539, 347);
+            this.label34.Location = new System.Drawing.Point(529, 347);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(85, 16);
             this.label34.TabIndex = 38;
-            this.label34.Text = "_________________";
+            this.label34.Text = "_____________________";
             // 
             // gasConstRR
             // 
             this.gasConstRR.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gasConstRR.Location = new System.Drawing.Point(540, 359);
+            this.gasConstRR.Location = new System.Drawing.Point(530, 359);
             this.gasConstRR.Name = "gasConstRR";
             this.gasConstRR.Size = new System.Drawing.Size(40, 16);
             this.gasConstRR.TabIndex = 39;
@@ -481,7 +481,7 @@ namespace P2
             // preExponentialFactor
             // 
             this.preExponentialFactor.AutoSize = true;
-            this.preExponentialFactor.Location = new System.Drawing.Point(443, 363);
+            this.preExponentialFactor.Location = new System.Drawing.Point(433, 363);
             this.preExponentialFactor.Name = "preExponentialFactor";
             this.preExponentialFactor.Size = new System.Drawing.Size(17, 13);
             this.preExponentialFactor.TabIndex = 42;

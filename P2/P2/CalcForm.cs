@@ -12,7 +12,7 @@ namespace P2
         private const double volume = 50000; //         liter
         private const double entalpi = -91800; //       J/mol
         private const double entropi = -198.05; //      J/(mol*kelvin)
-        private const double EaCatalyst = 55000; //     J/mol
+        private const double EaCatalyst = 60000; //     J/mol
         private const double EaNoCatalyst = 120000; //  J/mol
 
 		private Synthesis _synth;
@@ -99,17 +99,17 @@ namespace P2
 
 	    	this.equiTitle.Text = "Ligevægtsbrøken: " + "Y = " + string.Format("{0:N4}", (Math.Pow(Math.E, -(entalpi
 				/ (this._synth.currentData.temperature * gasConstant)) + (entropi / gasConstant))));
-
-	    	this.pAmmoniaEqui.Text = string.Format("{0:N3}", Math.Pow(((this._synth.currentData.nAmmonia 
+		
+			this.pAmmoniaEqui.Text = string.Format("{0:E2}", Math.Pow(((this._synth.currentData.nAmmonia 
 				* this._synth.currentData.temperature * gasConstant)
 				/ volume), 2));
 
-	    	this.pNitrogenEqui.Text = string.Format("{0:N3}", Math.Pow(((this._synth.currentData.nNitrogen 
+			this.pNitrogenEqui.Text = string.Format("{0:E2}", ((this._synth.currentData.nNitrogen 
 				* this._synth.currentData.temperature * gasConstant)
-				/ volume), 2));
+				/ volume));
 
-	    	this.pHydrogenEqui.Text = string.Format("{0:N3}", (Math.Pow(((this._synth.currentData.nHydrogen 
-				* this._synth.currentData.temperature * gasConstant) / volume), 2)));
+			this.pHydrogenEqui.Text = string.Format("{0:E2}", (Math.Pow(((this._synth.currentData.nHydrogen 
+				* this._synth.currentData.temperature * gasConstant) / volume), 3)));
 		}
 
 		/// <summary>
@@ -121,7 +121,7 @@ namespace P2
 	    	this.activationEnergy.Text = (this._synth.currentData.catalyst == true) ? EaCatalyst.ToString() : EaNoCatalyst.ToString();
 	    	this.gasConstRR.Text = gasConstantCal.ToString();
 	    	this.temperatureRR.Text = this._synth.currentData.temperature.ToString();
-	    	this.RRConst.Text = string.Format("{0:N7}", preExpontentialFactor
+	    	this.RRConst.Text = string.Format("{0:N4}", preExpontentialFactor
 				* Math.Pow(Math.E, -((this._synth.currentData.catalyst == true) ? EaCatalyst : EaNoCatalyst)
 				/ (gasConstantCal * this._synth.currentData.temperature)));  
 		}
