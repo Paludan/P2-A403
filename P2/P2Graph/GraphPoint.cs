@@ -154,7 +154,8 @@ namespace P2Graph
 
 		#region Typecasts
 		/// <param name="GP">Implicitly converts from a PointF to a GraphPoint</param>
-		static public implicit operator PointF(GraphPoint GP){
+		static public implicit operator PointF(GraphPoint GP)
+		{
 			return new PointF(GP._panelX, GP._panelY);
 		}
 		#endregion

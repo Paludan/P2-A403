@@ -458,7 +458,7 @@ namespace P2
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(85, 16);
             this.label34.TabIndex = 38;
-            this.label34.Text = "_____________________";
+            this.label34.Text = "____________________";
             // 
             // gasConstRR
             // 

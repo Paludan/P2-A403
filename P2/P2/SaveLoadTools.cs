@@ -30,16 +30,13 @@ namespace P2
         /// Loads a specific savefile and returns the stored data
         /// </summary>
         /// <param name="fileName">Name of the Savefile to be loaded</param>
-        public static List<DataPoint> load(string fileName)
-        {
-            List<DataPoint> tempDataList = new List<DataPoint>();
-            DataToSerialize SerializedData = new DataToSerialize();
-            Serializer DataSerializer = new Serializer();
-            SerializedData = DataSerializer.DeSerializeObject(path + fileName);
-            tempDataList = SerializedData.DataList;
-            System.Windows.Forms.MessageBox.Show("Data indlæst succesfuldt");
-            return tempDataList;
-        }
+		public static List<DataPoint> load(string fileName)
+		{
+			DataToSerialize SerializedData = new DataToSerialize();
+			Serializer DataSerializer = new Serializer();
+			SerializedData = DataSerializer.DeSerializeObject(path + fileName);
+			return SerializedData.DataList;
+		}
 
         /// <summary>
         /// Loads helpText into a string array.

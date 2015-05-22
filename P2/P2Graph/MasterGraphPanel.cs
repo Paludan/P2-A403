@@ -179,7 +179,8 @@ namespace P2Graph
 		/// </summary>
 		/// <param name="sender">Not used.</param>
 		/// <param name="e">Not used.</param>
-		private void OnInvalidateEvent(object sender, PaintEventArgs e){
+		private void OnInvalidateEvent(object sender, PaintEventArgs e)
+		{
 			this.UpdateMGP ();
 
 			X.Draw (e.Graphics);

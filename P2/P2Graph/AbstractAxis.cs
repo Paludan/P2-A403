@@ -168,7 +168,8 @@ namespace P2Graph
 		/// <param name="P2">The ending <see cref="P2Graph.GraphPoint"/> of the line.</param>
 		/// <param name="painter">The graphics object with which to draw.</param>
 		/// <param name="col">Color of the graph</param>
-		protected virtual void DrawLine(GraphPoint P1, GraphPoint P2, Graphics painter, Color col){
+		protected virtual void DrawLine(GraphPoint P1, GraphPoint P2, Graphics painter, Color col)
+		{
 			painter.DrawLine (new Pen (col, 2), P1, P2);
 		}
          
