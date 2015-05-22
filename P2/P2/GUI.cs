@@ -73,14 +73,16 @@ namespace P2
         /// Reduces the size of a labels text to the point where it fits in the label
         /// </summary>
         /// <param name="label">The label which text is to be resized</param>
-        private void autoScaleText(Control label)
-        {
-            while (label.Width < TextRenderer.MeasureText(label.Text, new Font(label.Font.FontFamily,
-                   label.Font.Size, label.Font.Style)).Width ||
-                   label.Height < TextRenderer.MeasureText(label.Text, new Font(label.Font.FontFamily,
-                   label.Font.Size, label.Font.Style)).Height)
-                label.Font = new Font(label.Font.FontFamily, label.Font.Size - 0.01f, label.Font.Style);
-        }
+		private void autoScaleText(Control label)
+		{
+			Size txtSize = TextRenderer.MeasureText (label.Text, label.Font);
+
+			while (label.Height < txtSize.Height || label.Width < txtSize.Width) {
+				label.Font = new Font (label.Font.FontFamily, label.Font.Size - 0.01f, label.Font.Style);
+
+				txtSize = TextRenderer.MeasureText (label.Text, label.Font);
+			}
+		}
                 
         /// <summary>
         /// Makes sure only positive integers can be inserted into a textbox
